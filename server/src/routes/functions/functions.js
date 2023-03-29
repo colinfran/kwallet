@@ -51,7 +51,6 @@ const getGraphData = async (timestamp) => {
     return fixedPrices
   } catch (error) {
     console.log(error)
-    console.error(error)
     return ["failed"]
   }
 }
@@ -69,7 +68,6 @@ const getCurrentPrice = async () => {
     return kaspa.usd
   } catch (error) {
     console.log(error)
-    console.error(error)
     return []
   }
 }
