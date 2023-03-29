@@ -43,8 +43,8 @@ const ImportWallet = (): JSX.Element => {
           mnemonic: walletMnemonic,
         }),
       }
-      const url = "http://localhost:3000/api/wallet/import"
-      // const url = "https://kwallet.app/api/wallet/import"
+      // const url = "http://localhost:3000/api/wallet/import"
+      const url = "https://kwallet.app/api/wallet/import"
       const response = fetch(url, options)
       console.log(response)
     } catch (error) {

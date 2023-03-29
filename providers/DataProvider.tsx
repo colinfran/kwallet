@@ -78,8 +78,8 @@ export const DataProvider = ({ children }): JSX.Element => {
           encryptedMnemonic: selectedWallet.walletData.encryptedMnemonic,
         }),
       }
-      const url = "http://localhost:3000/api/data"
-      // const url = "https://kwallet.app/api/data"
+      // const url = "http://localhost:3000/api/data"
+      const url = "https://kwallet.app/api/data"
       const response = await fetch(url, options)
       const json = await response.json()
       if (json && !json.error) {

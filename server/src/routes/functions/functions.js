@@ -4,6 +4,15 @@ import fetch from "node-fetch"
 import change from "percent-change"
 import { db } from "../../database/index.js"
 
+const isJson = (str) => {
+  try {
+    JSON.parse(str)
+  } catch (e) {
+    return false
+  }
+  return true
+}
+
 const getGraphData = async (timestamp) => {
   let timeValue = moment()
   switch (timestamp) {
@@ -103,6 +112,9 @@ const getCurrentPrice = async () => {
   }
 }
 
+var isHTML = RegExp.prototype.test.bind(/(<([^>]+)>)/i);
+
+
 const sleep = async (seconds) => {
   await new Promise((resolve) => setTimeout(resolve, seconds * 1000))
 }
@@ -110,8 +122,8 @@ const sleep = async (seconds) => {
 export const triggerDataRefresh = async () => {
   const dataALL = await getGraphData("ALL")
   try {
-    if (dataALL[0] === "failed") {
-      //
+    if (dataALL[0] === "failed" || !isJson(dataALL) || isHTML(dataALL)) {
+      console.log("There was an issue getting the data for graph data all")
     } else await db.set("dataALL", JSON.stringify(dataALL))
   } catch (err) {
     console.error(err)
@@ -120,8 +132,8 @@ export const triggerDataRefresh = async () => {
   await sleep(60)
   const data1D = await getGraphData("1D")
   try {
-    if (data1D[0] === "failed") {
-      //
+    if (data1D[0] === "failed" || !isJson(data1D) || isHTML(data1D)) {
+      console.log("There was an issue getting the data for graph data 1d")
     } else await db.set("data1D", JSON.stringify(data1D))
   } catch (err) {
     console.error(err)
@@ -130,8 +142,8 @@ export const triggerDataRefresh = async () => {
   await sleep(60)
   const data1Y = await getGraphData("1Y")
   try {
-    if (data1Y[0] === "failed") {
-      //
+    if (data1Y[0] === "failed" || !isJson(data1Y) || isHTML(data1Y)) {
+      console.log("There was an issue getting the data for graph data 1y")
     } else await db.set("data1Y", JSON.stringify(data1Y))
   } catch (err) {
     console.error(err)
@@ -140,8 +152,8 @@ export const triggerDataRefresh = async () => {
   await sleep(60)
   const data1M = await getGraphData("1M")
   try {
-    if (data1M[0] === "failed") {
-      //
+    if (data1M[0] === "failed" || !isJson(data1M) || isHTML(data1M)) {
+      console.log("There was an issue getting the data for graph data 1m")
     } else await db.set("data1M", JSON.stringify(data1M))
   } catch (err) {
     console.error(err)
@@ -150,8 +162,8 @@ export const triggerDataRefresh = async () => {
   await sleep(60)
   const data1W = await getGraphData("1W")
   try {
-    if (data1W[0] === "failed") {
-      //
+    if (data1W[0] === "failed" || !isJson(data1W) || isHTML(data1W)) {
+      console.log("There was an issue getting the data for graph data 1w")
     } else await db.set("data1W", JSON.stringify(data1W))
   } catch (err) {
     console.error(err)
@@ -161,8 +173,8 @@ export const triggerDataRefresh = async () => {
   await sleep(60)
   const hlDataALL = await getHighLowData("ALL")
   try {
-    if (hlDataALL[0] === "failed") {
-      //
+    if (hlDataALL[0] === "failed" || !isJson(hlDataALL) || isHTML(hlDataALL)) {
+      console.log("There was an issue getting the data for high-low-all")
     } else await db.set("dataALL-highlow", JSON.stringify(hlDataALL))
   } catch (err) {
     console.error(err)
@@ -171,8 +183,8 @@ export const triggerDataRefresh = async () => {
   await sleep(60)
   const hlData1Y = await getHighLowData("1Y")
   try {
-    if (hlData1Y[0] === "failed") {
-      //
+    if (hlData1Y[0] === "failed" || !isJson(hlData1Y) || isHTML(hlData1Y)) {
+      console.log("There was an issue getting the data for high-low-1y")
     } else await db.set("data1Y-highlow", JSON.stringify(hlData1Y))
   } catch (err) {
     console.error(err)
@@ -181,8 +193,8 @@ export const triggerDataRefresh = async () => {
   await sleep(60)
   const hlData1M = await getHighLowData("1M")
   try {
-    if (hlData1M[0] === "failed") {
-      //
+    if (hlData1M[0] === "failed" || !isJson(hlData1M) || isHTML(hlData1M)) {
+      console.log("There was an issue getting the data for high-low-1m")
     } else await db.set("data1M-highlow", JSON.stringify(hlData1M))
   } catch (err) {
     console.error(err)
@@ -191,8 +203,8 @@ export const triggerDataRefresh = async () => {
   await sleep(60)
   const hlData1W = await getHighLowData("1W")
   try {
-    if (hlData1W[0] === "failed") {
-      //
+    if (hlData1W[0] === "failed" || !isJson(hlData1W) || isHTML(hlData1W)) {
+      console.log("There was an issue getting the data for high-low-1w")
     } else await db.set("data1W-highlow", JSON.stringify(hlData1W))
   } catch (err) {
     console.error(err)
@@ -201,8 +213,8 @@ export const triggerDataRefresh = async () => {
   await sleep(60)
   const hlData1D = await getHighLowData("1D")
   try {
-    if (hlData1D[0] === "failed") {
-      //
+    if (hlData1D[0] === "failed" || !isJson(hlData1D) || isHTML(hlData1D)) {
+      console.log("There was an issue getting the data for high-low-1d")
     } else await db.set("data1D-highlow", JSON.stringify(hlData1D))
   } catch (err) {
     console.error(err)
@@ -212,8 +224,8 @@ export const triggerDataRefresh = async () => {
   await sleep(60)
   const val = await getCurrentPrice()
   try {
-    if (val === "failed") {
-      //
+    if (val === "failed" || String(val) !== val || isHTML(val)) {
+      console.log("There was an issue getting the data for current price")
     } else await db.set("currentPrice", val)
   } catch (err) {
     console.error(err)
