@@ -1,7 +1,7 @@
 import express from "express"
 import fs from "fs"
 import walletRoute from "./wallet/index.js"
-import { getData } from "./functions/functions.js"
+import { getData } from "../functions/functions.js"
 import { Wallet, network, rpc } from "../kaspa/index.js"
 import { db } from "../database/index.js"
 

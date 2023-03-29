@@ -1,8 +1,19 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 import moment from "moment"
 import fetch from "node-fetch"
-import change from "percent-change"
-import { db } from "../../database/index.js"
+import { db } from "../database/index.js"
+
+export const getAppStatus = async () => {
+  try {
+    const response = await fetch(
+      `https://raw.githubusercontent.com/colinfran/kwallet/main/alerts.json`
+    )
+    const json = await response.json()
+    await db.set("appStatus", JSON.stringify(json))
+  } catch (error) {
+    console.log(error)
+  }
+}
 
 const validJson = (str) => {
   try {
@@ -158,9 +169,12 @@ export const getData = async (wallet) => {
 
   const currentPrice = JSON.parse(await db.get("currentPrice"))
 
+  const appStatus = JSON.parse(await db.get("appStatus"))
+
   wallet.sync(true)
 
   return {
+    appStatus: appStatus,
     currentPrice: `${currentPrice}`,
     day: {
       prices: data1D,

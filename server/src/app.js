@@ -9,7 +9,7 @@ import { fileURLToPath } from "url"
 import { initializeKaspa } from "./kaspa/index.js"
 import { initializeDatabase } from "./database/index.js"
 
-import { triggerDataRefresh } from "./routes/functions/functions.js"
+import { triggerDataRefresh, getAppStatus } from "./functions/functions.js"
 import apiRoute from "./routes/index.js"
 
 const app = express()
@@ -30,7 +30,7 @@ app.use(express.static(__dirname + "/public"))
 
 initializeDatabase()
 initializeKaspa()
-
+getAppStatus()
 /* 
   Cron schedule to refresh data every 15 minutes.
   -
