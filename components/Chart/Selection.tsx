@@ -1,0 +1,117 @@
+import { DarkTheme, DefaultTheme } from "@react-navigation/native"
+import React, { useContext } from "react"
+import {
+  StyleSheet,
+  TouchableWithoutFeedback,
+  View,
+  Text,
+  Dimensions,
+  useColorScheme,
+} from "react-native"
+import Animated, {
+  useSharedValue,
+  useAnimatedStyle,
+  withSpring,
+} from "react-native-reanimated"
+import { DataContext } from "../../providers/DataProvider"
+
+export const Selection = ({
+  apiData,
+  arrayButtonsData,
+  onButtonPress,
+  selectedVariantIndex,
+}): JSX.Element => {
+  const offset = useSharedValue(0)
+
+  const HEIGHT = 40
+  const WIDTH = (Dimensions.get("window").width - 40) / arrayButtonsData.length
+
+  const animatedStyles = useAnimatedStyle(() => {
+    return {
+      transform: [{ translateX: offset.value * WIDTH }],
+    }
+  })
+  const { pickedColor } = useContext(DataContext)
+  const textColor = useColorScheme() === "dark" ? "#fff" : "#000"
+
+  const buttonBackgroundColor =
+    useColorScheme() === "dark"
+      ? DarkTheme.colors.background
+      : DefaultTheme.colors.background
+
+  const styles = StyleSheet.create({
+    container: {
+      width: "100%",
+    },
+    box: {
+      width: WIDTH,
+      height: HEIGHT,
+      backgroundColor: buttonBackgroundColor,
+      borderColor: pickedColor,
+      borderRadius: 15,
+      borderWidth: 1,
+      justifyContent: "center",
+      alignItems: "center",
+      position: "absolute",
+      left: 0,
+      right: 0,
+      margin: "auto",
+      zIndex: 0,
+      shadowOffset: {
+        width: 0,
+        height: 5,
+      },
+      shadowOpacity: 0.35,
+      shadowRadius: 3.5,
+      elevation: 5,
+      shadowColor: textColor,
+    },
+    buttonList: {
+      flexDirection: "row",
+      width: "100%",
+    },
+    button: {
+      height: HEIGHT,
+      width: WIDTH,
+      justifyContent: "center",
+      alignItems: "center",
+    },
+    label: {
+      fontSize: 16,
+      color: "#5A5A5A",
+      // textAlign: "center",
+      zIndex: 5,
+    },
+  })
+
+  return (
+    <View style={styles.container}>
+      <Animated.View style={[styles.box, animatedStyles]} />
+      <View style={styles.buttonList}>
+        {arrayButtonsData.map((element, i) => {
+          const isSelected = i === selectedVariantIndex
+          return (
+            <TouchableWithoutFeedback
+              key={i}
+              onPress={() => {
+                onButtonPress(
+                  apiData[element.buttonTitle.toLowerCase()].prices,
+                  i
+                )
+                offset.value = withSpring(i)
+              }}
+            >
+              <View style={styles.button}>
+                <Text
+                  style={[styles.label, isSelected && { color: textColor }]}
+                >
+                  {element.buttonTitle}
+                </Text>
+              </View>
+            </TouchableWithoutFeedback>
+          )
+        })}
+      </View>
+    </View>
+  )
+}

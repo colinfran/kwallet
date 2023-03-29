@@ -1,0 +1,49 @@
+{
+  "name": "wallet-server",
+  "version": "0.0.1",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "NODE_ENV=dev babel-node ./src/bin/www.js",
+    "clean": "rm -rf dist",
+    "build": "yarn run clean && babel ./src --out-dir dist --copy-files",
+    "prod": "node ./dist/bin/www.js",
+    "lint": "eslint \"src/**/*.js\"",
+    "format": "prettier --write \"src/**/*.js\""
+  },
+  "dependencies": {
+    "@kaspa/grpc-node": "^1.0.8",
+    "@kaspa/wallet": "^1.4.24",
+    "cookie-parser": "~1.4.4",
+    "core-js": "^3.8.1",
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "http-errors": "~1.6.3",
+    "jade": "~1.11.0",
+    "moment": "^2.29.4",
+    "moment-round": "^1.0.1",
+    "morgan": "~1.9.1",
+    "node-cron": "^3.0.2",
+    "node-fetch": "^3.3.1",
+    "percent-change": "^1.0.1",
+    "regenerator-runtime": "^0.13.7",
+    "simple-json-db": "^2.0.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.12.10",
+    "@babel/core": "^7.12.10",
+    "@babel/node": "^7.12.10",
+    "@babel/preset-env": "^7.12.10",
+    "babel-plugin-module-resolver": "^4.0.0",
+    "eslint": "^7.15.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-prettier": "^7.0.0",
+    "eslint-import-resolver-babel-module": "^5.2.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-prettier": "^3.3.0",
+    "prettier": "^2.2.1"
+  },
+  "engines": {
+    "node": "14.X"
+  }
+}

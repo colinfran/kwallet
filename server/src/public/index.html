@@ -1,0 +1,237 @@
+<html>
+
+<head>
+  <meta charset="utf-8" class="next-head">
+  <title class="next-head">Server for Wallet</title>
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <!-- <meta name="title" content="Calculator for Minimalists - Privacy Policy"> -->
+    <!-- <meta name="description" content="Download the Calculator for Minimalists app for free from the iOS store!"> -->
+    <!-- <meta name="keywords" content="Calculator for Minimalists, Calculator, for, Minimalists, Calculator for Minimalist, Calculators for Minimalists, colin, franceschini"> -->
+    <meta name="robots" content="index, follow">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="language" content="English">
+    <!-- <meta name="author" content="Colin Franceschini">
+    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+    <link rel="manifest" href="./site.webmanifest"> -->
+
+
+  <style>
+html{
+  overflow:hidden;
+}
+:root {
+  --content-width: 100%;
+    --content-padding: 40px;
+    --brand-color: black;
+    --brand-gradient: linear-gradient(45deg, hsl(0deg 0% 0% / 80%) 0%, hsl(0deg 0% 0% / 80%) 100%);
+    --brand-color-2: black;
+}
+body {
+    margin: 0;
+    line-height: 1.6;
+}
+body {
+    color: hsla(0, 0%, 0%, 0.8);
+    font-family: sans-serif;
+    font-weight: normal;
+    word-wrap: break-word;
+    font-kerning: normal;
+    -moz-font-feature-settings: "kern", "liga", "clig", "calt";
+    -ms-font-feature-settings: "kern", "liga", "clig", "calt";
+    -webkit-font-feature-settings: "kern", "liga", "clig", "calt";
+    font-feature-settings: "kern", "liga", "clig", "calt";
+}
+
+.main{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.section1{
+  width: 50%;
+  height: 100vh;
+  background-image: var(--brand-gradient);
+
+}
+
+.section1div{
+  background: url(./mock.png);
+  position: absolute;
+    top: 36%;
+    left: 25%;
+    margin: -157px 0 0 -130px;
+    width: 250;
+    height: 505;
+    box-shadow: 0 0 0 0 rgb(0 0 0 / 30%), 0 23px 38px 0 rgb(0 0 0 / 43%), 0 25px 65px 0 rgb(0 0 0 / 10%);
+    border-radius: 5px;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    border-radius: 40px;
+}
+
+.section2{
+  width: 50%;
+  height: 100vh;
+  background-color: #fff;
+  justify-content: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.section2div {
+    margin: auto;
+    padding: var(--content-padding);
+    margin-bottom: 0;
+    /* max-width: var(--content-width); */
+}
+
+.section2h1{
+    margin: 0 0 0.4rem 0;
+    padding: 0;
+    color: var(--brand-color);
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    font-weight: bold;
+    text-rendering: optimizeLegibility;
+    font-size: 1.7rem;
+    line-height: 1.1;
+}
+.section2h2 {
+    margin: 0 0 1.45rem 0;
+    padding: 0;
+    color: #000;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    font-weight: 800;
+    text-rendering: optimizeLegibility;
+    font-size: 3.3rem;
+    line-height: 1.1;
+    -webkit-letter-spacing: -0.027rem;
+    -moz-letter-spacing: -0.027rem;
+    -ms-letter-spacing: -0.027rem;
+    letter-spacing: -0.027rem;
+}
+
+body{
+  overflow:hidden;
+}
+
+.section2p{
+    color: rgba(0, 0, 0, 0.6);
+}
+
+@media screen and (max-width:800px) {
+  .main{
+  flex-direction: column;
+}
+html{
+  overflow-y: scroll !important;
+}
+
+.section1 {
+    width: 100%;
+    max-height: 444px;
+}
+}
+@media only screen and (max-width: 800px){
+.main{
+  flex-direction: column;
+}
+
+.section1 {
+    width: 100%;
+    max-height: 444px;
+}
+.section1div{
+  top: 22%;
+    left: 50%;
+    margin: -157px 0 0 -126px;
+        width: 250;
+    height: 505;
+}
+.section2{
+  padding: 0;
+    width: 100%;
+    /* height: calc(100% - 444px); */
+    text-align: center;
+    z-index: 1;
+}
+.section2div{
+  margin: auto;
+    padding: var(--content-padding);
+    /* max-width: var(--content-width); */
+}
+}
+
+.footer {
+    position: relative;
+    margin: auto;
+    padding: var(--content-padding);
+    /* max-width: var(--content-width); */
+}
+
+
+.demogif{
+  width: 86%;
+  height: 86%;
+  margin-top: 61px;
+  display: flex;
+  margin-left: 1px;
+}
+@media only screen and (max-width: 800px){
+  .demogif{
+    width: 86%;
+    height: 86%;
+    margin-top: 61px;
+    display: flex;
+    margin-left: 1px;
+  }
+}
+
+
+
+  </style>
+</head>
+
+<body>
+    <main class="main">
+      <section class="section1">
+        <!-- <div class="section1div">
+          <div style="display: flex;justify-content: center;">
+        </div> -->
+        </div>
+      </section>
+      <section class="section2">
+        <div class="section2div">
+          <h2 class="section2h2">Server for Wallet</h2>
+          <p class="section2p">This app is how your wallet phone app is able to get its data sufficiently and safely.</p>
+          <!-- <div>
+            <div style="display: flex;justify-content: center;margin-top: 30px;">
+              <a href="https://apps.apple.com/us/app/calculator-for-minimalists/id1560501633">
+                <img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-example-preferred_2x.png" style="height: 40px;">
+              </a>
+            </div>
+          </div> -->
+        </div>
+        <footer class="footer">
+          <div>
+            <span class="bottomspan">A product by
+              <a href="https://github.com/colinfran" target="_blank" class="bottomspan">Colin Franceschini</a>
+             </span>
+             <!-- <span class="bottomspan" style="margin-left: 10; margin-right: 10;">
+               <a href="https://colinfran.github.io/calculator-for-minimalists/license.html" target="_blank" class="bottomspan">License</a>
+              </span>
+              <span class="bottomspan">
+               <a href="https://colinfran.github.io/calculator-for-minimalists/privacy-policy.html" target="_blank" class="bottomspan">Privacy Policy</a>
+              </span> -->
+          </div>
+        </footer>
+      </section>
+    </main>
+  </div>
+  <div>
+   
+</body>
+
+</html>

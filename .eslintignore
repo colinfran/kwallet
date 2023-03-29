@@ -1,0 +1,12 @@
+/.github/
+/build/
+/node_modules/
+/assets/fonts/
+/assets/images/
+/.expo/
+/.expo-shared/
+/server/
+./babel.config.js
+babel.config.js
+
+/components/Chart/@rainbow-me/*
