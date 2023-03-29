@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react"
 import { StyleSheet, View, KeyboardAvoidingView } from "react-native"
 import AsyncStorage from "@react-native-async-storage/async-storage"
-import { Button, Text, Input, Icon } from "native-base"
+import { Button, Text, Input, Icon, Spinner } from "native-base"
 import ordinal from "ordinal"
 import { Ionicons } from "@expo/vector-icons"
 
@@ -30,6 +30,8 @@ const CreateWalletStep3 = ({ route }): JSX.Element => {
     getApiData,
     pickedColor,
   } = useContext(DataContext)
+  const [loading, setLoading] = useState(false)
+
   const [input1, setInput1] = useState("")
   const [input2, setInput2] = useState("")
   const [input3, setInput3] = useState("")
@@ -65,6 +67,7 @@ const CreateWalletStep3 = ({ route }): JSX.Element => {
 
   // dirt cash post pause use beyond actual view autumn near panel empower
   const addWallet = (): void => {
+    setLoading(true)
     const newWalletObject = {
       walletName,
       walletData: data,
@@ -82,6 +85,7 @@ const CreateWalletStep3 = ({ route }): JSX.Element => {
           setApiData(response)
         }
       }, 500)
+      setLoading(false)
       navigation.navigate("SettingsTab")
     } else {
       newWalletArray.push(newWalletObject)
@@ -194,15 +198,25 @@ const CreateWalletStep3 = ({ route }): JSX.Element => {
                 borderRadius={15}
                 isDisabled={!validInputtedSeed}
                 leftIcon={
-                  <Icon
-                    as={Ionicons}
-                    name={
-                      validInputtedSeed
-                        ? "checkmark-circle-outline"
-                        : "warning-outline"
-                    }
-                    size="sm"
-                  />
+                  loading ? (
+                    <Spinner
+                      color={pickedColor}
+                      size="sm"
+                      style={{
+                        transform: [{ scaleX: 0.85 }, { scaleY: 0.85 }],
+                      }}
+                    />
+                  ) : (
+                    <Icon
+                      as={Ionicons}
+                      name={
+                        validInputtedSeed
+                          ? "checkmark-circle-outline"
+                          : "warning-outline"
+                      }
+                      size="sm"
+                    />
+                  )
                 }
                 size="lg"
                 variant="outline"

@@ -7,8 +7,8 @@ import {
   KeyboardAvoidingView,
 } from "react-native"
 import AsyncStorage from "@react-native-async-storage/async-storage"
-import { Button, TextArea, Input, Icon } from "native-base"
-
+import { Button, TextArea, Input, Icon, Spinner } from "native-base"
+import * as Sentry from "sentry-expo"
 import { DataContext } from "../../providers/DataProvider"
 import { Ionicons } from "@expo/vector-icons"
 import { useNavigation } from "@react-navigation/native"
@@ -22,12 +22,16 @@ const ImportWallet = (): JSX.Element => {
     setApiData,
     pickedColor,
   } = useContext(DataContext)
+
+  const [loading, setLoading] = useState(false)
+
   const [walletName, setWalletName] = useState("")
   const [walletMnemonic, setWalletMnemonic] = useState("")
   const [walletPassword, setWalletPassword] = useState("")
   const navigation = useNavigation()
 
   const importWallet = (): void => {
+    setLoading(true)
     try {
       const options = {
         method: "POST",
@@ -44,7 +48,7 @@ const ImportWallet = (): JSX.Element => {
       const response = fetch(url, options)
       console.log(response)
     } catch (error) {
-      // catch
+      Sentry.Native.captureException(error)
     }
     const newWalletObject = {
       walletName,
@@ -62,11 +66,13 @@ const ImportWallet = (): JSX.Element => {
           setApiData(response)
         }
       }, 500)
+      setLoading(false)
       navigation.navigate("SettingsTab")
     } else {
       newWalletArray.push(newWalletObject)
       setWallets(newWalletArray)
       setSelectedWalletIndex(0)
+      setLoading(false)
       AsyncStorage.setItem("wallets", JSON.stringify(newWalletArray))
     }
   }
@@ -142,11 +148,21 @@ const ImportWallet = (): JSX.Element => {
           borderRadius={15}
           isDisabled={!valid}
           leftIcon={
-            <Icon
-              as={Ionicons}
-              name={valid ? "checkmark-circle-outline" : "warning-outline"}
-              size="sm"
-            />
+            loading ? (
+              <Spinner
+                color={pickedColor}
+                size="sm"
+                style={{
+                  transform: [{ scaleX: 0.85 }, { scaleY: 0.85 }],
+                }}
+              />
+            ) : (
+              <Icon
+                as={Ionicons}
+                name={valid ? "checkmark-circle-outline" : "warning-outline"}
+                size="sm"
+              />
+            )
           }
           size="lg"
           variant="outline"

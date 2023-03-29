@@ -26,7 +26,19 @@
         {
           "cameraPermission": "Allow $(PRODUCT_NAME) to access camera."
         }
+      ],
+      "sentry-expo"
+    ],
+    "hooks": {
+      "postPublish": [
+        {
+          "file": "sentry-expo/upload-sourcemaps",
+          "config": {
+            "organization": "colinfran",
+            "project": "kwallet"
+          }
+        }
       ]
-    ]
+    }
   }
 }

@@ -4,14 +4,18 @@ import { useColorScheme, LogBox } from "react-native"
 import { SafeAreaProvider } from "react-native-safe-area-context"
 import { NativeBaseProvider } from "native-base"
 import { LinearGradient } from "expo-linear-gradient"
+import * as Sentry from "sentry-expo"
 
 import { DataProvider } from "./providers/DataProvider"
 
 import Navigation from "./navigation"
+import { sentryDsn } from "./env"
 
-LogBox.ignoreLogs([
-  "Sending `onAnimatedValueUpdate` with no listeners registered.",
-])
+Sentry.init({
+  dsn: sentryDsn,
+  enableInExpoDevelopment: true,
+  debug: true,
+})
 
 const App = (): JSX.Element | null => {
   const colorScheme = useColorScheme()

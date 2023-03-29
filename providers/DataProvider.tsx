@@ -4,6 +4,7 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import React, { useState, createContext, useEffect } from "react"
 import AsyncStorage from "@react-native-async-storage/async-storage"
+import * as Sentry from "sentry-expo"
 
 type DataPoint = {
   timestamp: number
@@ -87,7 +88,7 @@ export const DataProvider = ({ children }): JSX.Element => {
         return json
       }
     } catch (error) {
-      // catch
+      Sentry.Native.captureException(error)
       return { error: true, errorDescription: "" }
     }
   }

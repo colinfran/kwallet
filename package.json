@@ -16,7 +16,6 @@
   "dependencies": {
     "@colinfran/animated-charts": "^1.0.0",
     "@expo/vector-icons": "^13.0.0",
-    "@gorhom/bottom-sheet": "^4",
     "@kaspa/grpc-web": "^1.0.2",
     "@kaspa/wallet": "^1.4.24",
     "@rainbow-me/animated-charts": "^1.0.0-alpha.6",
@@ -24,9 +23,11 @@
     "@react-navigation/bottom-tabs": "^6.5.7",
     "@react-navigation/native": "^6.1.6",
     "@react-navigation/stack": "^6.3.16",
+    "@sentry/react-native": "4.13.0",
     "bitcore-mnemonic-react-native": "^1.2.4",
     "color-lighten-tool": "^1.0.2",
     "expo": "~48.0.5",
+    "expo-application": "~5.1.1",
     "expo-asset": "~8.9.0",
     "expo-barcode-scanner": "~12.3.2",
     "expo-clipboard": "~4.1.2",
@@ -57,7 +58,8 @@
     "react-native-swipe-list-view": "^3.2.9",
     "react-native-swipeable-item": "^2.0.9",
     "react-native-webview": "11.26.0",
-    "reanimated-color-picker": "^1.5.1"
+    "reanimated-color-picker": "^1.5.1",
+    "sentry-expo": "~6.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.21.0",

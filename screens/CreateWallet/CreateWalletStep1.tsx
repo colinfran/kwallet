@@ -6,8 +6,17 @@ import {
   useColorScheme,
   KeyboardAvoidingView,
 } from "react-native"
-import { Button, Text, Input, Image, Actionsheet, Icon } from "native-base"
+import {
+  Button,
+  Text,
+  Input,
+  Image,
+  Actionsheet,
+  Icon,
+  Spinner,
+} from "native-base"
 import * as Haptics from "expo-haptics"
+import * as Sentry from "sentry-expo"
 
 import UserResponsibility from "../../components/UserResponsibility"
 import { DataContext } from "../../providers/DataProvider"
@@ -25,7 +34,7 @@ const CreateWalletStep1 = ({ navigation }): JSX.Element => {
   // ref
   // const bottomSheetModalRef = useRef<BottomSheetModal>(null)
   const [bottomSheetOpen, setBottomSheetOpen] = useState(false)
-
+  const [loading, setLoading] = useState(false)
   const openBottomSheet = (): void => {
     setBottomSheetOpen(true)
   }
@@ -51,6 +60,7 @@ const CreateWalletStep1 = ({ navigation }): JSX.Element => {
   const textColor = useColorScheme() === "dark" ? "#fff" : "#000"
 
   const getMnemonic = async (): void => {
+    setLoading(true)
     try {
       const options = {
         method: "POST",
@@ -68,10 +78,11 @@ const CreateWalletStep1 = ({ navigation }): JSX.Element => {
       // console.log(json)
       if (!json.error) {
         setBottomSheetOpen(false)
+        setLoading(false)
         navigation.navigate("CreateWalletStep2", { data: json })
       }
     } catch (error) {
-      // catch
+      Sentry.Native.captureException(error)
     }
   }
 
@@ -178,6 +189,7 @@ const CreateWalletStep1 = ({ navigation }): JSX.Element => {
             />
             <View style={styles.continueButton}>
               <Button
+                // _loading={{ size: "xs" }}
                 _text={{
                   style: {
                     color: "#000",
@@ -187,15 +199,25 @@ const CreateWalletStep1 = ({ navigation }): JSX.Element => {
                 borderRadius={15}
                 isDisabled={!(checkbox1 && checkbox2 && checkbox3)}
                 leftIcon={
-                  <Icon
-                    as={Ionicons}
-                    name={
-                      checkbox1 && checkbox2 && checkbox3
-                        ? "checkmark-circle-outline"
-                        : "warning-outline"
-                    }
-                    size="sm"
-                  />
+                  loading ? (
+                    <Spinner
+                      color={pickedColor}
+                      size="sm"
+                      style={{
+                        transform: [{ scaleX: 0.85 }, { scaleY: 0.85 }],
+                      }}
+                    />
+                  ) : (
+                    <Icon
+                      as={Ionicons}
+                      name={
+                        checkbox1 && checkbox2 && checkbox3
+                          ? "checkmark-circle-outline"
+                          : "warning-outline"
+                      }
+                      size="sm"
+                    />
+                  )
                 }
                 size="lg"
                 variant="outline"

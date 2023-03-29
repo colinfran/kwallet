@@ -6,6 +6,7 @@ import {
   DarkTheme,
 } from "@react-navigation/native"
 import { createStackNavigator } from "@react-navigation/stack"
+import * as Sentry from "sentry-expo"
 
 import Loading from "../screens/Loading"
 import { RootStackParamList } from "../types"
@@ -44,6 +45,7 @@ const Navigation = ({
         })
       } catch (e) {
         // add code here for error reporting service
+        Sentry.Native.captureException(e)
         console.warn(e)
       } finally {
         SplashScreen.hideAsync()
