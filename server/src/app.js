@@ -50,20 +50,14 @@ cron.schedule("*/15 * * * *", async () => {
 })
 
 /*
-  Route: /api
-  Use: api endpoint
-  Returns: graph data and data associated with wallet
+  Api endpoint
+  Returns: graph data and wallet data
 */
 app.use("/api", apiRoute)
 
 /*
-  Route list: 
-        - "/privacy", "/privacy.html"
-        - "/terms", "/terms.html", 
-        - "/index", "index.html" 
-        - "/*"
-  Use: App website / Terms of Use
-  Returns: the terms of use page
+  Webpage endpoint
+  Returns: webpage
 */
 const privacy = ["/privacy", "/privacy.html"]
 const terms = ["/terms", "/terms.html"]
