@@ -61,8 +61,7 @@ const CreateWalletStep1 = ({ navigation }): JSX.Element => {
           password: walletPassword,
         }),
       }
-      const url =
-        "https://wallet-server-r6l7o.ondigitalocean.app/api/wallet/create"
+      const url = "https://kwallet.app/api/wallet/create"
       // const url = "http://localhost:3000/api/wallet/create"
       const response = await fetch(url, options)
       const json = await response.json()

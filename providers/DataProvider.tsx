@@ -80,7 +80,7 @@ export const DataProvider = ({ children }): JSX.Element => {
         }),
       }
       // const url = "http://localhost:3000/api/data"
-      const url = "https://wallet-server-r6l7o.ondigitalocean.app/api/data"
+      const url = "https://kwallet.app/api/data"
       const response = await fetch(url, options)
       const json = await response.json()
       if (json && !json.error) {

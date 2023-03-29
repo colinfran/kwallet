@@ -40,14 +40,12 @@ const ImportWallet = (): JSX.Element => {
         }),
       }
       // const url = "http://localhost:3000/api/wallet/import"
-      const url =
-        "https://wallet-server-r6l7o.ondigitalocean.app/api/wallet/import"
+      const url = "https://kwallet.app/api/wallet/import"
       const response = fetch(url, options)
       console.log(response)
     } catch (error) {
       // catch
     }
-    // const url = "https://wallet-server-r6l7o.ondigitalocean.app/api/data"
     const newWalletObject = {
       walletName,
       walletMnemonic,

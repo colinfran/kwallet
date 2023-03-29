@@ -5,9 +5,7 @@ import { WebView } from "react-native-webview"
 const TermsScreen = (): JSX.Element => {
   return (
     <View style={styles.container}>
-      <WebView
-        source={{ uri: "https://wallet-server-r6l7o.ondigitalocean.app/terms" }}
-      />
+      <WebView source={{ uri: "https://kwallet.app/terms" }} />
     </View>
   )
 }
