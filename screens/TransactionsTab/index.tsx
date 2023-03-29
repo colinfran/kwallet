@@ -2,7 +2,7 @@ import React, { useContext } from "react"
 import { StyleSheet, Button, View } from "react-native"
 import { Text } from "native-base"
 import { DataContext } from "../../providers/DataProvider"
-import AsyncStorage from "@react-native-async-storage/async-storage"
+import * as SecureStore from "expo-secure-store"
 
 const TransactionsTab = (): JSX.Element => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -10,7 +10,7 @@ const TransactionsTab = (): JSX.Element => {
 
   const removeWallet = (): void => {
     setWallets([])
-    AsyncStorage.setItem("wallets", JSON.stringify([]))
+    SecureStore.setItemAsync("wallets", JSON.stringify([]))
   }
   return (
     <View style={styles.container}>

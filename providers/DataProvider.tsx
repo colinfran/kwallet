@@ -3,7 +3,7 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 /* eslint-disable @typescript-eslint/no-empty-function */
 import React, { useState, createContext, useEffect } from "react"
-import AsyncStorage from "@react-native-async-storage/async-storage"
+import * as SecureStore from "expo-secure-store"
 import * as Sentry from "sentry-expo"
 
 type DataPoint = {
@@ -67,8 +67,6 @@ export const DataProvider = ({ children }): JSX.Element => {
     console.log("Data refresh occurring.")
     const selectedWallet = wallets[selectedWalletIndex]
     console.log(selectedWallet)
-    console.log(selectedWallet.walletData.userPassword)
-    console.log(selectedWallet.walletData.encryptedMnemonic)
     try {
       const options = {
         method: "POST",
@@ -94,7 +92,7 @@ export const DataProvider = ({ children }): JSX.Element => {
   }
 
   const getData = async () => {
-    const walletData = await AsyncStorage.getItem("wallets")
+    const walletData = await SecureStore.getItemAsync("wallets")
     if (walletData !== null) {
       setWallets(JSON.parse(walletData))
     }

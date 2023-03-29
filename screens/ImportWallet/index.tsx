@@ -6,7 +6,7 @@ import {
   useColorScheme,
   KeyboardAvoidingView,
 } from "react-native"
-import AsyncStorage from "@react-native-async-storage/async-storage"
+import * as SecureStore from "expo-secure-store"
 import { Button, TextArea, Input, Icon, Spinner } from "native-base"
 import * as Sentry from "sentry-expo"
 import { DataContext } from "../../providers/DataProvider"
@@ -58,7 +58,7 @@ const ImportWallet = (): JSX.Element => {
     if (wallets.length > 0) {
       newWalletArray = [...wallets, newWalletObject]
       setWallets(newWalletArray)
-      AsyncStorage.setItem("wallets", JSON.stringify(newWalletArray))
+      SecureStore.setItemAsync("wallets", JSON.stringify(newWalletArray))
       setSelectedWalletIndex(newWalletArray.length - 1)
       setTimeout(() => {
         const response = getApiData()
@@ -73,7 +73,7 @@ const ImportWallet = (): JSX.Element => {
       setWallets(newWalletArray)
       setSelectedWalletIndex(0)
       setLoading(false)
-      AsyncStorage.setItem("wallets", JSON.stringify(newWalletArray))
+      SecureStore.setItemAsync("wallets", JSON.stringify(newWalletArray))
     }
   }
 

@@ -22,7 +22,7 @@ import {
 } from "native-base"
 import Svg, { Circle, Path } from "react-native-svg"
 import { SwipeListView } from "react-native-swipe-list-view"
-import AsyncStorage from "@react-native-async-storage/async-storage"
+import * as SecureStore from "expo-secure-store"
 
 import Constants from "expo-constants"
 
@@ -288,13 +288,16 @@ const SettingsScreen = (): JSX.Element => {
                   if (wallets.length === 1) {
                     setOpenWalletPicker(false)
                     setWallets([])
-                    AsyncStorage.setItem("wallets", JSON.stringify([]))
+                    SecureStore.setItemAsync("wallets", JSON.stringify([]))
                   } else {
                     const newWallets = wallets.filter(
                       (wallet) => wallet !== wallets[data.index]
                     )
                     setWallets(newWallets)
-                    AsyncStorage.setItem("wallets", JSON.stringify(newWallets))
+                    SecureStore.setItemAsync(
+                      "wallets",
+                      JSON.stringify(newWallets)
+                    )
                   }
                 },
               },

@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react"
 import { StyleSheet, View, KeyboardAvoidingView } from "react-native"
-import AsyncStorage from "@react-native-async-storage/async-storage"
+import * as SecureStore from "expo-secure-store"
 import { Button, Text, Input, Icon, Spinner } from "native-base"
 import ordinal from "ordinal"
 import { Ionicons } from "@expo/vector-icons"
@@ -77,7 +77,7 @@ const CreateWalletStep3 = ({ route }): JSX.Element => {
     if (wallets.length > 0) {
       newWalletArray = [...wallets, newWalletObject]
       setWallets(newWalletArray)
-      AsyncStorage.setItem("wallets", JSON.stringify(newWalletArray))
+      SecureStore.setItemAsync("wallets", JSON.stringify(newWalletArray))
       setSelectedWalletIndex(newWalletArray.length - 1)
       setTimeout(() => {
         const response = getApiData()
@@ -90,7 +90,7 @@ const CreateWalletStep3 = ({ route }): JSX.Element => {
     } else {
       newWalletArray.push(newWalletObject)
       setWallets(newWalletArray)
-      AsyncStorage.setItem("wallets", JSON.stringify(newWalletArray))
+      SecureStore.setItemAsync("wallets", JSON.stringify(newWalletArray))
       setSelectedWalletIndex(newWalletArray.length - 1)
     }
   }

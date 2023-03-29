@@ -1,5 +1,3 @@
-const sentryDsn: string = "sentryDsn"
+const sentryDsn = "sentryDsn"
 
-export {
-  sentryDsn,
-}
+export { sentryDsn }
