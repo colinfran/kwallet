@@ -5,9 +5,9 @@ import cookieParser from "cookie-parser"
 import bodyParser from "body-parser"
 import logger from "morgan"
 import cron from "node-cron"
-import fs from "fs"
-import JSONdb from "simple-json-db"
 import { fileURLToPath } from "url"
+import { initializeKaspa } from "./kaspa/index.js"
+import { initializeDatabase } from "./database/index.js"
 
 import { triggerDataRefresh } from "./routes/functions/functions.js"
 import apiRoute from "./routes/index.js"
@@ -24,15 +24,12 @@ app.use(bodyParser.json())
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
-if (!fs.existsSync("./storage.json")) {
-  const data = fs.readFileSync("./data.json", "utf8")
-  fs.writeFileSync("./storage.json", data)
-}
-
 app.use(express.static("storage.json"))
-const db = new JSONdb("./storage.json", { asyncWrite: true })
 
 app.use(express.static(__dirname + "/public"))
+
+initializeDatabase()
+initializeKaspa()
 
 /* 
   Cron schedule to refresh data every 15 minutes.
@@ -46,7 +43,7 @@ cron.schedule("*/15 * * * *", async () => {
   console.log("---------------------")
   console.log("Data Refresh Occured.")
   console.log("Updating local database")
-  await triggerDataRefresh(db)
+  await triggerDataRefresh()
   console.log("Data refresh complete.")
   console.log("Refreshing data again in 15 minute.")
   console.log("---------------------")
@@ -86,6 +83,6 @@ app.get("/*", (req, res) => {
   res.sendFile(__dirname + "/public/index.html")
 })
 
-triggerDataRefresh(db)
+triggerDataRefresh()
 
 export default app

@@ -9,6 +9,7 @@ import {
 import { Button, Image } from "native-base"
 import image from "../../assets/images/kwallet-icon.png"
 import { DataContext } from "../../providers/DataProvider"
+import ButtonOutline from "../../components/Button/ButtonOutline"
 
 const AddWallet = ({ navigation }): JSX.Element => {
   const { pickedColor } = useContext(DataContext)
@@ -37,36 +38,16 @@ const AddWallet = ({ navigation }): JSX.Element => {
       </View>
       <View style={styles.buttonsContainer}>
         <View style={styles.buttonContainer}>
-          <Button
-            _text={{
-              style: {
-                color: textColor,
-              },
-            }}
-            borderColor={pickedColor}
-            borderRadius={15}
-            size="lg"
-            variant="outline"
+          <ButtonOutline
+            text="Import Existing Wallet"
             onPress={() => navigation.navigate("ImportWallet")}
-          >
-            Import Existing Wallet
-          </Button>
+          />
         </View>
         <View style={styles.buttonContainer}>
-          <Button
-            _text={{
-              style: {
-                color: textColor,
-              },
-            }}
-            borderColor={pickedColor}
-            borderRadius={15}
-            size="lg"
-            variant="outline"
+          <ButtonOutline
+            text="Create New Wallet"
             onPress={() => navigation.navigate("CreateWalletStep1")}
-          >
-            Create New Wallet
-          </Button>
+          />
         </View>
       </View>
     </View>

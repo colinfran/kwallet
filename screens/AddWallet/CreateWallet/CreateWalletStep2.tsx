@@ -10,6 +10,7 @@ import { Button, Text, Alert, VStack, HStack } from "native-base"
 
 import { DataContext } from "../../../providers/DataProvider"
 import { useNavigation } from "@react-navigation/native"
+import ButtonOutline from "../../../components/Button/ButtonOutline"
 
 const CreateWalletStep2 = ({ route }): JSX.Element => {
   const [data, setData] = useState({})
@@ -66,24 +67,14 @@ const CreateWalletStep2 = ({ route }): JSX.Element => {
           ))}
         </View>
         <View style={styles.buttonContainer}>
-          <Button
-            _text={{
-              style: {
-                color: textColor,
-              },
-            }}
-            borderColor={pickedColor}
-            borderRadius={15}
-            size="lg"
-            variant="outline"
-            onPress={() =>
+          <ButtonOutline
+            text="Continue"
+            onPress={() => {
               navigation.navigate("CreateWalletStep3", {
                 data: { ...data, mnemonicArray: data?.mnemonic?.split(" ") },
               })
-            }
-          >
-            Continue
-          </Button>
+            }}
+          />
         </View>
       </View>
     </ScrollView>

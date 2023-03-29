@@ -22,6 +22,7 @@ import UserResponsibility from "../../../components/UserResponsibility"
 import { DataContext } from "../../../providers/DataProvider"
 import image from "../../../assets/images/vault.png"
 import { Ionicons } from "@expo/vector-icons"
+import ButtonOutline from "../../../components/Button/ButtonOutline"
 
 const CreateWalletStep1 = ({ navigation }): JSX.Element => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -31,8 +32,6 @@ const CreateWalletStep1 = ({ navigation }): JSX.Element => {
   const [walletPassword, setWalletPassword] = useState("")
   const [isValid, setIsValid] = useState(false)
 
-  // ref
-  // const bottomSheetModalRef = useRef<BottomSheetModal>(null)
   const [bottomSheetOpen, setBottomSheetOpen] = useState(false)
   const [loading, setLoading] = useState(false)
   const openBottomSheet = (): void => {
@@ -71,8 +70,8 @@ const CreateWalletStep1 = ({ navigation }): JSX.Element => {
           password: walletPassword,
         }),
       }
-      const url = "https://kwallet.app/api/wallet/create"
-      // const url = "http://localhost:3000/api/wallet/create"
+      // const url = "https://kwallet.app/api/wallet/create"
+      const url = "http://localhost:3000/api/wallet/create"
       const response = await fetch(url, options)
       const json = await response.json()
       if (!json.error) {
@@ -146,14 +145,7 @@ const CreateWalletStep1 = ({ navigation }): JSX.Element => {
             </View>
           </View>
           <View style={styles.buttonContainer}>
-            <Button
-              _text={{
-                style: {
-                  color: textColor,
-                },
-              }}
-              borderColor={pickedColor}
-              borderRadius={15}
+            <ButtonOutline
               isDisabled={!isValid}
               leftIcon={
                 <Icon
@@ -164,12 +156,9 @@ const CreateWalletStep1 = ({ navigation }): JSX.Element => {
                   size="sm"
                 />
               }
-              size="lg"
-              variant="outline"
-              onPress={() => openBottomSheet()}
-            >
-              Create Wallet
-            </Button>
+              text="Create Wallet"
+              onPress={openBottomSheet}
+            />
           </View>
         </View>
         <Actionsheet
@@ -195,15 +184,7 @@ const CreateWalletStep1 = ({ navigation }): JSX.Element => {
               onCheckboxPress={onCheckboxPress}
             />
             <View style={styles.continueButton}>
-              <Button
-                // _loading={{ size: "xs" }}
-                _text={{
-                  style: {
-                    color: "#000",
-                  },
-                }}
-                borderColor={pickedColor}
-                borderRadius={15}
+              <ButtonOutline
                 isDisabled={!(checkbox1 && checkbox2 && checkbox3)}
                 leftIcon={
                   loading ? (
@@ -226,14 +207,9 @@ const CreateWalletStep1 = ({ navigation }): JSX.Element => {
                     />
                   )
                 }
-                size="lg"
-                variant="outline"
-                onPress={() => {
-                  getMnemonic()
-                }}
-              >
-                Continue
-              </Button>
+                text="Continue"
+                onPress={getMnemonic}
+              />
             </View>
           </View>
         </Actionsheet>

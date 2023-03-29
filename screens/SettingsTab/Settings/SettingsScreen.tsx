@@ -236,7 +236,6 @@ const SettingsScreen = (): JSX.Element => {
   ]
 
   const renderItem = (wallet): JSX.Element => {
-    // console.log(wallet)
     return (
       <TouchableHighlight
         style={styles.rowFront}

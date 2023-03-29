@@ -2,6 +2,7 @@
 import moment from "moment"
 import fetch from "node-fetch"
 import change from "percent-change"
+import { db } from "../../database/index.js"
 
 const getGraphData = async (timestamp) => {
   let timeValue = moment()
@@ -106,7 +107,7 @@ const sleep = async (seconds) => {
   await new Promise((resolve) => setTimeout(resolve, seconds * 1000))
 }
 
-export const triggerDataRefresh = async (db) => {
+export const triggerDataRefresh = async () => {
   const dataALL = await getGraphData("ALL")
   try {
     if (dataALL[0] === "failed") {
@@ -220,7 +221,7 @@ export const triggerDataRefresh = async (db) => {
   }
 }
 
-export const getData = async (db, wallet) => {
+export const getData = async (wallet) => {
   const data1Y = JSON.parse(await db.get("data1Y"))
   const data1M = JSON.parse(await db.get("data1M"))
   const data1W = JSON.parse(await db.get("data1W"))

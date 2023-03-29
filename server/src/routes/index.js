@@ -3,6 +3,7 @@ import fs from "fs"
 import walletRoute from "./wallet/index.js"
 import { getData } from "./functions/functions.js"
 import { Wallet, network, rpc } from "../kaspa/index.js"
+import { db } from "../database/index.js"
 
 const route = express.Router()
 
@@ -13,18 +14,19 @@ const route = express.Router()
  * @returns {object} 200 - graph data and data associated with wallet
  * @returns {Error}  500 - Unexpected error
  */
-route.get("/data", async (req, res) => {
+route.post("/data", async (req, res) => {
   const password = req.body.password
   const encryptedMnemonic = req.body.encryptedMnemonic
+
   const wallet = await Wallet.import(password, encryptedMnemonic, {
     network,
     rpc,
   })
   wallet.sync(true)
   try {
-    res.json(await getData(db, wallet))
+    return res.json(await getData(db, wallet))
   } catch (error) {
-    res.status(500).send(error)
+    return res.status(500).send(error)
   }
 })
 

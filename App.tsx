@@ -1,8 +1,8 @@
-import React from "react"
+import React, { useState } from "react"
 import { StatusBar } from "expo-status-bar"
 import { useColorScheme, LogBox } from "react-native"
 import { SafeAreaProvider } from "react-native-safe-area-context"
-import { NativeBaseProvider } from "native-base"
+import { extendTheme, NativeBaseProvider } from "native-base"
 import { LinearGradient } from "expo-linear-gradient"
 import * as Sentry from "sentry-expo"
 
@@ -48,11 +48,32 @@ if (__DEV__) {
 const App = (): JSX.Element | null => {
   const colorScheme = useColorScheme()
 
+  const theme = extendTheme({
+    colors: {
+      primary: {
+        50: "#EAF9F7",
+        100: "#D4F3EE",
+        200: "#BFEEE6",
+        300: "#AAE8DD",
+        400: "#94E2D5",
+        500: "#7FDCCC",
+        600: "#66B0A3",
+        700: "#4C847A",
+        800: "#335852",
+        900: "#192C29",
+      },
+    },
+    config: {
+      initialColorMode: useColorScheme(),
+    },
+  })
+
   return (
     <SafeAreaProvider>
       <DataProvider>
         <NativeBaseProvider
           config={{ dependencies: { "linear-gradient": LinearGradient } }}
+          theme={theme}
         >
           <Navigation colorScheme={colorScheme} />
         </NativeBaseProvider>

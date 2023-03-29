@@ -5,6 +5,7 @@
 import React, { useState, createContext, useEffect } from "react"
 import * as SecureStore from "expo-secure-store"
 import * as Sentry from "sentry-expo"
+import { useColorScheme } from "react-native"
 
 type DataPoint = {
   timestamp: number
@@ -32,7 +33,9 @@ export type ApiType = {
 
 // exposed context for doing awesome things directly in React
 export const DataContext = createContext({
-  pickedColor: "#6a7ee7",
+  textColor: "#000",
+
+  pickedColor: "#7fdccc",
   setPickedColor: (hex: string) => {},
 
   wallets: [],
@@ -52,6 +55,7 @@ export const DataContext = createContext({
 })
 
 export const DataProvider = ({ children }): JSX.Element => {
+  const [textColor, setTextColor] = useState("#000")
   const [wallets, setWallets] = useState([])
   const [selectedWalletIndex, setSelectedWalletIndex] = useState(0)
   const [pickedColor, setPickedColor] = useState("#7fdccc")
@@ -74,8 +78,8 @@ export const DataProvider = ({ children }): JSX.Element => {
           encryptedMnemonic: selectedWallet.walletData.encryptedMnemonic,
         }),
       }
-      // const url = "http://localhost:3000/api/data"
-      const url = "https://kwallet.app/api/data"
+      const url = "http://localhost:3000/api/data"
+      // const url = "https://kwallet.app/api/data"
       const response = await fetch(url, options)
       const json = await response.json()
       if (json && !json.error) {
@@ -101,6 +105,9 @@ export const DataProvider = ({ children }): JSX.Element => {
   return (
     <DataContext.Provider
       value={{
+        textColor,
+        setTextColor,
+
         wallets,
         setWallets,
 
