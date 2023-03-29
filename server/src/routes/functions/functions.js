@@ -151,42 +151,25 @@ export const getData = async (wallet) => {
   const data1D = JSON.parse(await db.get("data1D"))
   const dataALL = JSON.parse(await db.get("dataALL"))
 
-  const dataALLPercent = JSON.parse(await db.get("dataALL-highlow"))
-  const data1YPercent = JSON.parse(await db.get("data1Y-highlow"))
-  const data1MPercent = JSON.parse(await db.get("data1M-highlow"))
-  const data1WPercent = JSON.parse(await db.get("data1W-highlow"))
-  const data1DPercent = JSON.parse(await db.get("data1D-highlow"))
-
   const currentPrice = JSON.parse(await db.get("currentPrice"))
-
-  const dayChange = change(data1DPercent[0][1], currentPrice, false)
-  const weekChange = change(data1WPercent[0][1], currentPrice, false)
-  const monthChange = change(data1MPercent[0][1], currentPrice, false)
-  const yearChange = change(data1YPercent[0][1], currentPrice, false)
-  const allChange = change(dataALLPercent[0][1], currentPrice, false)
 
   wallet.sync(true)
 
   return {
     currentPrice: `${currentPrice}`,
     day: {
-      percent_change: dayChange,
       prices: data1D,
     },
     week: {
-      percent_change: weekChange,
       prices: data1W,
     },
     month: {
-      percent_change: monthChange,
       prices: data1M,
     },
     year: {
-      percent_change: yearChange,
       prices: data1Y,
     },
     all: {
-      percent_change: allChange,
       prices: dataALL,
     },
     walletData: {
