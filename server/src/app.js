@@ -11,6 +11,7 @@ import { triggerDataRefresh, getData } from "./data-functions/index.js"
 
 import { Wallet, initKaspaFramework, kaspacore } from "@kaspa/wallet"
 import { RPC } from "@kaspa/grpc-node"
+import data from "./data.json"
 
 const env = process.env.NODE_ENV
 import { fileURLToPath } from "url"
@@ -28,7 +29,7 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
 if (!fs.existsSync("./storage.json")) {
-  fs.writeFileSync("./storage.json", JSON.stringify({}))
+  fs.writeFileSync("./storage.json", JSON.stringify(data))
 }
 
 app.use(express.static("storage.json"))
