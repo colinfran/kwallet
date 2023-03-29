@@ -112,12 +112,20 @@ const CreateWalletStep1 = ({ navigation }): JSX.Element => {
             <Text color={textColor} fontSize="2xl" bold>
               Back up secret phrase
             </Text>
-            <Text color={textColor} fontSize="md">
-              Your secret phrase is the key to your wallet. Never share it and
-              do not lose it.
+            <Text color={textColor} fontSize="md" style={{ textAlign: "left" }}>
+              {/* eslint-disable-next-line max-len */}
+              {`Your secret phrase is the key to your wallet.\nNever share it and `}
+              <Text
+                color={textColor}
+                fontSize="md"
+                style={{ textDecorationLine: "underline", fontWeight: "bold" }}
+              >
+                do not lose it
+              </Text>
+              .
             </Text>
             <Text color={textColor} fontSize="sm">
-              You must use a password that is longer than 8 characters, has at
+              You must use a phrase that is longer than 8 characters, has at
               least 1 capital letter, and has at least one special character.
             </Text>
           </View>

@@ -32,7 +32,7 @@ const AddWallet = ({ navigation }): JSX.Element => {
             alignItems: "center",
           }}
         >
-          <Text style={{ fontSize: 50 }}>Kwallet</Text>
+          <Text style={{ fontSize: 50 }}>kwallet</Text>
         </View>
       </View>
       <View style={styles.buttonsContainer}>
