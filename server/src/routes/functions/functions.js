@@ -91,7 +91,7 @@ export const triggerDataRefresh = async () => {
     console.error(err)
     console.log(err)
   }
-  await sleep(60)
+  await sleep(120)
   const data1D = await getGraphData("1D")
   try {
     if (data1D[0] === "failed" || !isJson(data1D) || isHTML(data1D)) {
@@ -101,7 +101,7 @@ export const triggerDataRefresh = async () => {
     console.error(err)
     console.log(err)
   }
-  await sleep(60)
+  await sleep(120)
   const data1Y = await getGraphData("1Y")
   try {
     if (data1Y[0] === "failed" || !isJson(data1Y) || isHTML(data1Y)) {
@@ -111,7 +111,7 @@ export const triggerDataRefresh = async () => {
     console.error(err)
     console.log(err)
   }
-  await sleep(60)
+  await sleep(120)
   const data1M = await getGraphData("1M")
   try {
     if (data1M[0] === "failed" || !isJson(data1M) || isHTML(data1M)) {
@@ -121,7 +121,7 @@ export const triggerDataRefresh = async () => {
     console.error(err)
     console.log(err)
   }
-  await sleep(60)
+  await sleep(120)
   const data1W = await getGraphData("1W")
   try {
     if (data1W[0] === "failed" || !isJson(data1W) || isHTML(data1W)) {
@@ -132,7 +132,7 @@ export const triggerDataRefresh = async () => {
     console.log(err)
   }
 
-  await sleep(60)
+  await sleep(120)
   const val = await getCurrentPrice()
   try {
     if (val === "failed" || String(val) !== val || isHTML(val)) {
