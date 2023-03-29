@@ -91,7 +91,6 @@ export const triggerDataRefresh = async () => {
       console.log("There was an issue getting the data for graph data all")
     }
   } catch (err) {
-    console.error(err)
     console.log(err)
   }
   await sleep(120)
@@ -103,7 +102,6 @@ export const triggerDataRefresh = async () => {
       console.log("There was an issue getting the data for graph data 1d")
     }
   } catch (err) {
-    console.error(err)
     console.log(err)
   }
   await sleep(120)
@@ -115,7 +113,6 @@ export const triggerDataRefresh = async () => {
       console.log("There was an issue getting the data for graph data 1y")
     }
   } catch (err) {
-    console.error(err)
     console.log(err)
   }
   await sleep(120)
@@ -127,7 +124,6 @@ export const triggerDataRefresh = async () => {
       console.log("There was an issue getting the data for graph data 1m")
     }
   } catch (err) {
-    console.error(err)
     console.log(err)
   }
   await sleep(120)
@@ -139,7 +135,6 @@ export const triggerDataRefresh = async () => {
       console.log("There was an issue getting the data for graph data 1w")
     }
   } catch (err) {
-    console.error(err)
     console.log(err)
   }
 
@@ -152,7 +147,6 @@ export const triggerDataRefresh = async () => {
       console.log("There was an issue getting the data for current price")
     }
   } catch (err) {
-    console.error(err)
     console.log(err)
   }
 }

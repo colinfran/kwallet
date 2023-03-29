@@ -42,7 +42,7 @@ route.get("/storage", async (req, res) => {
     const data = fs.readFileSync("./storage.json", "utf8")
     return res.json(JSON.parse(data))
   } catch (err) {
-    console.error(err)
+    console.log(err)
   }
 })
 
