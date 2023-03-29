@@ -8,10 +8,11 @@ import cron from "node-cron"
 import fs from "fs"
 import JSONdb from "simple-json-db"
 import { triggerDataRefresh, getData } from "./data-functions/index.js"
+import { createRequire } from "node:module"
 
 import { Wallet, initKaspaFramework, kaspacore } from "@kaspa/wallet"
 import { RPC } from "@kaspa/grpc-node"
-import data from "./data.json"
+// import data from "./data.json"
 
 const env = process.env.NODE_ENV
 import { fileURLToPath } from "url"
@@ -28,8 +29,10 @@ app.use(bodyParser.json())
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
+const require = createRequire(import.meta.url)
+
 if (!fs.existsSync("./storage.json")) {
-  fs.writeFileSync("./storage.json", JSON.stringify(data))
+  fs.writeFileSync("./storage.json", JSON.stringify(require("./data.json")))
 }
 
 app.use(express.static("storage.json"))
