@@ -25,8 +25,8 @@ import {
   CreateWalletStep1,
   CreateWalletStep2,
   CreateWalletStep3,
-} from "../screens/CreateWallet"
-import ImportWallet from "../screens/ImportWallet"
+} from "../screens/AddWallet/CreateWallet"
+import ImportWallet from "../screens/AddWallet/ImportWallet"
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>()
 

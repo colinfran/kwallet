@@ -18,9 +18,9 @@ import {
 import * as Haptics from "expo-haptics"
 import * as Sentry from "sentry-expo"
 
-import UserResponsibility from "../../components/UserResponsibility"
-import { DataContext } from "../../providers/DataProvider"
-import image from "../../assets/images/vault.png"
+import UserResponsibility from "../../../components/UserResponsibility"
+import { DataContext } from "../../../providers/DataProvider"
+import image from "../../../assets/images/vault.png"
 import { Ionicons } from "@expo/vector-icons"
 
 const CreateWalletStep1 = ({ navigation }): JSX.Element => {

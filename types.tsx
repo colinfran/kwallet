@@ -7,7 +7,6 @@ export type RootStackParamList = {
   CreateWalletStep3: undefined
   CreateWalletStep4: undefined
   Root: undefined
-  NotFound: undefined
 }
 
 export type BottomTabParamList = {

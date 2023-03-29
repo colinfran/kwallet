@@ -32,9 +32,6 @@ export type ApiType = {
 
 // exposed context for doing awesome things directly in React
 export const DataContext = createContext({
-  loading: true,
-  setLoading: (loading: boolean) => {},
-
   pickedColor: "#6a7ee7",
   setPickedColor: (hex: string) => {},
 
@@ -55,7 +52,6 @@ export const DataContext = createContext({
 })
 
 export const DataProvider = ({ children }): JSX.Element => {
-  const [loading, setLoading] = useState(true)
   const [wallets, setWallets] = useState([])
   const [selectedWalletIndex, setSelectedWalletIndex] = useState(0)
   const [pickedColor, setPickedColor] = useState("#7fdccc")
@@ -105,9 +101,6 @@ export const DataProvider = ({ children }): JSX.Element => {
   return (
     <DataContext.Provider
       value={{
-        loading,
-        setLoading,
-
         wallets,
         setWallets,
 

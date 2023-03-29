@@ -8,7 +8,7 @@ import {
 } from "react-native"
 import { Button, Text, Alert, VStack, HStack } from "native-base"
 
-import { DataContext } from "../../providers/DataProvider"
+import { DataContext } from "../../../providers/DataProvider"
 import { useNavigation } from "@react-navigation/native"
 
 const CreateWalletStep2 = ({ route }): JSX.Element => {

@@ -8,17 +8,17 @@ import {
 import { createStackNavigator } from "@react-navigation/stack"
 import * as Sentry from "sentry-expo"
 
-import Loading from "../screens/Loading"
+// import Loading from "../screens/Loading"
 import { RootStackParamList } from "../types"
 import BottomTabNavigator from "./BottomTabNavigator"
 import { DataContext } from "../providers/DataProvider"
 import AddWallet from "../screens/AddWallet"
-import ImportWallet from "../screens/ImportWallet"
+import ImportWallet from "../screens/AddWallet/ImportWallet"
 import {
   CreateWalletStep1,
   CreateWalletStep3,
   CreateWalletStep2,
-} from "../screens/CreateWallet"
+} from "../screens/AddWallet/CreateWallet"
 
 import { Ionicons } from "@expo/vector-icons"
 import * as Font from "expo-font"
@@ -31,7 +31,6 @@ const Navigation = ({
 }: {
   colorScheme: ColorSchemeName
 }): JSX.Element => {
-  const { setLoading } = useContext(DataContext)
 
   useEffect(() => {
     const loadResourcesAndDataAsync = async (): Promise<void> => {
@@ -49,12 +48,11 @@ const Navigation = ({
         console.warn(e)
       } finally {
         SplashScreen.hideAsync()
-        setLoading(false)
       }
     }
 
     loadResourcesAndDataAsync()
-  }, [setLoading])
+  }, [])
 
   return (
     <NavigationContainer
@@ -70,21 +68,7 @@ export default Navigation
 const Stack = createStackNavigator<RootStackParamList>()
 
 const RootNavigator = (): JSX.Element => {
-  const { loading, wallets } = useContext(DataContext)
-  if (loading) {
-    return (
-      <Stack.Navigator>
-        <Stack.Screen component={Loading} name="Loading" />
-      </Stack.Navigator>
-    )
-  }
-  if (loading && wallets[0]) {
-    return (
-      <Stack.Navigator>
-        <Stack.Screen component={Loading} name="Loading" />
-      </Stack.Navigator>
-    )
-  }
+  const { wallets } = useContext(DataContext)
   return (
     <Stack.Navigator
       initialRouteName={wallets.length > 0 ? "Root" : "AddWallet"}

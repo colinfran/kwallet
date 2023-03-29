@@ -5,7 +5,7 @@ import { Button, Text, Input, Icon, Spinner } from "native-base"
 import ordinal from "ordinal"
 import { Ionicons } from "@expo/vector-icons"
 
-import { DataContext } from "../../providers/DataProvider"
+import { DataContext } from "../../../providers/DataProvider"
 import { useColorScheme } from "react-native"
 import { useNavigation } from "@react-navigation/native"
 
