@@ -56,44 +56,6 @@ const getGraphData = async (timestamp) => {
   }
 }
 
-const getHighLowData = async (timestamp) => {
-  let days = "1"
-  switch (timestamp) {
-    case "1W":
-      days = "7"
-      break
-    case "1M":
-      days = "30"
-      break
-    case "1Y":
-      days = "365"
-      break
-    case "ALL":
-      days = "max"
-      break
-    default:
-      // 1D
-      days = "1"
-      break
-  }
-
-  try {
-    // eslint-disable-next-line max-len
-    const url = `https://api.coingecko.com/api/v3/coins/kaspa/ohlc?vs_currency=usd&days=${days}`
-    console.log(url)
-    const response = await fetch(url)
-    const data = await response.json()
-    if (data === undefined || data.length === 0) {
-      return ["failed"]
-    }
-    return data
-  } catch (error) {
-    console.log(error)
-    console.error(error)
-    return []
-  }
-}
-
 const getCurrentPrice = async () => {
   try {
     // eslint-disable-next-line max-len
@@ -165,57 +127,6 @@ export const triggerDataRefresh = async () => {
     if (data1W[0] === "failed" || !isJson(data1W) || isHTML(data1W)) {
       console.log("There was an issue getting the data for graph data 1w")
     } else await db.set("data1W", JSON.stringify(data1W))
-  } catch (err) {
-    console.error(err)
-    console.log(err)
-  }
-
-  await sleep(60)
-  const hlDataALL = await getHighLowData("ALL")
-  try {
-    if (hlDataALL[0] === "failed" || !isJson(hlDataALL) || isHTML(hlDataALL)) {
-      console.log("There was an issue getting the data for high-low-all")
-    } else await db.set("dataALL-highlow", JSON.stringify(hlDataALL))
-  } catch (err) {
-    console.error(err)
-    console.log(err)
-  }
-  await sleep(60)
-  const hlData1Y = await getHighLowData("1Y")
-  try {
-    if (hlData1Y[0] === "failed" || !isJson(hlData1Y) || isHTML(hlData1Y)) {
-      console.log("There was an issue getting the data for high-low-1y")
-    } else await db.set("data1Y-highlow", JSON.stringify(hlData1Y))
-  } catch (err) {
-    console.error(err)
-    console.log(err)
-  }
-  await sleep(60)
-  const hlData1M = await getHighLowData("1M")
-  try {
-    if (hlData1M[0] === "failed" || !isJson(hlData1M) || isHTML(hlData1M)) {
-      console.log("There was an issue getting the data for high-low-1m")
-    } else await db.set("data1M-highlow", JSON.stringify(hlData1M))
-  } catch (err) {
-    console.error(err)
-    console.log(err)
-  }
-  await sleep(60)
-  const hlData1W = await getHighLowData("1W")
-  try {
-    if (hlData1W[0] === "failed" || !isJson(hlData1W) || isHTML(hlData1W)) {
-      console.log("There was an issue getting the data for high-low-1w")
-    } else await db.set("data1W-highlow", JSON.stringify(hlData1W))
-  } catch (err) {
-    console.error(err)
-    console.log(err)
-  }
-  await sleep(60)
-  const hlData1D = await getHighLowData("1D")
-  try {
-    if (hlData1D[0] === "failed" || !isJson(hlData1D) || isHTML(hlData1D)) {
-      console.log("There was an issue getting the data for high-low-1d")
-    } else await db.set("data1D-highlow", JSON.stringify(hlData1D))
   } catch (err) {
     console.error(err)
     console.log(err)
