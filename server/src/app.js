@@ -57,30 +57,26 @@ cron.schedule("*/15 * * * *", async () => {
 app.use("/api", apiRoute)
 
 /*
-  Route: /terms
+  Route list: 
+        - "/privacy", "/privacy.html"
+        - "/terms", "/terms.html", 
+        - "/index", "index.html" 
+        - "/*"
   Use: App website / Terms of Use
   Returns: the terms of use page
 */
-app.get(["/terms", "/terms.html"], (req, res) => {
-  res.sendFile(__dirname + "/public/terms.html")
-})
-
-/*
-  Route: /storage
-  Use: App website / Privacy Policy
-  Returns: the privacy policy page
-*/
-app.get(["/privacy", "/privacy.html"], (req, res) => {
-  res.sendFile(__dirname + "/public/privacy.html")
-})
-
-/*
-  Route: /
-  Use: App website
-  Returns: the root home page
-*/
-app.get("/*", (req, res) => {
-  res.sendFile(__dirname + "/public/index.html")
+const privacy = ["/privacy", "/privacy.html"]
+const terms = ["/terms", "/terms.html"]
+const index = ["/*"]
+app.get([...privacy, ...terms, ...index], (req, res) => {
+  console.log("req", req.originalUrl)
+  if (terms.includes(req.originalUrl)) {
+    res.sendFile(__dirname + "/public/terms.html")
+  } else if (privacy.includes(req.originalUrl)) {
+    res.sendFile(__dirname + "/public/privacy.html")
+  } else {
+    res.sendFile(__dirname + "/public/index.html")
+  }
 })
 
 export default app
