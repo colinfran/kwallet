@@ -27,6 +27,7 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="/icons/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
+    <link href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" rel="stylesheet">
     <style>
       html {
         overflow: hidden;
@@ -271,11 +272,144 @@
         text-decoration: none;
       }
 
-      .form-wrapper{
-        display:flex;
+      .form-wrapper {
+        display: flex;
         flex-direction: row;
         height: 40px;
         width: 300px;
+      }
+
+      .nhi-custom {
+        max-width: 37rem;
+        padding: 1.5rem;
+        margin: auto;
+      }
+
+      .panel {
+        border-radius: 15px;
+        box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.2),
+          0 0 0 1px rgba(10, 10, 10, 0.04);
+        font-size: 1rem;
+      }
+
+      .panel-block,
+      .panel-heading {
+        border: 0;
+      }
+
+      .panel-heading:nth-child {
+        border-top: 0;
+      }
+
+      .card {
+        border-radius: 0.5rem;
+        box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1),
+          0 0 0 1px rgba(10, 10, 10, 0.02);
+        transition: transform 200ms ease-in;
+        margin-top: 2rem;
+      }
+
+      .card:hover {
+        transform: scale(1.05);
+        cursor: pointer;
+      }
+
+      .card-content,
+      .media {
+        overflow: hidden;
+      }
+
+      .modal {
+        display: none;
+        /* Hidden by default */
+        position: fixed;
+        /* Stay in place */
+        z-index: 1;
+        /* Sit on top */
+        left: 0;
+        top: 0;
+        width: 100%;
+        /* Full width */
+        height: 100%;
+        /* Full height */
+        overflow: auto;
+        /* Enable scroll if needed */
+        background-color: rgb(0, 0, 0);
+        /* Fallback color */
+        background-color: rgba(0, 0, 0, 0.4);
+        /* Black w/ opacity */
+      }
+
+      /* Modal Content/Box */
+      .modal-content {
+        background-color: #fefefe;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        /* Could be more or less, depending on screen size */
+      }
+
+      /* The Close Button */
+      .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+      }
+
+      .close:hover,
+      .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      .donateBtn {
+        font-family: "Roboto", sans-serif;
+        text-transform: uppercase;
+        outline: 0;
+        background: #7fdccc;
+        border: 0;
+        color: #000;
+        font-size: 12px;
+        width: 90px;
+        -webkit-transition: all 0.3 ease;
+        transition: all 0.3 ease;
+        cursor: pointer;
+        border-radius: 15px;
+        height: 40px;
+      }
+
+      .donateBtn:hover,
+      .donateBtn:active,
+      .donateBtn:focus {
+        opacity: 0.5;
+      }
+
+      .copied {
+        padding: 7px;
+        width: 85px;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+        background-color: #000;
+        background-color: hsla(0, 0%, 20%, 0.9);
+        color: #fff;
+        content: attr(data-tooltip);
+        text-align: center;
+        font-size: 14px;
+        line-height: 1.2;
+        position: absolute;
+        right: 20;
+      }
+
+      .fadeable {
+        opacity: 1;
+        transition: opacity 1s;
+      }
+
+      .fade {
+        opacity: 0 !important;
       }
     </style>
   </head>
@@ -297,13 +431,16 @@
             <form class="register-form" id="form">
               <div>Sign up for early access</div>
               <div class="form-wrapper">
-                <input style="display: none;"type="date" name="Time" id="date">
+                <input style="display: none;" type="date" name="Time" id="date">
                 <input name="Email" type="text" placeholder="email address" id="email" />
                 <button id="submit">Submit</button>
               </div>
             </form>
           </div>
           <div>
+            <div style="margin-top: 20px;display: flex;align-items: center;justify-content: center;">
+              <button class="donateBtn" id="donateButton"> Donate </button>
+            </div>
             <!-- <div style="display: flex;justify-content: center;margin-top: 30px;"><a href="https://apps.apple.com/us/app/calculator-for-minimalists/id1560501633"><img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-example-preferred_2x.png" style="height: 40px;"></a></div> -->
           </div>
         </div>
@@ -320,6 +457,82 @@
           </div>
         </footer>
       </section>
+      <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <div>
+            <div class="nhi-custom">
+              <p class="title is-5">If you appreciate my work, please donate ❤️</p>
+              <div id="kaspa" class="card">
+                <div class="card-content">
+                  <div class="media" style="align-items: center;">
+                    <div class="media-left">
+                      <span class="icon is-medium has-text-dark">
+                        <img src="https://s2.coinmarketcap.com/static/img/coins/200x200/20396.png" alt="Kaspa logo" />
+                      </span>
+                    </div>
+                    <div class="media-content">
+                      <p class="title is-5">Kaspa</p>
+                      <p class="subtitle is-7" id="kasString">kaspa:qrd97a4rl52pm0zkdn8cdsqx5cgc2pr7re495cex3hncts3wg5ap68zv44knm</p>
+                    </div>
+                    <div id="kasCopied" class="copied fadeable fade" style="display:none;"> Copied. </div>
+                  </div>
+                </div>
+              </div>
+              <div id="btc" class="card">
+                <div class="card-content">
+                  <div class="media" style="align-items: center;">
+                    <div class="media-left">
+                      <span class="icon is-medium has-text-dark">
+                        <img src="https://github.com/colinfran/nh-dashboard/raw/main/server/public/btc1.png" alt="Kaspa logo" />
+                      </span>
+                    </div>
+                    <div class="media-content">
+                      <p class="title is-5">Bitcoin</p>
+                      <p class="subtitle is-7" id="btcString">bc1q7e2rtx7ktrl27wt97avk42994v8ve8ctjk6kzm</p>
+                    </div>
+                    <div id="btcCopied" class="copied fadeable fade" style="display:none;"> Copied. </div>
+                  </div>
+                </div>
+              </div>
+              <div id="eth" class="card">
+                <div class="card-content">
+                  <div class="media" style="align-items: center;">
+                    <div class="media-left">
+                      <span class="icon is-medium has-text-dark">
+                        <img src="https://github.com/colinfran/nh-dashboard/raw/main/server/public/eth1.png" alt="Kaspa logo" />
+                      </span>
+                    </div>
+                    <div class="media-content">
+                      <p class="title is-5">Ethereum</p>
+                      <p class="subtitle is-7" id="ethString">colinfran.eth</p>
+                    </div>
+                    <div id="ethCopied" class="copied fadeable fade" style="display:none;"> Copied. </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card">
+                <a href="https://www.buymeacoffee.com/colinfran">
+                  <div class="card-content">
+                    <div class="media" style="align-items: center;">
+                      <div class="media-left">
+                        <span class="icon is-medium has-text-dark">
+                          <img src="https://github.com/colinfran/nh-dashboard/raw/main/server/public/cofee1.png" alt="Kaspa logo" />
+                        </span>
+                      </div>
+                      <div class="media-content">
+                        <p class="title is-5">Coffee</p>
+                        <p class="subtitle is-7"> Buy me a coffee </p>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </main>
   </body>
   <script>
@@ -343,8 +556,58 @@
       }).catch(error => {
         btn.disabled = false
         btn.innerHTML = "Submit"
-        alert('Error!', error.message)
+        alert('An error occurred when trying to submit your email. Please refresh the page and try again.', error.message)
       })
     })
+    var modal = document.getElementById("myModal");
+    var span = document.getElementsByClassName("close")[0];
+    span.onclick = function() {
+      modal.style.display = "none";
+    }
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+
+    function toggleElementFade(element) {
+      element.style.removeProperty('display');
+      setTimeout(function() {
+        element.classList.toggle('fade');
+      }, 10);
+      setTimeout(function() {
+        element.classList.toggle('fade');
+      }, 3000);
+    }
+    var donateBtn = document.getElementById("donateButton")
+    donateBtn.onclick = function(event) {
+      modal.style.display = "flex";
+    }
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    console.log(queryString)
+    if (urlParams.has('donate')) {
+      modal.style.display = "flex";
+    }
+    const copyToClipboard = str => {
+      if (navigator && navigator.clipboard && navigator.clipboard.writeText) return navigator.clipboard.writeText(str);
+      return Promise.reject('The Clipboard API is not available.');
+    };
+    var kas = document.getElementById("kaspa");
+    var btc = document.getElementById("btc");
+    var eth = document.getElementById("eth");
+    kas.onclick = function() {
+      copyToClipboard(document.getElementById('kasString').value)
+      toggleElementFade(document.getElementById("kasCopied"))
+    }
+    btc.onclick = function() {
+      copyToClipboard(document.getElementById('btcString').value)
+      toggleElementFade(document.getElementById("btcCopied"))
+    }
+    eth.onclick = function() {
+      copyToClipboard(document.getElementById('ethString').value)
+      toggleElementFade(document.getElementById("ethCopied"))
+    }
   </script>
+  <script src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
 </html>
