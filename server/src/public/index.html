@@ -137,6 +137,7 @@
 
       .section2p {
         color: rgba(0, 0, 0, 0.6);
+        text-align: center;
       }
 
       .inProgress {
@@ -436,7 +437,6 @@
           <h2 class="section2h2">kwallet</h2>
           <p class="section2p">A Kaspa wallet app for iOS and Android</p>
           <p class="section2p inProgress">Project in progress</p>
-          <!-- <form class="mb-4 flex flex-wrap justify-between" id="form"><div class="flex flex-col w-full mb-4"><label class="field-label" for="email">Name</label><input class="bg-green-100 px-2 py-1 outline-none" type="text" name="Name" id="email"></div><button class="bg-orange-300 px-3 py-1 text-white mx-auto" type="submit" id="submit">Submit</button></form> -->
           <div class="form">
             <form class="register-form" id="form">
               <div style="margin-bottom: 10px;">Sign up for early access</div>
@@ -451,7 +451,6 @@
             <div style="margin-top: 20px;display: flex;align-items: center;justify-content: center;">
               <button class="donateBtn" id="donateButton"> Donate </button>
             </div>
-            <!-- <div style="display: flex;justify-content: center;margin-top: 30px;"><a href="https://apps.apple.com/us/app/calculator-for-minimalists/id1560501633"><img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-example-preferred_2x.png" style="height: 40px;"></a></div> -->
           </div>
         </div>
         <footer class="footer">
@@ -548,6 +547,7 @@
     </main>
   </body>
   <script>
+    // form submission
     const scriptURL = 'https://script.google.com/macros/s/AKfycbyv4akZsp_uvIG6hvoHibjqNEDHfaOysj9nZm9iBIlytpNn7zc8pANIFvM11EsCF_tK3A/exec'
     const form = document.querySelector('#form')
     const btn = document.querySelector('#submit')
@@ -571,6 +571,8 @@
         alert('An error occurred when trying to submit your email. Please refresh the page and try again.', error.message)
       })
     })
+    
+    // modal onclicks
     var modal = document.getElementById("myModal");
     var span = document.getElementsByClassName("close")[0];
     span.onclick = function() {
@@ -582,6 +584,7 @@
       }
     }
 
+    // fade toggle
     function toggleElementFade(element) {
       element.style.removeProperty('display');
       setTimeout(function() {
@@ -591,20 +594,23 @@
         element.classList.toggle('fade');
       }, 3000);
     }
+    // Donation button onclick
     var donateBtn = document.getElementById("donateButton")
     donateBtn.onclick = function(event) {
       modal.style.display = "flex";
     }
+
+    // open modal on page load if donate
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     console.log(queryString)
     if (urlParams.has('donate')) {
       modal.style.display = "flex";
     }
+
+    // copy to clipboard 
     const copyToClipboard = async str => {
       await navigator.clipboard.writeText(str)
-      // if (navigator && navigator.clipboard && navigator.clipboard.writeText) return navigator.clipboard.writeText(str);
-      // return Promise.reject('The Clipboard API is not available.');
     };
     var kas = document.getElementById("kaspa");
     var btc = document.getElementById("btc");
