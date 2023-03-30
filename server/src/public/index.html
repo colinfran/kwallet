@@ -36,7 +36,7 @@
         --content-width: 100%;
         --content-padding: 40px;
         --brand-color: black;
-        --brand-gradient: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(127,220,204,1) 35%, rgba(127,220,190,1) 100%);
+        --brand-gradient: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(127, 220, 204, 1) 35%, rgba(127, 220, 190, 1) 100%);
         --brand-color-2: black;
       }
 
@@ -137,8 +137,8 @@
         color: rgba(0, 0, 0, 0.6);
       }
 
-      .inProgress{
-        text-align:center;
+      .inProgress {
+        text-align: center;
         font-weight: 900;
       }
 
@@ -214,6 +214,69 @@
           margin-left: 1px;
         }
       }
+
+      .form {
+        border-radius: 15px;
+        position: relative;
+        z-index: 1;
+        background: #FFFFFF;
+        max-width: 360px;
+        padding-top: 20px;
+        text-align: center;
+      }
+
+      .form input {
+        font-family: "Roboto", sans-serif;
+        outline: 0;
+        background: #f2f2f2;
+        width: 100%;
+        border: 0;
+        padding: 15px;
+        box-sizing: border-box;
+        font-size: 12px;
+        border-top-left-radius: 15px;
+        border-bottom-left-radius: 15px;
+      }
+
+      .form button {
+        font-family: "Roboto", sans-serif;
+        text-transform: uppercase;
+        outline: 0;
+        background: #7fdccc;
+        border: 0;
+        color: #000;
+        font-size: 12px;
+        width: 90px;
+        -webkit-transition: all 0.3 ease;
+        transition: all 0.3 ease;
+        cursor: pointer;
+        border-top-right-radius: 15px;
+        border-bottom-right-radius: 15px;
+      }
+
+      .form button:hover,
+      .form button:active,
+      .form button:focus {
+        opacity: 0.5;
+      }
+
+      .form .message {
+        margin: 15px 0 0;
+        color: #b3b3b3;
+        font-size: 12px;
+      }
+
+      .form .message a {
+        color: #4CAF50;
+        text-decoration: none;
+      }
+
+      .form-wrapper{
+        display:flex;
+        flex-direction: row;
+        height: 40px;
+        width: 300px;
+      }
     </style>
   </head>
   <body>
@@ -229,12 +292,19 @@
           <h2 class="section2h2">kwallet</h2>
           <p class="section2p">A Kaspa wallet app for iOS and Android</p>
           <p class="section2p inProgress">Project in progress</p>
+          <!-- <form class="mb-4 flex flex-wrap justify-between" id="form"><div class="flex flex-col w-full mb-4"><label class="field-label" for="email">Name</label><input class="bg-green-100 px-2 py-1 outline-none" type="text" name="Name" id="email"></div><button class="bg-orange-300 px-3 py-1 text-white mx-auto" type="submit" id="submit">Submit</button></form> -->
+          <div class="form">
+            <form class="register-form" id="form">
+              <div>Sign up for early access</div>
+              <div class="form-wrapper">
+                <input style="display: none;"type="date" name="Time" id="date">
+                <input name="Email" type="text" placeholder="email address" id="email" />
+                <button id="submit">Submit</button>
+              </div>
+            </form>
+          </div>
           <div>
-            <!-- <div style="display: flex;justify-content: center;margin-top: 30px;">
-              <a href="https://apps.apple.com/us/app/calculator-for-minimalists/id1560501633">
-                <img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-example-preferred_2x.png" style="height: 40px;">
-              </a>
-            </div> -->
+            <!-- <div style="display: flex;justify-content: center;margin-top: 30px;"><a href="https://apps.apple.com/us/app/calculator-for-minimalists/id1560501633"><img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-example-preferred_2x.png" style="height: 40px;"></a></div> -->
           </div>
         </div>
         <footer class="footer">
@@ -252,4 +322,29 @@
       </section>
     </main>
   </body>
+  <script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbyv4akZsp_uvIG6hvoHibjqNEDHfaOysj9nZm9iBIlytpNn7zc8pANIFvM11EsCF_tK3A/exec'
+    const form = document.querySelector('#form')
+    const btn = document.querySelector('#submit')
+    form.addEventListener('submit', e => {
+      e.preventDefault()
+      btn.disabled = true
+      btn.innerHTML = "Loading"
+      console.log(form)
+      document.querySelector('#date').value = new Date().toLocaleString()
+      fetch(scriptURL, {
+        method: 'POST',
+        body: new FormData(form)
+      }).then(response => {
+        btn.disabled = false
+        btn.innerHTML = "Submit"
+        document.querySelector('#email').value = ""
+        alert('Email submitted successfully.', response)
+      }).catch(error => {
+        btn.disabled = false
+        btn.innerHTML = "Submit"
+        alert('Error!', error.message)
+      })
+    })
+  </script>
 </html>
