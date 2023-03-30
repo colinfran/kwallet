@@ -1,7 +1,7 @@
 import express from "express"
 import fs from "fs"
 import walletRoute from "./wallet/index.js"
-import { getData } from "../functions/functions.js"
+import { getData, isApiKeyValid } from "../functions/functions.js"
 import { Wallet, network, rpc } from "../kaspa/index.js"
 import { db } from "../database/index.js"
 
@@ -15,6 +15,9 @@ const route = express.Router()
  * @returns {Error}  500 - Unexpected error
  */
 route.post("/data", async (req, res) => {
+  if (!isApiKeyValid(req.body.apiKey)) {
+    return res.status(401).send("unauthorized")
+  }
   const password = req.body.password
   const encryptedMnemonic = req.body.encryptedMnemonic
 
@@ -38,6 +41,9 @@ route.post("/data", async (req, res) => {
  * @returns {Error}  500 - Unexpected error
  */
 route.get("/storage", async (req, res) => {
+  if (!isApiKeyValid(req.query.apiKey)) {
+    return res.status(401).send("unauthorized")
+  }
   try {
     const data = fs.readFileSync("./storage.json", "utf8")
     return res.json(JSON.parse(data))

@@ -1,18 +1,41 @@
 import React, { useContext } from "react"
-import { StyleSheet, View, ScrollView, RefreshControl } from "react-native"
-import { HStack, WarningOutlineIcon, Text, Slide, Box } from "native-base"
+import {
+  StyleSheet,
+  View,
+  ScrollView,
+  RefreshControl,
+  TouchableOpacity,
+} from "react-native"
+import {
+  HStack,
+  WarningOutlineIcon,
+  Text,
+  Slide,
+  Box,
+  IconButton,
+  Icon,
+  Button,
+  Link,
+} from "native-base"
 import { useNavigation } from "@react-navigation/native"
 
 import WalletAmount from "../../components/WalletAmount"
 import { DataContext } from "../../providers/DataProvider"
 import DoubleButton from "../../components/Button/DoubleButton"
 import Chart from "../../components/Chart"
+import { Ionicons } from "@expo/vector-icons"
 
 const WalletsTab = (): JSX.Element => {
   const navigation = useNavigation()
 
-  const { apiData, showAlert, pickedColor, setApiData, getApiData } =
-    useContext(DataContext)
+  const {
+    apiData,
+    showAlert,
+    setShowAlert,
+    pickedColor,
+    setApiData,
+    getApiData,
+  } = useContext(DataContext)
   const [refreshing, setRefreshing] = React.useState(false)
 
   const onRefresh = React.useCallback(async () => {
@@ -24,6 +47,10 @@ const WalletsTab = (): JSX.Element => {
       setRefreshing(false)
     }
   }, [getApiData, setApiData])
+
+  const dismissAlert = (): void => {
+    setShowAlert(undefined)
+  }
 
   return (
     <ScrollView
@@ -61,16 +88,33 @@ const WalletsTab = (): JSX.Element => {
           borderRadius="xs"
           justifyContent="center"
           p="2"
-          position="absolute"
           w="100%"
           safeArea
         >
           <HStack paddingLeft={5} paddingRight={5} space={2}>
             <WarningOutlineIcon color="white" mt="1" size="4" />
             <Text color="white" fontWeight="medium" textAlign="center">
-              {showAlert?.description}
+              {showAlert?.alertDescription}
             </Text>
           </HStack>
+          <TouchableOpacity
+            style={{
+              position: "absolute",
+              bottom: 10,
+              right: 20,
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+            onPress={dismissAlert}
+          >
+            <View
+              style={{ flexDirection: "row", alignItems: "center", gap: 8 }}
+            >
+              <Text style={{ color: "#fff", textDecorationLine: "underline" }}>
+                Dismiss
+              </Text>
+            </View>
+          </TouchableOpacity>
         </Box>
       </Slide>
     </ScrollView>

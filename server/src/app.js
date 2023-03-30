@@ -8,6 +8,8 @@ import cron from "node-cron"
 import { fileURLToPath } from "url"
 import { initializeKaspa } from "./kaspa/index.js"
 import { initializeDatabase } from "./database/index.js"
+import * as dotenv from "dotenv"
+dotenv.config()
 
 import { triggerDataRefresh, getAppStatus } from "./functions/functions.js"
 import apiRoute from "./routes/index.js"
@@ -63,7 +65,6 @@ const privacy = ["/privacy", "/privacy.html"]
 const terms = ["/terms", "/terms.html"]
 const index = ["/*"]
 app.get([...privacy, ...terms, ...index], (req, res) => {
-  console.log("req", req.originalUrl)
   if (terms.includes(req.originalUrl)) {
     res.sendFile(__dirname + "/public/terms.html")
   } else if (privacy.includes(req.originalUrl)) {

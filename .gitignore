@@ -10,3 +10,4 @@ components/Chart/@rainbow-me/animated-charts/node_modules
 components/Chart/@rainbow-me/**
 .env
 env.ts
+server/env.js

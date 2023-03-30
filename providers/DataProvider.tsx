@@ -6,6 +6,7 @@ import React, { useState, createContext, useEffect } from "react"
 import * as SecureStore from "expo-secure-store"
 import * as Sentry from "sentry-expo"
 import { useColorScheme } from "react-native"
+import { apiKey } from "../env"
 
 type DataPoint = {
   timestamp: number
@@ -20,6 +21,11 @@ type Interval = {
 }
 
 export type ApiType = {
+  appStatus?: {
+    alert: boolean
+    alertHeader: string
+    alertDescription: string
+  }
   error?: boolean
   errorDescription?: string
   currentPrice?: string
@@ -63,6 +69,12 @@ export const DataProvider = ({ children }): JSX.Element => {
   const [apiData, setApiData] = useState<ApiType>()
   const [showAlert, setShowAlert] = useState()
 
+  useEffect(() => {
+    if (apiData?.appStatus) {
+      setShowAlert(apiData.appStatus)
+    }
+  }, [apiData])
+
   const getApiData = async (): Promise<any> => {
     console.log("Data refresh occurring.")
     const selectedWallet = wallets[selectedWalletIndex]
@@ -74,6 +86,7 @@ export const DataProvider = ({ children }): JSX.Element => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
+          apiKey,
           password: selectedWallet.walletData.userPassword,
           encryptedMnemonic: selectedWallet.walletData.encryptedMnemonic,
         }),

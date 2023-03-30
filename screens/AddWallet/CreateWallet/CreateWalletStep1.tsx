@@ -23,6 +23,7 @@ import { DataContext } from "../../../providers/DataProvider"
 import image from "../../../assets/images/vault.png"
 import { Ionicons } from "@expo/vector-icons"
 import ButtonOutline from "../../../components/Button/ButtonOutline"
+import { apiKey } from "../../../env"
 
 const CreateWalletStep1 = ({ navigation }): JSX.Element => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -67,6 +68,7 @@ const CreateWalletStep1 = ({ navigation }): JSX.Element => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
+          apiKey,
           password: walletPassword,
         }),
       }

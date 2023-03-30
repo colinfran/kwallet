@@ -3,6 +3,11 @@ import moment from "moment"
 import fetch from "node-fetch"
 import { db } from "../database/index.js"
 
+export const isApiKeyValid = (key) => {
+  const apiList = JSON.parse(process.env.API_LIST)
+  return apiList.includes(key)
+}
+
 export const getAppStatus = async () => {
   try {
     const response = await fetch(
@@ -172,6 +177,7 @@ export const getData = async (wallet) => {
   const appStatus = JSON.parse(await db.get("appStatus"))
 
   wallet.sync(true)
+  const walletBalance = await wallet.balance
 
   return {
     appStatus: appStatus,
@@ -192,7 +198,7 @@ export const getData = async (wallet) => {
       prices: dataALL,
     },
     walletData: {
-      balance: await wallet.balance,
+      balance: walletBalance,
     },
   }
 }

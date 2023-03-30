@@ -12,6 +12,7 @@ import * as Sentry from "sentry-expo"
 import { DataContext } from "../../providers/DataProvider"
 import { Ionicons } from "@expo/vector-icons"
 import { useNavigation } from "@react-navigation/native"
+import { apiKey } from "../../env"
 
 const ImportWallet = (): JSX.Element => {
   const {
@@ -39,6 +40,7 @@ const ImportWallet = (): JSX.Element => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
+          apiKey,
           password: walletPassword,
           mnemonic: walletMnemonic,
         }),

@@ -10,6 +10,9 @@ import { Wallet, network, rpc } from "../../kaspa/index.js"
  * @returns {Error}  500 - Unexpected error
  */
 route.post("/create", async (req, res) => {
+  if (!isApiKeyValid(req.body.apiKey)) {
+    return res.status(401).send("unauthorized")
+  }
   const { password } = req.body
   try {
     const wallet = new Wallet(null, null, { network, rpc })
@@ -38,6 +41,9 @@ route.post("/create", async (req, res) => {
  * @returns {Error}  500 - Unexpected error
  */
 route.post("/import", async (req, res) => {
+  if (!isApiKeyValid(req.body.apiKey)) {
+    return res.status(401).send("unauthorized")
+  }
   const { mnemonic, password } = req.body
   try {
     const encryptedMnemonic = Wallet.Crypto.encrypt(mnemonic)
