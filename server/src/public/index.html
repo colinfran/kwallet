@@ -597,25 +597,27 @@
     if (urlParams.has('donate')) {
       modal.style.display = "flex";
     }
-    const copyToClipboard = str => {
-      if (navigator && navigator.clipboard && navigator.clipboard.writeText) return navigator.clipboard.writeText(str);
-      return Promise.reject('The Clipboard API is not available.');
+    const copyToClipboard = async str => {
+      await navigator.clipboard.writeText(str)
+      // if (navigator && navigator.clipboard && navigator.clipboard.writeText) return navigator.clipboard.writeText(str);
+      // return Promise.reject('The Clipboard API is not available.');
     };
     var kas = document.getElementById("kaspa");
     var btc = document.getElementById("btc");
     var eth = document.getElementById("eth");
     kas.onclick = function() {
-      copyToClipboard(document.getElementById('kasString').value)
+      copyToClipboard(document.getElementById('kasString').innerHTML)
       toggleElementFade(document.getElementById("kasCopied"))
     }
     btc.onclick = function() {
-      copyToClipboard(document.getElementById('btcString').value)
+      copyToClipboard(document.getElementById('btcString').innerHTML)
       toggleElementFade(document.getElementById("btcCopied"))
     }
     eth.onclick = function() {
-      copyToClipboard(document.getElementById('ethString').value)
+      copyToClipboard(document.getElementById('ethString').innerHTML)
       toggleElementFade(document.getElementById("ethCopied"))
     }
   </script>
   <script src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.10/dist/clipboard.min.js"></script>
 </html>
