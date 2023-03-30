@@ -10,12 +10,12 @@ Donations accepted!
 
 KASPA: kaspa:qrd97a4rl52pm0zkdn8cdsqx5cgc2pr7re495cex3hncts3wg5ap68zv44knm
 
-<img src="https://github.com/colinfran/kwallet/raw/main/assets/images/developer-wallet.png">
+<img src="https://github.com/colinfran/kwallet/raw/main/assets/images/developer-wallet.png" style="width: 200px;">
 
 <br/>
 BTC: bc1q7e2rtx7ktrl27wt97avk42994v8ve8ctjk6kzm
 
-<img src="https://github.com/colinfran/nh-dashboard/raw/main/client/public/btc.png">
+<img src="https://github.com/colinfran/nh-dashboard/raw/main/client/public/btc.png" style="width: 200px;">
 
 <br/>
 ETH: colinfran.eth
