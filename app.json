@@ -4,7 +4,7 @@
     "slug": "kwallet",
     "version": "0.0.9",
     "orientation": "portrait",
-    "icon": "./assets/images/kwallet-icon.png",
+    "icon": "./assets/images/kwallet-icon-logo.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "splash": {
