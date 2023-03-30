@@ -96,6 +96,7 @@
       }
 
       .section2div {
+        align-items: center;
         margin: auto;
         padding: var(--content-padding);
         margin-bottom: 0;
@@ -422,6 +423,13 @@
       .fade {
         opacity: 0 !important;
       }
+      .kwalletIcon{
+        background: url(https://github.com/colinfran/kwallet/raw/main/assets/images/kwallet-icon-logo.png);
+        width: 100px;
+        height: 100px;
+        background-repeat: no-repeat, repeat;
+        background-size: cover;
+      }
     </style>
   </head>
   <body>
@@ -433,7 +441,7 @@
       </section>
       <section class="section2">
         <div class="section2div">
-          <img style="width: 100px;margin: auto;" src="https://github.com/colinfran/kwallet/raw/main/assets/images/kwallet-icon-logo.png" alt="kwallet logo" />
+          <div class="kwalletIcon"></div>
           <h2 class="section2h2">kwallet</h2>
           <p class="section2p">A Kaspa wallet app for iOS and Android</p>
           <p class="section2p inProgress">Project in progress</p>
