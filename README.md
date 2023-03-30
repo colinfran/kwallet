@@ -5,7 +5,7 @@
 A Kaspa wallet app for iOS and Android
 
 **currently in progress**
-
+<br/><br/><br/>
 Donations accepted!
 
 KASPA: kaspa:qrd97a4rl52pm0zkdn8cdsqx5cgc2pr7re495cex3hncts3wg5ap68zv44knm
