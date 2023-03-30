@@ -31,7 +31,6 @@ const Navigation = ({
 }: {
   colorScheme: ColorSchemeName
 }): JSX.Element => {
-
   useEffect(() => {
     const loadResourcesAndDataAsync = async (): Promise<void> => {
       try {

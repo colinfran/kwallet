@@ -6,24 +6,13 @@ import {
   RefreshControl,
   TouchableOpacity,
 } from "react-native"
-import {
-  HStack,
-  WarningOutlineIcon,
-  Text,
-  Slide,
-  Box,
-  IconButton,
-  Icon,
-  Button,
-  Link,
-} from "native-base"
+import { HStack, WarningOutlineIcon, Text, Slide, Box } from "native-base"
 import { useNavigation } from "@react-navigation/native"
 
 import WalletAmount from "../../components/WalletAmount"
 import { DataContext } from "../../providers/DataProvider"
 import DoubleButton from "../../components/Button/DoubleButton"
 import Chart from "../../components/Chart"
-import { Ionicons } from "@expo/vector-icons"
 
 const WalletsTab = (): JSX.Element => {
   const navigation = useNavigation()

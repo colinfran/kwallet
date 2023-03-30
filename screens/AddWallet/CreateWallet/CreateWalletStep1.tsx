@@ -187,7 +187,6 @@ const CreateWalletStep1 = ({ navigation }): JSX.Element => {
             />
             <View style={styles.continueButton}>
               <ButtonOutline
-                textColor="#000"
                 isDisabled={!(checkbox1 && checkbox2 && checkbox3)}
                 leftIcon={
                   loading ? (
@@ -211,6 +210,7 @@ const CreateWalletStep1 = ({ navigation }): JSX.Element => {
                   )
                 }
                 text="Continue"
+                textColor="#000"
                 onPress={getMnemonic}
               />
             </View>
