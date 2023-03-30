@@ -33,11 +33,12 @@ app.use(express.static(__dirname + "/public"))
 initializeDatabase()
 initializeKaspa()
 getAppStatus()
+
 /* 
   Cron schedule to refresh data every 15 minutes.
   -
   Coingecko graciously provides a free public api in which we pull our 
-  data from. This server periodically refreshes its local database of 
+  data from. This server periodically refreshes its local database with 
   Coingecko's Kaspa data. To prevent overuse of the Coingecko api, 
   this server will refresh data every 15 minutes.
 */
