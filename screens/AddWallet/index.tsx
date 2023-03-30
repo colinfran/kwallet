@@ -1,10 +1,11 @@
 import React from "react"
-import { StyleSheet, View, Dimensions, Text } from "react-native"
+import { StyleSheet, View, Dimensions, Text, useColorScheme } from "react-native"
 import { Image } from "native-base"
-import image from "../../assets/images/kwallet-icon.png"
+import image from "../../assets/images/kwallet-icon-logo.png"
 import ButtonOutline from "../../components/Button/ButtonOutline"
 
 const AddWallet = ({ navigation }): JSX.Element => {
+  const textColor = useColorScheme() === "dark" ? "#fff" : "#000"
   return (
     <View style={styles.componentContainer}>
       <View style={styles.logoContainer}>
@@ -18,12 +19,12 @@ const AddWallet = ({ navigation }): JSX.Element => {
         </View>
         <View
           style={{
-            ...StyleSheet.absoluteFillObject,
             justifyContent: "center",
             alignItems: "center",
+            marginTop: 20,
           }}
         >
-          <Text style={{ fontSize: 50 }}>kwallet</Text>
+          <Text style={{ fontSize: 50, color: textColor }}>kwallet</Text>
         </View>
       </View>
       <View style={styles.buttonsContainer}>
