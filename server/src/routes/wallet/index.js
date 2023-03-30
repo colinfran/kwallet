@@ -66,4 +66,8 @@ route.post("/import", async (req, res) => {
   }
 })
 
+route.get("/*", async (req, res) => {
+  return res.status(401).send("unauthorized")
+})
+
 export default route
