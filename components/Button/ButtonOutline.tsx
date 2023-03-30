@@ -9,6 +9,7 @@ type ButtonProps = {
   isDisabled?: boolean
   leftIcon?: JSX.Element[] | JSX.Element
   onPress?: () => void
+  textColor?: string
 }
 
 const ButtonOutline = ({
@@ -16,14 +17,15 @@ const ButtonOutline = ({
   isDisabled = false,
   leftIcon,
   onPress,
+  textColor,
 }: ButtonProps): JSX.Element => {
   const { pickedColor } = useContext(DataContext)
-  const textColor = useColorScheme() === "dark" ? "#fff" : "#000"
+  const fontColor = useColorScheme() === "dark" ? "#fff" : "#000"
   return (
     <Button
       _text={{
         style: {
-          color: textColor,
+          color: textColor || fontColor,
         },
       }}
       borderColor={pickedColor}

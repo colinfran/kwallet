@@ -22,6 +22,7 @@ const UserResponsibility = ({
                   borderColor: pickedColor,
                 }}
                 _text={{ width: "100%" }}
+                backgroundColor="gray.100"
                 isChecked={checkbox1}
                 value="one"
                 width={"100%"}
@@ -38,7 +39,7 @@ const UserResponsibility = ({
                   borderColor: pickedColor,
                 }}
                 _text={{ width: "100%" }}
-                backgroundColor="transparent"
+                backgroundColor="gray.100"
                 isChecked={checkbox2}
                 value="two"
                 width={"100%"}
@@ -55,6 +56,7 @@ const UserResponsibility = ({
                   borderColor: pickedColor,
                 }}
                 _text={{ width: "100%" }}
+                backgroundColor="gray.100"
                 isChecked={checkbox3}
                 value="three"
                 width={"100%"}
@@ -95,6 +97,7 @@ const styles = StyleSheet.create({
     paddingRight: 20,
     flexGrow: 1,
     flexShrink: 1,
+    color: "#000",
   },
 })
 

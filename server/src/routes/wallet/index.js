@@ -1,7 +1,7 @@
 import express from "express"
 const route = express.Router()
 import { Wallet, network, rpc } from "../../kaspa/index.js"
-
+import { isApiKeyValid } from "../../functions/functions.js"
 /**
  * @route POST /api/wallet/create
  * @desc get newly created Kaspa wallet data
