@@ -36,7 +36,11 @@ import {
   Entypo,
 } from "@expo/vector-icons"
 import { DataContext } from "../../../providers/DataProvider"
-import { useNavigation } from "@react-navigation/native"
+import {
+  useNavigation,
+  DarkTheme,
+  DefaultTheme,
+} from "@react-navigation/native"
 
 type IconType = {
   name: string
@@ -111,7 +115,13 @@ const goToRating = (): void => {
 const SettingsScreen = (): JSX.Element => {
   const navigation = useNavigation()
   const textColor = useColorScheme() === "dark" ? "#fff" : "#000"
-  const boxColor = useColorScheme() === "dark" ? "#555555" : "#e5e5e5"
+  // const textColor = "#fff"
+  const boxColor =
+    useColorScheme() === "dark"
+      ? DarkTheme.colors.background
+      : DefaultTheme.colors.background
+
+  // const boxColor = "transparent"
   const {
     pickedColor,
     wallets,
@@ -313,7 +323,13 @@ const SettingsScreen = (): JSX.Element => {
     <ScrollView style={styles.full}>
       <View style={[styles.container]}>
         <View style={styles.pageHeader}>
-          <Text style={{ color: textColor, fontSize: 32, fontWeight: "bold" }}>
+          <Text
+            style={{
+              color: useColorScheme() === "dark" ? "#fff" : "#000",
+              fontSize: 32,
+              fontWeight: "bold",
+            }}
+          >
             Settings
           </Text>
         </View>
