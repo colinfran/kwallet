@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   Dimensions,
   ListRenderItem,
+  useColorScheme,
 } from "react-native"
 // import { Tabs } from "react-native-collapsible-tab-view"
 import { TabView, SceneMap, TabBar } from "react-native-tab-view"
@@ -65,8 +66,9 @@ const WalletsTab = (): JSX.Element => {
     { key: "transactions", title: "Transactions" },
   ])
 
-  const { colors } = useTheme()
-
+  const textColor = useColorScheme() === "dark" ? "#fff" : "#000"
+  const textColorOpposite = useColorScheme() === "dark" ? "#000" : "#fff"
+  const theme = useTheme()
   return (
     <ScrollView
       contentContainerStyle={[styles.container, { height: "100%", gap: 20 }]}
@@ -104,19 +106,37 @@ const WalletsTab = (): JSX.Element => {
         renderTabBar={(props) => {
           return (
             <View
-              style={{ alignItems: "center", borderRadius: 15, margin: 20 }}
+              style={[
+                styles.shadow,
+                {
+                  alignItems: "center",
+                  borderRadius: 15,
+                  margin: 20,
+                  shadowColor: textColor,
+                },
+              ]}
             >
               <TabBar
                 {...props}
                 indicatorStyle={{
                   height: "100%",
                   backgroundColor: pickedColor,
-                  // borderRadius: 15,
+                  borderRadius: 15,
                 }}
+                renderLabel={({ route, focused, color }) => (
+                  <Text
+                    style={{
+                      color: focused ? "#000" : theme.colors.light["500"],
+                    }}
+                  >
+                    {route.title}
+                  </Text>
+                )}
                 style={{
-                  backgroundColor: opacity(pickedColor, 0.55),
-                  width: Dimensions.get("window").width,
-                  // borderRadius: 15,
+                  backgroundColor: theme.colors.primary["200"],
+                  width: Dimensions.get("window").width - 40,
+                  borderRadius: 15,
+                  shadowColor: textColor,
                 }}
               />
             </View>
@@ -166,5 +186,14 @@ const styles = StyleSheet.create({
   header: {
     width: "100%",
     backgroundColor: "#2196f3",
+  },
+  shadow: {
+    shadowOffset: {
+      width: 0,
+      height: 5,
+    },
+    shadowOpacity: 0.35,
+    shadowRadius: 3.5,
+    elevation: 5,
   },
 })
