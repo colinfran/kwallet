@@ -69,7 +69,7 @@ const WalletsTab = (): JSX.Element => {
 
   return (
     <ScrollView
-      contentContainerStyle={[styles.container, { height: "100%", gap: 30 }]}
+      contentContainerStyle={[styles.container, { height: "100%", gap: 20 }]}
       refreshControl={
         <RefreshControl
           colors={[pickedColor]}
