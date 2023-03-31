@@ -25,7 +25,7 @@ route.post("/create", async (req, res) => {
     })
   } catch (error) {
     console.log(error)
-    res.json({
+    return res.status(500).send({
       error: true,
       errorMessage: error,
       errorDesrciption: "Error message",
@@ -41,12 +41,15 @@ route.post("/create", async (req, res) => {
  * @returns {Error}  500 - Unexpected error
  */
 route.post("/import", async (req, res) => {
+  console.log("here")
   if (!isApiKeyValid(req.body.apiKey)) {
+    console.log("invalid")
     return res.status(401).send("unauthorized")
   }
   const { mnemonic, password } = req.body
+
   try {
-    const encryptedMnemonic = Wallet.Crypto.encrypt(mnemonic)
+    const encryptedMnemonic = await Wallet.Crypto.encrypt(mnemonic)
     const wallet = await Wallet.import(password, encryptedMnemonic, {
       network,
       rpc,
@@ -58,7 +61,7 @@ route.post("/import", async (req, res) => {
       userPassword: password,
     })
   } catch (error) {
-    return res.json({
+    return res.status(500).send({
       error: true,
       errorMessage: error,
       errorDesrciption: "Error message",

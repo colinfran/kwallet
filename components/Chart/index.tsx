@@ -33,8 +33,10 @@ const defaultData = [
   },
 ]
 
-const Chart = ({ isLoaded }): JSX.Element => {
+const Chart = (): JSX.Element => {
   const { apiData, pickedColor } = useContext(DataContext)
+
+  const isLoaded = apiData
 
   const [selectedVariantIndex, setSelectedVariantIndex] = useState(0)
 
@@ -107,6 +109,7 @@ const Chart = ({ isLoaded }): JSX.Element => {
       h={360}
       isLoaded={isLoaded}
       w={Dimensions.get("window").width}
+      // style={{justifyContent:"center", alignItems:'center'}}
     >
       <View style={styles.container}>
         <View style={styles.buttonContainer}>
@@ -139,7 +142,9 @@ const Chart = ({ isLoaded }): JSX.Element => {
               backgroundGradientTo={pickedColor}
               gradientEnabled={true}
               hapticsEnabled={true}
-              height={SIZE / 2}
+              height={
+                Dimensions.get("window").height > 800 ? SIZE / 3 : SIZE / 3.5
+              }
               selectedStrokeWidth={3}
               stroke={pickedColor}
               strokeWidth={3}
@@ -148,29 +153,22 @@ const Chart = ({ isLoaded }): JSX.Element => {
               onEndFunction={() => setIsActive(false)}
             />
             <ChartDot size={16} style={{ backgroundColor: pickedColor }} />
-            <View style={{}}>
-              <Svg style={[{ marginTop: -10, zIndex: 0 }]} width="100%">
-                <Defs>
-                  <LinearGradient id="grad" x1="0%" x2="0%" y1="0%" y2="120%">
-                    <Stop
-                      offset="0"
-                      stopColor={pickedColor}
-                      stopOpacity={0.2}
-                    />
-                  </LinearGradient>
-                </Defs>
-                <Rect fill="url(#grad)" height="100%" width="100%" />
-                <View
-                  style={{
-                    justifyContent: "center",
-                    alignItems: "center",
-                    padding: 30,
-                  }}
-                >
-                  <ChartXLabel color={textColor} format={getX} />
-                  <ChartYLabel color={textColor} format={getY} />
-                </View>
-              </Svg>
+            <View
+              style={{
+                backgroundColor: opacity(pickedColor, 0.2),
+                marginTop: -10,
+              }}
+            >
+              <View
+                style={{
+                  justifyContent: "center",
+                  alignItems: "center",
+                  padding: 30,
+                }}
+              >
+                <ChartXLabel color={textColor} format={getX} />
+                <ChartYLabel color={textColor} format={getY} />
+              </View>
             </View>
           </ChartPathProvider>
         </View>
@@ -181,18 +179,21 @@ const Chart = ({ isLoaded }): JSX.Element => {
 
 const styles = StyleSheet.create({
   container: {
-    justifyContent: "center",
-    alignItems: "center",
     width: "100%",
+    height: "100%",
+    alignItems: "center",
+    justifyContent: "space-between",
+    gap: 10,
   },
   buttonContainer: {
     flexDirection: "row",
     justifyContent: "space-evenly",
-    padding: 20,
+    // padding: 20,
     paddingTop: 0,
+    // marginBottom: 20,
   },
   selectionContainer: {
-    width: "100%",
+    justifyContent: "space-evenly",
   },
 })
 

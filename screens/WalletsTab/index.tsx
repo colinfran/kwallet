@@ -5,15 +5,32 @@ import {
   ScrollView,
   RefreshControl,
   TouchableOpacity,
+  Dimensions,
+  ListRenderItem,
 } from "react-native"
-import { HStack, WarningOutlineIcon, Text, Slide, Box } from "native-base"
+// import { Tabs } from "react-native-collapsible-tab-view"
+import { TabView, SceneMap, TabBar } from "react-native-tab-view"
+
+import {
+  HStack,
+  WarningOutlineIcon,
+  Text,
+  Slide,
+  Box,
+  useTheme,
+} from "native-base"
 import { useNavigation } from "@react-navigation/native"
 
-import WalletAmount from "../../components/WalletAmount"
+import WalletHeader from "../../components/WalletHeader"
 import { DataContext } from "../../providers/DataProvider"
-import DoubleButton from "../../components/Button/DoubleButton"
 import Chart from "../../components/Chart"
-import TransactionsPreview from "../../components/TransactionsPreview"
+import TransactionHistory from "../../components/TransactionHistory"
+import opacity from "hex-color-opacity"
+
+const renderScene = SceneMap({
+  chart: Chart,
+  transactions: TransactionHistory,
+})
 
 const WalletsTab = (): JSX.Element => {
   const navigation = useNavigation()
@@ -42,9 +59,17 @@ const WalletsTab = (): JSX.Element => {
     setShowAlert(undefined)
   }
 
+  const [index, setIndex] = React.useState(0)
+  const [routes] = React.useState([
+    { key: "chart", title: "Chart" },
+    { key: "transactions", title: "Transactions" },
+  ])
+
+  const { colors } = useTheme()
+
   return (
     <ScrollView
-      contentContainerStyle={styles.container}
+      contentContainerStyle={[styles.container, { height: "100%", gap: 30 }]}
       refreshControl={
         <RefreshControl
           colors={[pickedColor]}
@@ -54,74 +79,57 @@ const WalletsTab = (): JSX.Element => {
         />
       }
     >
-      <View style={{ width: "100%", gap: 50 }}>
+      <View style={{ gap: 30 }}>
         <View style={{ alignSelf: "flex-start", width: "100%" }}>
-          <WalletAmount isLoaded={apiData} />
+          <WalletHeader isLoaded={apiData} />
         </View>
-        <View style={{ paddingLeft: 20, paddingRight: 20 }}>
-          <Text style={{ fontSize: 18, textAlign: "center", paddingBottom: 5 }}>
-            Transact
-          </Text>
+        {/* <View style={{ paddingLeft: 20, paddingRight: 20, paddingBottom: 30 }}>
           <DoubleButton
             left={{
               text: "Send",
               onPress: () => navigation.navigate("Send"),
             }}
+            pointerEvents="box-none"
             right={{
               text: "Receive",
               onPress: () => navigation.navigate("Receive"),
             }}
           />
-        </View>
-        <View style={{ width: "100%" }}>
-          <Text style={{ fontSize: 18, textAlign: "center", paddingBottom: 5 }}>
-            Transaction History
-          </Text>
-          <TransactionsPreview />
-        </View>
-        <View>
-          <Text style={{ fontSize: 18, textAlign: "center", paddingBottom: 5 }}>
-            Kaspa Chart Data
-          </Text>
-          <Chart isLoaded={apiData} />
-        </View>
+        </View> */}
       </View>
-      <Slide in={showAlert?.alert} placement="top">
-        <Box
-          alignItems="center"
-          bg="red.400"
-          borderRadius="xs"
-          justifyContent="center"
-          p="2"
-          w="100%"
-          safeArea
-        >
-          <HStack paddingLeft={5} paddingRight={5} space={2}>
-            <WarningOutlineIcon color="white" mt="1" size="4" />
-            <Text color="white" fontWeight="medium" textAlign="center">
-              {showAlert?.alertDescription}
-            </Text>
-          </HStack>
-          <TouchableOpacity
-            style={{
-              position: "absolute",
-              bottom: 10,
-              right: 20,
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-            onPress={dismissAlert}
-          >
+      <TabView
+        initialLayout={{ width: Dimensions.get("window").width }}
+        navigationState={{ index, routes }}
+        renderScene={renderScene}
+        renderTabBar={(props) => {
+          return (
             <View
-              style={{ flexDirection: "row", alignItems: "center", gap: 8 }}
+              style={{ alignItems: "center", borderRadius: 15, margin: 20 }}
             >
-              <Text style={{ color: "#fff", textDecorationLine: "underline" }}>
-                Dismiss
-              </Text>
+              <TabBar
+                {...props}
+                indicatorStyle={{
+                  height: "100%",
+                  backgroundColor: pickedColor,
+                  // borderRadius: 15,
+                }}
+                style={{
+                  backgroundColor: opacity(pickedColor, 0.55),
+                  width: Dimensions.get("window").width,
+                  // borderRadius: 15,
+                }}
+              />
             </View>
-          </TouchableOpacity>
-        </Box>
-      </Slide>
+          )
+        }}
+        sceneContainerStyle={{
+          width: "100%",
+          height: "100%",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+        onIndexChange={setIndex}
+      />
     </ScrollView>
   )
 }
@@ -135,6 +143,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     // padding: 20,
     position: "relative",
+    // height: "100%",
   },
   title: {
     fontSize: 20,
@@ -147,5 +156,15 @@ const styles = StyleSheet.create({
   },
   loadingView: {
     width: "100%",
+  },
+  textHeader: {
+    fontWeight: "700",
+    fontSize: 18,
+    textAlign: "center",
+    marginBottom: 5,
+  },
+  header: {
+    width: "100%",
+    backgroundColor: "#2196f3",
   },
 })

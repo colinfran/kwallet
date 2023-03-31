@@ -4,7 +4,12 @@ import { DataContext } from "../../providers/DataProvider"
 import { DarkTheme, DefaultTheme } from "@react-navigation/native"
 import { Button, useContrastText } from "native-base"
 
-const DoubleButton = ({ left, right, style = {} }): JSX.Element => {
+const DoubleButton = ({
+  left,
+  right,
+  style = {},
+  pointerEvents = "auto",
+}): JSX.Element => {
   const color = useColorScheme() === "dark" ? "#fff" : "#000"
   const { pickedColor } = useContext(DataContext)
   const buttonBackgroundColor =
@@ -23,6 +28,7 @@ const DoubleButton = ({ left, right, style = {} }): JSX.Element => {
               borderColor="red"
               borderRadius={15}
               colorScheme="blue"
+              pointerEvents={pointerEvents as any}
               style={[
                 styles.shadow,
                 {
@@ -43,6 +49,7 @@ const DoubleButton = ({ left, right, style = {} }): JSX.Element => {
                 }}
                 _text={{ color: color }}
                 backgroundColor={buttonBackgroundColor}
+                pointerEvents={pointerEvents as any}
                 style={{ borderColor: pickedColor }}
                 w="50%"
                 onPress={left.onPress}
@@ -60,6 +67,7 @@ const DoubleButton = ({ left, right, style = {} }): JSX.Element => {
                 }}
                 _text={{ color: color }}
                 backgroundColor={buttonBackgroundColor}
+                pointerEvents={pointerEvents as any}
                 style={{ borderColor: pickedColor }}
                 w="50%"
                 onPress={right.onPress}

@@ -1,13 +1,23 @@
 import React, { useContext } from "react"
-import { StyleSheet, View, Dimensions, TouchableOpacity, useColorScheme } from "react-native"
+import {
+  StyleSheet,
+  View,
+  Dimensions,
+  TouchableOpacity,
+  useColorScheme,
+} from "react-native"
 import { Box, Text, Checkbox, Icon } from "native-base"
 import { DataContext } from "../providers/DataProvider"
 import { Ionicons } from "@expo/vector-icons"
+import { DarkTheme, DefaultTheme } from "@react-navigation/native"
 
-const TransactionsPreview = (): JSX.Element => {
+const TransactionHistory = (): JSX.Element => {
   const { pickedColor } = useContext(DataContext)
   const textColor = useColorScheme() === "dark" ? "#fff" : "#000"
-
+  const backgroundColor =
+    useColorScheme() === "dark"
+      ? DarkTheme.colors.background
+      : DefaultTheme.colors.background
   const temp = [
     {
       type: "send",
@@ -21,23 +31,52 @@ const TransactionsPreview = (): JSX.Element => {
     },
   ]
 
-  if (temp.length === 0) {
+  if (temp.length !== 0) {
     return (
-      <View style={{ marginTop: 30, width: "100%", padding: 20 }}>
-        <View style={[styles.container, { borderColor: pickedColor }]}>
-          <View>
-            <Text>No Transactions</Text>
+      <View style={{ width: Dimensions.get("window").width - 40 }}>
+        <View
+          style={[
+            styles.container,
+            {
+              borderColor: pickedColor,
+              padding: 20,
+              shadowColor: textColor,
+              backgroundColor: backgroundColor,
+            },
+            styles.shadow,
+          ]}
+        >
+          <View
+            style={{
+              justifyContent: "center",
+              alignItems: "center",
+              padding: 20,
+            }}
+          >
+            <View>
+              <Text>No transactions</Text>
+            </View>
           </View>
         </View>
       </View>
     )
   }
   return (
-    <View style={{ width: "100%", paddingHorizontal: 20 }}>
-      <View style={[styles.container, { borderColor: pickedColor }]}>
-        <View style={{alignSelf:"flex-end", paddingTop: 10 }}>
+    <View style={{ width: Dimensions.get("window").width - 40, paddingHorizontal: 20 }}>
+      <View
+        style={[
+          styles.container,
+          {
+            borderColor: pickedColor,
+            shadowColor: textColor,
+            backgroundColor: backgroundColor,
+          },
+          styles.shadow,
+        ]}
+      >
+        <View style={{ alignSelf: "flex-end", paddingTop: 10 }}>
           <TouchableOpacity>
-            <Text style={{color: textColor}}>{`View More >`}</Text>
+            <Text style={{ color: textColor }}>{`View More >`}</Text>
           </TouchableOpacity>
         </View>
         {temp.map((item) => {
@@ -58,7 +97,9 @@ const TransactionsPreview = (): JSX.Element => {
                   />
                 </View>
                 <View>
-                  <Text style={{textTransform:"capitalize"}}>{item?.type}</Text>
+                  <Text style={{ textTransform: "capitalize" }}>
+                    {item?.type}
+                  </Text>
                   <Text>{item?.date.toLocaleString()}</Text>
                 </View>
               </View>
@@ -81,6 +122,7 @@ const styles = StyleSheet.create({
     paddingTop: 0,
     borderRadius: 16,
     gap: 10,
+    height: 210,
   },
   wrapper: {
     borderWidth: 1,
@@ -98,6 +140,15 @@ const styles = StyleSheet.create({
     alignItems: "center",
     gap: 10,
   },
+  shadow: {
+    shadowOffset: {
+      width: 0,
+      height: 5,
+    },
+    shadowOpacity: 0.35,
+    shadowRadius: 3.5,
+    elevation: 5,
+  },
 })
 
-export default TransactionsPreview
+export default TransactionHistory

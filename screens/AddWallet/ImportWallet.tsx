@@ -25,13 +25,14 @@ const ImportWallet = (): JSX.Element => {
   } = useContext(DataContext)
 
   const [loading, setLoading] = useState(false)
+  const [validSeedPhrase, setValidSeedPhrase] = useState(false)
 
   const [walletName, setWalletName] = useState("")
   const [walletMnemonic, setWalletMnemonic] = useState("")
   const [walletPassword, setWalletPassword] = useState("")
   const navigation = useNavigation()
 
-  const importWallet = (): void => {
+  const importWallet = async (): void => {
     setLoading(true)
     try {
       const options = {
@@ -45,47 +46,51 @@ const ImportWallet = (): JSX.Element => {
           mnemonic: walletMnemonic,
         }),
       }
-      // const url = "http://localhost:3000/api/wallet/import"
-      const url = "https://kwallet.app/api/wallet/import"
-      const response = fetch(url, options)
-      console.log(response)
+      const url = "http://localhost:3000/api/wallet/import"
+      // const url = "https://kwallet.app/api/wallet/import"
+      const response = await fetch(url, options)
+      const json = await response.json()
+      console.log(json)
+      if (json?.error) {
+        setLoading(false)
+        setValidSeedPhrase(false)
+        return
+      }
+      setValidSeedPhrase(true)
+      const newWalletObject = {
+        walletName,
+        walletData: json,
+      }
+      console.log(newWalletObject)
+      let newWalletArray = []
+      if (wallets.length > 0) {
+        newWalletArray = [...wallets, newWalletObject]
+        setWallets(newWalletArray)
+        SecureStore.setItemAsync("wallets", JSON.stringify(newWalletArray))
+        setSelectedWalletIndex(newWalletArray.length - 1)
+        setTimeout(() => {
+          const val = getApiData()
+          if (val && !val.error && val.currentPrice) {
+            setApiData(response)
+          }
+        }, 500)
+        setLoading(false)
+        navigation.navigate("SettingsTab")
+      } else {
+        newWalletArray.push(newWalletObject)
+        setWallets(newWalletArray)
+        setSelectedWalletIndex(0)
+        setLoading(false)
+        SecureStore.setItemAsync("wallets", JSON.stringify(newWalletArray))
+      }
     } catch (error) {
       Sentry.Native.captureException(error)
-    }
-    const newWalletObject = {
-      walletName,
-      walletMnemonic,
-    }
-    let newWalletArray = []
-    if (wallets.length > 0) {
-      newWalletArray = [...wallets, newWalletObject]
-      setWallets(newWalletArray)
-      SecureStore.setItemAsync("wallets", JSON.stringify(newWalletArray))
-      setSelectedWalletIndex(newWalletArray.length - 1)
-      setTimeout(() => {
-        const response = getApiData()
-        if (response && !response.error && response.currentPrice) {
-          setApiData(response)
-        }
-      }, 500)
       setLoading(false)
-      navigation.navigate("SettingsTab")
-    } else {
-      newWalletArray.push(newWalletObject)
-      setWallets(newWalletArray)
-      setSelectedWalletIndex(0)
-      setLoading(false)
-      SecureStore.setItemAsync("wallets", JSON.stringify(newWalletArray))
     }
   }
 
-  const validSeedPhrase = (): boolean => {
-    // run seed phrase validation here,
-    // return true if valid seed phrase
-    return walletMnemonic !== ""
-  }
 
-  const valid = walletName !== "" && validSeedPhrase()
+  const valid = walletName !== "" && walletPassword !== ""
 
   const textColor = useColorScheme() === "dark" ? "#fff" : "#000"
 
@@ -161,7 +166,7 @@ const ImportWallet = (): JSX.Element => {
             ) : (
               <Icon
                 as={Ionicons}
-                name={valid ? "checkmark-circle-outline" : "warning-outline"}
+                name={!valid || !validSeedPhrase ? "warning-outline" : "checkmark-circle-outline"}
                 size="sm"
               />
             )
