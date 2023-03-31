@@ -70,7 +70,7 @@ const WalletsTab = (): JSX.Element => {
       <View>
         <Chart isLoaded={apiData} />
       </View>
-      <Slide in={showAlert} placement="top">
+      <Slide in={showAlert.alert} placement="top">
         <Box
           alignItems="center"
           bg="red.400"
