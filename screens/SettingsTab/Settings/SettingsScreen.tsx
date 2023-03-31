@@ -115,13 +115,11 @@ const goToRating = (): void => {
 const SettingsScreen = (): JSX.Element => {
   const navigation = useNavigation()
   const textColor = useColorScheme() === "dark" ? "#fff" : "#000"
-  // const textColor = "#fff"
   const boxColor =
     useColorScheme() === "dark"
       ? DarkTheme.colors.background
       : DefaultTheme.colors.background
 
-  // const boxColor = "transparent"
   const {
     pickedColor,
     wallets,

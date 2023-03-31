@@ -97,6 +97,7 @@ const sleep = async (seconds) => {
 }
 
 export const triggerDataRefresh = async () => {
+  await getAppStatus()
   const dataALL = await getGraphData("ALL")
   try {
     if (dataALL[0] !== "failed" && validJson(dataALL) && isNotHTML(dataALL)) {

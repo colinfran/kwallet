@@ -13,6 +13,7 @@ import WalletAmount from "../../components/WalletAmount"
 import { DataContext } from "../../providers/DataProvider"
 import DoubleButton from "../../components/Button/DoubleButton"
 import Chart from "../../components/Chart"
+import TransactionsPreview from "../../components/TransactionsPreview"
 
 const WalletsTab = (): JSX.Element => {
   const navigation = useNavigation()
@@ -48,27 +49,42 @@ const WalletsTab = (): JSX.Element => {
         <RefreshControl
           colors={[pickedColor]}
           refreshing={refreshing}
+          style={{ zIndex: 200 }}
           onRefresh={onRefresh}
         />
       }
     >
-      <View style={{ alignSelf: "flex-start", width: "100%" }}>
-        <WalletAmount isLoaded={apiData} />
-      </View>
-      <View style={{ paddingLeft: 20, paddingRight: 20 }}>
-        <DoubleButton
-          left={{
-            text: "Send",
-            onPress: () => navigation.navigate("Send"),
-          }}
-          right={{
-            text: "Receive",
-            onPress: () => navigation.navigate("Receive"),
-          }}
-        />
-      </View>
-      <View>
-        <Chart isLoaded={apiData} />
+      <View style={{ width: "100%", gap: 50 }}>
+        <View style={{ alignSelf: "flex-start", width: "100%" }}>
+          <WalletAmount isLoaded={apiData} />
+        </View>
+        <View style={{ paddingLeft: 20, paddingRight: 20 }}>
+          <Text style={{ fontSize: 18, textAlign: "center", paddingBottom: 5 }}>
+            Transact
+          </Text>
+          <DoubleButton
+            left={{
+              text: "Send",
+              onPress: () => navigation.navigate("Send"),
+            }}
+            right={{
+              text: "Receive",
+              onPress: () => navigation.navigate("Receive"),
+            }}
+          />
+        </View>
+        <View style={{ width: "100%" }}>
+          <Text style={{ fontSize: 18, textAlign: "center", paddingBottom: 5 }}>
+            Transaction History
+          </Text>
+          <TransactionsPreview />
+        </View>
+        <View>
+          <Text style={{ fontSize: 18, textAlign: "center", paddingBottom: 5 }}>
+            Kaspa Chart Data
+          </Text>
+          <Chart isLoaded={apiData} />
+        </View>
       </View>
       <Slide in={showAlert?.alert} placement="top">
         <Box
@@ -114,7 +130,7 @@ export default WalletsTab
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    // flex: 1,
     alignItems: "center",
     justifyContent: "space-between",
     // padding: 20,

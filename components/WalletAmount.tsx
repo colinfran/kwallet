@@ -32,6 +32,16 @@ const WalletAmount = ({ isLoaded }): JSX.Element => {
         { backgroundColor: pickedColor, shadowColor: shadowColor },
       ]}
     >
+      <View
+        style={{
+          backgroundColor: pickedColor,
+          width: "100%",
+          height: 500,
+          position: "absolute",
+          top: -500,
+          zIndex: 0,
+        }}
+      ></View>
       <View>
         <Skeleton isLoaded={isLoaded} marginBottom={2} w={310}>
           <Heading color={textColor} size="3xl">
