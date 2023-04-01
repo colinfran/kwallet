@@ -9,6 +9,8 @@ const DoubleButton = ({
   right,
   style = {},
   pointerEvents = "auto",
+  buttonGroupStyle,
+  buttonProps,
 }): JSX.Element => {
   const color = useColorScheme() === "dark" ? "#fff" : "#000"
   const { pickedColor } = useContext(DataContext)
@@ -25,30 +27,16 @@ const DoubleButton = ({
         <View style={styles.row}>
           <View style={[styles.iconContainer]}>
             <Button.Group
+              pointerEvents={pointerEvents as any}
               borderColor="red"
               borderRadius={15}
               colorScheme="blue"
-              pointerEvents={pointerEvents as any}
-              style={[
-                styles.shadow,
-                {
-                  shadowColor: color,
-                  backgroundColor: buttonBackgroundColor,
-                },
-              ]}
+              style={buttonGroupStyle}
               variant="outline"
               isAttached
             >
               <Button
-                _pressed={{
-                  style: {
-                    backgroundColor: pickedColor,
-                    borderColor: pickedColor,
-                  },
-                  _text: { color: textColorPressed, borderColor: pickedColor },
-                }}
-                _text={{ color: color }}
-                backgroundColor={buttonBackgroundColor}
+                {...buttonProps}
                 pointerEvents={pointerEvents as any}
                 style={{ borderColor: pickedColor }}
                 w="50%"
@@ -57,16 +45,7 @@ const DoubleButton = ({
                 {left.text}
               </Button>
               <Button
-                _pressed={{
-                  style: {
-                    backgroundColor: pickedColor,
-                    borderLeftWidth: 1,
-                    borderColor: pickedColor,
-                  },
-                  _text: { color: textColorPressed, borderColor: pickedColor },
-                }}
-                _text={{ color: color }}
-                backgroundColor={buttonBackgroundColor}
+                {...buttonProps}
                 pointerEvents={pointerEvents as any}
                 style={{ borderColor: pickedColor }}
                 w="50%"

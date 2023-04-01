@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react"
-import { Tooltip } from "native-base"
+import { Tooltip, useContrastText } from "native-base"
 import {
   View,
   StyleSheet,
@@ -13,6 +13,7 @@ import QRCode from "react-native-qrcode-svg"
 import * as Clipboard from "expo-clipboard"
 import { DataContext } from "../../providers/DataProvider"
 import DoubleButton from "../../components/Button/DoubleButton"
+import { DarkTheme, DefaultTheme } from "@react-navigation/native"
 
 const Recieve = (): JSX.Element => {
   const [isOpen, setIsOpen] = useState(false)
@@ -34,6 +35,14 @@ const Recieve = (): JSX.Element => {
       title: "Kaspa Wallet Address",
     })
   }
+
+  const color = useColorScheme() === "dark" ? "#fff" : "#000"
+  const buttonBackgroundColor =
+    useColorScheme() === "dark"
+      ? DarkTheme.colors.background
+      : DefaultTheme.colors.background
+  const textColorPressed = useContrastText(pickedColor)
+
 
   return (
     <View style={styles.container}>
@@ -77,6 +86,24 @@ const Recieve = (): JSX.Element => {
             }}
           >
             <DoubleButton
+              buttonGroupStyle={[
+                styles.shadow,
+                {
+                  shadowColor: color,
+                  backgroundColor: buttonBackgroundColor,
+                },
+              ]}
+              buttonProps={{
+                _pressed: {
+                  style: {
+                    backgroundColor: pickedColor,
+                    borderColor: pickedColor,
+                  },
+                  _text: { color: textColorPressed, borderColor: pickedColor },
+                },
+                _text: { color: color },
+                backgroundColor: buttonBackgroundColor,
+              }}
               left={{
                 text: "Copy",
                 onPress: () => copyOnPress(),
@@ -134,12 +161,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   shadow: {
-    backgroundColor: "transparent",
     shadowOffset: {
       width: 0,
       height: 5,
     },
-    shadowOpacity: 0.25,
+    shadowOpacity: 0.35,
     shadowRadius: 3.5,
     elevation: 5,
   },

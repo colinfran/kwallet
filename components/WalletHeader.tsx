@@ -1,9 +1,13 @@
 import React, { useContext } from "react"
 import { StyleSheet, View, useColorScheme, Dimensions } from "react-native"
-import { Skeleton, Text, Heading, useContrastText } from "native-base"
+import { Skeleton, Text, Heading, useContrastText, useTheme } from "native-base"
 import { DataContext } from "../providers/DataProvider"
 import DoubleButton from "./Button/DoubleButton"
-import { useNavigation } from "@react-navigation/native"
+import {
+  DarkTheme,
+  DefaultTheme,
+  useNavigation,
+} from "@react-navigation/native"
 
 const currencyFormatter = (val: number): string => {
   const formatter = new Intl.NumberFormat("en-US", {
@@ -28,6 +32,13 @@ const WalletAmount = ({ isLoaded }): JSX.Element => {
   const value = parseFloat(walletTotal) * parseFloat(currentPrice)
   const walletTotalMonetaryValue = currencyFormatter(value)
 
+  const color = useColorScheme() === "dark" ? "#fff" : "#000"
+  const buttonBackgroundColor = DefaultTheme.colors.background
+    // useColorScheme() === "dark"
+    //   ? DarkTheme.colors.background
+    //   : DefaultTheme.colors.background
+  const textColorPressed = useContrastText(pickedColor)
+  const theme = useTheme()
   return (
     <View
       style={[
@@ -54,16 +65,34 @@ const WalletAmount = ({ isLoaded }): JSX.Element => {
       </View>
       <View>
         <Skeleton isLoaded={isLoaded} w={230}>
-          <Text color={textColor} fontSize="xl">{`${walletTotal} KASPA`}</Text>
+          <Text color={textColor} fontSize="xl">{`${walletTotal} KAS`}</Text>
         </Skeleton>
       </View>
       <View style={{ paddingLeft: 20, paddingRight: 20, paddingTop: 30 }}>
         <DoubleButton
+          buttonGroupStyle={[
+            styles.shadow,
+            {
+              shadowColor: "#000",
+              backgroundColor: buttonBackgroundColor,
+            },
+          ]}
+          buttonProps={{
+            _pressed: {
+              style: {
+                backgroundColor: theme.colors.primary["200"],
+                borderColor: pickedColor,
+              },
+              _text: { color: textColorPressed, borderColor: pickedColor },
+            },
+            _text: { color: "#000" },
+            backgroundColor: buttonBackgroundColor,
+          }}
           left={{
             text: "Send",
             onPress: () => navigation.navigate("Send"),
           }}
-          pointerEvents="box-none"
+          // pointerEvents="box-none"
           right={{
             text: "Receive",
             onPress: () => navigation.navigate("Receive"),
@@ -88,6 +117,15 @@ const styles = StyleSheet.create({
       height: 6,
     },
     shadowOpacity: 0.25,
+    shadowRadius: 3.5,
+    elevation: 5,
+  },
+  shadow: {
+    shadowOffset: {
+      width: 0,
+      height: 5,
+    },
+    shadowOpacity: 0.35,
     shadowRadius: 3.5,
     elevation: 5,
   },
