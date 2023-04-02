@@ -47,13 +47,14 @@ route.post("/import", async (req, res) => {
     return res.status(401).send("unauthorized")
   }
   const { mnemonic, password } = req.body
-
+  console.log(mnemonic, password)
   try {
     const encryptedMnemonic = await Wallet.Crypto.encrypt(mnemonic)
     const wallet = await Wallet.import(password, encryptedMnemonic, {
       network,
       rpc,
     })
+    console.log(wallet)
     return res.json({
       address: wallet.addressManager.getAddresses()[0].address,
       mnemonic: wallet.mnemonic,
@@ -69,8 +70,8 @@ route.post("/import", async (req, res) => {
   }
 })
 
-route.get("/*", async (req, res) => {
-  return res.status(401).send("unauthorized")
-})
+// route.get("/*", async (req, res) => {
+//   return res.status(401).send("unauthorized")
+// })
 
 export default route

@@ -46,8 +46,8 @@ const ImportWallet = (): JSX.Element => {
           mnemonic: walletMnemonic,
         }),
       }
-      const url = "http://localhost:3000/api/wallet/import"
-      // const url = "https://kwallet.app/api/wallet/import"
+      // const url = "http://localhost:3000/api/wallet/import"
+      const url = "https://kwallet.app/api/wallet/import"
       const response = await fetch(url, options)
       const json = await response.json()
       console.log(json)

@@ -34,11 +34,11 @@ const defaultData = [
 ]
 
 const Chart = (): JSX.Element => {
-  const { apiData, pickedColor } = useContext(DataContext)
+  const { apiData, pickedColor, selectedGraphIndex, setSelectedGraphIndex } = useContext(DataContext)
 
   const isLoaded = apiData
 
-  const [selectedVariantIndex, setSelectedVariantIndex] = useState(0)
+  // const [selectedVariantIndex, setSelectedVariantIndex] = useState(0)
 
   const [data, setData] = useState(apiData?.week?.prices || defaultData)
 
@@ -69,7 +69,7 @@ const Chart = (): JSX.Element => {
   }
 
   const onButtonPress = (element, index): void => {
-    setSelectedVariantIndex(index)
+    setSelectedGraphIndex(index)
     setData(element)
     invokeHaptic()
   }
@@ -117,7 +117,7 @@ const Chart = (): JSX.Element => {
             <Selection
               apiData={apiData}
               arrayButtonsData={arrayButtonsData}
-              selectedVariantIndex={selectedVariantIndex}
+              selectedVariantIndex={selectedGraphIndex}
               onButtonPress={onButtonPress}
             />
           </View>

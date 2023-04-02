@@ -58,6 +58,9 @@ export const DataContext = createContext({
 
   showAlert: undefined,
   setShowAlert: (data) => {},
+
+  selectedGraphIndex: 0,
+  setSelectedGraphIndex: (idx) => {},
 })
 
 export const DataProvider = ({ children }): JSX.Element => {
@@ -68,6 +71,8 @@ export const DataProvider = ({ children }): JSX.Element => {
 
   const [apiData, setApiData] = useState<ApiType>()
   const [showAlert, setShowAlert] = useState()
+
+  const [selectedGraphIndex, setSelectedGraphIndex] = useState(0)
 
   useEffect(() => {
     if (apiData?.appStatus) {
@@ -136,6 +141,9 @@ export const DataProvider = ({ children }): JSX.Element => {
 
         showAlert,
         setShowAlert,
+
+        selectedGraphIndex,
+        setSelectedGraphIndex,
       }}
     >
       {children}

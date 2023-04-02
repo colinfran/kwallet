@@ -43,6 +43,9 @@ const WalletsTab = (): JSX.Element => {
     pickedColor,
     setApiData,
     getApiData,
+
+    selectedGraphIndex,
+    setSelectedGraphIndex,
   } = useContext(DataContext)
   const [refreshing, setRefreshing] = React.useState(false)
 
@@ -53,6 +56,7 @@ const WalletsTab = (): JSX.Element => {
     if (response && !response.error && response.currentPrice) {
       setApiData(response)
       setRefreshing(false)
+      setSelectedGraphIndex(0)
     }
   }, [getApiData, setApiData])
 

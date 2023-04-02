@@ -76,6 +76,7 @@ const CreateWalletStep1 = ({ navigation }): JSX.Element => {
       // const url = "http://localhost:3000/api/wallet/create"
       const response = await fetch(url, options)
       const json = await response.json()
+      console.log(json)
       if (!json.error) {
         setBottomSheetOpen(false)
         setLoading(false)
