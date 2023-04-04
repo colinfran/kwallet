@@ -7,7 +7,7 @@ const initializeKaspa = async () => {
   await initKaspaFramework()
 }
 
-const network = "kaspa"
+const network = "kaspatest"
 const { port } = Wallet.networkTypes[network].port
 const rpc = new RPC({ clientConfig: { host: "127.0.0.1:" + port } })
 

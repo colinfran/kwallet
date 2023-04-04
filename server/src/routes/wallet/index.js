@@ -10,6 +10,7 @@ import { isApiKeyValid } from "../../functions/functions.js"
  * @returns {Error}  500 - Unexpected error
  */
 route.post("/create", async (req, res) => {
+  console.log("here")
   if (!isApiKeyValid(req.body.apiKey)) {
     return res.status(401).send("unauthorized")
   }
