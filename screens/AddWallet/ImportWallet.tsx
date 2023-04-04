@@ -12,7 +12,7 @@ import * as Sentry from "sentry-expo"
 import { DataContext } from "../../providers/DataProvider"
 import { Ionicons } from "@expo/vector-icons"
 import { useNavigation } from "@react-navigation/native"
-import { apiKey } from "../../env"
+import { apiKey, apiUrl } from "../../constants/index"
 
 const ImportWallet = (): JSX.Element => {
   const {
@@ -46,8 +46,7 @@ const ImportWallet = (): JSX.Element => {
           mnemonic: walletMnemonic,
         }),
       }
-      // const url = "http://localhost:3000/api/wallet/import"
-      const url = "https://kwallet.app/api/wallet/import"
+      const url = `${apiUrl}/api/wallet/import`
       const response = await fetch(url, options)
       const json = await response.json()
       console.log(json)

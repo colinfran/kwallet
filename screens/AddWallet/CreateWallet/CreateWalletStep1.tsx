@@ -23,7 +23,7 @@ import { DataContext } from "../../../providers/DataProvider"
 import image from "../../../assets/images/vault.png"
 import { Ionicons } from "@expo/vector-icons"
 import ButtonOutline from "../../../components/Button/ButtonOutline"
-import { apiKey } from "../../../env"
+import { apiKey, apiUrl } from "../../../constants/index"
 
 const CreateWalletStep1 = ({ navigation }): JSX.Element => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -72,8 +72,7 @@ const CreateWalletStep1 = ({ navigation }): JSX.Element => {
           password: walletPassword,
         }),
       }
-      const url = "https://kwallet.app/api/wallet/create"
-      // const url = "http://localhost:3000/api/wallet/create"
+      const url = `${apiUrl}/api/wallet/create`
       const response = await fetch(url, options)
       const json = await response.json()
       console.log(json)

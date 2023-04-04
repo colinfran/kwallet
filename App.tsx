@@ -9,7 +9,8 @@ import * as Sentry from "sentry-expo"
 import { DataProvider } from "./providers/DataProvider"
 
 import Navigation from "./navigation"
-import { sentryDsn } from "./env"
+import { SENTRY_DSN as sentryDsn } from "@env"
+
 /*
   "Native crash reporting is not available in Expo Go, it is only available in 
   standalone builds or development builds."

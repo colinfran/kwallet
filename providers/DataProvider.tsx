@@ -6,7 +6,7 @@ import React, { useState, createContext, useEffect } from "react"
 import * as SecureStore from "expo-secure-store"
 import * as Sentry from "sentry-expo"
 import { useColorScheme } from "react-native"
-import { apiKey } from "../env"
+import { apiKey, apiUrl } from "../constants/index"
 
 type DataPoint = {
   timestamp: number
@@ -96,8 +96,7 @@ export const DataProvider = ({ children }): JSX.Element => {
           encryptedMnemonic: selectedWallet.walletData.encryptedMnemonic,
         }),
       }
-      // const url = "http://localhost:3000/api/data"
-      const url = "https://kwallet.app/api/data"
+      const url = `${apiUrl}/api/data`
       const response = await fetch(url, options)
       const json = await response.json()
       if (json && !json.error) {
