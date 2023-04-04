@@ -32,8 +32,6 @@ cp .env-example .env
 cp ./server/.env-example ./server/.env
 ```
 
-***NOTE THAT IF YOU WANT TO RUN APP WITH PRODUCTION SERVER, YOU WILL NEED TO REACH OUT TO @colinfran FOR A PRODUCTION SERVER API KEY.***
-
 
 ### run app with local server
 To run the Expo app with local server, you will need to have two terminal instances open. 
@@ -52,3 +50,5 @@ To run the Expo app with production server, in a single terminal run:
 ```
 yarn run prod
 ```
+***NOTE THAT IF YOU WANT TO RUN APP WITH PRODUCTION SERVER, YOU WILL NEED TO REACH OUT TO @colinfran FOR A PRODUCTION SERVER API KEY.***
+
