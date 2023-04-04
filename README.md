@@ -26,7 +26,13 @@ yarn install
 cd ..
 ```
 
-Once all packages have been installed, you will need to add an API key to both the server and the expo app. You will need to reach out to @colinfran for an API key. Once you receive the API key, you will also receive directions on how to add them to your local environment.
+Once all packages have been installed, run the following commands
+```
+cp .env-example .env
+cp ./server/.env-example ./server/.env
+```
+
+***NOTE THAT IF YOU WANT TO RUN APP WITH PRODUCTION SERVER, YOU WILL NEED TO REACH OUT TO @colinfran FOR A PRODUCTION SERVER API KEY.***
 
 
 ### run app with local server
