@@ -7,7 +7,7 @@ import WalletsTab from "../screens/WalletsTab"
 import {
   BottomTabParamList,
   TabOneParamList,
-  TabThreeParamList,
+  TabTwoParamList,
 } from "../types"
 import { DataContext } from "../providers/DataProvider"
 import SettingsScreen from "../screens/SettingsTab/Settings/SettingsScreen"
@@ -27,6 +27,8 @@ import {
   CreateWalletStep3,
 } from "../screens/AddWallet/CreateWallet"
 import ImportWallet from "../screens/AddWallet/ImportWallet"
+import FaqScreen from "../screens/SettingsTab/Settings/FaqScreen"
+import GuideScreen from "../screens/SettingsTab/Settings/GuideScreen"
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>()
 
@@ -62,8 +64,8 @@ const BottomTabNavigator = (): JSX.Element => {
         })}
       />
       <BottomTab.Screen
-        component={TabThreeNavigator}
-        name="TabThree"
+        component={TabTwoNavigator}
+        name="TabTwo"
         options={{
           title: "",
           tabBarIcon: ({ color }) => (
@@ -118,61 +120,71 @@ const TabOneNavigator = (): JSX.Element => {
   )
 }
 
-const TabThreeStack = createStackNavigator<TabThreeParamList>()
+const TabTwoStack = createStackNavigator<TabTwoParamList>()
 
-const TabThreeNavigator = (): JSX.Element => {
+const TabTwoNavigator = (): JSX.Element => {
   return (
-    <TabThreeStack.Navigator screenOptions={{ headerShown: true }}>
-      <TabThreeStack.Screen
+    <TabTwoStack.Navigator screenOptions={{ headerShown: true }}>
+      <TabTwoStack.Screen
         component={SettingsScreen}
         name="SettingsTab"
         options={{ title: "", headerShown: false }}
       />
-      <TabThreeStack.Screen
+      <TabTwoStack.Screen
         component={ColorPickerScreen}
         name="ColorPickerScreen"
         options={{ title: "" }}
       />
-      <TabThreeStack.Screen
+      <TabTwoStack.Screen
+        component={FaqScreen}
+        name="FaqScreen"
+        options={{ title: "" }}
+      />
+      <TabTwoStack.Screen
+        component={GuideScreen}
+        name="GuideScreen"
+        options={{ title: "" }}
+      />
+      <TabTwoStack.Screen
         component={TermsScreen}
         name="TermsScreen"
         options={{ title: "" }}
       />
-      <TabThreeStack.Screen
+      <TabTwoStack.Screen
         component={PrivacyPolicyScreen}
         name="PrivacyPolicyScreen"
         options={{ title: "" }}
       />
-      <TabThreeStack.Screen
+      <TabTwoStack.Screen
         component={FrameworksScreen}
         name="FrameworksScreen"
         options={{ title: "" }}
       />
-      <TabThreeStack.Screen
+      <TabTwoStack.Screen
         component={AddWallet}
         name="AddWallet"
         options={{ title: "" }}
       />
-      <TabThreeStack.Screen
+      <TabTwoStack.Screen
         component={CreateWalletStep1}
         name="CreateWalletStep1"
         options={{ title: "" }}
       />
-      <TabThreeStack.Screen
+      <TabTwoStack.Screen
         component={CreateWalletStep2}
         name="CreateWalletStep2"
         options={{ title: "" }}
       />
-      <TabThreeStack.Screen
+      <TabTwoStack.Screen
         component={CreateWalletStep3}
         name="CreateWalletStep3"
         options={{ title: "" }}
       />
-      <TabThreeStack.Screen
+      <TabTwoStack.Screen
         component={ImportWallet}
         name="ImportWallet"
         options={{ title: "" }}
       />
-    </TabThreeStack.Navigator>
+    </TabTwoStack.Navigator>
   )
 }

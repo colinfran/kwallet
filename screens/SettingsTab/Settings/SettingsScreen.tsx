@@ -146,13 +146,13 @@ const SettingsScreen = (): JSX.Element => {
         text: "FAQ",
         iconName: "help-circle-outline",
         iconType: "",
-        onPress: () => null,
+        onPress: () => navigation.navigate("FaqScreen"),
       },
       {
         text: "Guide",
         iconName: "information-circle-outline",
         iconType: "",
-        onPress: () => null,
+        onPress: () => navigation.navigate("GuideScreen"),
       },
     ],
 
