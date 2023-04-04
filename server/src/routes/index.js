@@ -63,8 +63,8 @@ route.get("/storage", async (req, res) => {
  */
 route.use("/wallet", walletRoute)
 
-// route.get("/*", async (req, res) => {
-//   return res.status(401).send("unauthorized")
-// })
+route.get("/*", async (req, res) => {
+  return res.status(401).send("unauthorized")
+})
 
 export default route
