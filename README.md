@@ -5,7 +5,9 @@
 A Kaspa wallet app for iOS and Android
 
 **currently in progress**
-<br/><br/><br/>
+<br/><br/>
+[Link To Official Website](https://kwallet.app/)
+<br/><br/>
 Donations accepted!
 
 
