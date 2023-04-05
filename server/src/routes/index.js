@@ -1,5 +1,6 @@
 import express from "express"
 import fs from "fs"
+import fetch from "node-fetch"
 import walletRoute from "./wallet/index.js"
 import { getData, isApiKeyValid } from "../functions/functions.js"
 import { Wallet, network, rpc } from "../kaspa/index.js"
@@ -49,6 +50,35 @@ route.get("/storage", async (req, res) => {
     return res.json(JSON.parse(data))
   } catch (err) {
     console.log(err)
+  }
+})
+
+/**
+ * @route GET /api/email-sign-up
+ * @desc add signup email and date to google sheet
+ * @access Public
+ * @returns {object} 200 - successfully added to google sheet
+ * @returns {Error}  500 - Unexpected error
+ */
+route.get("/email-sign-up", async (req, res) => {
+  const { Email, Time } = req.query
+  const formData = new URLSearchParams({
+    Email,
+    Time,
+  })
+  try {
+    const response = await fetch(
+      // eslint-disable-next-line max-len
+      "https://script.google.com/macros/s/AKfycbyv4akZsp_uvIG6hvoHibjqNEDHfaOysj9nZm9iBIlytpNn7zc8pANIFvM11EsCF_tK3A/exec",
+      {
+        method: "POST",
+        body: formData,
+      }
+    )
+    res.send(response)
+  } catch (error) {
+    res.status(401)
+    console.log(error)
   }
 })
 

@@ -441,6 +441,29 @@
         background-repeat: no-repeat, repeat;
         background-size: cover;
       }
+      .register-form{
+        height: 84px;
+      }
+      #form-message{
+        border-radius: 15px;
+        padding: 12px;
+        font-size: 12px;
+        height: 84px;
+        display: none;
+        text-align: center;
+        margin-top: 20px;
+      }
+      .success{
+        border: 1px #7fdccc solid;
+        display: block !important;
+      }
+      .error{
+        border: 1px red solid;
+        display: block !important;
+      }
+      #form-text{
+
+      }
     </style>
   </head>
   <body>
@@ -456,7 +479,7 @@
           <h2 class="section2h2">kwallet</h2>
           <p class="section2p">A Kaspa wallet app for iOS and Android</p>
           <p class="section2p inProgress">Project in progress</p>
-          <div class="form">
+          <div id="formId" class="form">
             <form class="register-form" id="form">
               <div style="margin-bottom: 10px;">Sign up for early access</div>
               <div class="form-wrapper">
@@ -465,6 +488,9 @@
                 <button id="submit">Submit</button>
               </div>
             </form>
+          </div>
+          <div id="form-message">
+            <div id="form-text"></div>
           </div>
           <div>
             <div style="margin-top: 20px;display: flex;align-items: center;justify-content: center;">
@@ -567,27 +593,34 @@
   </body>
   <script>
     // form submission
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbyv4akZsp_uvIG6hvoHibjqNEDHfaOysj9nZm9iBIlytpNn7zc8pANIFvM11EsCF_tK3A/exec'
+    const url = new URL("http://localhost:3000/api/email-sign-up")
     const form = document.querySelector('#form')
     const btn = document.querySelector('#submit')
     form.addEventListener('submit', e => {
       e.preventDefault()
       btn.disabled = true
       btn.innerHTML = "Loading"
-      console.log(form)
-      document.querySelector('#date').value = new Date().toLocaleString()
-      fetch(scriptURL, {
-        method: 'POST',
-        body: new FormData(form)
-      }).then(response => {
+      const formData = new FormData(form)
+      const email = formData.get('Email');
+      if (email === undefined || email === ""){
         btn.disabled = false
         btn.innerHTML = "Submit"
-        document.querySelector('#email').value = ""
-        alert('Email submitted successfully.', response)
+        return;
+      }
+      const query = `Time=${new Date().toISOString()}&Email=${email}`
+
+      fetch(`${url}?${query}`).then(response => {
+        btn.disabled = false
+        btn.innerHTML = "Submit"
+        document.querySelector('#form-message').className = "success"
+        document.querySelector('#form-text').innerHTML = "You have successfully signed up for early access for the kwallet app. When the app is ready for testing, you will receive an email from us."
+        document.querySelector('#formId').style = "display:none;"
       }).catch(error => {
         btn.disabled = false
         btn.innerHTML = "Submit"
-        alert('An error occurred when trying to submit your email. Please refresh the page and try again.', error.message)
+        document.querySelector('#formId').style = "display:none;"
+        document.querySelector('#form-message').className = "error"
+        document.querySelector('#form-text').innerHTML = "An error occurred when trying to submit your email. Please refresh the page and try again."
       })
     })
     
