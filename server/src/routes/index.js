@@ -61,7 +61,6 @@ route.get("/storage", async (req, res) => {
  * @returns {Error}  500 - Unexpected error
  */
 route.post("/email-sign-up", async (req, res) => {
-  console.log(req.body)
   const { email } = req.body
   const formData = new URLSearchParams({
     Email: email,

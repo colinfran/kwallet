@@ -485,8 +485,8 @@
 
       .cssload-jumping span {
         display: inline-block;
-        height: 6px;
-        width: 6px;
+        height: 5px;
+        width: 5px;
         background: rgb(0, 0, 0);
         border-radius: 487px;
         background-clip: padding-box;
@@ -781,12 +781,13 @@
       }
       btn.disabled = true
       btn.innerHTML = `
-																														<span class="cssload-jumping">
-																															<span></span>
-																															<span></span>
-																															<span></span>
-																															<span></span>
-																														</span>`
+        <span class="cssload-jumping">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+      `
       fetch(url, {
         method: 'POST',
         body: JSON.stringify({
