@@ -1,4 +1,4 @@
-import React, { useContext } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import { StyleSheet, View, useColorScheme, Dimensions } from "react-native"
 import { Skeleton, Text, Heading, useContrastText, useTheme } from "native-base"
 import { DataContext } from "../providers/DataProvider"
@@ -17,26 +17,24 @@ const currencyFormatter = (val: number): string => {
   return formatter.format(val)
 }
 
-const WalletAmount = ({ isLoaded }): JSX.Element => {
-  const { apiData, pickedColor } = useContext(DataContext)
+const WalletAmount = (): JSX.Element => {
+  const { graphData, pickedColor, walletBalance } = useContext(DataContext)
   const navigation = useNavigation()
 
-  const walletTotal = apiData?.walletData?.balance?.available || "0"
+  const isLoaded = walletBalance
 
+  const walletTotal = walletBalance?.available || 0
   const textColor = useContrastText(pickedColor)
   const shadowColor = useColorScheme() === "dark" ? "#fff" : "#000"
 
-  const apiVal = apiData ? apiData : { currentPrice: "0" }
+  const apiVal = graphData ? graphData : { currentPrice: "0" }
 
   const { currentPrice = "0" } = apiVal
   const value = parseFloat(walletTotal) * parseFloat(currentPrice)
   const walletTotalMonetaryValue = currencyFormatter(value)
 
-  const color = useColorScheme() === "dark" ? "#fff" : "#000"
   const buttonBackgroundColor = DefaultTheme.colors.background
-    // useColorScheme() === "dark"
-    //   ? DarkTheme.colors.background
-    //   : DefaultTheme.colors.background
+
   const textColorPressed = useContrastText(pickedColor)
   const theme = useTheme()
   return (

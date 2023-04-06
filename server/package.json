@@ -4,10 +4,10 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "dev": "NODE_ENV=dev babel-node ./src/bin/www.js",
+    "dev": "NODE_ENV=dev babel-node ./src/app.js",
     "clean": "rm -rf dist",
     "build": "yarn run clean && babel ./src --out-dir dist --copy-files",
-    "prod": "node ./dist/bin/www.js",
+    "prod": "node ./dist/app.js",
     "lint": "eslint \"src/**/*.js\"",
     "format": "prettier --write \"src/**/*.js\""
   },
@@ -30,7 +30,8 @@
     "node-fetch": "^3.3.1",
     "percent-change": "^1.0.1",
     "regenerator-runtime": "^0.13.7",
-    "simple-json-db": "^2.0.0"
+    "simple-json-db": "^2.0.0",
+    "socket.io": "^4.6.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.12.10",

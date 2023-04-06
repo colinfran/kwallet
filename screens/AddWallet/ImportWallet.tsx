@@ -15,14 +15,8 @@ import { useNavigation } from "@react-navigation/native"
 import { apiKey, apiUrl } from "../../constants/index"
 
 const ImportWallet = (): JSX.Element => {
-  const {
-    wallets,
-    setWallets,
-    setSelectedWalletIndex,
-    getApiData,
-    setApiData,
-    pickedColor,
-  } = useContext(DataContext)
+  const { wallets, setWallets, setSelectedWalletIndex, pickedColor } =
+    useContext(DataContext)
 
   const [loading, setLoading] = useState(false)
   const [validSeedPhrase, setValidSeedPhrase] = useState(false)
@@ -67,12 +61,6 @@ const ImportWallet = (): JSX.Element => {
         setWallets(newWalletArray)
         SecureStore.setItemAsync("wallets", JSON.stringify(newWalletArray))
         setSelectedWalletIndex(newWalletArray.length - 1)
-        setTimeout(() => {
-          const val = getApiData()
-          if (val && !val.error && val.currentPrice) {
-            setApiData(response)
-          }
-        }, 500)
         setLoading(false)
         navigation.navigate("SettingsTab")
       } else {
@@ -87,7 +75,6 @@ const ImportWallet = (): JSX.Element => {
       setLoading(false)
     }
   }
-
 
   const valid = walletName !== "" && walletPassword !== ""
 
@@ -165,7 +152,11 @@ const ImportWallet = (): JSX.Element => {
             ) : (
               <Icon
                 as={Ionicons}
-                name={!valid || !validSeedPhrase ? "warning-outline" : "checkmark-circle-outline"}
+                name={
+                  !valid || !validSeedPhrase
+                    ? "warning-outline"
+                    : "checkmark-circle-outline"
+                }
                 size="sm"
               />
             )

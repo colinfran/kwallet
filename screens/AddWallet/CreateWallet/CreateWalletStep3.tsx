@@ -22,14 +22,8 @@ const randomUniqueIntegers = (total, quantity): number[] => {
 }
 
 const CreateWalletStep3 = ({ route }): JSX.Element => {
-  const {
-    wallets,
-    setWallets,
-    setSelectedWalletIndex,
-    setApiData,
-    getApiData,
-    pickedColor,
-  } = useContext(DataContext)
+  const { wallets, setWallets, setSelectedWalletIndex, pickedColor } =
+    useContext(DataContext)
   const [loading, setLoading] = useState(false)
 
   const [input1, setInput1] = useState("")
@@ -79,12 +73,6 @@ const CreateWalletStep3 = ({ route }): JSX.Element => {
       setWallets(newWalletArray)
       SecureStore.setItemAsync("wallets", JSON.stringify(newWalletArray))
       setSelectedWalletIndex(newWalletArray.length - 1)
-      setTimeout(() => {
-        const response = getApiData()
-        if (response && !response.error && response.currentPrice) {
-          setApiData(response)
-        }
-      }, 500)
       setLoading(false)
       navigation.navigate("SettingsTab")
     } else {

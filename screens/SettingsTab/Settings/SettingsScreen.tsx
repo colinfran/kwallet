@@ -125,8 +125,6 @@ const SettingsScreen = (): JSX.Element => {
     wallets,
     selectedWalletIndex,
     setSelectedWalletIndex,
-    getApiData,
-    setApiData,
     setWallets,
   } = useContext(DataContext)
 
@@ -251,10 +249,6 @@ const SettingsScreen = (): JSX.Element => {
         onPress={() => {
           setSelectedWalletIndex(wallet.index)
           setOpenWalletPicker(false)
-          const response = getApiData()
-          if (response && !response.error && response.currentPrice) {
-            setApiData(response)
-          }
         }}
       >
         <View

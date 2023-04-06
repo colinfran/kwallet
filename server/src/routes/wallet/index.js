@@ -72,12 +72,49 @@ route.post("/import", async (req, res) => {
 })
 
 route.post("/send", async (req, res) => {
-  console.log("here")
   if (!isApiKeyValid(req.body.apiKey)) {
     console.log("invalid apiKey")
     return res.status(401).send("unauthorized")
   }
   const { encryptedMnemonic, password, amount, maxFee } = req.body
+  try {
+    const wallet = await Wallet.import(password, encryptedMnemonic, {
+      network,
+      rpc,
+    })
+    wallet.sync(true)
+    try {
+      let response = await this.wallet.submitTransaction({
+        address, // destination address
+        amount, // amount in base units
+        fee, // user fees
+      })
+      if (!response) console.log("general error")
+      // if kaspad returns null (should never occur)
+      else console.log("success:", txid)
+    } catch (error) {
+      console.log(error.toString())
+      return res.status(500).send({
+        error: true,
+        errorMessage: error.toString(),
+        errorDesrciption: "Error message",
+      })
+    }
+  } catch (error) {
+    return res.status(500).send({
+      error: true,
+      errorMessage: error.toString(),
+      errorDesrciption: "Error message",
+    })
+  }
+})
+
+route.post("/transactions", async (req, res) => {
+  if (!isApiKeyValid(req.body.apiKey)) {
+    console.log("invalid apiKey")
+    return res.status(401).send("unauthorized")
+  }
+  const { encryptedMnemonic, password } = req.body
   try {
     const wallet = await Wallet.import(password, encryptedMnemonic, {
       network,

@@ -16,7 +16,7 @@ import Animated, {
 import { DataContext } from "../../providers/DataProvider"
 
 export const Selection = ({
-  apiData,
+  graphData,
   arrayButtonsData,
   onButtonPress,
   selectedVariantIndex,
@@ -95,7 +95,7 @@ export const Selection = ({
               key={i}
               onPress={() => {
                 onButtonPress(
-                  apiData[element.buttonTitle.toLowerCase()].prices,
+                  graphData[element.buttonTitle.toLowerCase()].prices,
                   i
                 )
                 offset.value = withSpring(i)

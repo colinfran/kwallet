@@ -47,12 +47,18 @@ export const DataContext = createContext({
   wallets: [],
   setWallets: (newWallet: object) => {},
 
+  isLoaded: false,
+  setIsLoaded: (loaded: boolean) => {},
+
+  walletBalance: undefined,
+  setWalletBalance: (walletBalance: object) => {},
+
   selectedWalletIndex: 0,
   setSelectedWalletIndex: (index: number) => {},
 
-  apiData: undefined,
-  setApiData: (data) => {},
-  getApiData: async () => {
+  graphData: undefined,
+  setGraphData: (data) => {},
+  getGraphData: async () => {
     return {}
   },
 
@@ -69,21 +75,30 @@ export const DataProvider = ({ children }): JSX.Element => {
   const [selectedWalletIndex, setSelectedWalletIndex] = useState(0)
   const [pickedColor, setPickedColor] = useState("#7fdccc")
 
-  const [apiData, setApiData] = useState<ApiType>()
+  const [isLoaded, setIsLoaded] = useState(false)
+  const [graphData, setGraphData] = useState()
+  const [walletBalance, setWalletBalance] = useState()
+
   const [showAlert, setShowAlert] = useState()
 
   const [selectedGraphIndex, setSelectedGraphIndex] = useState(0)
 
   useEffect(() => {
-    if (apiData?.appStatus) {
-      setShowAlert(apiData.appStatus)
+    if (graphData?.appStatus) {
+      setShowAlert(graphData.appStatus)
     }
-  }, [apiData])
+  }, [graphData])
 
-  const getApiData = async (): Promise<any> => {
-    console.log("Data refresh occurring.")
+  const getData = async () => {
+    const walletData = await SecureStore.getItemAsync("wallets")
+    if (walletData !== null) {
+      setWallets(JSON.parse(walletData))
+    }
+  }
+
+  const getGraphData = async (): Promise<any> => {
+    console.log("Fetching graph data")
     const selectedWallet = wallets[selectedWalletIndex]
-    console.log(selectedWallet)
     try {
       const options = {
         method: "POST",
@@ -108,13 +123,6 @@ export const DataProvider = ({ children }): JSX.Element => {
     }
   }
 
-  const getData = async () => {
-    const walletData = await SecureStore.getItemAsync("wallets")
-    if (walletData !== null) {
-      setWallets(JSON.parse(walletData))
-    }
-  }
-
   useEffect(() => {
     getData()
   }, [])
@@ -134,9 +142,15 @@ export const DataProvider = ({ children }): JSX.Element => {
         pickedColor,
         setPickedColor,
 
-        apiData,
-        setApiData,
-        getApiData,
+        isLoaded,
+        setIsLoaded,
+
+        graphData,
+        setGraphData,
+        getGraphData,
+
+        walletBalance,
+        setWalletBalance,
 
         showAlert,
         setShowAlert,

@@ -34,35 +34,36 @@ const defaultData = [
 ]
 
 const Chart = (): JSX.Element => {
-  const { apiData, pickedColor, selectedGraphIndex, setSelectedGraphIndex } = useContext(DataContext)
+  const { graphData, pickedColor, selectedGraphIndex, setSelectedGraphIndex } =
+    useContext(DataContext)
 
-  const isLoaded = apiData
+  const isLoaded = graphData
 
   // const [selectedVariantIndex, setSelectedVariantIndex] = useState(0)
 
-  const [data, setData] = useState(apiData?.week?.prices || defaultData)
+  const [data, setData] = useState(graphData?.week?.prices || defaultData)
 
   const [arrayButtonsData, setArrayButtonsData] = useState([
     { buttonTitle: "Day" },
   ])
 
   useEffect(() => {
-    if (apiData) {
-      if (apiData?.day?.prices) {
-        setData(apiData?.day?.prices)
+    if (graphData) {
+      if (graphData?.day?.prices) {
+        setData(graphData?.day?.prices)
       }
       const arrayButtons = [{ buttonTitle: "Day" }]
-      if (apiData?.week?.prices.length > 0)
+      if (graphData?.week?.prices.length > 0)
         arrayButtons.push({ buttonTitle: "Week" })
-      if (apiData?.month?.prices.length > 0)
+      if (graphData?.month?.prices.length > 0)
         arrayButtons.push({ buttonTitle: "Month" })
-      if (apiData?.year?.prices.length > 0)
+      if (graphData?.year?.prices.length > 0)
         arrayButtons.push({ buttonTitle: "Year" })
-      if (apiData?.all?.prices.length > 0)
+      if (graphData?.all?.prices.length > 0)
         arrayButtons.push({ buttonTitle: "All" })
       setArrayButtonsData(arrayButtons)
     }
-  }, [apiData])
+  }, [graphData])
 
   const invokeHaptic = (): void => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
@@ -115,8 +116,8 @@ const Chart = (): JSX.Element => {
         <View style={styles.buttonContainer}>
           <View style={styles.selectionContainer}>
             <Selection
-              apiData={apiData}
               arrayButtonsData={arrayButtonsData}
+              graphData={graphData}
               selectedVariantIndex={selectedGraphIndex}
               onButtonPress={onButtonPress}
             />
@@ -131,7 +132,7 @@ const Chart = (): JSX.Element => {
               })),
               smoothingStrategy: "bezier",
             }}
-            nowData={{ currentPrice: apiData?.currentPrice || "" }}
+            nowData={{ currentPrice: graphData?.currentPrice || "" }}
           >
             {!isActive && (
               <Labels color={textColor} isCard={false} width={SIZE} />

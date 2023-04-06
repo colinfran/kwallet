@@ -1,14 +1,10 @@
 import { Ionicons } from "@expo/vector-icons"
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 import { createStackNavigator } from "@react-navigation/stack"
-import React, { useContext, useEffect } from "react"
+import React, { useContext, useEffect, useState } from "react"
 
 import WalletsTab from "../screens/WalletsTab"
-import {
-  BottomTabParamList,
-  TabOneParamList,
-  TabTwoParamList,
-} from "../types"
+import { BottomTabParamList, TabOneParamList, TabTwoParamList } from "../types"
 import { DataContext } from "../providers/DataProvider"
 import SettingsScreen from "../screens/SettingsTab/Settings/SettingsScreen"
 // eslint-disable-next-line max-len
@@ -29,23 +25,50 @@ import {
 import ImportWallet from "../screens/AddWallet/ImportWallet"
 import FaqScreen from "../screens/SettingsTab/Settings/FaqScreen"
 import GuideScreen from "../screens/SettingsTab/Settings/GuideScreen"
+import { socket } from "../utils/socket"
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>()
 
 const BottomTabNavigator = (): JSX.Element => {
-  const { pickedColor, setApiData, getApiData } = useContext(DataContext)
+  const {
+    pickedColor,
+    wallets,
+    selectedWalletIndex,
+    setGraphData,
+    getGraphData,
+    setWalletBalance,
+  } = useContext(DataContext)
+  const [hasConnection, setConnection] = useState(false)
 
-  const getData = async (): Promise<void> => {
-    const response = await getApiData()
+  const getLineGraphData = async (): Promise<void> => {
+    const response = await getGraphData()
     if (response && !response.error && response.currentPrice) {
-      setApiData(response)
+      setGraphData(response)
     }
   }
 
   useEffect(() => {
-    getData()
+    getLineGraphData()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
+  useEffect(() => {
+    socket.io.on("open", () => setConnection(true))
+    socket.io.on("close", () => setConnection(false))
+    const data = wallets[selectedWalletIndex].walletData
+    socket.emit("wallet-balance--get", {
+      walletAddress: data.address,
+      encryptedMnemonic: data.encryptedMnemonic,
+      password: data.userPassword,
+    })
+    socket.on("wallet-balance--has-been-updated", (walletBalance) => {
+      setWalletBalance(walletBalance)
+    })
+    return () => {
+      socket.disconnect()
+      socket.removeAllListeners()
+    }
+  }, [selectedWalletIndex, setGraphData, setWalletBalance, wallets])
 
   return (
     <BottomTab.Navigator

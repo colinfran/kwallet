@@ -2,7 +2,7 @@ import express from "express"
 import fs from "fs"
 import fetch from "node-fetch"
 import walletRoute from "./wallet/index.js"
-import { getData, isApiKeyValid } from "../functions/functions.js"
+import { getLineGraphData, isApiKeyValid } from "../functions/functions.js"
 import { Wallet, network, rpc } from "../kaspa/index.js"
 import { db } from "../database/index.js"
 
@@ -28,7 +28,7 @@ route.post("/data", async (req, res) => {
   })
   wallet.sync(true)
   try {
-    return res.json(await getData(db, wallet))
+    return res.json(await getLineGraphData(db, wallet))
   } catch (error) {
     console.log(error.toString())
     return res.status(500).send(error)
@@ -88,6 +88,8 @@ route.post("/email-sign-up", async (req, res) => {
  * @desc router for wallets
  *        - create
  *        - import
+ *        - send
+ *        - transactions
  * @access Private
  * @returns {object} 200 - wallet data
  * @returns {Error}  500 - Unexpected error

@@ -37,28 +37,22 @@ const WalletsTab = (): JSX.Element => {
   const navigation = useNavigation()
 
   const {
-    apiData,
     showAlert,
     setShowAlert,
     pickedColor,
-    setApiData,
-    getApiData,
-
     selectedGraphIndex,
     setSelectedGraphIndex,
   } = useContext(DataContext)
   const [refreshing, setRefreshing] = React.useState(false)
 
   const onRefresh = React.useCallback(async () => {
-    setApiData(null)
     setRefreshing(true)
-    const response = await getApiData()
-    if (response && !response.error && response.currentPrice) {
-      setApiData(response)
+    const response = true
+    if (response) {
       setRefreshing(false)
       setSelectedGraphIndex(0)
     }
-  }, [getApiData, setApiData])
+  }, [setSelectedGraphIndex])
 
   const dismissAlert = (): void => {
     setShowAlert(undefined)
@@ -88,7 +82,7 @@ const WalletsTab = (): JSX.Element => {
     >
       <View style={{ gap: 30 }}>
         <View style={{ alignSelf: "flex-start", width: "100%" }}>
-          <WalletHeader isLoaded={apiData} />
+          <WalletHeader />
         </View>
         {/* <View style={{ paddingLeft: 20, paddingRight: 20, paddingBottom: 30 }}>
           <DoubleButton

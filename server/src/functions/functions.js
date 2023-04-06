@@ -166,7 +166,7 @@ export const triggerDataRefresh = async () => {
   }
 }
 
-export const getData = async (wallet) => {
+export const getLineGraphData = async () => {
   const data1Y = JSON.parse(await db.get("data1Y"))
   const data1M = JSON.parse(await db.get("data1M"))
   const data1W = JSON.parse(await db.get("data1W"))
@@ -176,9 +176,6 @@ export const getData = async (wallet) => {
   const currentPrice = JSON.parse(await db.get("currentPrice"))
 
   const appStatus = JSON.parse(await db.get("appStatus"))
-
-  wallet.sync(true)
-  const walletBalance = await wallet.balance
 
   return {
     appStatus: appStatus,
@@ -197,9 +194,6 @@ export const getData = async (wallet) => {
     },
     all: {
       prices: dataALL,
-    },
-    walletData: {
-      balance: walletBalance,
     },
   }
 }

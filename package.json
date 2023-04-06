@@ -61,7 +61,8 @@
     "react-native-tab-view": "^3.5.1",
     "react-native-webview": "11.26.0",
     "reanimated-color-picker": "^1.5.1",
-    "sentry-expo": "~6.1.0"
+    "sentry-expo": "~6.1.0",
+    "socket.io-client": "^4.6.1"
   },
   "devDependencies": {
     "@babel/core": "^7.21.0",
