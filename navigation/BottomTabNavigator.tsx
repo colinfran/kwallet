@@ -40,18 +40,18 @@ const BottomTabNavigator = (): JSX.Element => {
   } = useContext(DataContext)
   const [hasConnection, setConnection] = useState(false)
 
-  const getLineGraphData = async (): Promise<void> => {
-    const response = await getGraphData()
-    if (response && !response.error && response.currentPrice) {
-      setGraphData(response)
-    }
-  }
-
   useEffect(() => {
+    const getLineGraphData = async (): Promise<void> => {
+      const response = await getGraphData()
+      if (response && !response.error && response.currentPrice) {
+        setGraphData(response)
+      }
+    }
     getLineGraphData()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  // socket connection for wallet balance
   useEffect(() => {
     socket.io.on("open", () => setConnection(true))
     socket.io.on("close", () => setConnection(false))

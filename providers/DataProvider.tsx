@@ -98,7 +98,6 @@ export const DataProvider = ({ children }): JSX.Element => {
 
   const getGraphData = async (): Promise<any> => {
     console.log("Fetching graph data")
-    const selectedWallet = wallets[selectedWalletIndex]
     try {
       const options = {
         method: "POST",
@@ -107,11 +106,9 @@ export const DataProvider = ({ children }): JSX.Element => {
         },
         body: JSON.stringify({
           apiKey,
-          password: selectedWallet.walletData.userPassword,
-          encryptedMnemonic: selectedWallet.walletData.encryptedMnemonic,
         }),
       }
-      const url = `${apiUrl}/api/data`
+      const url = `${apiUrl}/api/graph-data`
       const response = await fetch(url, options)
       const json = await response.json()
       if (json && !json.error) {

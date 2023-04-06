@@ -15,20 +15,12 @@ const route = express.Router()
  * @returns {object} 200 - graph data and data associated with wallet
  * @returns {Error}  500 - Unexpected error
  */
-route.post("/data", async (req, res) => {
+route.post("/graph-data", async (req, res) => {
   if (!isApiKeyValid(req.body.apiKey)) {
     return res.status(401).send("unauthorized")
   }
-  const password = req.body.password
-  const encryptedMnemonic = req.body.encryptedMnemonic
-
-  const wallet = await Wallet.import(password, encryptedMnemonic, {
-    network,
-    rpc,
-  })
-  wallet.sync(true)
   try {
-    return res.json(await getLineGraphData(db, wallet))
+    return res.json(await getLineGraphData())
   } catch (error) {
     console.log(error.toString())
     return res.status(500).send(error)
