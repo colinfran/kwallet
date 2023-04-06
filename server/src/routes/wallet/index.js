@@ -10,14 +10,15 @@ import { isApiKeyValid } from "../../functions/functions.js"
  * @returns {Error}  500 - Unexpected error
  */
 route.post("/create", async (req, res) => {
-  console.log("here")
   if (!isApiKeyValid(req.body.apiKey)) {
+    console.log("invalid apiKey")
     return res.status(401).send("unauthorized")
   }
   const { password } = req.body
   try {
     const wallet = new Wallet(null, null, { network, rpc })
     const encryptedMnemonic = await wallet.export(password)
+    wallet.sync(true)
     res.json({
       address: wallet.addressManager.getAddresses()[0].address,
       mnemonic: wallet.mnemonic,
@@ -42,26 +43,59 @@ route.post("/create", async (req, res) => {
  * @returns {Error}  500 - Unexpected error
  */
 route.post("/import", async (req, res) => {
-  console.log("here")
   if (!isApiKeyValid(req.body.apiKey)) {
-    console.log("invalid")
+    console.log("invalid apiKey")
     return res.status(401).send("unauthorized")
   }
   const { mnemonic, password } = req.body
-  console.log(mnemonic, password)
   try {
-    const encryptedMnemonic = await Wallet.Crypto.encrypt(mnemonic)
-    const wallet = await Wallet.import(password, encryptedMnemonic, {
+    const wallet = Wallet.fromMnemonic(mnemonic, {
       network,
       rpc,
     })
-    console.log(wallet)
+    const encryptedMnemonic = await wallet.export(password)
+    wallet.sync(true)
     return res.json({
       address: wallet.addressManager.getAddresses()[0].address,
       mnemonic: wallet.mnemonic,
       encryptedMnemonic: encryptedMnemonic,
       userPassword: password,
     })
+  } catch (error) {
+    console.log(error)
+    return res.status(500).send({
+      error: true,
+      errorMessage: error,
+      errorDesrciption: "Error message",
+    })
+  }
+})
+
+route.post("/send", async (req, res) => {
+  console.log("here")
+  if (!isApiKeyValid(req.body.apiKey)) {
+    console.log("invalid apiKey")
+    return res.status(401).send("unauthorized")
+  }
+  const { encryptedMnemonic, password, amount, maxFee } = req.body
+  try {
+    const wallet = await Wallet.import(password, encryptedMnemonic, {
+      network,
+      rpc,
+    })
+    wallet.sync(true)
+    try {
+      let response = await this.wallet.submitTransaction({
+        address, // destination address
+        amount, // amount in base units
+        fee, // user fees
+      })
+      if (!response) console.log("general error")
+      // if kaspad returns null (should never occur)
+      else console.log("success:", txid)
+    } catch (ex) {
+      console.log("error:", ex.toString())
+    }
   } catch (error) {
     return res.status(500).send({
       error: true,
