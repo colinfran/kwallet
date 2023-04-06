@@ -30,6 +30,7 @@ route.post("/data", async (req, res) => {
   try {
     return res.json(await getData(db, wallet))
   } catch (error) {
+    console.log(error.toString())
     return res.status(500).send(error)
   }
 })
@@ -78,7 +79,7 @@ route.post("/email-sign-up", async (req, res) => {
     res.send(response)
   } catch (error) {
     res.status(401)
-    console.log(error)
+    console.log(error.toString())
   }
 })
 

@@ -26,10 +26,10 @@ route.post("/create", async (req, res) => {
       userPassword: password,
     })
   } catch (error) {
-    console.log(error)
+    console.log(error.toString())
     return res.status(500).send({
       error: true,
-      errorMessage: error,
+      errorMessage: error.toString(),
       errorDesrciption: "Error message",
     })
   }
@@ -62,10 +62,10 @@ route.post("/import", async (req, res) => {
       userPassword: password,
     })
   } catch (error) {
-    console.log(error)
+    console.log(error.toString())
     return res.status(500).send({
       error: true,
-      errorMessage: error,
+      errorMessage: error.toString(),
       errorDesrciption: "Error message",
     })
   }
@@ -93,13 +93,18 @@ route.post("/send", async (req, res) => {
       if (!response) console.log("general error")
       // if kaspad returns null (should never occur)
       else console.log("success:", txid)
-    } catch (ex) {
-      console.log("error:", ex.toString())
+    } catch (error) {
+      console.log(error.toString())
+      return res.status(500).send({
+        error: true,
+        errorMessage: error.toString(),
+        errorDesrciption: "Error message",
+      })
     }
   } catch (error) {
     return res.status(500).send({
       error: true,
-      errorMessage: error,
+      errorMessage: error.toString(),
       errorDesrciption: "Error message",
     })
   }

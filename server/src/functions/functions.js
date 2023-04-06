@@ -16,7 +16,7 @@ export const getAppStatus = async () => {
     const json = await response.json()
     await db.set("appStatus", JSON.stringify(json))
   } catch (error) {
-    console.log(error)
+    console.log(error.toString())
   }
 }
 
@@ -66,7 +66,7 @@ const getGraphData = async (timestamp) => {
     }
     return fixedPrices
   } catch (error) {
-    console.log(error)
+    console.log(error.toString())
     return ["failed"]
   }
 }
@@ -83,7 +83,7 @@ const getCurrentPrice = async () => {
     }
     return kaspa.usd
   } catch (error) {
-    console.log(error)
+    console.log(error.toString())
     return []
   }
 }
