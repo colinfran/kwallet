@@ -9,12 +9,37 @@ import { fileURLToPath } from "url"
 import { initializeKaspa } from "./kaspa/index.js"
 import { initializeDatabase } from "./database/index.js"
 import * as dotenv from "dotenv"
-dotenv.config()
+import * as Sentry from "@sentry/node"
+import Tracing from "@sentry/tracing"
 
 import { triggerDataRefresh, getAppStatus } from "./functions/functions.js"
 import apiRoute from "./routes/index.js"
 
 const app = express()
+dotenv.config()
+
+Sentry.init({
+  dsn: process.env.SENTRY_DSN,
+  integrations: [
+    // enable HTTP calls tracing
+    new Sentry.Integrations.Http({ tracing: true }),
+    // enable Express.js middleware tracing
+    new Tracing.Integrations.Express({ app }),
+    // Automatically instrument Node.js libraries and frameworks
+    ...Sentry.autoDiscoverNodePerformanceMonitoringIntegrations(),
+  ],
+
+  // Set tracesSampleRate to 1.0 to capture 100%
+  // of transactions for performance monitoring.
+  // We recommend adjusting this value in production
+  tracesSampleRate: 1.0,
+})
+
+// RequestHandler creates a separate execution context using domains, so that every
+// transaction/span/breadcrumb is attached to its own Hub instance
+app.use(Sentry.Handlers.requestHandler())
+// TracingHandler creates a trace for every incoming request
+app.use(Sentry.Handlers.tracingHandler())
 
 app.use(logger("dev"))
 app.use(express.json())
@@ -74,5 +99,7 @@ app.get([...privacy, ...terms, ...index], (req, res) => {
     res.sendFile(__dirname + "/public/index.html")
   }
 })
+
+app.use(Sentry.Handlers.errorHandler())
 
 export default app

@@ -14,6 +14,8 @@
   "dependencies": {
     "@kaspa/grpc-node": "^1.0.8",
     "@kaspa/wallet": "^1.4.24",
+    "@sentry/node": "^7.47.0",
+    "@sentry/tracing": "^7.47.0",
     "cookie-parser": "~1.4.4",
     "core-js": "^3.8.1",
     "debug": "~2.6.9",
