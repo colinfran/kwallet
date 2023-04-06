@@ -60,11 +60,12 @@ route.get("/storage", async (req, res) => {
  * @returns {object} 200 - successfully added to google sheet
  * @returns {Error}  500 - Unexpected error
  */
-route.get("/email-sign-up", async (req, res) => {
-  const { Email, Time } = req.query
+route.post("/email-sign-up", async (req, res) => {
+  console.log(req.body)
+  const { email } = req.body
   const formData = new URLSearchParams({
-    Email,
-    Time,
+    Email: email,
+    Time: new Date().toISOString(),
   })
   try {
     const response = await fetch(

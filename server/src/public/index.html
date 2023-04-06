@@ -33,9 +33,11 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-T0NWKM54NF"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
 
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
       gtag('config', 'G-T0NWKM54NF');
     </script>
     <style>
@@ -434,17 +436,20 @@
       .fade {
         opacity: 0 !important;
       }
-      .kwalletIcon{
+
+      .kwalletIcon {
         background: url(https://github.com/colinfran/kwallet/raw/main/assets/images/kwallet-icon-logo.png);
         width: 100px;
         height: 100px;
         background-repeat: no-repeat, repeat;
         background-size: cover;
       }
-      .register-form{
+
+      .register-form {
         height: 84px;
       }
-      #form-message{
+
+      #form-message {
         border-radius: 15px;
         padding: 12px;
         font-size: 12px;
@@ -453,16 +458,187 @@
         text-align: center;
         margin-top: 20px;
       }
-      .success{
+
+      .success {
         border: 1px #7fdccc solid;
         display: block !important;
       }
-      .error{
+
+      .error {
         border: 1px red solid;
         display: block !important;
       }
-      #form-text{
 
+      #form-text {}
+
+      .cssload-jumping {
+        position: relative;
+        display: block;
+        /* margin: 97px auto; */
+        /* width:107px; */
+      }
+
+      .cssload-jumping,
+      .cssload-jumping * {
+        box-sizing: border-box;
+      }
+
+      .cssload-jumping span {
+        display: inline-block;
+        height: 6px;
+        width: 6px;
+        background: rgb(0, 0, 0);
+        border-radius: 487px;
+        background-clip: padding-box;
+        -o-background-clip: padding-box;
+        -ms-background-clip: padding-box;
+        -webkit-background-clip: padding-box;
+        -moz-background-clip: padding-box;
+      }
+
+      .cssload-jumping span:nth-child(1) {
+        animation: scale 1.15s 0.12s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+        -o-animation: scale 1.15s 0.12s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+        -ms-animation: scale 1.15s 0.12s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+        -webkit-animation: scale 1.15s 0.12s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+        -moz-animation: scale 1.15s 0.12s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+      }
+
+      .cssload-jumping span:nth-child(2) {
+        animation: scale 1.15s 0.23s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+        -o-animation: scale 1.15s 0.23s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+        -ms-animation: scale 1.15s 0.23s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+        -webkit-animation: scale 1.15s 0.23s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+        -moz-animation: scale 1.15s 0.23s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+      }
+
+      .cssload-jumping span:nth-child(3) {
+        animation: scale 1.15s 0.35s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+        -o-animation: scale 1.15s 0.35s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+        -ms-animation: scale 1.15s 0.35s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+        -webkit-animation: scale 1.15s 0.35s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+        -moz-animation: scale 1.15s 0.35s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+      }
+
+      .cssload-jumping span:nth-child(4) {
+        animation: scale 1.15s 0.46s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+        -o-animation: scale 1.15s 0.46s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+        -ms-animation: scale 1.15s 0.46s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+        -webkit-animation: scale 1.15s 0.46s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+        -moz-animation: scale 1.15s 0.46s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+      }
+
+      .cssload-jumping span:nth-child(5) {
+        animation: scale 1.15s 0.58s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+        -o-animation: scale 1.15s 0.58s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+        -ms-animation: scale 1.15s 0.58s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+        -webkit-animation: scale 1.15s 0.58s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+        -moz-animation: scale 1.15s 0.58s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+      }
+
+      @keyframes scale {
+        0% {
+          transform: scale(0);
+        }
+
+        25% {
+          transform: scale(0.9, 0.9);
+          background: rgb(77, 77, 77);
+        }
+
+        50% {
+          transform: scale(1, 1);
+          margin: 0 3px;
+          background: rgb(30, 30, 30);
+        }
+
+        100% {
+          transform: scale(0);
+        }
+      }
+
+      @-o-keyframes scale {
+        0% {
+          -o-transform: scale(0);
+        }
+
+        25% {
+          -o-transform: scale(0.9, 0.9);
+          background: rgb(77, 77, 77);
+        }
+
+        50% {
+          -o-transform: scale(1, 1);
+          margin: 0 3px;
+          background: rgb(30, 30, 30);
+        }
+
+        100% {
+          -o-transform: scale(0);
+        }
+      }
+
+      @-ms-keyframes scale {
+        0% {
+          -ms-transform: scale(0);
+        }
+
+        25% {
+          -ms-transform: scale(0.9, 0.9);
+          background: rgb(77, 77, 77);
+        }
+
+        50% {
+          -ms-transform: scale(1, 1);
+          margin: 0 3px;
+          background: rgb(30, 30, 30);
+        }
+
+        100% {
+          -ms-transform: scale(0);
+        }
+      }
+
+      @-webkit-keyframes scale {
+        0% {
+          -webkit-transform: scale(0);
+        }
+
+        25% {
+          -webkit-transform: scale(0.9, 0.9);
+          background: rgb(77, 77, 77);
+        }
+
+        50% {
+          -webkit-transform: scale(1, 1);
+          margin: 0 3px;
+          background: rgb(30, 30, 30);
+        }
+
+        100% {
+          -webkit-transform: scale(0);
+        }
+      }
+
+      @-moz-keyframes scale {
+        0% {
+          -moz-transform: scale(0);
+        }
+
+        25% {
+          -moz-transform: scale(0.9, 0.9);
+          background: rgb(77, 77, 77);
+        }
+
+        50% {
+          -moz-transform: scale(1, 1);
+          margin: 0 3px;
+          background: rgb(30, 30, 30);
+        }
+
+        100% {
+          -moz-transform: scale(0);
+        }
       }
     </style>
   </head>
@@ -593,23 +769,35 @@
   </body>
   <script>
     // form submission
-    const url = new URL("https://kwallet.app/api/email-sign-up")
+    const url = "https://kwallet.app/api/email-sign-up"
     const form = document.querySelector('#form')
     const btn = document.querySelector('#submit')
     form.addEventListener('submit', e => {
       e.preventDefault()
-      btn.disabled = true
-      btn.innerHTML = "Loading"
       const formData = new FormData(form)
       const email = formData.get('Email');
-      if (email === undefined || email === ""){
-        btn.disabled = false
-        btn.innerHTML = "Submit"
+      if (email === undefined || email === "") {
         return;
       }
-      const query = `Time=${new Date().toISOString()}&Email=${email}`
-
-      fetch(`${url}?${query}`).then(response => {
+      btn.disabled = true
+      btn.innerHTML = `
+																														<span class="cssload-jumping">
+																															<span></span>
+																															<span></span>
+																															<span></span>
+																															<span></span>
+																														</span>`
+      fetch(url, {
+        method: 'POST',
+        body: JSON.stringify({
+          email
+        }),
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+      }).then(response => {
+        btn.disabled = true
         btn.disabled = false
         btn.innerHTML = "Submit"
         document.querySelector('#form-message').className = "success"
@@ -623,7 +811,6 @@
         document.querySelector('#form-text').innerHTML = "An error occurred when trying to submit your email. Please refresh the page and try again."
       })
     })
-    
     // modal onclicks
     var modal = document.getElementById("myModal");
     var span = document.getElementsByClassName("close")[0];
@@ -635,7 +822,6 @@
         modal.style.display = "none";
       }
     }
-
     // fade toggle
     function toggleElementFade(element) {
       element.style.removeProperty('display');
@@ -651,7 +837,6 @@
     donateBtn.onclick = function(event) {
       modal.style.display = "flex";
     }
-
     // open modal on page load if donate
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
@@ -659,7 +844,6 @@
     if (urlParams.has('donate')) {
       modal.style.display = "flex";
     }
-
     // copy to clipboard 
     const copyToClipboard = async str => {
       await navigator.clipboard.writeText(str)
