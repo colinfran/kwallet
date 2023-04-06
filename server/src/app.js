@@ -113,7 +113,7 @@ app.get([...privacy, ...terms, ...index], (req, res) => {
 
 app.use(Sentry.Handlers.errorHandler())
 
-// socketio connection with users
+// socketio to provide event updates to wallet balance
 io.on("connection", async (socket) => {
   console.log("A wallet has connected through the socket io server connection:")
   socket.on("wallet-balance--get", async (walletData) => {
