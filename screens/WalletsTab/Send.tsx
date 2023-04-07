@@ -22,7 +22,7 @@ import {
 const Send = ({ route }): JSX.Element => {
   const [address, setAddress] = useState("")
   const [amount, setAmount] = useState("")
-  const { pickedColor, textColor } = useContext(DataContext)
+  const { pickedColor, textColor, backgroundColor } = useContext(DataContext)
   const navigation = useNavigation()
 
   useEffect(() => {
@@ -35,11 +35,6 @@ const Send = ({ route }): JSX.Element => {
     const value = await Clipboard.getStringAsync()
     setAddress(value)
   }
-
-  const backgroundColor =
-    useColorScheme() === "dark"
-      ? DarkTheme.colors.background
-      : DefaultTheme.colors.background
 
   return (
     <View style={styles.container}>

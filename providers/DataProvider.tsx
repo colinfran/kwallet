@@ -52,6 +52,11 @@ export const DataContext = createContext({
 
   selectedGraphIndex: 0,
   setSelectedGraphIndex: (idx) => {},
+
+  selectedCurrency: "USD",
+  setSelectedCurrency: (currency) => {},
+  selectedCurrencyValue: 1,
+  setSelectedCurrencyValue: (value) => {},
 })
 
 export const DataProvider = ({ children }): JSX.Element => {
@@ -72,6 +77,9 @@ export const DataProvider = ({ children }): JSX.Element => {
   const [showAlert, setShowAlert] = useState()
 
   const [selectedGraphIndex, setSelectedGraphIndex] = useState(0)
+
+  const [selectedCurrency, setSelectedCurrency] = useState("USD")
+  const [selectedCurrencyValue, setSelectedCurrencyValue] = useState(1)
 
   useEffect(() => {
     if (graphData?.appStatus) {
@@ -144,6 +152,11 @@ export const DataProvider = ({ children }): JSX.Element => {
 
         selectedGraphIndex,
         setSelectedGraphIndex,
+
+        selectedCurrency,
+        setSelectedCurrency,
+        selectedCurrencyValue,
+        setSelectedCurrencyValue,
       }}
     >
       {children}

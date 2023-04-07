@@ -5,17 +5,15 @@ import { DataContext } from "../providers/DataProvider"
 import DoubleButton from "./Button/DoubleButton"
 import { useNavigation } from "@react-navigation/native"
 
-const currencyFormatter = (val: number): string => {
-  const formatter = new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-  })
-  return formatter.format(val)
-}
-
 const WalletAmount = (): JSX.Element => {
-  const { graphData, pickedColor, walletBalance, backgroundColor, textColor } =
-    useContext(DataContext)
+  const {
+    graphData,
+    pickedColor,
+    walletBalance,
+    backgroundColor,
+    textColor,
+    selectedCurrency,
+  } = useContext(DataContext)
   const navigation = useNavigation()
 
   const isLoaded = walletBalance
@@ -26,6 +24,15 @@ const WalletAmount = (): JSX.Element => {
 
   const { currentPrice = "0" } = apiVal
   const value = parseFloat(walletTotal) * parseFloat(currentPrice)
+
+  const currencyFormatter = (val: number): string => {
+    const formatter = new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: selectedCurrency,
+    })
+    return formatter.format(val)
+  }
+
   const walletTotalMonetaryValue = currencyFormatter(value)
 
   const textColorPressed = useContrastText(pickedColor)

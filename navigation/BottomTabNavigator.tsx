@@ -1,17 +1,17 @@
+/* eslint-disable max-len */
 import { Ionicons } from "@expo/vector-icons"
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 import { createStackNavigator } from "@react-navigation/stack"
 import React, { useContext, useEffect, useState } from "react"
+import * as Sentry from "sentry-expo"
 
 import WalletsTab from "../screens/WalletsTab"
 import { BottomTabParamList, TabOneParamList, TabTwoParamList } from "../types"
 import { DataContext } from "../providers/DataProvider"
 import SettingsScreen from "../screens/SettingsTab/Settings/SettingsScreen"
-// eslint-disable-next-line max-len
 import ColorPickerScreen from "../screens/SettingsTab/Settings/ColorPickerScreen"
 import FrameworksScreen from "../screens/SettingsTab/Settings/FrameworksScreen"
 import TermsScreen from "../screens/SettingsTab/Settings/TermsScreen"
-// eslint-disable-next-line max-len
 import PrivacyPolicyScreen from "../screens/SettingsTab/Settings/PrivacyPolicyScreen"
 import Recieve from "../screens/WalletsTab/Receive"
 import Send from "../screens/WalletsTab/Send"
@@ -26,6 +26,7 @@ import ImportWallet from "../screens/AddWallet/ImportWallet"
 import FaqScreen from "../screens/SettingsTab/Settings/FaqScreen"
 import GuideScreen from "../screens/SettingsTab/Settings/GuideScreen"
 import { socket } from "../utils/socket"
+import SelectedCurrencyScreen from "../screens/SettingsTab/Settings/SelectedCurrencyScreen"
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>()
 
@@ -34,9 +35,13 @@ const BottomTabNavigator = (): JSX.Element => {
     pickedColor,
     wallets,
     selectedWalletIndex,
+    graphData,
     setGraphData,
     getGraphData,
     setWalletBalance,
+    selectedCurrency,
+    setSelectedCurrency,
+    setSelectedCurrencyValue
   } = useContext(DataContext)
   const [hasConnection, setConnection] = useState(false)
 
@@ -77,6 +82,40 @@ const BottomTabNavigator = (): JSX.Element => {
       socket.removeAllListeners()
     }
   }, [selectedWalletIndex, setGraphData, setWalletBalance, wallets])
+
+  useEffect(() => {
+    const convertCurrency = async (val): Promise<number> => {
+      try {
+        const response = await fetch(
+          // eslint-disable-next-line max-len
+          `https://api.exchangerate.host/convert?from=USD&to=${val}`
+        )
+        const json = await response.json()
+        return json.result
+      } catch (error) {
+        Sentry.Native.captureException(error)
+        return 0
+      }
+    }
+
+    const setCurrencyVal = async (): Promise<void> => {
+      const val = await convertCurrency(selectedCurrency)
+      setSelectedCurrencyValue(val)
+    }
+
+    if (graphData?.currentPrice) {
+      if (selectedCurrency !== "USD") {
+        setCurrencyVal()
+      }
+      const interval = setInterval(() => {
+        if (selectedCurrency !== "USD") {
+          setCurrencyVal()
+        }
+      }, 15000)
+
+      return () => clearInterval(interval)
+    }
+  }, [graphData, selectedCurrency, setSelectedCurrencyValue])
 
   return (
     <BottomTab.Navigator
@@ -162,8 +201,8 @@ const TabTwoNavigator = (): JSX.Element => {
         options={{ title: "", headerShown: false }}
       />
       <TabTwoStack.Screen
-        component={ColorPickerScreen}
-        name="ColorPickerScreen"
+        component={SelectedCurrencyScreen}
+        name="SelectedCurrencyScreen"
         options={{ title: "" }}
       />
       <TabTwoStack.Screen

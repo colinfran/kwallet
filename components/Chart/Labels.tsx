@@ -1,6 +1,7 @@
-import React, { useCallback, useMemo, useState } from "react"
+import React, { useCallback, useContext, useMemo, useState } from "react"
 import { View, Text } from "react-native"
 import { useChartData } from "@colinfran/animated-charts"
+import { DataContext } from "../../providers/DataProvider"
 
 function trim(val): number {
   return Math.min(Math.max(val, 0.05), 0.95)
@@ -49,8 +50,15 @@ const CenteredLabel = ({ position, style, width, ...props }): JSX.Element => {
   )
 }
 
+const getCurrencySymbol = (locale, currency) => (0).toLocaleString(locale, { style: 'currency', currency, minimumFractionDigits: 0, maximumFractionDigits: 0 }).replace(/\d/g, '').trim()
+
+
 const Labels = ({ width, isCard, color }): JSX.Element | null => {
   const { greatestX, greatestY, smallestX, smallestY } = useChartData()
+
+  const { selectedCurrency, selectedCurrencyValue } = useContext(DataContext)
+
+  const currencySymbol = getCurrencySymbol("en-US", selectedCurrency)
 
   if (!greatestX) {
     return null
@@ -61,6 +69,9 @@ const Labels = ({ width, isCard, color }): JSX.Element | null => {
   const positionMax = trim(
     (greatestY.x - smallestX.x) / (greatestX.x - smallestX.x)
   )
+
+  const smallestYVal = Number(smallestY.y) * selectedCurrencyValue
+  const largestYval = Number(greatestY.y) * selectedCurrencyValue
 
   return (
     <>
@@ -75,7 +86,7 @@ const Labels = ({ width, isCard, color }): JSX.Element | null => {
           }}
           width={width}
         >
-          {`$${smallestY.y.toFixed(7)}`}
+          {`${currencySymbol}${smallestYVal.toFixed(7)}`}
         </CenteredLabel>
       ) : null}
       {positionMax ? (
@@ -90,7 +101,7 @@ const Labels = ({ width, isCard, color }): JSX.Element | null => {
           }}
           width={width}
         >
-          {`$${greatestY.y.toFixed(7)}`}
+          {`${currencySymbol}${largestYval.toFixed(7)}`}
         </CenteredLabel>
       ) : null}
     </>

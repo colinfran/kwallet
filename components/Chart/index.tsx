@@ -32,6 +32,17 @@ const defaultData = [
   },
 ]
 
+const getCurrencySymbol = (locale, currency): string =>
+  (0)
+    .toLocaleString(locale, {
+      style: "currency",
+      currency,
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0,
+    })
+    .replace(/\d/g, "")
+    .trim()
+
 const Chart = (): JSX.Element => {
   const {
     graphData,
@@ -39,7 +50,11 @@ const Chart = (): JSX.Element => {
     selectedGraphIndex,
     setSelectedGraphIndex,
     textColor,
+    selectedCurrency,
+    selectedCurrencyValue,
   } = useContext(DataContext)
+
+  const currencySymbol = getCurrencySymbol("en-US", selectedCurrency)
 
   const isLoaded = graphData
 
@@ -91,10 +106,13 @@ const Chart = (): JSX.Element => {
     return `${value}`
   }
 
+  console.log(selectedCurrencyValue)
+
   const getY = (value): string => {
     "worklet"
     if (value && !isNaN(value)) {
-      return `$${new Number(value).toFixed(7)}`
+      const val = value * selectedCurrencyValue
+      return `${currencySymbol}${Number(val).toFixed(7)}`
     }
     return `${value}`
   }

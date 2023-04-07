@@ -31,6 +31,7 @@ export type TabTwoParamList = {
   ChangeWalletScreen: undefined
   FaqScreen: undefined
   GuideScreen: undefined
+  SelectedCurrencyScreen: undefined
 
   AddWallet: undefined
   ImportWallet: undefined

@@ -18,10 +18,13 @@ import {
   Box,
   Button,
   Link,
+  Icon as NBIcon,
+  Image,
 } from "native-base"
 import Svg, { Circle, Path } from "react-native-svg"
 import { SwipeListView } from "react-native-swipe-list-view"
 import * as SecureStore from "expo-secure-store"
+import icons from "currency-icons"
 
 import Constants from "expo-constants"
 
@@ -42,58 +45,6 @@ type IconType = {
   color: string
   type?: string
   size?: number
-}
-const Icon = (props: IconType): JSX.Element => {
-  if (props.type === "mci") {
-    return (
-      <MaterialCommunityIcons
-        color={props.color}
-        name={props.name as any}
-        size={props.size || 30}
-      />
-    )
-  }
-  if (props.type === "fa") {
-    return (
-      <FontAwesome5
-        color={props.color}
-        name={props.name as any}
-        size={props.size || 30}
-      />
-    )
-  }
-  if (props.type === "en") {
-    return (
-      <Entypo
-        color={props.color}
-        name={props.name as any}
-        size={props.size || 30}
-      />
-    )
-  }
-  if (props.type === "discord") {
-    return (
-      <Svg
-        fill="transparent"
-        style={{ height: props.size, width: props.size }}
-        viewBox="0 0 512 512"
-      >
-        <Circle cx="256" cy="256" fill={props.color} id="ellipse" r="256" />
-        <Path
-          // eslint-disable-next-line max-len
-          d="M372.4,168.7c0,0-33.3-26.1-72.7-29.1l-3.5,7.1c35.6,8.7,51.9,21.2,69,36.5  c-29.4-15-58.5-29.1-109.1-29.1s-79.7,14.1-109.1,29.1c17.1-15.3,36.5-29.2,69-36.5l-3.5-7.1c-41.3,3.9-72.7,29.1-72.7,29.1  s-37.2,54-43.6,160c37.5,43.3,94.5,43.6,94.5,43.6l11.9-15.9c-20.2-7-43.1-19.6-62.8-42.3c23.5,17.8,59.1,36.4,116.4,36.4  s92.8-18.5,116.4-36.4c-19.7,22.7-42.6,35.3-62.8,42.3l11.9,15.9c0,0,57-0.3,94.5-43.6C409.6,222.7,372.4,168.7,372.4,168.7z   M208.7,299.6c-14.1,0-25.5-13-25.5-29.1s11.4-29.1,25.5-29.1c14.1,0,25.5,13,25.5,29.1S222.8,299.6,208.7,299.6z M303.3,299.6  c-14.1,0-25.5-13-25.5-29.1s11.4-29.1,25.5-29.1s25.5,13,25.5,29.1S317.3,299.6,303.3,299.6z"
-          fill={props.boxBackgroundColor}
-        />
-      </Svg>
-    )
-  }
-  return (
-    <Ionicons
-      color={props.color}
-      name={props.name as any}
-      size={props.size || 30}
-    />
-  )
 }
 
 const goToRating = (): void => {
@@ -117,9 +68,84 @@ const SettingsScreen = (): JSX.Element => {
     setWallets,
     textColor,
     backgroundColor,
+    selectedCurrency,
   } = useContext(DataContext)
 
   const [openWalletPicker, setOpenWalletPicker] = useState(false)
+
+  const currencyIcon = icons[selectedCurrency].icon
+
+  // console.log(currencyIcon)
+
+  const Icon = (props: IconType): JSX.Element => {
+    if (props.type === "currency") {
+      return (
+        <View
+          style={{
+            borderColor: pickedColor,
+            borderWidth: 2,
+            borderRadius: 100,
+          }}
+        >
+          <Image
+            alt={selectedCurrency}
+            source={{ uri: currencyIcon }}
+            style={{ width: 20, height: 20, tintColor: pickedColor }}
+          />
+        </View>
+      )
+    }
+    if (props.type === "mci") {
+      return (
+        <MaterialCommunityIcons
+          color={props.color}
+          name={props.name as any}
+          size={props.size || 30}
+        />
+      )
+    }
+    if (props.type === "fa") {
+      return (
+        <FontAwesome5
+          color={props.color}
+          name={props.name as any}
+          size={props.size || 30}
+        />
+      )
+    }
+    if (props.type === "en") {
+      return (
+        <Entypo
+          color={props.color}
+          name={props.name as any}
+          size={props.size || 30}
+        />
+      )
+    }
+    if (props.type === "discord") {
+      return (
+        <Svg
+          fill="transparent"
+          style={{ height: props.size, width: props.size }}
+          viewBox="0 0 512 512"
+        >
+          <Circle cx="256" cy="256" fill={props.color} id="ellipse" r="256" />
+          <Path
+            // eslint-disable-next-line max-len
+            d="M372.4,168.7c0,0-33.3-26.1-72.7-29.1l-3.5,7.1c35.6,8.7,51.9,21.2,69,36.5  c-29.4-15-58.5-29.1-109.1-29.1s-79.7,14.1-109.1,29.1c17.1-15.3,36.5-29.2,69-36.5l-3.5-7.1c-41.3,3.9-72.7,29.1-72.7,29.1  s-37.2,54-43.6,160c37.5,43.3,94.5,43.6,94.5,43.6l11.9-15.9c-20.2-7-43.1-19.6-62.8-42.3c23.5,17.8,59.1,36.4,116.4,36.4  s92.8-18.5,116.4-36.4c-19.7,22.7-42.6,35.3-62.8,42.3l11.9,15.9c0,0,57-0.3,94.5-43.6C409.6,222.7,372.4,168.7,372.4,168.7z   M208.7,299.6c-14.1,0-25.5-13-25.5-29.1s11.4-29.1,25.5-29.1c14.1,0,25.5,13,25.5,29.1S222.8,299.6,208.7,299.6z M303.3,299.6  c-14.1,0-25.5-13-25.5-29.1s11.4-29.1,25.5-29.1s25.5,13,25.5,29.1S317.3,299.6,303.3,299.6z"
+            fill={props.boxBackgroundColor}
+          />
+        </Svg>
+      )
+    }
+    return (
+      <Ionicons
+        color={props.color}
+        name={props.name as any}
+        size={props.size || 30}
+      />
+    )
+  }
 
   const settingsData = [
     [
@@ -128,6 +154,12 @@ const SettingsScreen = (): JSX.Element => {
         iconName: "vector-selection",
         iconType: "mci",
         onPress: () => setOpenWalletPicker(true),
+      },
+      {
+        text: "Currency",
+        iconName: "vector-selection",
+        iconType: "currency",
+        onPress: () => navigation.navigate("SelectedCurrencyScreen"),
       },
     ],
     [
