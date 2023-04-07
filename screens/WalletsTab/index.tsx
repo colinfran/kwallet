@@ -20,7 +20,7 @@ import {
   Box,
   useTheme,
 } from "native-base"
-import { useNavigation } from "@react-navigation/native"
+import { DarkTheme, DefaultTheme, useNavigation } from "@react-navigation/native"
 
 import WalletHeader from "../../components/WalletHeader"
 import { DataContext } from "../../providers/DataProvider"
@@ -66,6 +66,12 @@ const WalletsTab = (): JSX.Element => {
 
   const textColor = useColorScheme() === "dark" ? "#fff" : "#000"
   const textColorOpposite = useColorScheme() === "dark" ? "#000" : "#fff"
+
+  const rootBackgroundColor =
+    useColorScheme() === "dark"
+      ? DarkTheme.colors.background
+      : DefaultTheme.colors.background
+
   const theme = useTheme()
   return (
     <ScrollView
@@ -73,7 +79,7 @@ const WalletsTab = (): JSX.Element => {
       disableScrollViewPanResponder={true}
       refreshControl={
         <RefreshControl
-          colors={[pickedColor]}
+          colors={[]}
           refreshing={refreshing}
           style={{ zIndex: 200 }}
           onRefresh={onRefresh}
@@ -84,19 +90,6 @@ const WalletsTab = (): JSX.Element => {
         <View style={{ alignSelf: "flex-start", width: "100%" }}>
           <WalletHeader />
         </View>
-        {/* <View style={{ paddingLeft: 20, paddingRight: 20, paddingBottom: 30 }}>
-          <DoubleButton
-            left={{
-              text: "Send",
-              onPress: () => navigation.navigate("Send"),
-            }}
-            pointerEvents="box-none"
-            right={{
-              text: "Receive",
-              onPress: () => navigation.navigate("Receive"),
-            }}
-          />
-        </View> */}
       </View>
       <TabView
         initialLayout={{ width: Dimensions.get("window").width }}
@@ -120,6 +113,7 @@ const WalletsTab = (): JSX.Element => {
                 indicatorStyle={{
                   height: "100%",
                   backgroundColor: pickedColor,
+                  borderColor: pickedColor,
                   borderRadius: 15,
                 }}
                 renderLabel={({ route, focused, color }) => (
@@ -132,7 +126,9 @@ const WalletsTab = (): JSX.Element => {
                   </Text>
                 )}
                 style={{
-                  backgroundColor: theme.colors.primary["200"],
+                  backgroundColor: rootBackgroundColor,
+                  borderColor: pickedColor,
+                  borderWidth: 1,
                   width: Dimensions.get("window").width - 40,
                   borderRadius: 15,
                   shadowColor: textColor,

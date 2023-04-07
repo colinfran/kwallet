@@ -138,9 +138,7 @@ const Chart = (): JSX.Element => {
               <Labels color={textColor} isCard={false} width={SIZE} />
             )}
             <ChartPath
-              // backgroundColor="red"
-              backgroundGradientFrom={opacity(pickedColor, 0.4)}
-              backgroundGradientTo={pickedColor}
+              backgroundGrandient={opacity(pickedColor, 0.2)}
               gradientEnabled={true}
               hapticsEnabled={true}
               height={
@@ -156,7 +154,7 @@ const Chart = (): JSX.Element => {
             <ChartDot size={16} style={{ backgroundColor: pickedColor }} />
             <View
               style={{
-                backgroundColor: opacity(pickedColor, 0.2),
+                // backgroundColor: opacity(pickedColor, 0.2),
                 marginTop: -10,
               }}
             >

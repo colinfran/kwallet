@@ -26,6 +26,7 @@ const WalletAmount = (): JSX.Element => {
   const walletTotal = walletBalance?.available || 0
   const textColor = useContrastText(pickedColor)
   const shadowColor = useColorScheme() === "dark" ? "#fff" : "#000"
+  const color = useColorScheme() === "dark" ? "#fff" : "#000"
 
   const apiVal = graphData ? graphData : { currentPrice: "0" }
 
@@ -33,7 +34,10 @@ const WalletAmount = (): JSX.Element => {
   const value = parseFloat(walletTotal) * parseFloat(currentPrice)
   const walletTotalMonetaryValue = currencyFormatter(value)
 
-  const buttonBackgroundColor = DefaultTheme.colors.background
+  const buttonBackgroundColor =
+    useColorScheme() === "dark"
+      ? DarkTheme.colors.background
+      : DefaultTheme.colors.background
 
   const textColorPressed = useContrastText(pickedColor)
   const theme = useTheme()
@@ -41,29 +45,23 @@ const WalletAmount = (): JSX.Element => {
     <View
       style={[
         styles.container,
-        { backgroundColor: pickedColor, shadowColor: shadowColor },
+        {
+          backgroundColor: buttonBackgroundColor,
+          borderColor: pickedColor,
+          shadowColor: shadowColor,
+        },
       ]}
     >
-      <View
-        style={{
-          backgroundColor: pickedColor,
-          width: "100%",
-          height: 500,
-          position: "absolute",
-          top: -500,
-          zIndex: 0,
-        }}
-      ></View>
       <View>
         <Skeleton isLoaded={isLoaded} marginBottom={2} w={310}>
-          <Heading color={textColor} size="3xl">
+          <Heading color={color} size="3xl">
             {walletTotalMonetaryValue}
           </Heading>
         </Skeleton>
       </View>
       <View>
         <Skeleton isLoaded={isLoaded} w={230}>
-          <Text color={textColor} fontSize="xl">{`${walletTotal} KAS`}</Text>
+          <Text color={color} fontSize="xl">{`${walletTotal} KAS`}</Text>
         </Skeleton>
       </View>
       <View style={{ paddingLeft: 20, paddingRight: 20, paddingTop: 30 }}>
@@ -71,19 +69,19 @@ const WalletAmount = (): JSX.Element => {
           buttonGroupStyle={[
             styles.shadow,
             {
-              shadowColor: "#000",
+              shadowColor: color,
               backgroundColor: buttonBackgroundColor,
             },
           ]}
           buttonProps={{
             _pressed: {
               style: {
-                backgroundColor: theme.colors.primary["200"],
+                backgroundColor: pickedColor,
                 borderColor: pickedColor,
               },
               _text: { color: textColorPressed, borderColor: pickedColor },
             },
-            _text: { color: "#000" },
+            _text: { color: color },
             backgroundColor: buttonBackgroundColor,
           }}
           left={{
@@ -97,6 +95,18 @@ const WalletAmount = (): JSX.Element => {
           }}
         />
       </View>
+      <View
+        style={{
+          borderColor: pickedColor,
+          borderWidth: 2,
+          borderBottomWidth: 0,
+          width: Dimensions.get("window").width,
+          height: 500,
+          position: "absolute",
+          top: -500,
+          zIndex: 0,
+        }}
+      ></View>
     </View>
   )
 }
@@ -105,6 +115,8 @@ export default WalletAmount
 
 const styles = StyleSheet.create({
   container: {
+    borderWidth: 2,
+    borderTopWidth: 0,
     alignItems: "center",
     justifyContent: "center",
     paddingVertical: Dimensions.get("window").height < 800 ? "10%" : "20%",
