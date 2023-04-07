@@ -1,7 +1,6 @@
 import { Ionicons } from "@expo/vector-icons"
-import { DarkTheme, DefaultTheme } from "@react-navigation/native"
 import { Button } from "native-base"
-import React from "react"
+import React, { useContext } from "react"
 import {
   View,
   StyleSheet,
@@ -9,16 +8,12 @@ import {
   SafeAreaView,
   FlatList,
   Linking,
-  useColorScheme,
 } from "react-native"
+import { DataContext } from "../../../providers/DataProvider"
 import data from "./frameworks.json"
 
 const FrameworksScreen = (): JSX.Element => {
-  const color = useColorScheme() === "dark" ? "#fff" : "#000"
-  const backgroundColor =
-    useColorScheme() === "dark"
-      ? DarkTheme.colors.background
-      : DefaultTheme.colors.background
+  const { textColor, backgroundColor } = useContext(DataContext)
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View style={{ height: "100%" }}>
@@ -26,8 +21,10 @@ const FrameworksScreen = (): JSX.Element => {
           data={data}
           ListHeaderComponent={
             <View style={{ paddingTop: 20 }}>
-              <Text style={{ fontSize: 30, color: color }}>Frameworks</Text>
-              <Text style={{ fontSize: 16, marginBottom: 20, color: color }}>
+              <Text style={{ fontSize: 30, color: textColor }}>Frameworks</Text>
+              <Text
+                style={{ fontSize: 16, marginBottom: 20, color: textColor }}
+              >
                 Listed below are the open-sourced frameworks that were used to
                 build this application. Their efforts are much appreciated.
               </Text>
@@ -39,7 +36,7 @@ const FrameworksScreen = (): JSX.Element => {
                 style={[
                   styles.shadow,
                   {
-                    shadowColor: color,
+                    shadowColor: textColor,
                     borderRadius: 15,
                     backgroundColor: backgroundColor,
                   },
@@ -47,7 +44,7 @@ const FrameworksScreen = (): JSX.Element => {
                     marginBottom: 20,
                     flexDirection: "column",
                     alignItems: "center",
-                    borderColor: color,
+                    borderColor: textColor,
                     borderWidth: 2,
                     padding: 10,
                     borderRadius: 10,
@@ -56,10 +53,12 @@ const FrameworksScreen = (): JSX.Element => {
                 ]}
               >
                 <View>
-                  <Text style={{ fontSize: 20, color: color }}>{item.key}</Text>
+                  <Text style={{ fontSize: 20, color: textColor }}>
+                    {item.key}
+                  </Text>
                 </View>
                 <View>
-                  <Text style={{ fontSize: 14, color: color }}>
+                  <Text style={{ fontSize: 14, color: textColor }}>
                     {item.description}
                   </Text>
                 </View>
@@ -77,7 +76,9 @@ const FrameworksScreen = (): JSX.Element => {
                     }}
                   >
                     <Ionicons color={"lightblue"} name="link" size={24} />
-                    <Text style={{ color: color }}>Link to source code</Text>
+                    <Text style={{ color: textColor }}>
+                      Link to source code
+                    </Text>
                   </View>
                 </Button>
               </View>

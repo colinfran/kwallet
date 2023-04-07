@@ -6,7 +6,6 @@ import ordinal from "ordinal"
 import { Ionicons } from "@expo/vector-icons"
 
 import { DataContext } from "../../../providers/DataProvider"
-import { useColorScheme } from "react-native"
 import { useNavigation } from "@react-navigation/native"
 
 const randomUniqueIntegers = (total, quantity): number[] => {
@@ -22,8 +21,13 @@ const randomUniqueIntegers = (total, quantity): number[] => {
 }
 
 const CreateWalletStep3 = ({ route }): JSX.Element => {
-  const { wallets, setWallets, setSelectedWalletIndex, pickedColor } =
-    useContext(DataContext)
+  const {
+    wallets,
+    setWallets,
+    setSelectedWalletIndex,
+    pickedColor,
+    textColor,
+  } = useContext(DataContext)
   const [loading, setLoading] = useState(false)
 
   const [input1, setInput1] = useState("")
@@ -88,7 +92,6 @@ const CreateWalletStep3 = ({ route }): JSX.Element => {
     input3 === mnemonicArrayValues[2] &&
     walletName !== ""
 
-  const textColor = useColorScheme() === "dark" ? "#fff" : "#000"
   console.log("mnemonicArrayIndexes", mnemonicArrayIndexes)
   console.log("mnemonicArrayValues", mnemonicArrayValues)
   console.log("\n")

@@ -1,20 +1,15 @@
-import React, { useEffect, useState } from "react"
-import {
-  StyleSheet,
-  View,
-  Dimensions,
-  useColorScheme,
-  ScrollView,
-} from "react-native"
+import React, { useContext, useEffect, useState } from "react"
+import { StyleSheet, View, Dimensions, ScrollView } from "react-native"
 import { Text, Alert, VStack, HStack } from "native-base"
 
 import { useNavigation } from "@react-navigation/native"
 import ButtonOutline from "../../../components/Button/ButtonOutline"
+import { DataContext } from "../../../providers/DataProvider"
 
 const CreateWalletStep2 = ({ route }): JSX.Element => {
   const [data, setData] = useState({})
 
-  const textColor = useColorScheme() === "dark" ? "#fff" : "#000"
+  const { textColor } = useContext(DataContext)
   const navigation = useNavigation()
 
   useEffect(() => {

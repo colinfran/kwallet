@@ -1,8 +1,7 @@
 import React, { useContext } from "react"
-import { StyleSheet, useColorScheme, View } from "react-native"
+import { StyleSheet, View } from "react-native"
 import { DataContext } from "../../providers/DataProvider"
-import { DarkTheme, DefaultTheme } from "@react-navigation/native"
-import { Button, useContrastText } from "native-base"
+import { Button } from "native-base"
 
 const DoubleButton = ({
   left,
@@ -12,14 +11,7 @@ const DoubleButton = ({
   buttonGroupStyle,
   buttonProps,
 }): JSX.Element => {
-  const color = useColorScheme() === "dark" ? "#fff" : "#000"
   const { pickedColor } = useContext(DataContext)
-  const buttonBackgroundColor =
-    useColorScheme() === "dark"
-      ? DarkTheme.colors.background
-      : DefaultTheme.colors.background
-
-  const textColorPressed = useContrastText(pickedColor)
 
   return (
     <View style={[styles.container, style]}>
@@ -27,10 +19,10 @@ const DoubleButton = ({
         <View style={styles.row}>
           <View style={[styles.iconContainer]}>
             <Button.Group
-              pointerEvents={pointerEvents as any}
               borderColor="red"
               borderRadius={15}
               colorScheme="blue"
+              pointerEvents={pointerEvents as any}
               style={buttonGroupStyle}
               variant="outline"
               isAttached

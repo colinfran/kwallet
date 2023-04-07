@@ -1,13 +1,9 @@
-import React, { useContext, useEffect, useState } from "react"
-import { StyleSheet, View, useColorScheme, Dimensions } from "react-native"
-import { Skeleton, Text, Heading, useContrastText, useTheme } from "native-base"
+import React, { useContext } from "react"
+import { StyleSheet, View, Dimensions } from "react-native"
+import { Skeleton, Text, Heading, useContrastText } from "native-base"
 import { DataContext } from "../providers/DataProvider"
 import DoubleButton from "./Button/DoubleButton"
-import {
-  DarkTheme,
-  DefaultTheme,
-  useNavigation,
-} from "@react-navigation/native"
+import { useNavigation } from "@react-navigation/native"
 
 const currencyFormatter = (val: number): string => {
   const formatter = new Intl.NumberFormat("en-US", {
@@ -18,15 +14,13 @@ const currencyFormatter = (val: number): string => {
 }
 
 const WalletAmount = (): JSX.Element => {
-  const { graphData, pickedColor, walletBalance } = useContext(DataContext)
+  const { graphData, pickedColor, walletBalance, backgroundColor, textColor } =
+    useContext(DataContext)
   const navigation = useNavigation()
 
   const isLoaded = walletBalance
 
   const walletTotal = walletBalance?.available || 0
-  const textColor = useContrastText(pickedColor)
-  const shadowColor = useColorScheme() === "dark" ? "#fff" : "#000"
-  const color = useColorScheme() === "dark" ? "#fff" : "#000"
 
   const apiVal = graphData ? graphData : { currentPrice: "0" }
 
@@ -34,34 +28,28 @@ const WalletAmount = (): JSX.Element => {
   const value = parseFloat(walletTotal) * parseFloat(currentPrice)
   const walletTotalMonetaryValue = currencyFormatter(value)
 
-  const buttonBackgroundColor =
-    useColorScheme() === "dark"
-      ? DarkTheme.colors.background
-      : DefaultTheme.colors.background
-
   const textColorPressed = useContrastText(pickedColor)
-  const theme = useTheme()
   return (
     <View
       style={[
         styles.container,
         {
-          backgroundColor: buttonBackgroundColor,
+          backgroundColor: backgroundColor,
           borderColor: pickedColor,
-          shadowColor: shadowColor,
+          shadowColor: textColor,
         },
       ]}
     >
       <View>
         <Skeleton isLoaded={isLoaded} marginBottom={2} w={310}>
-          <Heading color={color} size="3xl">
+          <Heading color={textColor} size="3xl">
             {walletTotalMonetaryValue}
           </Heading>
         </Skeleton>
       </View>
       <View>
         <Skeleton isLoaded={isLoaded} w={230}>
-          <Text color={color} fontSize="xl">{`${walletTotal} KAS`}</Text>
+          <Text color={textColor} fontSize="xl">{`${walletTotal} KAS`}</Text>
         </Skeleton>
       </View>
       <View style={{ paddingLeft: 20, paddingRight: 20, paddingTop: 30 }}>
@@ -69,8 +57,8 @@ const WalletAmount = (): JSX.Element => {
           buttonGroupStyle={[
             styles.shadow,
             {
-              shadowColor: color,
-              backgroundColor: buttonBackgroundColor,
+              shadowColor: textColor,
+              backgroundColor: backgroundColor,
             },
           ]}
           buttonProps={{
@@ -81,8 +69,8 @@ const WalletAmount = (): JSX.Element => {
               },
               _text: { color: textColorPressed, borderColor: pickedColor },
             },
-            _text: { color: color },
-            backgroundColor: buttonBackgroundColor,
+            _text: { color: textColor },
+            backgroundColor: backgroundColor,
           }}
           left={{
             text: "Send",

@@ -3,7 +3,6 @@ import {
   StyleSheet,
   View,
   Dimensions,
-  useColorScheme,
   KeyboardAvoidingView,
 } from "react-native"
 import * as SecureStore from "expo-secure-store"
@@ -15,8 +14,13 @@ import { useNavigation } from "@react-navigation/native"
 import { apiKey, apiUrl } from "../../constants/index"
 
 const ImportWallet = (): JSX.Element => {
-  const { wallets, setWallets, setSelectedWalletIndex, pickedColor } =
-    useContext(DataContext)
+  const {
+    wallets,
+    setWallets,
+    setSelectedWalletIndex,
+    pickedColor,
+    textColor,
+  } = useContext(DataContext)
 
   const [loading, setLoading] = useState(false)
   const [validSeedPhrase, setValidSeedPhrase] = useState(false)
@@ -77,8 +81,6 @@ const ImportWallet = (): JSX.Element => {
   }
 
   const valid = walletName !== "" && walletPassword !== ""
-
-  const textColor = useColorScheme() === "dark" ? "#fff" : "#000"
 
   return (
     <KeyboardAvoidingView style={styles.componentContainer}>

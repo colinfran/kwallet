@@ -51,6 +51,14 @@ const BottomTabNavigator = (): JSX.Element => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  useEffect(() => {
+    if (hasConnection) {
+      console.log("Wallet has connected to wallet socket server")
+    } else {
+      console.log("Wallet has disconnected from wallet socket server")
+    }
+  }, [hasConnection])
+
   // socket connection for wallet balance
   useEffect(() => {
     socket.io.on("open", () => setConnection(true))

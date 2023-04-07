@@ -4,29 +4,16 @@ import {
   View,
   ScrollView,
   RefreshControl,
-  TouchableOpacity,
   Dimensions,
-  ListRenderItem,
-  useColorScheme,
 } from "react-native"
-// import { Tabs } from "react-native-collapsible-tab-view"
 import { TabView, SceneMap, TabBar } from "react-native-tab-view"
 
-import {
-  HStack,
-  WarningOutlineIcon,
-  Text,
-  Slide,
-  Box,
-  useTheme,
-} from "native-base"
-import { DarkTheme, DefaultTheme, useNavigation } from "@react-navigation/native"
+import { Text, useTheme } from "native-base"
 
 import WalletHeader from "../../components/WalletHeader"
 import { DataContext } from "../../providers/DataProvider"
 import Chart from "../../components/Chart"
 import TransactionHistory from "../../components/TransactionHistory"
-import opacity from "hex-color-opacity"
 
 const renderScene = SceneMap({
   chart: Chart,
@@ -34,15 +21,8 @@ const renderScene = SceneMap({
 })
 
 const WalletsTab = (): JSX.Element => {
-  const navigation = useNavigation()
-
-  const {
-    showAlert,
-    setShowAlert,
-    pickedColor,
-    selectedGraphIndex,
-    setSelectedGraphIndex,
-  } = useContext(DataContext)
+  const { pickedColor, setSelectedGraphIndex, textColor, backgroundColor } =
+    useContext(DataContext)
   const [refreshing, setRefreshing] = React.useState(false)
 
   const onRefresh = React.useCallback(async () => {
@@ -54,23 +34,11 @@ const WalletsTab = (): JSX.Element => {
     }
   }, [setSelectedGraphIndex])
 
-  const dismissAlert = (): void => {
-    setShowAlert(undefined)
-  }
-
   const [index, setIndex] = React.useState(0)
   const [routes] = React.useState([
     { key: "chart", title: "Chart" },
     { key: "transactions", title: "Transactions" },
   ])
-
-  const textColor = useColorScheme() === "dark" ? "#fff" : "#000"
-  const textColorOpposite = useColorScheme() === "dark" ? "#000" : "#fff"
-
-  const rootBackgroundColor =
-    useColorScheme() === "dark"
-      ? DarkTheme.colors.background
-      : DefaultTheme.colors.background
 
   const theme = useTheme()
   return (
@@ -116,7 +84,7 @@ const WalletsTab = (): JSX.Element => {
                   borderColor: pickedColor,
                   borderRadius: 15,
                 }}
-                renderLabel={({ route, focused, color }) => (
+                renderLabel={({ route, focused }) => (
                   <Text
                     style={{
                       color: focused ? "#000" : theme.colors.light["500"],
@@ -126,7 +94,7 @@ const WalletsTab = (): JSX.Element => {
                   </Text>
                 )}
                 style={{
-                  backgroundColor: rootBackgroundColor,
+                  backgroundColor: backgroundColor,
                   borderColor: pickedColor,
                   borderWidth: 1,
                   width: Dimensions.get("window").width - 40,

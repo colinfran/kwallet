@@ -4,7 +4,6 @@ import {
   Linking,
   View,
   Text,
-  useColorScheme,
   ScrollView,
   Dimensions,
   TouchableOpacity,
@@ -36,11 +35,7 @@ import {
   Entypo,
 } from "@expo/vector-icons"
 import { DataContext } from "../../../providers/DataProvider"
-import {
-  useNavigation,
-  DarkTheme,
-  DefaultTheme,
-} from "@react-navigation/native"
+import { useNavigation } from "@react-navigation/native"
 
 type IconType = {
   name: string
@@ -114,18 +109,14 @@ const goToRating = (): void => {
 
 const SettingsScreen = (): JSX.Element => {
   const navigation = useNavigation()
-  const textColor = useColorScheme() === "dark" ? "#fff" : "#000"
-  const boxColor =
-    useColorScheme() === "dark"
-      ? DarkTheme.colors.background
-      : DefaultTheme.colors.background
-
   const {
     pickedColor,
     wallets,
     selectedWalletIndex,
     setSelectedWalletIndex,
     setWallets,
+    textColor,
+    backgroundColor,
   } = useContext(DataContext)
 
   const [openWalletPicker, setOpenWalletPicker] = useState(false)
@@ -199,7 +190,7 @@ const SettingsScreen = (): JSX.Element => {
         text: "Discord",
         iconName: "discord",
         iconType: "discord",
-        boxBackgroundColor: boxColor,
+        boxBackgroundColor: backgroundColor,
         size: 30,
         onPress: async () =>
           await Linking.openURL("https://discord.gg/kS3SK5F36R"),
@@ -317,7 +308,7 @@ const SettingsScreen = (): JSX.Element => {
         <View style={styles.pageHeader}>
           <Text
             style={{
-              color: useColorScheme() === "dark" ? "#fff" : "#000",
+              color: textColor,
               fontSize: 32,
               fontWeight: "bold",
             }}
@@ -332,7 +323,7 @@ const SettingsScreen = (): JSX.Element => {
                 style={[
                   styles.box,
                   {
-                    backgroundColor: boxColor,
+                    backgroundColor: backgroundColor,
                     borderColor: pickedColor,
                     borderWidth: 1,
                   },

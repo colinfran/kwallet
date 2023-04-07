@@ -3,7 +3,6 @@ import {
   StyleSheet,
   View,
   Dimensions,
-  useColorScheme,
   KeyboardAvoidingView,
 } from "react-native"
 import {
@@ -57,8 +56,6 @@ const CreateWalletStep1 = ({ navigation }): JSX.Element => {
     setBottomSheetOpen(false)
   }, [])
 
-  const textColor = useColorScheme() === "dark" ? "#fff" : "#000"
-
   const getMnemonic = async (): void => {
     setLoading(true)
     try {
@@ -86,7 +83,7 @@ const CreateWalletStep1 = ({ navigation }): JSX.Element => {
     }
   }
 
-  const { pickedColor } = useContext(DataContext)
+  const { pickedColor, textColor } = useContext(DataContext)
 
   useEffect(() => {
     setIsValid(

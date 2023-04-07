@@ -1,23 +1,12 @@
 import React, { useContext } from "react"
-import {
-  StyleSheet,
-  View,
-  Dimensions,
-  TouchableOpacity,
-  useColorScheme,
-} from "react-native"
-import { Box, Text, Checkbox, Icon } from "native-base"
+import { StyleSheet, View, Dimensions, TouchableOpacity } from "react-native"
+import { Text, Icon } from "native-base"
 import { DataContext } from "../providers/DataProvider"
 import { Ionicons } from "@expo/vector-icons"
-import { DarkTheme, DefaultTheme } from "@react-navigation/native"
 
 const TransactionHistory = (): JSX.Element => {
-  const { pickedColor } = useContext(DataContext)
-  const textColor = useColorScheme() === "dark" ? "#fff" : "#000"
-  const backgroundColor =
-    useColorScheme() === "dark"
-      ? DarkTheme.colors.background
-      : DefaultTheme.colors.background
+  const { pickedColor, textColor, backgroundColor } = useContext(DataContext)
+
   const temp = [
     {
       type: "send",
@@ -54,7 +43,7 @@ const TransactionHistory = (): JSX.Element => {
             }}
           >
             <View>
-              <Text>No transactions</Text>
+              <Text style={{ color: textColor }}>No transactions</Text>
             </View>
           </View>
         </View>
@@ -62,7 +51,12 @@ const TransactionHistory = (): JSX.Element => {
     )
   }
   return (
-    <View style={{ width: Dimensions.get("window").width - 40, paddingHorizontal: 20 }}>
+    <View
+      style={{
+        width: Dimensions.get("window").width - 40,
+        paddingHorizontal: 20,
+      }}
+    >
       <View
         style={[
           styles.container,

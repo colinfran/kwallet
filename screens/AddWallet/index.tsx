@@ -1,11 +1,12 @@
-import React from "react"
-import { StyleSheet, View, Dimensions, Text, useColorScheme } from "react-native"
+import React, { useContext } from "react"
+import { StyleSheet, View, Dimensions, Text } from "react-native"
 import { Image } from "native-base"
 import image from "../../assets/images/kwallet-icon-logo.png"
 import ButtonOutline from "../../components/Button/ButtonOutline"
+import { DataContext } from "../../providers/DataProvider"
 
 const AddWallet = ({ navigation }): JSX.Element => {
-  const textColor = useColorScheme() === "dark" ? "#fff" : "#000"
+  const { textColor } = useContext(DataContext)
   return (
     <View style={styles.componentContainer}>
       <View style={styles.logoContainer}>

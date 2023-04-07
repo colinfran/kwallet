@@ -1,25 +1,22 @@
 import React, { useContext, useState } from "react"
 import { Tooltip, useContrastText } from "native-base"
-import {
-  View,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  Share,
-  Dimensions,
-} from "react-native"
+import { View, StyleSheet, Text, Share, Dimensions } from "react-native"
 import QRCode from "react-native-qrcode-svg"
 
 import * as Clipboard from "expo-clipboard"
 import { DataContext } from "../../providers/DataProvider"
 import DoubleButton from "../../components/Button/DoubleButton"
-import { DarkTheme, DefaultTheme } from "@react-navigation/native"
 
 const Recieve = (): JSX.Element => {
   const [isOpen, setIsOpen] = useState(false)
-  const { pickedColor, wallets, selectedWalletIndex } = useContext(DataContext)
+  const {
+    pickedColor,
+    wallets,
+    selectedWalletIndex,
+    textColor,
+    backgroundColor,
+  } = useContext(DataContext)
   const walletStr = wallets[selectedWalletIndex].walletData.address
-  const textColor = useColorScheme() === "dark" ? "#fff" : "#000"
 
   const copyOnPress = async (): Promise<void> => {
     await Clipboard.setStringAsync(walletStr)
@@ -36,13 +33,7 @@ const Recieve = (): JSX.Element => {
     })
   }
 
-  const color = useColorScheme() === "dark" ? "#fff" : "#000"
-  const buttonBackgroundColor =
-    useColorScheme() === "dark"
-      ? DarkTheme.colors.background
-      : DefaultTheme.colors.background
   const textColorPressed = useContrastText(pickedColor)
-
 
   return (
     <View style={styles.container}>
@@ -89,8 +80,8 @@ const Recieve = (): JSX.Element => {
               buttonGroupStyle={[
                 styles.shadow,
                 {
-                  shadowColor: color,
-                  backgroundColor: buttonBackgroundColor,
+                  shadowColor: textColor,
+                  backgroundColor: backgroundColor,
                 },
               ]}
               buttonProps={{
@@ -101,8 +92,8 @@ const Recieve = (): JSX.Element => {
                   },
                   _text: { color: textColorPressed, borderColor: pickedColor },
                 },
-                _text: { color: color },
-                backgroundColor: buttonBackgroundColor,
+                _text: { color: textColor },
+                backgroundColor: backgroundColor,
               }}
               left={{
                 text: "Copy",

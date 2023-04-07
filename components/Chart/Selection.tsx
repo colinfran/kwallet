@@ -1,4 +1,3 @@
-import { DarkTheme, DefaultTheme } from "@react-navigation/native"
 import React, { useContext } from "react"
 import {
   StyleSheet,
@@ -6,7 +5,6 @@ import {
   View,
   Text,
   Dimensions,
-  useColorScheme,
 } from "react-native"
 import Animated, {
   useSharedValue,
@@ -31,13 +29,7 @@ export const Selection = ({
       transform: [{ translateX: offset.value * WIDTH }],
     }
   })
-  const { pickedColor } = useContext(DataContext)
-  const textColor = useColorScheme() === "dark" ? "#fff" : "#000"
-
-  const buttonBackgroundColor =
-    useColorScheme() === "dark"
-      ? DarkTheme.colors.background
-      : DefaultTheme.colors.background
+  const { pickedColor, textColor, backgroundColor } = useContext(DataContext)
 
   const styles = StyleSheet.create({
     container: {
@@ -46,7 +38,7 @@ export const Selection = ({
     box: {
       width: WIDTH,
       height: HEIGHT,
-      backgroundColor: buttonBackgroundColor,
+      backgroundColor: backgroundColor,
       borderColor: pickedColor,
       borderRadius: 15,
       borderWidth: 1,

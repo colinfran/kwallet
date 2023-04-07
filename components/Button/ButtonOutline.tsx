@@ -1,5 +1,4 @@
 import React, { useContext } from "react"
-import { useColorScheme } from "react-native"
 import { DataContext } from "../../providers/DataProvider"
 import { Button } from "native-base"
 
@@ -19,8 +18,7 @@ const ButtonOutline = ({
   onPress,
   textColor,
 }: ButtonProps): JSX.Element => {
-  const { pickedColor } = useContext(DataContext)
-  const fontColor = useColorScheme() === "dark" ? "#fff" : "#000"
+  const { pickedColor, textColor: fontColor } = useContext(DataContext)
   return (
     <Button
       _text={{

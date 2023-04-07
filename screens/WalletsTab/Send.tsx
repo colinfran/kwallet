@@ -22,8 +22,7 @@ import {
 const Send = ({ route }): JSX.Element => {
   const [address, setAddress] = useState("")
   const [amount, setAmount] = useState("")
-  const textColor = useColorScheme() === "dark" ? "#fff" : "#000"
-  const { pickedColor } = useContext(DataContext)
+  const { pickedColor, textColor } = useContext(DataContext)
   const navigation = useNavigation()
 
   useEffect(() => {

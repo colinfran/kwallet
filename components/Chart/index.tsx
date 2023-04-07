@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react"
-import { Dimensions, View, StyleSheet, useColorScheme } from "react-native"
+import { Dimensions, View, StyleSheet } from "react-native"
 import {
   ChartDot,
   ChartPath,
@@ -10,7 +10,6 @@ import {
 import * as Haptics from "expo-haptics"
 import { Selection } from "./Selection"
 import { DataContext } from "../../providers/DataProvider"
-import { Svg, Rect, Defs, Stop, LinearGradient } from "react-native-svg"
 
 import Labels from "./Labels"
 import { Skeleton } from "native-base"
@@ -34,8 +33,13 @@ const defaultData = [
 ]
 
 const Chart = (): JSX.Element => {
-  const { graphData, pickedColor, selectedGraphIndex, setSelectedGraphIndex } =
-    useContext(DataContext)
+  const {
+    graphData,
+    pickedColor,
+    selectedGraphIndex,
+    setSelectedGraphIndex,
+    textColor,
+  } = useContext(DataContext)
 
   const isLoaded = graphData
 
@@ -95,18 +99,10 @@ const Chart = (): JSX.Element => {
     return `${value}`
   }
 
-  const textColor = useColorScheme() === "dark" ? "#fff" : "#000"
-
   const [isActive, setIsActive] = useState(false)
-
-  const whiteThemSkeletonStyles = useColorScheme() !== "dark" && {
-    startColor: "muted.100",
-    endColor: "muted.400",
-  }
 
   return (
     <Skeleton
-      {...whiteThemSkeletonStyles}
       h={360}
       isLoaded={isLoaded}
       w={Dimensions.get("window").width}

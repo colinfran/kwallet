@@ -7,6 +7,7 @@ import * as SecureStore from "expo-secure-store"
 import * as Sentry from "sentry-expo"
 import { useColorScheme } from "react-native"
 import { apiKey, apiUrl } from "../constants/index"
+import { DarkTheme, DefaultTheme } from "@react-navigation/native"
 
 type DataPoint = {
   timestamp: number
@@ -20,28 +21,12 @@ type Interval = {
   prices: Prices
 }
 
-export type ApiType = {
-  appStatus?: {
-    alert: boolean
-    alertHeader: string
-    alertDescription: string
-  }
-  error?: boolean
-  errorDescription?: string
-  currentPrice?: string
-  day?: Interval
-  week?: Interval
-  month?: Interval
-  year?: Interval
-  all?: Interval
-  walletData?: any
-}
-
 // exposed context for doing awesome things directly in React
 export const DataContext = createContext({
   textColor: "#000",
-
+  backgroundColor: "#fff",
   pickedColor: "#7fdccc",
+
   setPickedColor: (hex: string) => {},
 
   wallets: [],
@@ -70,7 +55,12 @@ export const DataContext = createContext({
 })
 
 export const DataProvider = ({ children }): JSX.Element => {
-  const [textColor, setTextColor] = useState("#000")
+  const textColor = useColorScheme() === "dark" ? "#fff" : "#000"
+  const backgroundColor =
+    useColorScheme() === "dark"
+      ? DarkTheme.colors.background
+      : DefaultTheme.colors.background
+
   const [wallets, setWallets] = useState([])
   const [selectedWalletIndex, setSelectedWalletIndex] = useState(0)
   const [pickedColor, setPickedColor] = useState("#7fdccc")
@@ -128,7 +118,7 @@ export const DataProvider = ({ children }): JSX.Element => {
     <DataContext.Provider
       value={{
         textColor,
-        setTextColor,
+        backgroundColor,
 
         wallets,
         setWallets,
