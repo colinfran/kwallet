@@ -21,14 +21,21 @@ const renderScene = SceneMap({
 })
 
 const WalletsTab = (): JSX.Element => {
-  const { pickedColor, setSelectedGraphIndex, textColor, backgroundColor } =
-    useContext(DataContext)
+  const {
+    pickedColor,
+    setSelectedGraphIndex,
+    textColor,
+    backgroundColor,
+    getGraphData,
+    setGraphData,
+  } = useContext(DataContext)
   const [refreshing, setRefreshing] = React.useState(false)
 
   const onRefresh = React.useCallback(async () => {
     setRefreshing(true)
-    const response = true
+    const response = await getGraphData()
     if (response) {
+      setGraphData(response)
       setRefreshing(false)
       setSelectedGraphIndex(0)
     }

@@ -106,8 +106,6 @@ const Chart = (): JSX.Element => {
     return `${value}`
   }
 
-  console.log(selectedCurrencyValue)
-
   const getY = (value): string => {
     "worklet"
     if (value && !isNaN(value)) {
