@@ -4,25 +4,57 @@ import { Skeleton, Text, Heading, useContrastText } from "native-base"
 import { DataContext } from "../providers/DataProvider"
 import DoubleButton from "./Button/DoubleButton"
 import { useNavigation } from "@react-navigation/native"
-import { getCurrencySymbol } from "./Chart"
-import { getLocales, getCalendars } from "expo-localization"
+import { getLocales } from "expo-localization"
+
+const getCurrencySymbol = (currency): string => {
+  let symbol = "$"
+  switch (currency) {
+    case "EUR":
+      symbol = "€"
+      break
+    case "JPY":
+      symbol = "¥"
+      break
+    case "GBP":
+      symbol = "£"
+      break
+    case "CNY":
+      symbol = "¥"
+      break
+    case "AUD":
+      symbol = "$"
+      break
+    case "CAD":
+      symbol = "$"
+      break
+    case "CHF":
+      symbol = "CHF "
+      break
+    default:
+      symbol = "$"
+      break
+  }
+  return symbol
+}
 
 const WalletAmount = (): JSX.Element => {
   const {
     graphData,
     pickedColor,
-    walletBalance,
     backgroundColor,
     textColor,
     selectedCurrency,
   } = useContext(DataContext)
   const navigation = useNavigation()
 
-  const isLoaded = walletBalance
-
-  const walletTotal = walletBalance?.available || 0
-
   const apiVal = graphData ? graphData : { currentPrice: "0" }
+
+  const isLoaded = graphData
+
+  console.log(apiVal?.walletBalance)
+
+  const walletTotal = apiVal?.walletBalance?.available || 0
+
 
   const { currentPrice = "0" } = apiVal
   const value = parseFloat(walletTotal) * parseFloat(currentPrice)
@@ -31,6 +63,8 @@ const WalletAmount = (): JSX.Element => {
   const locale = `${
     deviceLanguage.languageCode
   }-${deviceLanguage.measurementSystem.toUpperCase()}`
+  console.log("deviceLanguage", deviceLanguage)
+  console.log("locale", locale)
 
   const currencyFormatter = (val: number): string => {
     const symb = getCurrencySymbol(selectedCurrency)

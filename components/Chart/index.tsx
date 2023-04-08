@@ -32,7 +32,7 @@ const defaultData = [
   },
 ]
 
-export const getCurrencySymbol = (currency): string => {
+const getCurrencySymbol = (currency): string => {
   let symbol = "$"
   switch (currency) {
     case "EUR":

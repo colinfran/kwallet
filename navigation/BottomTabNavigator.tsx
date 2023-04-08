@@ -25,7 +25,6 @@ import {
 import ImportWallet from "../screens/AddWallet/ImportWallet"
 import FaqScreen from "../screens/SettingsTab/Settings/FaqScreen"
 import GuideScreen from "../screens/SettingsTab/Settings/GuideScreen"
-import { socket } from "../utils/socket"
 import SelectedCurrencyScreen from "../screens/SettingsTab/Settings/SelectedCurrencyScreen"
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>()
@@ -40,46 +39,19 @@ const BottomTabNavigator = (): JSX.Element => {
     setWalletBalance,
     selectedCurrency,
   } = useContext(DataContext)
-  const [hasConnection, setConnection] = useState(false)
 
   useEffect(() => {
     const getLineGraphData = async (): Promise<void> => {
       const response = await getGraphData()
-      console.log(Number(response.currentPrice).toFixed(7))
+      console.log("response", response)
       if (response && !response.error && response.currentPrice) {
+        console.log(Number(response.currentPrice).toFixed(7))
         setGraphData(response)
       }
     }
     getLineGraphData()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedCurrency])
-
-  useEffect(() => {
-    if (hasConnection) {
-      console.log("Wallet has connected to wallet socket server")
-    } else {
-      console.log("Wallet has disconnected from wallet socket server")
-    }
-  }, [hasConnection])
-
-  // socket connection for wallet balance
-  useEffect(() => {
-    socket.io.on("open", () => setConnection(true))
-    socket.io.on("close", () => setConnection(false))
-    const data = wallets[selectedWalletIndex].walletData
-    socket.emit("wallet-balance--get", {
-      walletAddress: data.address,
-      encryptedMnemonic: data.encryptedMnemonic,
-      password: data.userPassword,
-    })
-    socket.on("wallet-balance--has-been-updated", (walletBalance) => {
-      setWalletBalance(walletBalance)
-    })
-    return () => {
-      socket.disconnect()
-      socket.removeAllListeners()
-    }
-  }, [selectedWalletIndex, setGraphData, setWalletBalance, wallets])
 
   return (
     <BottomTab.Navigator

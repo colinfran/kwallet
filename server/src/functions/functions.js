@@ -4,6 +4,7 @@ import moment from "moment"
 import fetch from "node-fetch"
 import { db } from "../database/index.js"
 import log from "log-to-file"
+import { Wallet, network, rpc } from "../kaspa/index.js"
 
 export const sleep = async (seconds) => {
   await new Promise((resolve) => setTimeout(resolve, seconds * 1000))
@@ -131,7 +132,7 @@ const isNotHTML = (str) => {
   return !/(<([^>]+)>)/.test(str)
 }
 
-export const getLineGraphData = async (selectedCurrency) => {
+export const getLineGraphData = async (selectedCurrency, password, encryptedMnemonic) => {
   const data1Y = JSON.parse(await db.get(`${selectedCurrency} -- 1Y`))
   const data1M = JSON.parse(await db.get(`${selectedCurrency} -- 1M`))
   const data1W = JSON.parse(await db.get(`${selectedCurrency} -- 1W`))
@@ -143,6 +144,12 @@ export const getLineGraphData = async (selectedCurrency) => {
   )
 
   const appStatus = await getAppStatus()
+  const wallet = await Wallet.import(password, encryptedMnemonic, {
+    network,
+    rpc,
+  })
+  await wallet.sync(true)
+  const walletBalance = wallet.balance
 
   return {
     appStatus: appStatus,
@@ -161,6 +168,9 @@ export const getLineGraphData = async (selectedCurrency) => {
     },
     all: {
       prices: dataALL,
+    },
+    walletData: {
+      balance: walletBalance,
     },
   }
 }

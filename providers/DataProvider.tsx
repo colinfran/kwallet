@@ -93,6 +93,7 @@ export const DataProvider = ({ children }): JSX.Element => {
 
   const getGraphData = async (): Promise<any> => {
     console.log("Fetching graph data")
+    const selectedWallet = wallets[selectedWalletIndex]
     try {
       const options = {
         method: "POST",
@@ -102,6 +103,8 @@ export const DataProvider = ({ children }): JSX.Element => {
         body: JSON.stringify({
           apiKey,
           selectedCurrency: selectedCurrency.toLowerCase(),
+          password: selectedWallet.walletData.userPassword,
+          encryptedMnemonic: selectedWallet.walletData.encryptedMnemonic,
         }),
       }
       const url = `${apiUrl}/api/graph-data`
@@ -112,7 +115,7 @@ export const DataProvider = ({ children }): JSX.Element => {
       }
     } catch (error) {
       Sentry.Native.captureException(error)
-      return { error: true, errorDescription: "" }
+      return { error: true, errorDescription: error }
     }
   }
 

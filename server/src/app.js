@@ -12,7 +12,6 @@ import { initializeDatabase } from "./database/index.js"
 import * as dotenv from "dotenv"
 import * as Sentry from "@sentry/node"
 import Tracing from "@sentry/tracing"
-import { Server } from "socket.io"
 import { Wallet, network, rpc } from "./kaspa/index.js"
 
 import { updateData, updateCurrentPrice, sleep } from "./functions/functions.js"
@@ -20,11 +19,6 @@ import apiRoute from "./routes/index.js"
 
 const app = express()
 const server = http.createServer(app)
-const io = new Server(server, {
-  cors: {
-    origin: "http://localhost:19000",
-  },
-})
 
 dotenv.config()
 
@@ -168,25 +162,6 @@ app.get([...privacy, ...terms, ...index], (req, res) => {
 })
 
 app.use(Sentry.Handlers.errorHandler())
-
-// socketio to provide event updates to wallet balance
-io.on("connection", async (socket) => {
-  console.log("A wallet has connected through the socket io server connection:")
-  socket.on("wallet-balance--get", async (walletData) => {
-    const { password, encryptedMnemonic } = walletData
-    let wallet = await Wallet.import(password, encryptedMnemonic, {
-      network,
-      rpc,
-    })
-    wallet.sync()
-    io.emit("wallet-balance--has-been-updated", wallet.balance)
-    const balanceHandler = (balance) => {
-      io.emit("wallet-balance--has-been-updated", balance)
-    }
-    wallet.on("walletBalance", balanceHandler)
-    wallet.removeEventListener("walletBalance", balanceHandler)
-  })
-})
 
 server.listen(3000, () => {
   console.log("Listening on port 3000")
