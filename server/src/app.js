@@ -86,81 +86,62 @@ initializeKaspa()
 
 */
 
+const supportedCurrencies = [
+  "usd",
+  "eur",
+  "jpy",
+  "gbp",
+  "cny",
+  "aud",
+  "cad",
+  "chf",
+]
+
+// run every 8 minutes - currentPrice
 cron.schedule("*/8 * * * *", async () => {
-  // run every 8 minutes - currentPrice
-  await updateCurrentPrice("usd")
-  await updateCurrentPrice("eur")
-  await updateCurrentPrice("jpy")
-  await updateCurrentPrice("gbp")
-  await updateCurrentPrice("cny")
-  await updateCurrentPrice("aud")
-  await updateCurrentPrice("cad")
-  await updateCurrentPrice("chf")
+  for (const currency of supportedCurrencies) {
+    await updateCurrentPrice(currency)
+  }
 })
 
+// run every 15 minutes - 1D
 cron.schedule("*/15 * * * *", async () => {
-  // run every 15 minutes - 1D
   await sleep(23)
-  await updateData("1D", "usd", 23)
-  await updateData("1D", "eur", 23)
-  await updateData("1D", "jpy", 23)
-  await updateData("1D", "gbp", 23)
-  await updateData("1D", "cny", 23)
-  await updateData("1D", "aud", 23)
-  await updateData("1D", "cad", 23)
-  await updateData("1D", "chf", 23)
+  for (const currency of supportedCurrencies) {
+    await updateData("1D", currency, 23)
+  }
 })
 
+// run every 30 minutes - 1W
 cron.schedule("*/30 * * * *", async () => {
   await sleep(33)
-  // run every 30 minutes - 1W
-  await updateData("1W", "usd", 33)
-  await updateData("1W", "eur", 33)
-  await updateData("1W", "jpy", 33)
-  await updateData("1W", "gbp", 33)
-  await updateData("1W", "cny", 33)
-  await updateData("1W", "aud", 33)
-  await updateData("1W", "cad", 33)
-  await updateData("1W", "chf", 33)
+  for (const currency of supportedCurrencies) {
+    await updateData("1W", currency, 33)
+  }
 })
 
+// run every hour - 1M
 cron.schedule("0 * * * *", async () => {
   await sleep(121)
-  // run every hour - 1M
-  await updateData("1M", "usd", 21)
-  await updateData("1M", "eur", 21)
-  await updateData("1M", "jpy", 21)
-  await updateData("1M", "gbp", 21)
-  await updateData("1M", "cny", 21)
-  await updateData("1M", "aud", 21)
-  await updateData("1M", "cad", 21)
-  await updateData("1M", "chf", 21)
+  for (const currency of supportedCurrencies) {
+    await updateData("1M", currency, 47)
+  }
 })
 
+// run every 2 hours - 1Y
 cron.schedule("0 */2 * * *", async () => {
-  // run every 2 hours - 1Y
   await sleep(77)
-  await updateData("1Y", "usd", 63)
-  await updateData("1Y", "eur", 63)
-  await updateData("1Y", "jpy", 63)
-  await updateData("1Y", "gbp", 63)
-  await updateData("1Y", "cny", 63)
-  await updateData("1Y", "aud", 63)
-  await updateData("1Y", "cad", 63)
-  await updateData("1Y", "chf", 63)
+  for (const currency of supportedCurrencies) {
+    await updateData("1Y", currency, 63)
+  }
 })
 
+// run every 3 hours - ALL
 cron.schedule("0 */3 * * *", async () => {
-  // run every 3 hours - ALL
   await sleep(99)
-  await updateData("ALL", "usd", 73)
-  await updateData("ALL", "eur", 73)
-  await updateData("ALL", "jpy", 73)
-  await updateData("ALL", "gbp", 73)
-  await updateData("ALL", "cny", 73)
-  await updateData("ALL", "aud", 73)
-  await updateData("ALL", "cad", 73)
-  await updateData("ALL", "chf", 73)
+  for (const currency of supportedCurrencies) {
+    await updateData("ALL", currency, 73)
+  }
 })
 
 /*

@@ -5,6 +5,11 @@ import walletRoute from "./wallet/index.js"
 import { getLineGraphData, isApiKeyValid } from "../functions/functions.js"
 import { Wallet, network, rpc } from "../kaspa/index.js"
 import { db } from "../database/index.js"
+import { fileURLToPath } from "url"
+import path from "path"
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 const route = express.Router()
 
@@ -42,6 +47,26 @@ route.get("/storage", async (req, res) => {
   try {
     const data = fs.readFileSync("./storage.json", "utf8")
     return res.json(JSON.parse(data))
+  } catch (err) {
+    console.log(err)
+  }
+})
+
+/**
+ * @route GET /api/logs
+ * @desc get Coingecko data that is currently stored locally
+ * @access Private
+ * @returns {object} 200 - the Coingecko Kaspa data that is stored locally
+ * @returns {Error}  500 - Unexpected error
+ */
+route.get("/logs", async (req, res) => {
+  if (!isApiKeyValid(req.query.apiKey)) {
+    return res.status(401).send("unauthorized")
+  }
+  try {
+    let pathStr = path.join(__dirname, "../../default.log")
+
+    return res.sendFile(pathStr)
   } catch (err) {
     console.log(err)
   }
