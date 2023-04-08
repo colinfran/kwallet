@@ -2,6 +2,7 @@ import React, { useCallback, useContext, useMemo, useState } from "react"
 import { View, Text } from "react-native"
 import { useChartData } from "@colinfran/animated-charts"
 import { DataContext } from "../../providers/DataProvider"
+import { getCurrencySymbol } from "."
 
 function trim(val): number {
   return Math.min(Math.max(val, 0.05), 0.95)
@@ -50,15 +51,12 @@ const CenteredLabel = ({ position, style, width, ...props }): JSX.Element => {
   )
 }
 
-const getCurrencySymbol = (locale, currency) => (0).toLocaleString(locale, { style: 'currency', currency, minimumFractionDigits: 0, maximumFractionDigits: 0 }).replace(/\d/g, '').trim()
-
-
 const Labels = ({ width, isCard, color }): JSX.Element | null => {
   const { greatestX, greatestY, smallestX, smallestY } = useChartData()
 
   const { selectedCurrency } = useContext(DataContext)
 
-  const currencySymbol = getCurrencySymbol("en-US", selectedCurrency)
+  const currencySymbol = getCurrencySymbol(selectedCurrency)
 
   if (!greatestX) {
     return null

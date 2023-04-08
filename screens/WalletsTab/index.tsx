@@ -5,6 +5,7 @@ import {
   ScrollView,
   RefreshControl,
   Dimensions,
+  SafeAreaView,
 } from "react-native"
 import { TabView, SceneMap, TabBar } from "react-native-tab-view"
 
@@ -49,78 +50,80 @@ const WalletsTab = (): JSX.Element => {
 
   const theme = useTheme()
   return (
-    <ScrollView
-      contentContainerStyle={[styles.container, { height: "100%", gap: 20 }]}
-      disableScrollViewPanResponder={true}
-      refreshControl={
-        <RefreshControl
-          colors={[]}
-          refreshing={refreshing}
-          style={{ zIndex: 200 }}
-          onRefresh={onRefresh}
-        />
-      }
-    >
-      <View style={{ gap: 30 }}>
-        <View style={{ alignSelf: "flex-start", width: "100%" }}>
-          <WalletHeader />
+    <SafeAreaView>
+      <ScrollView
+        contentContainerStyle={[styles.container, { height: "100%", gap: 20 }]}
+        disableScrollViewPanResponder={true}
+        refreshControl={
+          <RefreshControl
+            colors={[]}
+            refreshing={refreshing}
+            style={{ zIndex: 200 }}
+            onRefresh={onRefresh}
+          />
+        }
+      >
+        <View style={{ gap: 30 }}>
+          <View style={{ alignSelf: "flex-start", width: "100%" }}>
+            <WalletHeader />
+          </View>
         </View>
-      </View>
-      <TabView
-        initialLayout={{ width: Dimensions.get("window").width }}
-        navigationState={{ index, routes }}
-        renderScene={renderScene}
-        renderTabBar={(props) => {
-          return (
-            <View
-              style={[
-                styles.shadow,
-                {
-                  alignItems: "center",
-                  borderRadius: 15,
-                  margin: 20,
-                  shadowColor: textColor,
-                },
-              ]}
-            >
-              <TabBar
-                {...props}
-                indicatorStyle={{
-                  height: "100%",
-                  backgroundColor: pickedColor,
-                  borderColor: pickedColor,
-                  borderRadius: 15,
-                }}
-                renderLabel={({ route, focused }) => (
-                  <Text
-                    style={{
-                      color: focused ? "#000" : theme.colors.light["500"],
-                    }}
-                  >
-                    {route.title}
-                  </Text>
-                )}
-                style={{
-                  backgroundColor: backgroundColor,
-                  borderColor: pickedColor,
-                  borderWidth: 1,
-                  width: Dimensions.get("window").width - 40,
-                  borderRadius: 15,
-                  shadowColor: textColor,
-                }}
-              />
-            </View>
-          )
-        }}
-        sceneContainerStyle={{
-          width: "100%",
-          height: "100%",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-        onIndexChange={setIndex}
-      />
-    </ScrollView>
+        <TabView
+          initialLayout={{ width: Dimensions.get("window").width }}
+          navigationState={{ index, routes }}
+          renderScene={renderScene}
+          renderTabBar={(props) => {
+            return (
+              <View
+                style={[
+                  styles.shadow,
+                  {
+                    alignItems: "center",
+                    borderRadius: 15,
+                    margin: 20,
+                    shadowColor: textColor,
+                  },
+                ]}
+              >
+                <TabBar
+                  {...props}
+                  indicatorStyle={{
+                    height: "100%",
+                    backgroundColor: pickedColor,
+                    borderColor: pickedColor,
+                    borderRadius: 15,
+                  }}
+                  renderLabel={({ route, focused }) => (
+                    <Text
+                      style={{
+                        color: focused ? "#000" : theme.colors.light["500"],
+                      }}
+                    >
+                      {route.title}
+                    </Text>
+                  )}
+                  style={{
+                    backgroundColor: backgroundColor,
+                    borderColor: pickedColor,
+                    borderWidth: 1,
+                    width: Dimensions.get("window").width - 40,
+                    borderRadius: 15,
+                    shadowColor: textColor,
+                  }}
+                />
+              </View>
+            )
+          }}
+          sceneContainerStyle={{
+            width: "100%",
+            height: "100%",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+          onIndexChange={setIndex}
+        />
+      </ScrollView>
+    </SafeAreaView>
   )
 }
 

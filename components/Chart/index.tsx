@@ -32,16 +32,36 @@ const defaultData = [
   },
 ]
 
-const getCurrencySymbol = (locale, currency): string =>
-  (0)
-    .toLocaleString(locale, {
-      style: "currency",
-      currency,
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0,
-    })
-    .replace(/\d/g, "")
-    .trim()
+export const getCurrencySymbol = (currency): string => {
+  let symbol = "$"
+  switch (currency) {
+    case "EUR":
+      symbol = "€"
+      break
+    case "JPY":
+      symbol = "¥"
+      break
+    case "GBP":
+      symbol = "£"
+      break
+    case "CNY":
+      symbol = "¥"
+      break
+    case "AUD":
+      symbol = "$"
+      break
+    case "CAD":
+      symbol = "$"
+      break
+    case "CHF":
+      symbol = "CHF "
+      break
+    default:
+      symbol = "$"
+      break
+  }
+  return symbol
+}
 
 const Chart = (): JSX.Element => {
   const {
@@ -53,7 +73,7 @@ const Chart = (): JSX.Element => {
     selectedCurrency,
   } = useContext(DataContext)
 
-  const currencySymbol = getCurrencySymbol("en-US", selectedCurrency)
+  const currencySymbol = getCurrencySymbol(selectedCurrency)
 
   const isLoaded = graphData
 
@@ -65,11 +85,11 @@ const Chart = (): JSX.Element => {
     { buttonTitle: "Day" },
   ])
 
-  const [, forceUpdate] = useReducer((x) => x + 1, 0)
+  // const [, forceUpdate] = useReducer((x) => x + 1, 0)
 
-  useEffect(() => {
-    forceUpdate()
-  }, [selectedCurrency])
+  // useEffect(() => {
+  //   forceUpdate()
+  // }, [selectedCurrency])
 
   useEffect(() => {
     if (graphData) {
@@ -110,6 +130,12 @@ const Chart = (): JSX.Element => {
     }
     return `${value}`
   }
+
+  useEffect(() => {
+    setTimeout(() => {
+      
+    }, 500);
+  }, [selectedCurrency])
 
   const [isActive, setIsActive] = useState(false)
 

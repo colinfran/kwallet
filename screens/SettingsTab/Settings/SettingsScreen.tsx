@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
   TouchableHighlight,
   Alert,
+  SafeAreaView,
 } from "react-native"
 import {
   VStack,
@@ -335,154 +336,159 @@ const SettingsScreen = (): JSX.Element => {
   )
 
   return (
-    <ScrollView style={styles.full}>
-      <View style={[styles.container]}>
-        <View style={styles.pageHeader}>
-          <Text
-            style={{
-              color: textColor,
-              fontSize: 32,
-              fontWeight: "bold",
-            }}
-          >
-            Settings
-          </Text>
-        </View>
-        <View style={[styles.screen]}>
-          {settingsData.map((section, i) => (
-            <View key={`${i}-container`} style={[styles.sectionContainer]}>
-              <View
-                style={[
-                  styles.box,
-                  {
-                    backgroundColor: backgroundColor,
-                    borderColor: pickedColor,
-                    borderWidth: 1,
-                  },
-                ]}
-              >
-                <VStack
-                  divider={<Divider backgroundColor={pickedColor} />}
-                  width="100%"
+    <SafeAreaView>
+      <ScrollView style={styles.full}>
+        <View style={[styles.container]}>
+          <View style={styles.pageHeader}>
+            <Text
+              style={{
+                color: textColor,
+                fontSize: 32,
+                fontWeight: "bold",
+              }}
+            >
+              Settings
+            </Text>
+          </View>
+          <View style={[styles.screen]}>
+            {settingsData.map((section, i) => (
+              <View key={`${i}-container`} style={[styles.sectionContainer]}>
+                <View
+                  style={[
+                    styles.box,
+                    {
+                      backgroundColor: backgroundColor,
+                      borderColor: pickedColor,
+                      borderWidth: 1,
+                    },
+                  ]}
                 >
-                  {section.map((sectionElement) => {
-                    return (
-                      <TouchableOpacity
-                        key={sectionElement.text}
-                        style={{ width: "100%" }}
-                        onPress={sectionElement.onPress}
-                      >
-                        <HStack
-                          alignItems="center"
-                          h={12}
-                          justifyContent="center"
-                          margin="auto"
-                          w="90%"
+                  <VStack
+                    divider={<Divider backgroundColor={pickedColor} />}
+                    width="100%"
+                  >
+                    {section.map((sectionElement) => {
+                      return (
+                        <TouchableOpacity
+                          key={sectionElement.text}
+                          style={{ width: "100%" }}
+                          onPress={sectionElement.onPress}
                         >
-                          <View style={styles.listItemLeft}>
-                            <Icon
-                              boxBackgroundColor={
-                                sectionElement.boxBackgroundColor
-                              }
-                              color={pickedColor}
-                              name={sectionElement.iconName}
-                              size={sectionElement.size}
-                              type={sectionElement.iconType}
-                            />
-                          </View>
-                          <View style={styles.listItemCenter}>
-                            <Text style={{ fontSize: 18, color: textColor }}>
-                              {sectionElement.text}
-                            </Text>
-                          </View>
-                          <View style={styles.listItemRight}>
-                            {sectionElement.text === "Wallets" && (
-                              <Text style={{ fontSize: 14, color: textColor }}>
-                                {wallets[selectedWalletIndex]?.walletName || ""}
+                          <HStack
+                            alignItems="center"
+                            h={12}
+                            justifyContent="center"
+                            margin="auto"
+                            w="90%"
+                          >
+                            <View style={styles.listItemLeft}>
+                              <Icon
+                                boxBackgroundColor={
+                                  sectionElement.boxBackgroundColor
+                                }
+                                color={pickedColor}
+                                name={sectionElement.iconName}
+                                size={sectionElement.size}
+                                type={sectionElement.iconType}
+                              />
+                            </View>
+                            <View style={styles.listItemCenter}>
+                              <Text style={{ fontSize: 18, color: textColor }}>
+                                {sectionElement.text}
                               </Text>
-                            )}
-                            <Icon
-                              color={pickedColor}
-                              name="arrow-forward"
-                              style={styles.align}
-                            />
-                          </View>
-                        </HStack>
-                      </TouchableOpacity>
-                    )
-                  })}
-                </VStack>
+                            </View>
+                            <View style={styles.listItemRight}>
+                              {sectionElement.text === "Wallets" && (
+                                <Text
+                                  style={{ fontSize: 14, color: textColor }}
+                                >
+                                  {wallets[selectedWalletIndex]?.walletName ||
+                                    ""}
+                                </Text>
+                              )}
+                              <Icon
+                                color={pickedColor}
+                                name="arrow-forward"
+                                style={styles.align}
+                              />
+                            </View>
+                          </HStack>
+                        </TouchableOpacity>
+                      )
+                    })}
+                  </VStack>
+                </View>
               </View>
-            </View>
-          ))}
-        </View>
-        <View>
-          <View style={{ margin: 30 }}>
-            <View>
-              <Text style={{ textAlign: "center", color: textColor }}>
-                Designed, devloped, and built
-              </Text>
-              <Link
-                href="https://colinfran.com"
-                style={{ alignSelf: "center", color: textColor }}
+            ))}
+          </View>
+          <View>
+            <View style={{ margin: 30 }}>
+              <View>
+                <Text style={{ textAlign: "center", color: textColor }}>
+                  Designed, devloped, and built
+                </Text>
+                <Link
+                  href="https://colinfran.com"
+                  style={{ alignSelf: "center", color: textColor }}
+                >
+                  by Colin Franceschini
+                </Link>
+              </View>
+              <View
+                style={{
+                  alignItems: "center",
+                }}
               >
-                by Colin Franceschini
-              </Link>
-            </View>
-            <View
-              style={{
-                alignItems: "center",
-              }}
-            >
-              {/* <Thumbnail source={logo} small square /> */}
-            </View>
-            <View
-              style={{
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <Text
-                style={{ fontSize: 12, color: "grey" }}
-              >{`v${version}`}</Text>
+                {/* <Thumbnail source={logo} small square /> */}
+              </View>
+              <View
+                style={{
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <Text
+                  style={{ fontSize: 12, color: "grey" }}
+                >{`v${version}`}</Text>
+              </View>
             </View>
           </View>
         </View>
-      </View>
-      <Actionsheet
-        isOpen={openWalletPicker}
-        onClose={() => setOpenWalletPicker(false)}
-      >
-        <Actionsheet.Content>
-          <Box
-            justifyContent="center"
-            px={4}
-            style={{ marginBottom: 30 }}
-            w="100%"
-          >
-            <Text style={{ fontSize: 20 }}>Select Wallet</Text>
-          </Box>
-          <SwipeListView
-            data={wallets}
-            renderHiddenItem={renderHiddenItem}
-            renderItem={renderItem}
-            rightOpenValue={-75}
-            scrollEnabled={false}
-            style={{ width: "100%" }}
-          />
-          <Button
-            style={{ backgroundColor: pickedColor, marginTop: 30 }}
-            w={"100%"}
-            onPress={() => {
-              setOpenWalletPicker(false)
-              navigation.navigate("AddWallet")
-            }}
-          >
-            Add
-          </Button>
-        </Actionsheet.Content>
-      </Actionsheet>
-    </ScrollView>
+        <Actionsheet
+          isOpen={openWalletPicker}
+          onClose={() => setOpenWalletPicker(false)}
+        >
+          <Actionsheet.Content>
+            <Box
+              justifyContent="center"
+              px={4}
+              style={{ marginBottom: 30 }}
+              w="100%"
+            >
+              <Text style={{ fontSize: 20 }}>Select Wallet</Text>
+            </Box>
+            <SwipeListView
+              data={wallets}
+              renderHiddenItem={renderHiddenItem}
+              renderItem={renderItem}
+              rightOpenValue={-75}
+              scrollEnabled={false}
+              style={{ width: "100%" }}
+            />
+            <Button
+              style={{ backgroundColor: pickedColor, marginTop: 30 }}
+              w={"100%"}
+              onPress={() => {
+                setOpenWalletPicker(false)
+                navigation.navigate("AddWallet")
+              }}
+            >
+              Add
+            </Button>
+          </Actionsheet.Content>
+        </Actionsheet>
+      </ScrollView>
+    </SafeAreaView>
   )
 }
 
