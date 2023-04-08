@@ -32,17 +32,6 @@ const WalletAmount = (): JSX.Element => {
     deviceLanguage.languageCode
   }-${deviceLanguage.measurementSystem.toUpperCase()}`
 
-  console.log(locale)
-
-  const format = (locale, currency, number) => {
-    console.log(currency)
-    return new Intl.NumberFormat(locale, {
-      style: "currency",
-      currency,
-      currencyDisplay: "symbol",
-    })
-  }
-
   const currencyFormatter = (val: number): string => {
     const symb = getCurrencySymbol(selectedCurrency)
     const formatter = new Intl.NumberFormat(locale, {
@@ -50,7 +39,7 @@ const WalletAmount = (): JSX.Element => {
       currency: selectedCurrency,
       currencyDisplay: "symbol",
     })
-    const str = formatter.format(val).toString().split("$")[1]
+    const str = formatter.format(val).toString().split(symb)[1]
     return `${symb}${str}`
   }
 
