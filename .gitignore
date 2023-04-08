@@ -11,3 +11,4 @@ components/Chart/@rainbow-me/**
 .env
 env.ts
 server/env.js
+server/default.log
