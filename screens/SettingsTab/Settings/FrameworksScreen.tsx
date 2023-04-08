@@ -13,7 +13,7 @@ import { DataContext } from "../../../providers/DataProvider"
 import data from "./frameworks.json"
 
 const FrameworksScreen = (): JSX.Element => {
-  const { textColor, backgroundColor } = useContext(DataContext)
+  const { textColor, backgroundColor, pickedColor } = useContext(DataContext)
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View style={{ height: "100%" }}>
@@ -23,10 +23,15 @@ const FrameworksScreen = (): JSX.Element => {
             <View style={{ paddingTop: 20 }}>
               <Text style={{ fontSize: 30, color: textColor }}>Frameworks</Text>
               <Text
-                style={{ fontSize: 16, marginBottom: 20, color: textColor }}
+                style={{
+                  fontSize: 16,
+                  marginBottom: 20,
+                  color: textColor,
+                  marginVertical: 20,
+                }}
               >
-                Listed below are the open-sourced frameworks that were used to
-                build this application. Their efforts are much appreciated.
+                Thank you to all the open source projects that were used to
+                build this app. Their efforts are much appreciated!
               </Text>
             </View>
           }
@@ -44,7 +49,7 @@ const FrameworksScreen = (): JSX.Element => {
                     marginBottom: 20,
                     flexDirection: "column",
                     alignItems: "center",
-                    borderColor: textColor,
+                    borderColor: pickedColor,
                     borderWidth: 2,
                     padding: 10,
                     borderRadius: 10,
