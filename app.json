@@ -2,7 +2,7 @@
   "expo": {
     "name": "kwallet",
     "slug": "kwallet",
-    "version": "0.0.9",
+    "version": "0.9.1",
     "orientation": "portrait",
     "icon": "./assets/images/kwallet-icon-logo.png",
     "scheme": "myapp",

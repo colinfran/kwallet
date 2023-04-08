@@ -1,0 +1,44 @@
+2023.04.08, 21:08:00.0147 UTC -> Fetching data from - https://api.coingecko.com/api/v3/simple/price?ids=kaspa&vs_currencies=usd
+2023.04.08, 21:08:00.0706 UTC -> Fetching data from - https://api.coingecko.com/api/v3/simple/price?ids=kaspa&vs_currencies=eur
+2023.04.08, 21:08:00.0696 UTC -> Successful fetch. Adding data to db.
+2023.04.08, 21:08:00.0855 UTC -> Successful fetch. Adding data to db.
+2023.04.08, 21:08:00.0859 UTC -> Fetching data from - https://api.coingecko.com/api/v3/simple/price?ids=kaspa&vs_currencies=jpy
+2023.04.08, 21:08:01.0015 UTC -> Successful fetch. Adding data to db.
+2023.04.08, 21:08:01.0040 UTC -> Fetching data from - https://api.coingecko.com/api/v3/simple/price?ids=kaspa&vs_currencies=gbp
+2023.04.08, 21:08:01.0188 UTC -> Successful fetch. Adding data to db.
+2023.04.08, 21:08:01.0192 UTC -> Fetching data from - https://api.coingecko.com/api/v3/simple/price?ids=kaspa&vs_currencies=cny
+2023.04.08, 21:08:01.0365 UTC -> Successful fetch. Adding data to db.
+2023.04.08, 21:08:01.0369 UTC -> Fetching data from - https://api.coingecko.com/api/v3/simple/price?ids=kaspa&vs_currencies=aud
+2023.04.08, 21:08:01.0647 UTC -> Successful fetch. Adding data to db.
+2023.04.08, 21:08:01.0665 UTC -> Fetching data from - https://api.coingecko.com/api/v3/simple/price?ids=kaspa&vs_currencies=cad
+2023.04.08, 21:08:01.0825 UTC -> Successful fetch. Adding data to db.
+2023.04.08, 21:08:01.0836 UTC -> Fetching data from - https://api.coingecko.com/api/v3/simple/price?ids=kaspa&vs_currencies=chf
+2023.04.08, 21:08:01.0996 UTC -> Successful fetch. Adding data to db.
+2023.04.08, 21:15:23.0672 UTC -> Fetching data from - https://api.coingecko.com/api/v3/coins/kaspa/market_chart/range?vs_currency=usd&from=1680902123&to=1680988523
+2023.04.08, 21:15:23.0983 UTC -> Successful fetch. Adding data to db.
+2023.04.08, 21:15:46.0995 UTC -> Fetching data from - https://api.coingecko.com/api/v3/coins/kaspa/market_chart/range?vs_currency=eur&from=1680902146&to=1680988546
+2023.04.08, 21:15:47.0166 UTC -> Successful fetch. Adding data to db.
+2023.04.08, 21:16:00.0733 UTC -> Fetching data from - https://api.coingecko.com/api/v3/simple/price?ids=kaspa&vs_currencies=usd
+2023.04.08, 21:16:00.0891 UTC -> Successful fetch. Adding data to db.
+2023.04.08, 21:16:00.0895 UTC -> Fetching data from - https://api.coingecko.com/api/v3/simple/price?ids=kaspa&vs_currencies=eur
+2023.04.08, 21:16:01.0042 UTC -> Successful fetch. Adding data to db.
+2023.04.08, 21:16:01.0045 UTC -> Fetching data from - https://api.coingecko.com/api/v3/simple/price?ids=kaspa&vs_currencies=jpy
+2023.04.08, 21:16:01.0212 UTC -> Successful fetch. Adding data to db.
+2023.04.08, 21:16:01.0215 UTC -> Fetching data from - https://api.coingecko.com/api/v3/simple/price?ids=kaspa&vs_currencies=gbp
+2023.04.08, 21:16:01.0383 UTC -> Successful fetch. Adding data to db.
+2023.04.08, 21:16:01.0388 UTC -> Fetching data from - https://api.coingecko.com/api/v3/simple/price?ids=kaspa&vs_currencies=cny
+2023.04.08, 21:16:01.0554 UTC -> Successful fetch. Adding data to db.
+2023.04.08, 21:16:01.0558 UTC -> Fetching data from - https://api.coingecko.com/api/v3/simple/price?ids=kaspa&vs_currencies=aud
+2023.04.08, 21:16:01.0727 UTC -> Successful fetch. Adding data to db.
+2023.04.08, 21:16:01.0742 UTC -> Fetching data from - https://api.coingecko.com/api/v3/simple/price?ids=kaspa&vs_currencies=cad
+2023.04.08, 21:16:01.0910 UTC -> Successful fetch. Adding data to db.
+2023.04.08, 21:16:01.0919 UTC -> Fetching data from - https://api.coingecko.com/api/v3/simple/price?ids=kaspa&vs_currencies=chf
+2023.04.08, 21:16:02.0075 UTC -> Successful fetch. Adding data to db.
+2023.04.08, 21:16:10.0172 UTC -> Fetching data from - https://api.coingecko.com/api/v3/coins/kaspa/market_chart/range?vs_currency=jpy&from=1680902170&to=1680988570
+2023.04.08, 21:16:10.0374 UTC -> Successful fetch. Adding data to db.
+2023.04.08, 21:16:33.0382 UTC -> Fetching data from - https://api.coingecko.com/api/v3/coins/kaspa/market_chart/range?vs_currency=gbp&from=1680902193&to=1680988593
+2023.04.08, 21:16:33.0641 UTC -> Successful fetch. Adding data to db.
+2023.04.08, 21:16:56.0648 UTC -> Fetching data from - https://api.coingecko.com/api/v3/coins/kaspa/market_chart/range?vs_currency=cny&from=1680902216&to=1680988616
+2023.04.08, 21:16:56.0821 UTC -> Successful fetch. Adding data to db.
+2023.04.08, 21:17:19.0833 UTC -> Fetching data from - https://api.coingecko.com/api/v3/coins/kaspa/market_chart/range?vs_currency=aud&from=1680902239&to=1680988639
+2023.04.08, 21:17:20.0259 UTC -> Successful fetch. Adding data to db.

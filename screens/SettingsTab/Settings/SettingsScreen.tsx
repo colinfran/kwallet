@@ -512,7 +512,7 @@ const styles = StyleSheet.create({
     width: "100%",
     alignItems: "center",
     justifyContent: "center",
-    borderRadius: 10,
+    borderRadius: 15,
   },
 
   box2: {
@@ -520,7 +520,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "#0b0b0e",
-    borderRadius: 10,
+    borderRadius: 15,
     padding: 15,
   },
 
@@ -530,7 +530,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "#555554",
-    borderRadius: 10,
+    borderRadius: 15,
   },
   align: {
     justifyContent: "center",
