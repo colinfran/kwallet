@@ -20,7 +20,8 @@ route.post("/graph-data", async (req, res) => {
     return res.status(401).send("unauthorized")
   }
   try {
-    return res.json(await getLineGraphData())
+    const { selectedCurrency } = req.body
+    return res.json(await getLineGraphData(selectedCurrency))
   } catch (error) {
     console.log(error.toString())
     return res.status(500).send(error)

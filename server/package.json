@@ -23,6 +23,7 @@
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
     "jade": "~1.11.0",
+    "log-to-file": "^3.0.3",
     "moment": "^2.29.4",
     "moment-round": "^1.0.1",
     "morgan": "~1.9.1",

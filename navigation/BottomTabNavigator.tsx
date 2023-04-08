@@ -41,7 +41,6 @@ const BottomTabNavigator = (): JSX.Element => {
     setWalletBalance,
     selectedCurrency,
     setSelectedCurrency,
-    setSelectedCurrencyValue
   } = useContext(DataContext)
   const [hasConnection, setConnection] = useState(false)
 

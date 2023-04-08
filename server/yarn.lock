@@ -3080,6 +3080,11 @@ lodash@^4.17.20:
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
   integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
 
+log-to-file@^3.0.3:
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/log-to-file/-/log-to-file-3.0.3.tgz#19bfdb129f1f36493f4b854da0f6c4831527ddb6"
+  integrity sha512-z0abDIBuQURbq2bojlyUdk9P38Hy5o8CQUp+7LUd7DP/4gv/7de+KAnExAxG4LY1voR3CxiwgawQbnLtFUesPA==
+
 long@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/long/-/long-4.0.0.tgz#9a7b71cfb7d361a194ea555241c92f7468d5bf28"

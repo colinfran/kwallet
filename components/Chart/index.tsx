@@ -51,7 +51,6 @@ const Chart = (): JSX.Element => {
     setSelectedGraphIndex,
     textColor,
     selectedCurrency,
-    selectedCurrencyValue,
   } = useContext(DataContext)
 
   const currencySymbol = getCurrencySymbol("en-US", selectedCurrency)
@@ -89,6 +88,7 @@ const Chart = (): JSX.Element => {
   }
 
   const onButtonPress = (element, index): void => {
+    console.log(element)
     setSelectedGraphIndex(index)
     setData(element)
     invokeHaptic()
@@ -109,8 +109,7 @@ const Chart = (): JSX.Element => {
   const getY = (value): string => {
     "worklet"
     if (value && !isNaN(value)) {
-      const val = value * selectedCurrencyValue
-      return `${currencySymbol}${Number(val).toFixed(7)}`
+      return `${currencySymbol}${Number(value).toFixed(7)}`
     }
     return `${value}`
   }

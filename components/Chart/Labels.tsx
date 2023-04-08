@@ -56,7 +56,7 @@ const getCurrencySymbol = (locale, currency) => (0).toLocaleString(locale, { sty
 const Labels = ({ width, isCard, color }): JSX.Element | null => {
   const { greatestX, greatestY, smallestX, smallestY } = useChartData()
 
-  const { selectedCurrency, selectedCurrencyValue } = useContext(DataContext)
+  const { selectedCurrency } = useContext(DataContext)
 
   const currencySymbol = getCurrencySymbol("en-US", selectedCurrency)
 
@@ -70,8 +70,8 @@ const Labels = ({ width, isCard, color }): JSX.Element | null => {
     (greatestY.x - smallestX.x) / (greatestX.x - smallestX.x)
   )
 
-  const smallestYVal = Number(smallestY.y) * selectedCurrencyValue
-  const largestYval = Number(greatestY.y) * selectedCurrencyValue
+  const smallestYVal = Number(smallestY.y)
+  const largestYval = Number(greatestY.y)
 
   return (
     <>

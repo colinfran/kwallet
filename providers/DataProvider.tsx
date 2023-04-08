@@ -55,8 +55,6 @@ export const DataContext = createContext({
 
   selectedCurrency: "USD",
   setSelectedCurrency: (currency) => {},
-  selectedCurrencyValue: 1,
-  setSelectedCurrencyValue: (value) => {},
 })
 
 export const DataProvider = ({ children }): JSX.Element => {
@@ -79,7 +77,6 @@ export const DataProvider = ({ children }): JSX.Element => {
   const [selectedGraphIndex, setSelectedGraphIndex] = useState(0)
 
   const [selectedCurrency, setSelectedCurrency] = useState("USD")
-  const [selectedCurrencyValue, setSelectedCurrencyValue] = useState(1)
 
   useEffect(() => {
     if (graphData?.appStatus) {
@@ -104,6 +101,7 @@ export const DataProvider = ({ children }): JSX.Element => {
         },
         body: JSON.stringify({
           apiKey,
+          selectedCurrency: selectedCurrency.toLowerCase(),
         }),
       }
       const url = `${apiUrl}/api/graph-data`
@@ -121,34 +119,6 @@ export const DataProvider = ({ children }): JSX.Element => {
   useEffect(() => {
     getData()
   }, [])
-
-  useEffect(() => {
-    const convertCurrency = async (val): Promise<number> => {
-      try {
-        const response = await fetch(
-          // eslint-disable-next-line max-len
-          `https://api.exchangerate.host/convert?from=USD&to=${val}`
-        )
-        const json = await response.json()
-        return json.result
-      } catch (error) {
-        Sentry.Native.captureException(error)
-        return 0
-      }
-    }
-
-    const setCurrencyVal = async (): Promise<void> => {
-      let val = 1
-      if (selectedCurrency !== "USD") {
-        val = await convertCurrency(selectedCurrency)
-      }
-      setSelectedCurrencyValue(val)
-    }
-
-    if (graphData?.currentPrice) {
-      setCurrencyVal()
-    }
-  }, [graphData, selectedCurrency])
 
   return (
     <DataContext.Provider
@@ -183,8 +153,6 @@ export const DataProvider = ({ children }): JSX.Element => {
 
         selectedCurrency,
         setSelectedCurrency,
-        selectedCurrencyValue,
-        setSelectedCurrencyValue,
       }}
     >
       {children}
