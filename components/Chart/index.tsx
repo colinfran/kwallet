@@ -1,11 +1,10 @@
-import React, { useContext, useEffect, useState } from "react"
+import React, { useContext, useEffect, useReducer, useState } from "react"
 import { Dimensions, View, StyleSheet } from "react-native"
 import {
   ChartDot,
   ChartPath,
   ChartPathProvider,
   ChartXLabel,
-  ChartYLabel,
 } from "@colinfran/animated-charts"
 import * as Haptics from "expo-haptics"
 import { Selection } from "./Selection"
@@ -14,6 +13,7 @@ import { DataContext } from "../../providers/DataProvider"
 import Labels from "./Labels"
 import { Skeleton } from "native-base"
 import opacity from "hex-color-opacity"
+import CustomYLabel from "./CustomYLabel"
 
 export const { width: SIZE } = Dimensions.get("window")
 
@@ -59,11 +59,17 @@ const Chart = (): JSX.Element => {
 
   // const [selectedVariantIndex, setSelectedVariantIndex] = useState(0)
 
-  const [data, setData] = useState(graphData?.week?.prices || defaultData)
+  const [data, setData] = useState(graphData?.day?.prices || defaultData)
 
   const [arrayButtonsData, setArrayButtonsData] = useState([
     { buttonTitle: "Day" },
   ])
+
+  const [, forceUpdate] = useReducer((x) => x + 1, 0)
+
+  useEffect(() => {
+    forceUpdate()
+  }, [selectedCurrency])
 
   useEffect(() => {
     if (graphData) {
@@ -81,14 +87,13 @@ const Chart = (): JSX.Element => {
         arrayButtons.push({ buttonTitle: "All" })
       setArrayButtonsData(arrayButtons)
     }
-  }, [graphData])
+  }, [graphData, selectedCurrency])
 
   const invokeHaptic = (): void => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
   }
 
   const onButtonPress = (element, index): void => {
-    console.log(element)
     setSelectedGraphIndex(index)
     setData(element)
     invokeHaptic()
@@ -102,14 +107,6 @@ const Chart = (): JSX.Element => {
         dateStyle: "short",
         timeStyle: "short",
       })}`
-    }
-    return `${value}`
-  }
-
-  const getY = (value): string => {
-    "worklet"
-    if (value && !isNaN(value)) {
-      return `${currencySymbol}${Number(value).toFixed(7)}`
     }
     return `${value}`
   }
@@ -143,7 +140,10 @@ const Chart = (): JSX.Element => {
               })),
               smoothingStrategy: "bezier",
             }}
-            nowData={{ currentPrice: graphData?.currentPrice || "" }}
+            nowData={{
+              currentPrice: graphData?.currentPrice || "",
+              currencySymbol,
+            }}
           >
             {!isActive && (
               <Labels color={textColor} isCard={false} width={SIZE} />
@@ -177,7 +177,11 @@ const Chart = (): JSX.Element => {
                 }}
               >
                 <ChartXLabel color={textColor} format={getX} />
-                <ChartYLabel color={textColor} format={getY} />
+                <CustomYLabel
+                  color={textColor}
+                  currencySymbol={currencySymbol}
+                  currentPrice={graphData?.currentPrice || 0}
+                />
               </View>
             </View>
           </ChartPathProvider>

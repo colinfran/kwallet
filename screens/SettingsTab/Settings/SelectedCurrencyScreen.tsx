@@ -1,27 +1,15 @@
 import React, { useContext, useState } from "react"
-import {
-  View,
-  StyleSheet,
-  Text,
-  FlatList,
-  Dimensions,
-  ScrollView,
-} from "react-native"
+import { View, StyleSheet, Text, ScrollView } from "react-native"
 import { DataContext } from "../../../providers/DataProvider"
 import { currenciesList } from "../../../constants/currencies"
-import { CheckIcon, Input } from "native-base"
+import { CheckIcon, Input, Link } from "native-base"
 import { filter, sortBy } from "lodash"
 import { TouchableOpacity } from "react-native-gesture-handler"
 import { useNavigation } from "@react-navigation/native"
 
 const SelectedCurrencyScreen = (): JSX.Element => {
-  const {
-    textColor,
-    pickedColor,
-    selectedCurrency,
-    setSelectedCurrency,
-    setSelectedCurrencyValue,
-  } = useContext(DataContext)
+  const { textColor, pickedColor, selectedCurrency, setSelectedCurrency } =
+    useContext(DataContext)
 
   const navigation = useNavigation()
 
@@ -29,31 +17,7 @@ const SelectedCurrencyScreen = (): JSX.Element => {
     code === selectedCurrency ? 0 : 1
   )
 
-  const [data, setData] = useState(sortedItems)
-  const [query, setQuery] = useState("")
-
-  const contains = ({ description, code }, queryVal): boolean => {
-    if (
-      description.toLowerCase().includes(queryVal) ||
-      code.toLowerCase().includes(queryVal)
-    ) {
-      return true
-    }
-    return false
-  }
-
-  const handleSearch = (text): void => {
-    const formattedQuery = text.toLowerCase()
-    const val = filter(sortedItems, (currency) => {
-      return contains(currency, formattedQuery)
-    })
-    console.log(text)
-    console.log(val)
-    setQuery(text)
-    setData(val)
-  }
-
-  const onSelectionPress = (item) => {
+  const onSelectionPress = (item): void => {
     console.log(item)
     setSelectedCurrency(item.code)
     navigation.navigate("SettingsTab")
@@ -64,7 +28,7 @@ const SelectedCurrencyScreen = (): JSX.Element => {
       <View style={{ marginVertical: 60 }}>
         <View style={[styles.wrapper, { borderColor: pickedColor }]}>
           <View>
-            {data.map((item, index) => {
+            {sortedItems.map((item, index) => {
               return (
                 <View key={item.code}>
                   <TouchableOpacity
@@ -72,6 +36,7 @@ const SelectedCurrencyScreen = (): JSX.Element => {
                       padding: 20,
                       flexDirection: "row",
                       justifyContent: "space-between",
+                      alignItems: "center",
                     }}
                     onPress={() => onSelectionPress(item)}
                   >
@@ -101,7 +66,7 @@ const SelectedCurrencyScreen = (): JSX.Element => {
                       </View>
                     )}
                   </TouchableOpacity>
-                  {index !== data.length - 1 && (
+                  {index !== sortedItems.length - 1 && (
                     <View
                       style={{
                         height: 1,
@@ -112,6 +77,26 @@ const SelectedCurrencyScreen = (): JSX.Element => {
                 </View>
               )
             })}
+          </View>
+        </View>
+        <View style={{ marginVertical: 20, padding: 20 }}>
+          <Text style={{ color: textColor, textAlign: "center" }}>
+            At the moment, we only currently support the above list of
+            international currencies. If there is a currency you would like us
+            to support
+          </Text>
+          <View style={{ alignItems: "center" }}>
+            <Link
+              _text={{
+                _light: {
+                  color: "cyan.500",
+                },
+                color: "cyan.300",
+              }}
+              href="https://github.com/colinfran/kwallet/issues"
+            >
+              please submit an issue here
+            </Link>
           </View>
         </View>
       </View>

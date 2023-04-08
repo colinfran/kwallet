@@ -11,7 +11,7 @@
     "preset": "jest-expo"
   },
   "dependencies": {
-    "@colinfran/animated-charts": "^1.0.0",
+    "@colinfran/animated-charts": "1.1.4",
     "@expo/vector-icons": "^13.0.0",
     "@kaspa/grpc-web": "^1.0.2",
     "@kaspa/wallet": "^1.4.24",

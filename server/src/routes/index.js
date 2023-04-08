@@ -54,9 +54,9 @@ route.get("/storage", async (req, res) => {
 
 /**
  * @route GET /api/logs
- * @desc get Coingecko data that is currently stored locally
+ * @desc return logs
  * @access Private
- * @returns {object} 200 - the Coingecko Kaspa data that is stored locally
+ * @returns {file} 200 -  the log file
  * @returns {Error}  500 - Unexpected error
  */
 route.get("/logs", async (req, res) => {
@@ -65,7 +65,6 @@ route.get("/logs", async (req, res) => {
   }
   try {
     let pathStr = path.join(__dirname, "../../default.log")
-
     return res.sendFile(pathStr)
   } catch (err) {
     console.log(err)

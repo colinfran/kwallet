@@ -35,25 +35,24 @@ const BottomTabNavigator = (): JSX.Element => {
     pickedColor,
     wallets,
     selectedWalletIndex,
-    graphData,
     setGraphData,
     getGraphData,
     setWalletBalance,
     selectedCurrency,
-    setSelectedCurrency,
   } = useContext(DataContext)
   const [hasConnection, setConnection] = useState(false)
 
   useEffect(() => {
     const getLineGraphData = async (): Promise<void> => {
       const response = await getGraphData()
+      console.log(Number(response.currentPrice).toFixed(7))
       if (response && !response.error && response.currentPrice) {
         setGraphData(response)
       }
     }
     getLineGraphData()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [selectedCurrency])
 
   useEffect(() => {
     if (hasConnection) {

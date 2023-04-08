@@ -84,7 +84,7 @@ export const DataProvider = ({ children }): JSX.Element => {
     }
   }, [graphData])
 
-  const getData = async () => {
+  const getWalletData = async () => {
     const walletData = await SecureStore.getItemAsync("wallets")
     if (walletData !== null) {
       setWallets(JSON.parse(walletData))
@@ -117,7 +117,7 @@ export const DataProvider = ({ children }): JSX.Element => {
   }
 
   useEffect(() => {
-    getData()
+    getWalletData()
   }, [])
 
   return (
