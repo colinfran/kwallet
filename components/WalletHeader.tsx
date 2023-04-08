@@ -4,6 +4,8 @@ import { Skeleton, Text, Heading, useContrastText } from "native-base"
 import { DataContext } from "../providers/DataProvider"
 import DoubleButton from "./Button/DoubleButton"
 import { useNavigation } from "@react-navigation/native"
+import { getCurrencySymbol } from "./Chart"
+import { getLocales, getCalendars } from "expo-localization"
 
 const WalletAmount = (): JSX.Element => {
   const {
@@ -25,12 +27,31 @@ const WalletAmount = (): JSX.Element => {
   const { currentPrice = "0" } = apiVal
   const value = parseFloat(walletTotal) * parseFloat(currentPrice)
 
+  const deviceLanguage = getLocales()[0]
+  const locale = `${
+    deviceLanguage.languageCode
+  }-${deviceLanguage.measurementSystem.toUpperCase()}`
+
+  console.log(locale)
+
+  const format = (locale, currency, number) => {
+    console.log(currency)
+    return new Intl.NumberFormat(locale, {
+      style: "currency",
+      currency,
+      currencyDisplay: "symbol",
+    })
+  }
+
   const currencyFormatter = (val: number): string => {
-    const formatter = new Intl.NumberFormat("en-US", {
+    const symb = getCurrencySymbol(selectedCurrency)
+    const formatter = new Intl.NumberFormat(locale, {
       style: "currency",
       currency: selectedCurrency,
+      currencyDisplay: "symbol",
     })
-    return formatter.format(val)
+    const str = formatter.format(val).toString().split("$")[1]
+    return `${symb}${str}`
   }
 
   const walletTotalMonetaryValue = currencyFormatter(value)
