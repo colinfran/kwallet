@@ -51,7 +51,7 @@ const WalletAmount = (): JSX.Element => {
 
   const isLoaded = graphData
 
-  console.log(apiVal?.walletBalance)
+  // console.log(apiVal?.walletBalance)
 
   const walletTotal = apiVal?.walletBalance?.available || 0
 
@@ -63,8 +63,6 @@ const WalletAmount = (): JSX.Element => {
   const locale = `${
     deviceLanguage.languageCode
   }-${deviceLanguage.measurementSystem.toUpperCase()}`
-  console.log("deviceLanguage", deviceLanguage)
-  console.log("locale", locale)
 
   const currencyFormatter = (val: number): string => {
     const symb = getCurrencySymbol(selectedCurrency)

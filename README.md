@@ -34,6 +34,8 @@ cp .env-example .env
 cp ./server/.env-example ./server/.env
 ```
 
+After running these commands, go into the root .env file and add your computer's network IP. This is needed for when running `yarn run dev`. When you run this command, it will run with your local server. When testing with local server and an external device, the device needs to be able to send requests to the local server.
+
 
 ### run app with local server
 To run the Expo app with local server, you will need to have two terminal instances open. 
