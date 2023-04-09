@@ -39,6 +39,7 @@ const ScanQr = (): JSX.Element => {
           borderColor: "#fff",
           borderWidth: 10,
           borderRadius: 20,
+
         }}
       />
       <View style={{ position: "absolute", left: 0, right: 0, top: "15%" }}>

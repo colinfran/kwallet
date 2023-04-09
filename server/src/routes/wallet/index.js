@@ -76,7 +76,7 @@ route.post("/send", async (req, res) => {
     console.log("invalid apiKey")
     return res.status(401).send("unauthorized")
   }
-  const { encryptedMnemonic, password, amount, maxFee } = req.body
+  const { encryptedMnemonic, password, amount, fee, address } = req.body
   try {
     const wallet = await Wallet.import(password, encryptedMnemonic, {
       network,
@@ -89,9 +89,21 @@ route.post("/send", async (req, res) => {
         amount, // amount in base units
         fee, // user fees
       })
-      if (!response) console.log("general error")
+      if (!response) {
+        return res.status(500).send({
+          error: true,
+          errorMessage: error.toString(),
+          errorDesrciption: "Error message",
+        })
+      }
       // if kaspad returns null (should never occur)
-      else console.log("success:", txid)
+      else {
+        return res.json({
+          error: false,
+          success: true,
+          txid: response.txid,
+        })
+      }
     } catch (error) {
       console.log(error.toString())
       return res.status(500).send({
@@ -114,37 +126,7 @@ route.post("/transactions", async (req, res) => {
     console.log("invalid apiKey")
     return res.status(401).send("unauthorized")
   }
-  const { encryptedMnemonic, password } = req.body
-  try {
-    const wallet = await Wallet.import(password, encryptedMnemonic, {
-      network,
-      rpc,
-    })
-    wallet.sync(true)
-    try {
-      let response = await this.wallet.submitTransaction({
-        address, // destination address
-        amount, // amount in base units
-        fee, // user fees
-      })
-      if (!response) console.log("general error")
-      // if kaspad returns null (should never occur)
-      else console.log("success:", txid)
-    } catch (error) {
-      console.log(error.toString())
-      return res.status(500).send({
-        error: true,
-        errorMessage: error.toString(),
-        errorDesrciption: "Error message",
-      })
-    }
-  } catch (error) {
-    return res.status(500).send({
-      error: true,
-      errorMessage: error.toString(),
-      errorDesrciption: "Error message",
-    })
-  }
+  const { encryptedMnemonic, password, address, amount, fee } = req.body
 })
 
 route.get("/*", async (req, res) => {
