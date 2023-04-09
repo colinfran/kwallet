@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { Ionicons } from "@expo/vector-icons"
 import {
   Box,
@@ -8,10 +9,18 @@ import {
   useContrastText,
   Actionsheet,
   Icon,
+  WarningOutlineIcon,
 } from "native-base"
 
 import React, { useContext, useEffect, useState } from "react"
-import { View, StyleSheet, Text, Alert, Dimensions } from "react-native"
+import {
+  View,
+  StyleSheet,
+  Text,
+  Alert,
+  Dimensions,
+  KeyboardAvoidingView,
+} from "react-native"
 import { FontAwesome5, MaterialIcons } from "@expo/vector-icons"
 import { DataContext } from "../../providers/DataProvider"
 import opacity from "hex-color-opacity"
@@ -30,12 +39,17 @@ const Send = ({ route }): JSX.Element => {
   const [isOpen, setIsOpen] = useState(false)
   const [submissionStatus, setSubmissionStatus] = useState("loading")
 
+  const [addressError, setAddressError] = useState(false)
+  const [amountError, setAmountError] = useState(false)
+  const [feeError, setFeeError] = useState(false)
+
   const {
     pickedColor,
     textColor,
     backgroundColor,
     wallets,
     selectedWalletIndex,
+    graphData,
   } = useContext(DataContext)
   const navigation = useNavigation()
 
@@ -99,6 +113,30 @@ const Send = ({ route }): JSX.Element => {
   }, [isOpen])
 
   const onButtonPress = (): void => {
+    const isAddressInvalid = address.slice(0, 10) !== "kaspatest:"
+    if (isAddressInvalid) {
+      setAddressError(true)
+    }
+
+    const numAmount = Number(amount)
+    const numFee = Number(fee)
+    const numAvailable = graphData?.walletBalance?.available
+
+    const isAmountInvalid = numAmount <= 0 || numAmount >= numAvailable
+    if (isAmountInvalid) {
+      setAmountError(true)
+    }
+
+    const isFeeInvalid = numFee >= numAvailable
+    if (isFeeInvalid) {
+      setFeeError(true)
+    }
+    if (isAddressInvalid || isAmountInvalid || isFeeInvalid) return
+    setAddressError(false)
+    setAmountError(false)
+    setFeeError(false)
+    // if (isAddressInvalid || isAmountInvalid || isFeeInvalid) return
+
     Alert.alert(
       "Submit transaction",
       // eslint-disable-next-line max-len
@@ -116,7 +154,7 @@ const Send = ({ route }): JSX.Element => {
   }
 
   return (
-    <View style={styles.container}>
+    <KeyboardAvoidingView style={styles.container}>
       <View style={{ paddingTop: 50 }}>
         <Box
           alignItems="center"
@@ -194,12 +232,32 @@ const Send = ({ route }): JSX.Element => {
             }
             placeholder="Kaspa Address"
             placeholderTextColor={textColor}
+            returnKeyType="done"
             size="2xl"
             value={address}
             w="100%"
             onChangeText={(text) => setAddress(text)}
           />
         </Box>
+        <View style={{ justifyContent: "center", marginTop: 10 }}>
+          {addressError ? (
+            <View
+              style={{
+                justifyContent: "center",
+                flexDirection: "row",
+                alignItems: "center",
+                gap: 20,
+              }}
+            >
+              <WarningOutlineIcon color={"error.500"} size="xs" />
+              <Text style={{ color: "#ef4444", width: "80%" }}>
+                {`Invalid address. Please make sure your address has the prefix "kaspa:"`}
+              </Text>
+            </View>
+          ) : (
+            <View style={{ height: 34 }} />
+          )}
+        </View>
       </View>
       <View style={{ paddingTop: 20 }}>
         <Box
@@ -262,6 +320,25 @@ const Send = ({ route }): JSX.Element => {
             onChangeText={(val) => setAmount(val)}
           />
         </Box>
+        <View style={{ justifyContent: "center", marginTop: 10 }}>
+          {amountError ? (
+            <View
+              style={{
+                justifyContent: "center",
+                flexDirection: "row",
+                alignItems: "center",
+                gap: 20,
+              }}
+            >
+              <WarningOutlineIcon color={"error.500"} size="xs" />
+              <Text style={{ color: "#ef4444", width: "80%" }}>
+                {`Invalid amount`}
+              </Text>
+            </View>
+          ) : (
+            <View style={{ height: 17 }} />
+          )}
+        </View>
       </View>
       <View style={{ paddingTop: 20 }}>
         <Box
@@ -300,6 +377,25 @@ const Send = ({ route }): JSX.Element => {
             onChangeText={(val) => setFee(val)}
           />
         </Box>
+        <View style={{ justifyContent: "center", marginTop: 10 }}>
+          {feeError ? (
+            <View
+              style={{
+                justifyContent: "center",
+                flexDirection: "row",
+                alignItems: "center",
+                gap: 20,
+              }}
+            >
+              <WarningOutlineIcon color={"error.500"} size="xs" />
+              <Text style={{ color: "#ef4444", width: "80%" }}>
+                {`Invalid fee`}
+              </Text>
+            </View>
+          ) : (
+            <View style={{ height: 17 }} />
+          )}
+        </View>
       </View>
       <View style={{ paddingTop: 100 }}>
         <Button
@@ -377,7 +473,7 @@ const Send = ({ route }): JSX.Element => {
           </View>
         </Actionsheet.Content>
       </Actionsheet>
-    </View>
+    </KeyboardAvoidingView>
   )
 }
 
