@@ -13,7 +13,7 @@ const CustomYLabel = ({
   useEffect(() => {
     latestCurrentPrice.value = currentPrice
     symbol.value = currencySymbol
-  }, [currencySymbol, currentPrice])
+  }, [currencySymbol, currentPrice, latestCurrentPrice, symbol])
 
   const formatPrice = (value): any => {
     "worklet"

@@ -55,7 +55,6 @@ const WalletAmount = (): JSX.Element => {
 
   const walletTotal = apiVal?.walletBalance?.available || 0
 
-
   const { currentPrice = "0" } = apiVal
   const value = parseFloat(walletTotal) * parseFloat(currentPrice)
 

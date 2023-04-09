@@ -11,23 +11,12 @@ import {
 } from "native-base"
 
 import React, { useContext, useEffect, useState } from "react"
-import {
-  View,
-  StyleSheet,
-  useColorScheme,
-  Text,
-  Alert,
-  Dimensions,
-} from "react-native"
+import { View, StyleSheet, Text, Alert, Dimensions } from "react-native"
 import { FontAwesome5, MaterialIcons } from "@expo/vector-icons"
 import { DataContext } from "../../providers/DataProvider"
 import opacity from "hex-color-opacity"
 import * as Clipboard from "expo-clipboard"
-import {
-  DarkTheme,
-  DefaultTheme,
-  useNavigation,
-} from "@react-navigation/native"
+import { useNavigation } from "@react-navigation/native"
 import * as Sentry from "sentry-expo"
 
 import { apiKey, apiUrl } from "../../constants/index"

@@ -2,14 +2,12 @@
 import { Ionicons } from "@expo/vector-icons"
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 import { createStackNavigator } from "@react-navigation/stack"
-import React, { useContext, useEffect, useState } from "react"
-import * as Sentry from "sentry-expo"
+import React, { useContext, useEffect } from "react"
 
 import WalletsTab from "../screens/WalletsTab"
 import { BottomTabParamList, TabOneParamList, TabTwoParamList } from "../types"
 import { DataContext } from "../providers/DataProvider"
 import SettingsScreen from "../screens/SettingsTab/Settings/SettingsScreen"
-import ColorPickerScreen from "../screens/SettingsTab/Settings/ColorPickerScreen"
 import FrameworksScreen from "../screens/SettingsTab/Settings/FrameworksScreen"
 import TermsScreen from "../screens/SettingsTab/Settings/TermsScreen"
 import PrivacyPolicyScreen from "../screens/SettingsTab/Settings/PrivacyPolicyScreen"
@@ -30,15 +28,8 @@ import SelectedCurrencyScreen from "../screens/SettingsTab/Settings/SelectedCurr
 const BottomTab = createBottomTabNavigator<BottomTabParamList>()
 
 const BottomTabNavigator = (): JSX.Element => {
-  const {
-    pickedColor,
-    wallets,
-    selectedWalletIndex,
-    setGraphData,
-    getGraphData,
-    setWalletBalance,
-    selectedCurrency,
-  } = useContext(DataContext)
+  const { pickedColor, setGraphData, getGraphData, selectedCurrency } =
+    useContext(DataContext)
 
   useEffect(() => {
     const getLineGraphData = async (): Promise<void> => {

@@ -1,9 +1,9 @@
-import React, { useContext, useState } from "react"
+import React, { useContext } from "react"
 import { View, StyleSheet, Text, ScrollView } from "react-native"
 import { DataContext } from "../../../providers/DataProvider"
 import { currenciesList } from "../../../constants/currencies"
-import { CheckIcon, Input, Link } from "native-base"
-import { filter, sortBy } from "lodash"
+import { CheckIcon, Link } from "native-base"
+import { sortBy } from "lodash"
 import { TouchableOpacity } from "react-native-gesture-handler"
 import { useNavigation } from "@react-navigation/native"
 

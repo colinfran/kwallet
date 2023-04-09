@@ -19,7 +19,6 @@ import {
   Box,
   Button,
   Link,
-  Icon as NBIcon,
   Image,
 } from "native-base"
 import Svg, { Circle, Path } from "react-native-svg"

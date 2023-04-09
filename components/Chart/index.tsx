@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useReducer, useState } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import { Dimensions, View, StyleSheet } from "react-native"
 import {
   ChartDot,
@@ -130,12 +130,6 @@ const Chart = (): JSX.Element => {
     }
     return `${value}`
   }
-
-  useEffect(() => {
-    setTimeout(() => {
-      
-    }, 500);
-  }, [selectedCurrency])
 
   const [isActive, setIsActive] = useState(false)
 

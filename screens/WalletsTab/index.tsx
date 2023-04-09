@@ -40,6 +40,7 @@ const WalletsTab = (): JSX.Element => {
       setRefreshing(false)
       setSelectedGraphIndex(0)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [setSelectedGraphIndex])
 
   const [index, setIndex] = React.useState(0)
