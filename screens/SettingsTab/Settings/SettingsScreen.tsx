@@ -339,17 +339,6 @@ const SettingsScreen = (): JSX.Element => {
     <SafeAreaView>
       <ScrollView style={styles.full}>
         <View style={[styles.container]}>
-          <View style={styles.pageHeader}>
-            <Text
-              style={{
-                color: textColor,
-                fontSize: 32,
-                fontWeight: "bold",
-              }}
-            >
-              Settings
-            </Text>
-          </View>
           <View style={[styles.screen]}>
             {settingsData.map((section, i) => (
               <View key={`${i}-container`} style={[styles.sectionContainer]}>
@@ -464,27 +453,30 @@ const SettingsScreen = (): JSX.Element => {
               px={4}
               style={{ marginBottom: 30 }}
               w="100%"
+              h={Dimensions.get("window").height / 2}
             >
-              <Text style={{ fontSize: 20 }}>Select Wallet</Text>
+              <Text style={{ fontSize: 20, color: textColor, paddingBottom: 40 }}>
+                Select Wallet
+              </Text>
+              <SwipeListView
+                data={wallets}
+                renderHiddenItem={renderHiddenItem}
+                renderItem={renderItem}
+                rightOpenValue={-75}
+                scrollEnabled={false}
+                style={{ width: "100%" }}
+              />
+              <Button
+                style={{ backgroundColor: pickedColor, marginTop: 30 }}
+                w={"100%"}
+                onPress={() => {
+                  setOpenWalletPicker(false)
+                  navigation.navigate("AddWallet")
+                }}
+              >
+                Add
+              </Button>
             </Box>
-            <SwipeListView
-              data={wallets}
-              renderHiddenItem={renderHiddenItem}
-              renderItem={renderItem}
-              rightOpenValue={-75}
-              scrollEnabled={false}
-              style={{ width: "100%" }}
-            />
-            <Button
-              style={{ backgroundColor: pickedColor, marginTop: 30 }}
-              w={"100%"}
-              onPress={() => {
-                setOpenWalletPicker(false)
-                navigation.navigate("AddWallet")
-              }}
-            >
-              Add
-            </Button>
           </Actionsheet.Content>
         </Actionsheet>
       </ScrollView>
@@ -495,7 +487,7 @@ const SettingsScreen = (): JSX.Element => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: Dimensions.get("window").height < 800 ? "10%" : "18%",
+    marginTop: Dimensions.get("window").height < 800 ? "10%" : "14%",
     width: "100%",
     padding: 20,
   },
