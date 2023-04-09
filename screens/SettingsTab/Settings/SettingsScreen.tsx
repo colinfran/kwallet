@@ -449,13 +449,15 @@ const SettingsScreen = (): JSX.Element => {
         >
           <Actionsheet.Content>
             <Box
+              h={Dimensions.get("window").height / 2}
               justifyContent="center"
               px={4}
               style={{ marginBottom: 30 }}
               w="100%"
-              h={Dimensions.get("window").height / 2}
             >
-              <Text style={{ fontSize: 20, color: textColor, paddingBottom: 40 }}>
+              <Text
+                style={{ fontSize: 20, color: textColor, paddingBottom: 40 }}
+              >
                 Select Wallet
               </Text>
               <SwipeListView
