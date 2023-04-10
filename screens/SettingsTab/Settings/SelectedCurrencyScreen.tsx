@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
   },
   wrapper: {
     flex: 1,
-    borderWidth: 1,
+    borderWidth: 2,
     borderRadius: 15,
     height: "100%",
   },

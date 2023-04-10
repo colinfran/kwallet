@@ -111,7 +111,7 @@ const TransactionHistory = (): JSX.Element => {
 const styles = StyleSheet.create({
   container: {
     width: "100%",
-    borderWidth: 1,
+    borderWidth: 2,
     padding: 20,
     paddingTop: 0,
     borderRadius: 16,
@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
     height: 210,
   },
   wrapper: {
-    borderWidth: 1,
+    borderWidth: 2,
     width: "100%",
     borderRadius: 15,
     display: "flex",

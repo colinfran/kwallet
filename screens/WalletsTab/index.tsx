@@ -92,7 +92,7 @@ const WalletsTab = (): JSX.Element => {
                     height: "100%",
                     backgroundColor: pickedColor,
                     borderColor: pickedColor,
-                    borderRadius: 15,
+                    borderRadius: 12,
                   }}
                   renderLabel={({ route, focused }) => (
                     <Text
@@ -106,7 +106,7 @@ const WalletsTab = (): JSX.Element => {
                   style={{
                     backgroundColor: backgroundColor,
                     borderColor: pickedColor,
-                    borderWidth: 1,
+                    borderWidth: 2,
                     width: Dimensions.get("window").width - 40,
                     borderRadius: 15,
                     shadowColor: textColor,

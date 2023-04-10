@@ -21,6 +21,7 @@ const DoubleButton = ({
             <Button.Group
               borderColor="red"
               borderRadius={15}
+              // borderWidth={2}
               colorScheme="blue"
               pointerEvents={pointerEvents as any}
               style={buttonGroupStyle}
@@ -30,7 +31,7 @@ const DoubleButton = ({
               <Button
                 {...buttonProps}
                 pointerEvents={pointerEvents as any}
-                style={{ borderColor: pickedColor }}
+                style={{ borderColor: pickedColor, borderWidth: 2 }}
                 w="50%"
                 onPress={left.onPress}
               >
@@ -39,7 +40,7 @@ const DoubleButton = ({
               <Button
                 {...buttonProps}
                 pointerEvents={pointerEvents as any}
-                style={{ borderColor: pickedColor }}
+                style={{ borderColor: pickedColor, borderWidth: 2 }}
                 w="50%"
                 onPress={right.onPress}
               >

@@ -292,7 +292,7 @@ const Send = ({ route }): JSX.Element => {
                   style: {
                     backgroundColor: opacity(pickedColor, 0.8),
                     borderLeftColor: pickedColor,
-                    borderLeftWidth: 1,
+                    borderLeftWidth: 2,
                   },
                   _text: {
                     color: "#000",

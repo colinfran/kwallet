@@ -41,7 +41,7 @@ export const Selection = ({
       backgroundColor: backgroundColor,
       borderColor: pickedColor,
       borderRadius: 15,
-      borderWidth: 1,
+      borderWidth: 2,
       justifyContent: "center",
       alignItems: "center",
       position: "absolute",

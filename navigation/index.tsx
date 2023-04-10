@@ -1,5 +1,5 @@
-import React, { useContext, useEffect } from "react"
-import { ColorSchemeName } from "react-native"
+import React, { useContext, useEffect, useState } from "react"
+import { ColorSchemeName, View, Image } from "react-native"
 import {
   NavigationContainer,
   DefaultTheme,
@@ -23,9 +23,14 @@ import {
 import { Ionicons } from "@expo/vector-icons"
 import * as Font from "expo-font"
 import * as SplashScreen from "expo-splash-screen"
+import { Bounce } from "react-native-animated-spinkit"
+import splashImage from "../assets/images/splash.png"
 
 // If you are not familiar with React Navigation, we recommend going through the
 // "Fundamentals" guide: https://reactnavigation.org/docs/getting-started
+
+SplashScreen.preventAutoHideAsync()
+
 const Navigation = ({
   colorScheme,
 }: {
@@ -34,8 +39,6 @@ const Navigation = ({
   useEffect(() => {
     const loadResourcesAndDataAsync = async (): Promise<void> => {
       try {
-        SplashScreen.preventAutoHideAsync()
-
         // Load fonts
         await Font.loadAsync({
           ...Ionicons.font,
@@ -68,6 +71,15 @@ const Stack = createStackNavigator<RootStackParamList>()
 
 const RootNavigator = (): JSX.Element => {
   const { wallets } = useContext(DataContext)
+
+  // useEffect(() => {
+  //   if (wallets.length > 0) {
+  //     setTimeout(() => {
+  //       SplashScreen.hideAsync()
+  //     }, 100)
+  //   }
+  // }, [wallets])
+
   return (
     <Stack.Navigator
       initialRouteName={wallets.length > 0 ? "Root" : "AddWallet"}

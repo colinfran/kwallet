@@ -347,7 +347,7 @@ const SettingsScreen = (): JSX.Element => {
                     {
                       backgroundColor: backgroundColor,
                       borderColor: pickedColor,
-                      borderWidth: 1,
+                      borderWidth: 2,
                     },
                   ]}
                 >
