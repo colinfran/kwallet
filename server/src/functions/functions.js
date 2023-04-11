@@ -148,7 +148,7 @@ export const getLineGraphData = async (selectedCurrency, password, encryptedMnem
     network,
     rpc,
   })
-  wallet.sync(true)
+  await wallet.sync(true)
   const walletBalance = wallet.balance
 
   console.log(walletBalance)
