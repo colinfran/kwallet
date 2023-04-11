@@ -4,7 +4,8 @@ import moment from "moment"
 import fetch from "node-fetch"
 import { db } from "../database/index.js"
 import log from "log-to-file"
-import { Wallet, network, port, rpc, networkSync } from "../kaspa/index.js"
+import { Wallet, network, port } from "../kaspa/index.js"
+import { RPC } from "@kaspa/grpc-node"
 
 export const sleep = async (seconds) => {
   await new Promise((resolve) => setTimeout(resolve, seconds * 1000))
@@ -132,6 +133,53 @@ const isNotHTML = (str) => {
   return !/(<([^>]+)>)/.test(str)
 }
 
+const getDuration = (ts) => {
+  if (!ts) return "--:--:--"
+  let delta = Math.round(ts / 1000)
+  let sec_ = delta % 60
+  let min_ = Math.floor((delta / 60) % 60)
+  let hrs_ = Math.floor((delta / 60 / 60) % 24)
+  let days = Math.floor(delta / 60 / 60 / 24)
+
+  let sec = (sec_ < 10 ? "0" : "") + sec_
+  let min = (min_ < 10 ? "0" : "") + min_
+  let hrs = (hrs_ < 10 ? "0" : "") + hrs_
+
+  if (days && days >= 1) {
+    return `${days.toFixed(0)} day${
+      days > 1 ? "s" : ""
+    } ${hrs}h ${min}m ${sec}s`
+  } else {
+    let t = ""
+    if (hrs_) t += hrs + "h "
+    if (hrs_ || min_) {
+      t += min + "m "
+      t += sec + "s "
+    } else {
+      t += sec_.toFixed(1) + " seconds"
+    }
+    return t
+  }
+}
+
+const networkSync = (res, rpc) => {
+  return new Promise(async (resolve, reject) => {
+    const nsTs0 = Date.now()
+    console.log(`sync ... starting network sync`)
+    try {
+      await rpc.connect()
+    } catch (ex) {
+      console.log(ex.toString())
+      return res.status(500).send(ex)
+    }
+    const nsDelta = Date.now() - nsTs0
+    console.log(
+      `sync ... finished (network sync done in ${getDuration(nsDelta)})`
+    )
+    resolve()
+  })
+}
+
 export const getLineGraphData = async (
   selectedCurrency,
   password,
@@ -149,9 +197,10 @@ export const getLineGraphData = async (
   )
   const appStatus = await getAppStatus()
 
-  await networkSync(res)
-
   let wallet = null
+  let rpc = new RPC({ clientConfig: { host: "127.0.0.1:" + port } })
+  await networkSync(res, rpc)
+
   try {
     wallet = await Wallet.import(
       password,

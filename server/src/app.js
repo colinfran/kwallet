@@ -14,6 +14,7 @@ import Tracing from "@sentry/tracing"
 
 import { updateData, updateCurrentPrice, sleep } from "./functions/functions.js"
 import apiRoute from "./routes/index.js"
+import { initializeKaspa } from "./kaspa/index.js"
 
 const app = express()
 const server = http.createServer(app)
@@ -58,7 +59,7 @@ app.use(express.static("storage.json"))
 app.use(express.static(__dirname + "/public"))
 
 initializeDatabase()
-
+initializeKaspa()
 /* 
   Coingecko graciously provides a free public api in which we pull our 
   data from. This server periodically refreshes its local database with 
