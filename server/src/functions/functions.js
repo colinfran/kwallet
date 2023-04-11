@@ -148,6 +148,11 @@ export const getLineGraphData = async (
   )
 
   const appStatus = await getAppStatus()
+  try {
+    await rpc.connect()
+  } catch (ex) {
+    console.log(ex.toString())
+  }
   let wallet = null
   try {
     wallet = await Wallet.import(
@@ -159,22 +164,23 @@ export const getLineGraphData = async (
       },
       { disableAddressDerivation: true, syncOnce: true }
     )
+    await wallet.sync(true)
   } catch (err) {
-    console.log(
-      "Failed opening wallet. There was an issue. A possible reason for this error is that incorrect wallet information was sent."
-    )
-  }
-  try {
-    await wallet.sync(true)
-    await wallet.sync(true)
-  } catch (error) {
     console.log(
       "Failed opening wallet. There was an issue. A possible reason for this error is that incorrect wallet information was sent."
     )
   }
   const walletBalance = wallet.balance
   console.log(walletBalance)
-
+  console.log("")
+  console.log("network:", wallet.network.yellow)
+  console.log("blue score:", wallet.blueScore.cyan)
+  console.log("---")
+  console.log(
+    "current receive address:",
+    wallet.addressManager.receiveAddress.current.address.green
+  )
+  rpc.disconnect()
   return {
     appStatus: appStatus,
     currentPrice: `${currentPrice}`,
