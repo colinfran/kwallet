@@ -151,6 +151,8 @@ export const getLineGraphData = async (selectedCurrency, password, encryptedMnem
   wallet.sync(true)
   const walletBalance = wallet.balance
 
+  console.log(walletBalance)
+
   return {
     appStatus: appStatus,
     currentPrice: `${currentPrice}`,
