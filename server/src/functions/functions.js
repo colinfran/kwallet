@@ -132,7 +132,11 @@ const isNotHTML = (str) => {
   return !/(<([^>]+)>)/.test(str)
 }
 
-export const getLineGraphData = async (selectedCurrency, password, encryptedMnemonic) => {
+export const getLineGraphData = async (
+  selectedCurrency,
+  password,
+  encryptedMnemonic
+) => {
   const data1Y = JSON.parse(await db.get(`${selectedCurrency} -- 1Y`))
   const data1M = JSON.parse(await db.get(`${selectedCurrency} -- 1M`))
   const data1W = JSON.parse(await db.get(`${selectedCurrency} -- 1W`))
@@ -144,13 +148,30 @@ export const getLineGraphData = async (selectedCurrency, password, encryptedMnem
   )
 
   const appStatus = await getAppStatus()
-  const wallet = await Wallet.import(password, encryptedMnemonic, {
-    network,
-    rpc,
-  })
-  await wallet.sync(true)
+  let wallet = null
+  try {
+    wallet = await Wallet.import(
+      password,
+      encryptedMnemonic,
+      {
+        network,
+        rpc,
+      },
+      { disableAddressDerivation: true, syncOnce: true }
+    )
+  } catch (err) {
+    console.log(
+      "Failed opening wallet. There was an issue. A possible reason for this error is that incorrect wallet information was sent."
+    )
+  }
+  try {
+    await wallet.sync(true)
+  } catch (error) {
+    console.log(
+      "Failed opening wallet. There was an issue. A possible reason for this error is that incorrect wallet information was sent."
+    )
+  }
   const walletBalance = wallet.balance
-
   console.log(walletBalance)
 
   return {
