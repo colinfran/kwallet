@@ -148,11 +148,6 @@ export const getLineGraphData = async (
   )
 
   const appStatus = await getAppStatus()
-  try {
-    await rpc.connect()
-  } catch (ex) {
-    console.log(ex.toString())
-  }
   let wallet = null
   try {
     wallet = await Wallet.import(
