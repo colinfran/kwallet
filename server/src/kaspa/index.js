@@ -61,4 +61,4 @@ const networkSync = (res) => {
   })
 }
 
-export { Wallet, networkSync, rpc }
+export { Wallet, networkSync, rpc, port, network }
