@@ -147,6 +147,12 @@ export const getLineGraphData = async (
     await db.get(`${selectedCurrency} -- currentPrice`)
   )
 
+  try {
+    await rpc.connect()
+  } catch (error) {
+    console.log("Error connecting to RPC")
+  }
+
   const appStatus = await getAppStatus()
   let wallet = null
   try {

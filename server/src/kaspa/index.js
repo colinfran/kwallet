@@ -10,7 +10,7 @@ const initializeKaspa = async () => {
 const network = "kaspa"
 const { port } = Wallet.networkTypes[network].port
 const rpc = new RPC({ clientConfig: { host: "127.0.0.1:" + port } })
+initializeKaspa()
+// rpc.connect()
 
-rpc.connect()
-
-export { Wallet, network, rpc, initializeKaspa }
+export { Wallet, network, rpc }

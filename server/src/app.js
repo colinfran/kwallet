@@ -60,7 +60,6 @@ app.use(express.static("storage.json"))
 app.use(express.static(__dirname + "/public"))
 
 initializeDatabase()
-initializeKaspa()
 
 /* 
   Coingecko graciously provides a free public api in which we pull our 
