@@ -11,7 +11,6 @@ import { initializeDatabase } from "./database/index.js"
 import * as dotenv from "dotenv"
 import * as Sentry from "@sentry/node"
 import Tracing from "@sentry/tracing"
-import { Wallet, network, rpc } from "./kaspa/index.js"
 
 import { updateData, updateCurrentPrice, sleep } from "./functions/functions.js"
 import apiRoute from "./routes/index.js"
