@@ -153,6 +153,7 @@ export const getLineGraphData = async (
   try {
     console.log("Connecting to RPC.")
     await rpc.connect()
+    console.log("Successfully connected to RPC.")
   } catch (error) {
     console.log("Error connecting to RPC")
   }
@@ -168,7 +169,10 @@ export const getLineGraphData = async (
       },
       { disableAddressDerivation: true, syncOnce: true }
     )
+    console.log(wallet.receiveAddress)
+    console.log("Syncing wallet.")
     await wallet.sync(true)
+    console.log("Wallet sync finished.")
   } catch (err) {
     console.log(
       "Failed opening wallet. There was an issue. A possible reason for this error is that incorrect wallet information was sent."
