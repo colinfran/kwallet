@@ -4,11 +4,10 @@ import { RPC } from "@kaspa/grpc-node"
 
 /* Initialize Kaspa Node Framework*/
 let rpc
+const network = "kaspa"
+const { port } = Wallet.networkTypes[network].port
 
 const initializeKaspa = async () => {
-  const network = "kaspa"
-  const { port } = Wallet.networkTypes[network].port
-
   await initKaspaFramework()
   rpc = new RPC({ clientConfig: { host: "127.0.0.1:" + port } })
 }
@@ -62,4 +61,4 @@ const networkSync = (res) => {
   })
 }
 
-export { Wallet, network, port, networkSync, rpc }
+export { Wallet, networkSync, rpc }
