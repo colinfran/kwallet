@@ -1,6 +1,7 @@
 import express from "express"
 const route = express.Router()
-import { Wallet, network, rpc } from "../../kaspa/index.js"
+import { RPC } from "@kaspa/grpc-node"
+import { Wallet, network, port } from "../../kaspa/index.js"
 import { isApiKeyValid } from "../../functions/functions.js"
 /**
  * @route POST /api/wallet/create
@@ -14,11 +15,18 @@ route.post("/create", async (req, res) => {
     console.log("invalid apiKey")
     return res.status(401).send("unauthorized")
   }
+  const rpc = new RPC({ clientConfig: { host: "127.0.0.1:" + port } })
+  try {
+    console.log("Connecting to RPC.")
+    await rpc.connect()
+  } catch (error) {
+    console.log("Error connecting to RPC")
+  }
   const { password } = req.body
   try {
     const wallet = new Wallet(null, null, { network, rpc })
     const encryptedMnemonic = await wallet.export(password)
-    wallet.sync(true)
+    await wallet.sync(true)
     res.json({
       address: wallet.addressManager.getAddresses()[0].address,
       mnemonic: wallet.mnemonic,
@@ -27,12 +35,13 @@ route.post("/create", async (req, res) => {
     })
   } catch (error) {
     console.log(error.toString())
-    return res.status(500).send({
+    res.status(500).send({
       error: true,
       errorMessage: error.toString(),
       errorDesrciption: "Error message",
     })
   }
+  return rpc.disconnect()
 })
 
 /**
@@ -47,6 +56,13 @@ route.post("/import", async (req, res) => {
     console.log("invalid apiKey")
     return res.status(401).send("unauthorized")
   }
+  const rpc = new RPC({ clientConfig: { host: "127.0.0.1:" + port } })
+  try {
+    console.log("Connecting to RPC.")
+    await rpc.connect()
+  } catch (error) {
+    console.log("Error connecting to RPC")
+  }
   const { mnemonic, password } = req.body
   try {
     const wallet = Wallet.fromMnemonic(mnemonic, {
@@ -55,7 +71,7 @@ route.post("/import", async (req, res) => {
     })
     const encryptedMnemonic = await wallet.export(password)
     wallet.sync(true)
-    return res.json({
+    res.json({
       address: wallet.addressManager.getAddresses()[0].address,
       mnemonic: wallet.mnemonic,
       encryptedMnemonic: encryptedMnemonic,
@@ -63,18 +79,26 @@ route.post("/import", async (req, res) => {
     })
   } catch (error) {
     console.log(error.toString())
-    return res.status(500).send({
+    res.status(500).send({
       error: true,
       errorMessage: error.toString(),
       errorDesrciption: "Error message",
     })
   }
+  return rpc.disconnect()
 })
 
 route.post("/send", async (req, res) => {
   if (!isApiKeyValid(req.body.apiKey)) {
     console.log("invalid apiKey")
     return res.status(401).send("unauthorized")
+  }
+  const rpc = new RPC({ clientConfig: { host: "127.0.0.1:" + port } })
+  try {
+    console.log("Connecting to RPC.")
+    await rpc.connect()
+  } catch (error) {
+    console.log("Error connecting to RPC")
   }
   const { encryptedMnemonic, password, amount, fee, address } = req.body
   try {
@@ -90,7 +114,7 @@ route.post("/send", async (req, res) => {
     })
     console.log(response)
     if (!response || !response.txid) {
-      return res.status(500).send({
+      res.status(500).send({
         error: true,
         errorMessage: error.toString(),
         errorDesrciption: "Error message",
@@ -98,12 +122,13 @@ route.post("/send", async (req, res) => {
     }
   } catch (error) {
     console.log(error)
-    return res.status(500).send({
+    res.status(500).send({
       error: true,
       errorMessage: error.toString(),
       errorDesrciption: "Error message",
     })
   }
+  return rpc.disconnect()
 })
 
 route.post("/transactions", async (req, res) => {

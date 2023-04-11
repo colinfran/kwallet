@@ -3,8 +3,6 @@ import fs from "fs"
 import fetch from "node-fetch"
 import walletRoute from "./wallet/index.js"
 import { getLineGraphData, isApiKeyValid } from "../functions/functions.js"
-import { Wallet, network, rpc } from "../kaspa/index.js"
-import { db } from "../database/index.js"
 import { fileURLToPath } from "url"
 import path from "path"
 
