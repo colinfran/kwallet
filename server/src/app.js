@@ -147,7 +147,7 @@ app.use("/api", apiRoute)
 */
 const privacy = ["/privacy", "/privacy.html"]
 const terms = ["/terms", "/terms.html"]
-const index = ["/*"]
+const index = ["/", "/index", "index.html"]
 app.get([...privacy, ...terms, ...index], (req, res) => {
   if (terms.includes(req.originalUrl)) {
     res.sendFile(__dirname + "/public/terms.html")
@@ -156,6 +156,10 @@ app.get([...privacy, ...terms, ...index], (req, res) => {
   } else {
     res.sendFile(__dirname + "/public/index.html")
   }
+})
+
+app.get("/*", (req, res) => {
+  return res.status(401).send("unauthorized")
 })
 
 app.use(Sentry.Handlers.errorHandler())
