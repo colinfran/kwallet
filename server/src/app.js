@@ -14,7 +14,7 @@ import Tracing from "@sentry/tracing"
 
 import { updateData, updateCurrentPrice, sleep } from "./functions/functions.js"
 import apiRoute from "./routes/index.js"
-// import { initializeKaspa } from "./kaspa/index.js"
+import { initKaspaFramework } from "@kaspa/wallet"
 
 const app = express()
 const server = http.createServer(app)
@@ -165,6 +165,9 @@ app.get("/*", (req, res) => {
 
 app.use(Sentry.Handlers.errorHandler())
 
-server.listen(3000, () => {
+server.listen(3000, async () => {
   console.log("Listening on port 3000")
+  console.log("Kaspa Framework initialization has started.")
+  await initKaspaFramework()
+  console.log("Kaspa Framework initialization has completed.")
 })

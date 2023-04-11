@@ -1,6 +1,7 @@
 import express from "express"
 const route = express.Router()
-import { Wallet, network } from "../../kaspa/index.js"
+import { Wallet } from "@kaspa/wallet"
+import { network } from "../../kaspa/index.js"
 import { isApiKeyValid } from "../../functions/functions.js"
 /**
  * @route POST /api/wallet/create

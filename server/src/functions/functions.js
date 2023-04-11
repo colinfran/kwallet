@@ -4,8 +4,9 @@ import moment from "moment"
 import fetch from "node-fetch"
 import { db } from "../database/index.js"
 import log from "log-to-file"
-import { Wallet, network, port } from "../kaspa/index.js"
+import { network, port } from "../kaspa/index.js"
 import { RPC } from "@kaspa/grpc-node"
+import { Wallet } from "@kaspa/wallet"
 
 export const sleep = async (seconds) => {
   await new Promise((resolve) => setTimeout(resolve, seconds * 1000))
