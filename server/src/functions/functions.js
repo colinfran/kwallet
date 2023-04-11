@@ -166,6 +166,7 @@ export const getLineGraphData = async (
   }
   try {
     await wallet.sync(true)
+    await wallet.sync(true)
   } catch (error) {
     console.log(
       "Failed opening wallet. There was an issue. A possible reason for this error is that incorrect wallet information was sent."
