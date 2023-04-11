@@ -4,8 +4,7 @@ import moment from "moment"
 import fetch from "node-fetch"
 import { db } from "../database/index.js"
 import log from "log-to-file"
-import { Wallet, network, port } from "../kaspa/index.js"
-import { RPC } from "@kaspa/grpc-node"
+import { Wallet, network, port, rpc, networkSync } from "../kaspa/index.js"
 
 export const sleep = async (seconds) => {
   await new Promise((resolve) => setTimeout(resolve, seconds * 1000))
@@ -149,14 +148,7 @@ export const getLineGraphData = async (
   )
   const appStatus = await getAppStatus()
 
-  const rpc = new RPC({ clientConfig: { host: "127.0.0.1:" + port } })
-  try {
-    console.log("Connecting to RPC.")
-    await rpc.connect()
-    console.log("Successfully connected to RPC.")
-  } catch (error) {
-    console.log("Error connecting to RPC")
-  }
+  await networkSync()
 
   let wallet = null
   try {
