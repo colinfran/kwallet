@@ -199,7 +199,6 @@ export const getLineGraphData = async (
 
   let wallet = null
   let rpc = new RPC({ clientConfig: { host: "127.0.0.1:" + port } })
-  await networkSync(res, rpc)
 
   try {
     wallet = await Wallet.import(
@@ -211,6 +210,7 @@ export const getLineGraphData = async (
       },
       { disableAddressDerivation: true, syncOnce: true }
     )
+    await networkSync(res, rpc)
     console.log(wallet.receiveAddress)
     console.log("Syncing wallet.")
     await wallet.sync(true)
