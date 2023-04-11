@@ -195,7 +195,7 @@ export const getLineGraphData = async (
     )
     console.log(wallet.receiveAddress)
     console.log("Syncing wallet.")
-    await wallet.sync(true)
+    wallet.sync(true)
     console.log("Wallet sync finished.")
   } catch (err) {
     console.log(
@@ -209,10 +209,6 @@ export const getLineGraphData = async (
   console.log("network:", wallet.network.yellow)
   console.log("blue score:", wallet.blueScore.cyan)
   console.log("---")
-  console.log(
-    "current receive address:",
-    wallet.addressManager.receiveAddress.current.address.green
-  )
   return {
     appStatus: appStatus,
     currentPrice: `${currentPrice}`,
