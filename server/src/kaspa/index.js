@@ -3,14 +3,17 @@ import { Wallet, initKaspaFramework } from "@kaspa/wallet"
 import { RPC } from "@kaspa/grpc-node"
 
 /* Initialize Kaspa Node Framework*/
+let rpc
+
 const initializeKaspa = async () => {
   await initKaspaFramework()
+  rpc = new RPC({ clientConfig: { host: "127.0.0.1:" + port } })
 }
+
+initializeKaspa()
 
 const network = "kaspa"
 const { port } = Wallet.networkTypes[network].port
-initializeKaspa()
-const rpc = new RPC({ clientConfig: { host: "127.0.0.1:" + port } })
 
 const getDuration = (ts) => {
   if (!ts) return "--:--:--"
