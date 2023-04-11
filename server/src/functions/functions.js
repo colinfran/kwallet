@@ -163,24 +163,6 @@ const getDuration = (ts) => {
   }
 }
 
-const networkSync = (res, rpc) => {
-  return new Promise(async (resolve, reject) => {
-    const nsTs0 = Date.now()
-    console.log(`sync ... starting network sync`)
-    try {
-      await rpc.connect()
-    } catch (ex) {
-      console.log(ex.toString())
-      return res.status(500).send(ex)
-    }
-    const nsDelta = Date.now() - nsTs0
-    console.log(
-      `sync ... finished (network sync done in ${getDuration(nsDelta)})`
-    )
-    resolve()
-  })
-}
-
 export const getLineGraphData = async (
   selectedCurrency,
   password,
@@ -200,58 +182,60 @@ export const getLineGraphData = async (
 
   let wallet = null
   let rpc = new RPC({ clientConfig: { host: "127.0.0.1:" + port } })
-  try {
-    wallet = await Wallet.import(
-      password,
-      encryptedMnemonic,
-      {
-        network,
-        rpc,
-      },
-      { disableAddressDerivation: true, syncOnce: true }
-    )
-    await networkSync(res, rpc)
-    console.log(wallet.receiveAddress)
-    console.log("Syncing wallet.")
-    await wallet.sync(true)
-    console.log("Wallet sync finished.")
-  } catch (err) {
+  rpc.onConnect(async () => {
+    console.log("RPC has connected.")
+    try {
+      wallet = await Wallet.import(
+        password,
+        encryptedMnemonic,
+        {
+          network,
+          rpc,
+        },
+        { disableAddressDerivation: true, syncOnce: true }
+      )
+      console.log(wallet.receiveAddress)
+      console.log("Syncing wallet.")
+      await wallet.sync(true)
+      console.log("Wallet sync finished.")
+    } catch (err) {
+      console.log(
+        "Failed opening wallet. There was an issue. A possible reason for this error is that incorrect wallet information was sent."
+      )
+      res.status(500).send(err)
+    }
+    const walletBalance = wallet.balance
+    console.log(walletBalance)
+    console.log("")
+    console.log("network:", wallet.network.yellow)
+    console.log("blue score:", wallet.blueScore.cyan)
+    console.log("---")
     console.log(
-      "Failed opening wallet. There was an issue. A possible reason for this error is that incorrect wallet information was sent."
+      "current receive address:",
+      wallet.addressManager.receiveAddress.current.address.green
     )
-    res.status(500).send(err)
-  }
-  const walletBalance = wallet.balance
-  console.log(walletBalance)
-  console.log("")
-  console.log("network:", wallet.network.yellow)
-  console.log("blue score:", wallet.blueScore.cyan)
-  console.log("---")
-  console.log(
-    "current receive address:",
-    wallet.addressManager.receiveAddress.current.address.green
-  )
-  rpc.disconnect()
-  return {
-    appStatus: appStatus,
-    currentPrice: `${currentPrice}`,
-    day: {
-      prices: data1D,
-    },
-    week: {
-      prices: data1W,
-    },
-    month: {
-      prices: data1M,
-    },
-    year: {
-      prices: data1Y,
-    },
-    all: {
-      prices: dataALL,
-    },
-    walletData: {
-      balance: walletBalance,
-    },
-  }
+    rpc.disconnect()
+    return {
+      appStatus: appStatus,
+      currentPrice: `${currentPrice}`,
+      day: {
+        prices: data1D,
+      },
+      week: {
+        prices: data1W,
+      },
+      month: {
+        prices: data1M,
+      },
+      year: {
+        prices: data1Y,
+      },
+      all: {
+        prices: dataALL,
+      },
+      walletData: {
+        balance: walletBalance,
+      },
+    }
+  })
 }

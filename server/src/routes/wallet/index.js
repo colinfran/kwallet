@@ -16,7 +16,6 @@ route.post("/create", async (req, res) => {
     return res.status(401).send("unauthorized")
   }
 
-  await networkSync()
   const { password } = req.body
   try {
     const wallet = new Wallet(null, null, { network, rpc })
@@ -36,7 +35,7 @@ route.post("/create", async (req, res) => {
       errorDesrciption: "Error message",
     })
   }
-  return rpc.disconnect()
+  return
 })
 
 /**
@@ -51,7 +50,6 @@ route.post("/import", async (req, res) => {
     console.log("invalid apiKey")
     return res.status(401).send("unauthorized")
   }
-  await networkSync()
   const { mnemonic, password } = req.body
   try {
     const wallet = Wallet.fromMnemonic(mnemonic, {
@@ -74,7 +72,7 @@ route.post("/import", async (req, res) => {
       errorDesrciption: "Error message",
     })
   }
-  return rpc.disconnect()
+  return
 })
 
 route.post("/send", async (req, res) => {
@@ -82,7 +80,7 @@ route.post("/send", async (req, res) => {
     console.log("invalid apiKey")
     return res.status(401).send("unauthorized")
   }
-  await networkSync()
+
   const { encryptedMnemonic, password, amount, fee, address } = req.body
   try {
     const wallet = await Wallet.import(password, encryptedMnemonic, {
@@ -111,7 +109,7 @@ route.post("/send", async (req, res) => {
       errorDesrciption: "Error message",
     })
   }
-  return rpc.disconnect()
+  return
 })
 
 route.post("/transactions", async (req, res) => {
