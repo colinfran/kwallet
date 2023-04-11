@@ -25,7 +25,7 @@ route.post("/graph-data", async (req, res) => {
   try {
     const { selectedCurrency, password, encryptedMnemonic } = req.body
     return res.json(
-      await getLineGraphData(selectedCurrency, password, encryptedMnemonic)
+      await getLineGraphData(selectedCurrency, password, encryptedMnemonic, res)
     )
   } catch (error) {
     console.log(error.toString())

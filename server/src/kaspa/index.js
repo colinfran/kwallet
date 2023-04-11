@@ -41,7 +41,7 @@ const getDuration = (ts) => {
   }
 }
 
-const networkSync = () => {
+const networkSync = (res) => {
   return new Promise(async (resolve, reject) => {
     const nsTs0 = Date.now()
     console.log(`sync ... starting network sync`)
@@ -49,7 +49,7 @@ const networkSync = () => {
       await rpc.connect()
     } catch (ex) {
       console.log(ex.toString())
-      process.exit(1)
+      return res.status(500).send(ex)
     }
     const nsDelta = Date.now() - nsTs0
     console.log(
