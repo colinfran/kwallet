@@ -1,5 +1,7 @@
 # kwallet
 
+![Kaspa](https://img.shields.io/badge/KASPA-0AC18E?style=for-the-badge&logo=kaspa%20Cash&logoColor=white)
+
 ![Expo](https://img.shields.io/badge/expo-1C1E24?style=for-the-badge&logo=expo&logoColor=#D04A37)
 ![React Badge](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
 ![React Native](https://img.shields.io/badge/react_native-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
