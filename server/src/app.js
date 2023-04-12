@@ -11,10 +11,14 @@ import { initializeDatabase } from "./database/index.js"
 import * as dotenv from "dotenv"
 import * as Sentry from "@sentry/node"
 import Tracing from "@sentry/tracing"
+import subdomain from "express-subdomain"
 
 import { updateData, updateCurrentPrice, sleep } from "./functions/functions.js"
 import apiRoute from "./routes/index.js"
+import statusRoute from "./routes/status/index.js"
+
 import { initKaspaFramework } from "@kaspa/wallet"
+import { rpc } from "./kaspa/index.js"
 
 const app = express()
 const server = http.createServer(app)
@@ -158,6 +162,8 @@ app.get([...privacy, ...terms, ...index], (req, res) => {
     res.sendFile(__dirname + "/public/index.html")
   }
 })
+
+app.use(subdomain("status", statusRoute))
 
 app.get("/*", (req, res) => {
   return res.status(401).send("unauthorized")
