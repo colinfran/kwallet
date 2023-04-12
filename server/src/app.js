@@ -18,7 +18,6 @@ import apiRoute from "./routes/index.js"
 import statusRoute from "./routes/status/index.js"
 
 import { initKaspaFramework } from "@kaspa/wallet"
-import { rpc } from "./kaspa/index.js"
 
 const app = express()
 const server = http.createServer(app)
