@@ -1,8 +1,9 @@
 import express from "express"
 const route = express.Router()
 import { Wallet } from "@kaspa/wallet"
-import { network } from "../../kaspa/index.js"
 import { isApiKeyValid } from "../../functions/functions.js"
+import { network, rpc } from "../../kaspa/index.js"
+
 /**
  * @route POST /api/wallet/create
  * @desc get newly created Kaspa wallet data
@@ -18,7 +19,12 @@ route.post("/create", async (req, res) => {
 
   const { password } = req.body
   try {
-    const wallet = new Wallet(null, null, { network, rpc })
+    const wallet = new Wallet(
+      null,
+      null,
+      { network, rpc },
+      { disableAddressDerivation: true, syncOnce: true }
+    )
     const encryptedMnemonic = await wallet.export(password)
     await wallet.sync(true)
     res.json({
@@ -52,10 +58,14 @@ route.post("/import", async (req, res) => {
   }
   const { mnemonic, password } = req.body
   try {
-    const wallet = Wallet.fromMnemonic(mnemonic, {
-      network,
-      rpc,
-    })
+    const wallet = Wallet.fromMnemonic(
+      mnemonic,
+      {
+        network,
+        rpc,
+      },
+      { disableAddressDerivation: true, syncOnce: true }
+    )
     const encryptedMnemonic = await wallet.export(password)
     wallet.sync(true)
     res.json({
@@ -83,10 +93,15 @@ route.post("/send", async (req, res) => {
 
   const { encryptedMnemonic, password, amount, fee, address } = req.body
   try {
-    const wallet = await Wallet.import(password, encryptedMnemonic, {
-      network,
-      rpc,
-    })
+    const wallet = await Wallet.import(
+      password,
+      encryptedMnemonic,
+      {
+        network,
+        rpc,
+      },
+      { disableAddressDerivation: true, syncOnce: true }
+    )
     // console.log(req.body)
     let response = await wallet.submitTransaction({
       toAddr: address, // destination address

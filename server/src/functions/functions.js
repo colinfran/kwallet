@@ -4,8 +4,7 @@ import moment from "moment"
 import fetch from "node-fetch"
 import { db } from "../database/index.js"
 import log from "log-to-file"
-import { network, port } from "../kaspa/index.js"
-import { RPC } from "@kaspa/grpc-node"
+import { network, port, rpc } from "../kaspa/index.js"
 import { Wallet } from "@kaspa/wallet"
 
 export const sleep = async (seconds) => {
@@ -163,6 +162,20 @@ const getDuration = (ts) => {
   }
 }
 
+const getRPCBalance = async (address) => {
+  console.log("here")
+  if (rpc === null) throw new Error("RPC not initialized")
+  let res = await rpc.getUtxosByAddresses([address])
+  if (res.error) {
+    return { balance: null, utxoCount: null, error: res.error.message }
+  }
+  let balance = 0
+  for (let utxo of res.entries) {
+    balance += parseInt(utxo.utxoEntry.amount)
+  }
+  return { balance, utxoCount: res.entries.length, error: null }
+}
+
 export const getLineGraphData = async (
   selectedCurrency,
   password,
@@ -181,7 +194,6 @@ export const getLineGraphData = async (
   const appStatus = await getAppStatus()
 
   let wallet = null
-  let rpc = new RPC({ clientConfig: { host: "127.0.0.1:" + port } })
   // console.log("RPC has connected.")
   try {
     wallet = await Wallet.import(
@@ -193,22 +205,27 @@ export const getLineGraphData = async (
       },
       { disableAddressDerivation: true, syncOnce: true }
     )
-    console.log(wallet.receiveAddress)
-    console.log("Syncing wallet.")
-    wallet.sync(true)
-    console.log("Wallet sync finished.")
+    // console.log(wallet)
+    wallet.setLogLevel("debug")
+    let w_address = wallet.receiveAddress
+    console.log("address", w_address)
+    console.log("address-test", wallet.addressManager.receiveAddress.current.address)
+    // console.log("Wallet sync finished.")
+
   } catch (err) {
     console.log(
       "Failed opening wallet. There was an issue. A possible reason for this error is that incorrect wallet information was sent."
     )
     res.status(500).send(err)
   }
-  const walletBalance = wallet.balance
-  console.log(walletBalance)
+
+  // const walletBalance = wallet.balance
+  // console.log(walletBalance)
   console.log("")
-  console.log("network:", wallet.network.yellow)
-  console.log("blue score:", wallet.blueScore.cyan)
+  console.log("network:", wallet.network)
+  console.log("blue score:", wallet.blueScore)
   console.log("---")
+  // console.log(await getRPCBalance())
   return {
     appStatus: appStatus,
     currentPrice: `${currentPrice}`,
@@ -228,7 +245,7 @@ export const getLineGraphData = async (
       prices: dataALL,
     },
     walletData: {
-      balance: walletBalance,
+      balance: 0,
     },
   }
 }
