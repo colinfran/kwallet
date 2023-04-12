@@ -28,7 +28,7 @@
     <meta name="msapplication-TileImage" content="/icons/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
     <link href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" rel="stylesheet">
-    <link rel="preload" href="https://github.com/colinfran/kwallet/raw/main/assets/images/kwallet-icon-logo.png" as="image">
+    <link rel="preload" href="https://raw.githubusercontent.com/colinfran/kwallet/main/assets/images/kwallet-icon-logo-transparent.png" as="image">
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-T0NWKM54NF"></script>
     <script>
@@ -132,7 +132,6 @@
         text-align: center;
         margin: 0 0 1.45rem 0;
         padding: 0;
-        color: #000;
         font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
         font-weight: 800;
         text-rendering: optimizeLegibility;
@@ -149,7 +148,7 @@
       }
 
       .section2p {
-        color: rgba(0, 0, 0, 0.6);
+        /* color: rgba(0, 0, 0, 0.6); */
         text-align: center;
       }
 
@@ -233,7 +232,6 @@
         border-radius: 15px;
         position: relative;
         z-index: 1;
-        background: #FFFFFF;
         max-width: 360px;
         padding-top: 20px;
         text-align: center;
@@ -260,7 +258,7 @@
         outline: 0;
         background: #7fdccc;
         border: 0;
-        color: #000;
+        /* color: #000; */
         font-size: 12px;
         width: 90px;
         -webkit-transition: all 0.3 ease;
@@ -393,7 +391,7 @@
         outline: 0;
         background: #7fdccc;
         border: 0;
-        color: #000;
+        /* color: #000; */
         font-size: 12px;
         width: 90px;
         -webkit-transition: all 0.3 ease;
@@ -415,7 +413,7 @@
         -webkit-border-radius: 3px;
         -moz-border-radius: 3px;
         border-radius: 3px;
-        background-color: #000;
+        /* background-color: #000; */
         background-color: hsla(0, 0%, 20%, 0.9);
         color: #fff;
         content: attr(data-tooltip);
@@ -436,7 +434,7 @@
       }
 
       .kwalletIcon {
-        background: url(https://github.com/colinfran/kwallet/raw/main/assets/images/kwallet-icon-logo.png);
+        background: url(https://raw.githubusercontent.com/colinfran/kwallet/main/assets/images/kwallet-icon-logo-transparent.png);
         width: 100px;
         height: 100px;
         background-repeat: no-repeat, repeat;
@@ -646,6 +644,52 @@
       .showInvalidEmailMessage{
         visibility: visible !important;
       }
+
+
+      /* @media (prefers-color-scheme: light) {
+        body {
+          color: #222;
+        }
+      } */
+
+      @media (prefers-color-scheme: dark) {
+        body {
+          color: #000;
+        }
+        .section2{
+          background-color: #fff;
+        }
+        .section2div{
+          color: #000;
+        }
+        .footer{
+          background-color: #f1f3f4;
+        }
+        a {
+          color: #8ab4f8 !important;
+        }
+        a:hover, a:focus, a:active{
+          text-decoration: underline;
+          text-underline-offset: 3px;
+        }
+      }
+      @media (prefers-color-scheme: dark) {
+        body {
+          color: #fff;
+        }
+        .section2{
+          background-color: #202124;
+        }
+        .section2div{
+          color: #fff;
+        }
+        .footer{
+          background-color: #303134;
+        }
+        a {
+          color: #8ab4f8 !important;
+        }
+      }
     </style>
   </head>
   <body>
@@ -697,7 +741,7 @@
             </span>
           </div>
           <div style="margin-top: 10px;display:flex;justify-content: center;">
-            <span class="bottomspan">A product by <a href="https://colinfran.com" target="_blank" class="bottomspan">Colin Franceschini</a>
+            <span class="bottomspan footerText">A product by <a href="https://colinfran.com" target="_blank" class="bottomspan">Colin Franceschini</a>
             </span>
           </div>
         </footer>
@@ -882,6 +926,26 @@
       copyToClipboard(document.getElementById('ethString').innerHTML)
       toggleElementFade(document.getElementById("ethCopied"))
     }
+
+
+    // let body = document.querySelector("body");
+    // let content = document.getElementById("content");
+
+    // window
+    //   .matchMedia("(prefers-color-scheme: dark)")
+    //   .addEventListener("change", function (e) {
+    //     const colorScheme = e.matches ? "dark" : "light";
+    //     console.log(colorScheme);
+
+    //     if (colorScheme === "dark") {
+    //       body.className = "dark";
+    //       content.setAttribute("class", "dark");
+    //     } else {
+    //       body.className = "dark";
+
+    //       content.setAttribute("class", "light");
+    //     }
+    //   });
   </script>
   <script src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.10/dist/clipboard.min.js"></script>
