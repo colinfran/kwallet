@@ -50,6 +50,9 @@ app.use(Sentry.Handlers.tracingHandler())
 
 app.use(logger("dev"))
 app.use(express.json())
+app.sub_test = express.Router()
+app.use(subdomain("status", app.sub_test))
+
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 
@@ -163,7 +166,13 @@ app.get([...privacy, ...terms, ...index], (req, res) => {
   }
 })
 
-app.use(subdomain("status", statusRoute))
+app.sub_test.get("/", (req, res) => {
+  return res.send("Subdomain working")
+})
+
+app.sub_test.get("/*", (req, res) => {
+  return res.status(401).send("unauthorized")
+})
 
 app.get("/*", (req, res) => {
   return res.status(401).send("unauthorized")
