@@ -15,7 +15,6 @@ import subdomain from "express-subdomain"
 
 import { updateData, updateCurrentPrice, sleep } from "./functions/functions.js"
 import apiRoute from "./routes/index.js"
-import statusRoute from "./routes/status/index.js"
 
 import { initKaspaFramework } from "@kaspa/wallet"
 
@@ -49,8 +48,8 @@ app.use(Sentry.Handlers.tracingHandler())
 
 app.use(logger("dev"))
 app.use(express.json())
-app.sub_test = express.Router()
-app.use(subdomain("status", app.sub_test))
+app.subdomain_app = express.Router()
+app.use(subdomain("status", app.subdomain_app))
 
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
@@ -165,11 +164,11 @@ app.get([...privacy, ...terms, ...index], (req, res) => {
   }
 })
 
-app.sub_test.get("/", (req, res) => {
-  return res.send("Subdomain working")
+app.subdomain_app.get("/", (req, res) => {
+  return res.sendFile(__dirname + "/routes/status/index.html")
 })
 
-app.sub_test.get("/*", (req, res) => {
+app.subdomain_app.get("/*", (req, res) => {
   return res.status(401).send("unauthorized")
 })
 
