@@ -4081,11 +4081,6 @@ text-table@^0.2.0:
   resolved "https://registry.npmjs.org/text-table/-/text-table-0.2.0.tgz#7f5ee823ae805207c00af2df4a84ec3fcfa570b4"
   integrity sha512-N+8UisAXDGk8PFXP4HAzVR9nbfmVJ3zYLAWiTIoqC5v5isinhr+r5uaO8+7r3BMfuNIufIsA7RdpVgacC2cSpw==
 
-timers@^0.1.1:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/timers/-/timers-0.1.1.tgz#86ac5c78c1ee419694f35a58de4fd4183cfb9c1e"
-  integrity sha512-pkJC8uIP/gxDHxNQUBUbjHyl6oZfT+ofn7tbaHW+CFIUjI+Q2MBbHcx1JSBQfhDaTcO9bNg328q0i7Vk5PismQ==
-
 to-fast-properties@^2.0.0:
   version "2.0.0"
   resolved "https://registry.npmjs.org/to-fast-properties/-/to-fast-properties-2.0.0.tgz#dc5e698cbd079265bc73e0377681a4e4e83f616e"
