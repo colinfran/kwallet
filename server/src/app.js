@@ -148,6 +148,14 @@ cron.schedule("0 */3 * * *", async () => {
 */
 app.use("/api", apiRoute)
 
+app.subdomain_app.get("/", (req, res) => {
+  return res.sendFile(__dirname + "/routes/status/index.html")
+})
+
+app.subdomain_app.get("/*", (req, res) => {
+  return res.status(401).send("unauthorized")
+})
+
 /*
   Webpage endpoint
   Returns: webpage
@@ -163,14 +171,6 @@ app.get([...privacy, ...terms, ...index], (req, res) => {
   } else {
     res.sendFile(__dirname + "/public/index.html")
   }
-})
-
-app.subdomain_app.get("/", (req, res) => {
-  return res.sendFile(__dirname + "/routes/status/index.html")
-})
-
-app.subdomain_app.get("/*", (req, res) => {
-  return res.status(401).send("unauthorized")
 })
 
 app.get("/*", (req, res) => {
