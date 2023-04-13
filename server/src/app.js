@@ -127,6 +127,7 @@ const supportedCurrencies = [
 cron.schedule("*/8 * * * *", async () => {
   for (const currency of supportedCurrencies) {
     await updateCurrentPrice(currency)
+    await sleep(20)
   }
 })
 
@@ -135,6 +136,7 @@ cron.schedule("*/15 * * * *", async () => {
   await sleep(23)
   for (const currency of supportedCurrencies) {
     await updateData("1D", currency, 23)
+    await sleep(20)
   }
 })
 
@@ -143,6 +145,7 @@ cron.schedule("*/30 * * * *", async () => {
   await sleep(33)
   for (const currency of supportedCurrencies) {
     await updateData("1W", currency, 33)
+    await sleep(20)
   }
 })
 
@@ -151,6 +154,7 @@ cron.schedule("0 * * * *", async () => {
   await sleep(121)
   for (const currency of supportedCurrencies) {
     await updateData("1M", currency, 47)
+    await sleep(20)
   }
 })
 
@@ -159,6 +163,7 @@ cron.schedule("0 */2 * * *", async () => {
   await sleep(77)
   for (const currency of supportedCurrencies) {
     await updateData("1Y", currency, 63)
+    await sleep(20)
   }
 })
 
@@ -167,6 +172,7 @@ cron.schedule("0 */3 * * *", async () => {
   await sleep(99)
   for (const currency of supportedCurrencies) {
     await updateData("ALL", currency, 73)
+    await sleep(20)
   }
 })
 
