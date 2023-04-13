@@ -12,6 +12,7 @@ import * as dotenv from "dotenv"
 import * as Sentry from "@sentry/node"
 import Tracing from "@sentry/tracing"
 import subdomain from "express-subdomain"
+import cors from "cors"
 
 import { updateData, updateCurrentPrice, sleep } from "./functions/functions.js"
 import apiRoute from "./routes/index.js"
@@ -62,6 +63,13 @@ const __dirname = path.dirname(__filename)
 app.use(express.static("storage.json"))
 
 app.use(express.static(__dirname + "/public"))
+
+var corsOptions = {
+  origin: ["http://status.kwallet.app/", "http://localhost:3000"],
+  optionsSuccessStatus: 200, // For legacy browser support
+}
+
+app.use(cors(corsOptions))
 
 initializeDatabase()
 // initializeKaspa()

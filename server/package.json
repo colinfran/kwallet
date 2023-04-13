@@ -18,6 +18,7 @@
     "@sentry/tracing": "^7.47.0",
     "cookie-parser": "~1.4.4",
     "core-js": "^3.8.1",
+    "cors": "^2.8.5",
     "debug": "~2.6.9",
     "dotenv": "^16.0.3",
     "express": "~4.16.1",
