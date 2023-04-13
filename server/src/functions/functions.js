@@ -133,49 +133,6 @@ const isNotHTML = (str) => {
   return !/(<([^>]+)>)/.test(str)
 }
 
-const getDuration = (ts) => {
-  if (!ts) return "--:--:--"
-  let delta = Math.round(ts / 1000)
-  let sec_ = delta % 60
-  let min_ = Math.floor((delta / 60) % 60)
-  let hrs_ = Math.floor((delta / 60 / 60) % 24)
-  let days = Math.floor(delta / 60 / 60 / 24)
-
-  let sec = (sec_ < 10 ? "0" : "") + sec_
-  let min = (min_ < 10 ? "0" : "") + min_
-  let hrs = (hrs_ < 10 ? "0" : "") + hrs_
-
-  if (days && days >= 1) {
-    return `${days.toFixed(0)} day${
-      days > 1 ? "s" : ""
-    } ${hrs}h ${min}m ${sec}s`
-  } else {
-    let t = ""
-    if (hrs_) t += hrs + "h "
-    if (hrs_ || min_) {
-      t += min + "m "
-      t += sec + "s "
-    } else {
-      t += sec_.toFixed(1) + " seconds"
-    }
-    return t
-  }
-}
-
-const getRPCBalance = async (address) => {
-  console.log("here")
-  if (rpc === null) throw new Error("RPC not initialized")
-  let res = await rpc.getUtxosByAddresses([address])
-  if (res.error) {
-    return { balance: null, utxoCount: null, error: res.error.message }
-  }
-  let balance = 0
-  for (let utxo of res.entries) {
-    balance += parseInt(utxo.utxoEntry.amount)
-  }
-  return { balance, utxoCount: res.entries.length, error: null }
-}
-
 export const getLineGraphData = async (
   selectedCurrency,
   password,

@@ -1,8 +1,4 @@
 import express from "express"
-import fs from "fs"
-import fetch from "node-fetch"
-import walletRoute from "./wallet/index.js"
-import { getLineGraphData, isApiKeyValid } from "../functions/functions.js"
 import { fileURLToPath } from "url"
 import path from "path"
 
@@ -11,107 +7,26 @@ const __dirname = path.dirname(__filename)
 
 const route = express.Router()
 
+const privacy = ["/privacy", "/privacy.html"]
+const terms = ["/terms", "/terms.html"]
+const index = ["/", "/index", "index.html"]
+
 /**
- * @route GET /api/data
- * @desc get data
- * @access Private
+ * @route GET root webpages
+ * @desc get root webpages
+ * @access Public
  * @returns {object} 200 - graph data and data associated with wallet
  * @returns {Error}  500 - Unexpected error
  */
-route.post("/graph-data", async (req, res) => {
-  if (!isApiKeyValid(req.body.apiKey)) {
-    return res.status(401).send("unauthorized")
-  }
-  try {
-    const { selectedCurrency, password, encryptedMnemonic } = req.body
-    return res.json(
-      await getLineGraphData(selectedCurrency, password, encryptedMnemonic, res)
-    )
-  } catch (error) {
-    console.log(error.toString())
-    return res.status(500).send(error)
+route.get([...privacy, ...terms, ...index], async (req, res) => {
+  if (terms.includes(req.originalUrl)) {
+    res.sendFile(__dirname + "/public/terms.html")
+  } else if (privacy.includes(req.originalUrl)) {
+    res.sendFile(__dirname + "/public/privacy.html")
+  } else {
+    res.sendFile(__dirname + "/public/index.html")
   }
 })
-
-/**
- * @route GET /api/storage
- * @desc get Coingecko data that is currently stored locally
- * @access Private
- * @returns {object} 200 - the Coingecko Kaspa data that is stored locally
- * @returns {Error}  500 - Unexpected error
- */
-route.get("/storage", async (req, res) => {
-  if (!isApiKeyValid(req.query.apiKey)) {
-    return res.status(401).send("unauthorized")
-  }
-  try {
-    const data = fs.readFileSync("./storage.json", "utf8")
-    return res.json(JSON.parse(data))
-  } catch (err) {
-    console.log(err)
-  }
-})
-
-/**
- * @route GET /api/logs
- * @desc return logs
- * @access Private
- * @returns {file} 200 -  the log file
- * @returns {Error}  500 - Unexpected error
- */
-route.get("/logs", async (req, res) => {
-  if (!isApiKeyValid(req.query.apiKey)) {
-    return res.status(401).send("unauthorized")
-  }
-  try {
-    let pathStr = path.join(__dirname, "../../default.log")
-    return res.sendFile(pathStr)
-  } catch (err) {
-    console.log(err)
-  }
-})
-
-/**
- * @route GET /api/email-sign-up
- * @desc add signup email and date to google sheet
- * @access Public
- * @returns {object} 200 - successfully added to google sheet
- * @returns {Error}  500 - Unexpected error
- */
-route.post("/email-sign-up", async (req, res) => {
-  const { email } = req.body
-  const formData = new URLSearchParams({
-    Email: email,
-    Time: new Date().toISOString(),
-  })
-  try {
-    const response = await fetch(
-      // eslint-disable-next-line max-len
-      "https://script.google.com/macros/s/AKfycbyv4akZsp_uvIG6hvoHibjqNEDHfaOysj9nZm9iBIlytpNn7zc8pANIFvM11EsCF_tK3A/exec",
-      {
-        method: "POST",
-        body: formData,
-      }
-    )
-    res.send(response)
-  } catch (error) {
-    res.status(401)
-    console.log(error.toString())
-  }
-})
-
-/**
- * @route GET /api/wallet
- * @desc router for wallets
- *        - create
- *        - import
- *        - send
- *        - transactions
- * @access Private
- * @returns {object} 200 - wallet data
- * @returns {Error}  500 - Unexpected error
- */
-route.use("/wallet", walletRoute)
 
 route.get("/*", async (req, res) => {
   return res.status(401).send("unauthorized")

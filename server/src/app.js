@@ -13,7 +13,9 @@ import * as Sentry from "@sentry/node"
 import Tracing from "@sentry/tracing"
 import cors from "cors"
 import rateLimit from "express-rate-limit"
-import apiRoute from "./routes/index.js"
+
+import apiRoute from "./routes/api/index.js"
+import rootRoute from "./routes/index.js"
 
 import { initKaspaFramework } from "@kaspa/wallet"
 import { initializeCronJobs } from "./cron/index.js"
@@ -68,31 +70,16 @@ initializeDatabase()
 initializeCronJobs()
 
 /*
-  Api endpoint
+  Api endpoints
   Returns: graph data and wallet data
 */
 app.use("/api", apiRoute)
 
 /*
-  Webpage endpoint
-  Returns: webpage
+  Webpage endpoints
+  Returns: webpages
 */
-const privacy = ["/privacy", "/privacy.html"]
-const terms = ["/terms", "/terms.html"]
-const index = ["/", "/index", "index.html"]
-app.get([...privacy, ...terms, ...index], (req, res) => {
-  if (terms.includes(req.originalUrl)) {
-    res.sendFile(__dirname + "/public/terms.html")
-  } else if (privacy.includes(req.originalUrl)) {
-    res.sendFile(__dirname + "/public/privacy.html")
-  } else {
-    res.sendFile(__dirname + "/public/index.html")
-  }
-})
-
-app.get("/*", (req, res) => {
-  return res.status(401).send("unauthorized")
-})
+app.use("/", rootRoute)
 
 app.use(Sentry.Handlers.errorHandler())
 
