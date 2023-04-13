@@ -92,7 +92,7 @@ const getGraphData = async (timestamp, currency) => {
     let fixedPrices = []
     for (var i = 0; i < prices.length; i++) {
       const item = prices[i]
-      fixedPrices.push({ timestamp: item[0], value: item[1] })
+      fixedPrices.push({ x: item[0], y: item[1] })
     }
     return fixedPrices
   } catch (error) {
