@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 import express from "express"
 import path from "path"
@@ -13,6 +14,7 @@ import * as Sentry from "@sentry/node"
 import Tracing from "@sentry/tracing"
 import subdomain from "express-subdomain"
 import cors from "cors"
+import rateLimit from "express-rate-limit"
 
 import { updateData, updateCurrentPrice, sleep } from "./functions/functions.js"
 import apiRoute from "./routes/index.js"
@@ -46,6 +48,17 @@ Sentry.init({
 app.use(Sentry.Handlers.requestHandler())
 // TracingHandler creates a trace for every incoming request
 app.use(Sentry.Handlers.tracingHandler())
+
+const limiter = rateLimit({
+  windowMs: 10 * 60 * 1000, // 10 minutes
+  max: 100, // Limit each IP to 60 requests per `window` (here, per 10 minutes)
+  standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
+  legacyHeaders: false, // Disable the `X-RateLimit-*` headers
+  message:
+    "Attention. You have exceeded the rate limit. You can only make 100 requests every 10 minutes.",
+})
+
+app.use(limiter)
 
 app.use(
   morgan("dev", {
