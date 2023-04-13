@@ -12,7 +12,6 @@ import { initializeDatabase } from "./database/index.js"
 import * as dotenv from "dotenv"
 import * as Sentry from "@sentry/node"
 import Tracing from "@sentry/tracing"
-import subdomain from "express-subdomain"
 import cors from "cors"
 import rateLimit from "express-rate-limit"
 
@@ -76,12 +75,7 @@ app.use(express.json())
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
-app.subdomain_app = express.Router()
-
-app.subdomain_app.use(cors())
 app.use(cors())
-
-app.use(subdomain("status", app.subdomain_app))
 
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
@@ -215,14 +209,6 @@ app.get([...privacy, ...terms, ...index], (req, res) => {
   } else {
     res.sendFile(__dirname + "/public/index.html")
   }
-})
-
-app.subdomain_app.get("/", (req, res) => {
-  return res.sendFile(__dirname + "/routes/status/index.html")
-})
-
-app.subdomain_app.get("/*", (req, res) => {
-  return res.status(401).send("unauthorized")
 })
 
 app.get("/*", (req, res) => {
