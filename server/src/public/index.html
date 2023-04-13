@@ -249,6 +249,8 @@
         font-size: 12px;
         border-top-left-radius: 15px;
         border-bottom-left-radius: 15px;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
       }
 
       .form button {
@@ -644,14 +646,7 @@
         visibility: visible !important;
       }
 
-
-      /* @media (prefers-color-scheme: light) {
-        body {
-          color: #222;
-        }
-      } */
-
-      @media (prefers-color-scheme: dark) {
+      @media (prefers-color-scheme: light) {
         body {
           color: #000;
         }
@@ -659,7 +654,7 @@
           background-color: #fff;
         }
         .section2div{
-          color: #000;
+          color: #000 !important;
         }
         .footer{
           background-color: #f1f3f4;
@@ -674,6 +669,9 @@
         .form input{
           color: #000;
         }
+        #submit, #donateButton{
+          color: #000;
+        }
       }
       @media (prefers-color-scheme: dark) {
         body {
@@ -683,7 +681,7 @@
           background-color: #202124;
         }
         .section2div{
-          color: #fff;
+          color: #fff !important;
         }
         .footer{
           background-color: #303134;
@@ -697,6 +695,9 @@
         }
         .form input{
           color: #fff;
+        }
+        #submit, #donateButton{
+          color: #000;
         }
       }
     </style>
