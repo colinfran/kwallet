@@ -49,7 +49,15 @@ app.use(Sentry.Handlers.tracingHandler())
 
 app.use(logger("dev"))
 app.use(express.json())
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
+
 app.subdomain_app = express.Router()
+
+app.subdomain_app.use(cors())
+app.use(cors())
+
 app.use(subdomain("status", app.subdomain_app))
 
 app.use(express.urlencoded({ extended: false }))
@@ -57,24 +65,9 @@ app.use(cookieParser())
 
 app.use(bodyParser.json())
 
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
-
 app.use(express.static("storage.json"))
 
 app.use(express.static(__dirname + "/public"))
-
-var corsOptions = {
-  origin: [
-    "https://status.kwallet.app/",
-    "https://kwallet.app/",
-    "http://localhost:3000",
-  ],
-  optionsSuccessStatus: 200, // For legacy browser support
-}
-
-app.use(cors(corsOptions))
-app.subdomain_app.use(cors(corsOptions))
 
 initializeDatabase()
 // initializeKaspa()
