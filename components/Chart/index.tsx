@@ -154,10 +154,7 @@ const Chart = (): JSX.Element => {
         <View>
           <ChartPathProvider
             data={{
-              points: data.map(({ timestamp, value }) => ({
-                x: timestamp,
-                y: value,
-              })),
+              points: data,
               smoothingStrategy: "bezier",
             }}
             nowData={{
