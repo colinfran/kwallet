@@ -62,6 +62,7 @@ const __dirname = path.dirname(__filename)
 app.use(express.static("storage.json"))
 
 app.use(express.static(__dirname + "/public"))
+app.subdomain_app.use(express.static(__dirname + "/public"))
 
 initializeDatabase()
 // initializeKaspa()
