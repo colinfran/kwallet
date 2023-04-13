@@ -4,7 +4,7 @@ import path from "path"
 import http from "http"
 import cookieParser from "cookie-parser"
 import bodyParser from "body-parser"
-import logger from "morgan"
+import morgan from "morgan"
 import cron from "node-cron"
 import { fileURLToPath } from "url"
 import { initializeDatabase } from "./database/index.js"
@@ -47,7 +47,13 @@ app.use(Sentry.Handlers.requestHandler())
 // TracingHandler creates a trace for every incoming request
 app.use(Sentry.Handlers.tracingHandler())
 
-app.use(logger("dev"))
+app.use(
+  morgan("dev", {
+    skip: (req, res) => {
+      return req.url.includes("origin=betteruptime")
+    },
+  })
+)
 app.use(express.json())
 
 const __filename = fileURLToPath(import.meta.url)
