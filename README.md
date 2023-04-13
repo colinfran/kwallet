@@ -76,3 +76,14 @@ To run the Expo app with production server, in a single terminal run:
 yarn run prod
 ```
 ***NOTE THAT IF YOU WANT TO RUN APP WITH PRODUCTION SERVER, YOU WILL NEED TO REACH OUT TO @colinfran FOR A PRODUCTION SERVER API KEY.***
+
+---
+
+Listed below are the 3rd party services used to help keep the app running smoothly.
+
+|               Service            |                   Product                 |
+|----------------------------------|-------------------------------------------|
+| Bug Tracking and Error Reporting | [Sentry.io](https://sentry.io/)           |
+|         Uptime Monitoring        | [BetterUptime](https://betteruptime.com/) |
+
+
