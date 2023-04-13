@@ -15,8 +15,13 @@ import Tracing from "@sentry/tracing"
 import subdomain from "express-subdomain"
 import cors from "cors"
 import rateLimit from "express-rate-limit"
+import { setTimeout } from "timers/promises"
 
-import { updateData, updateCurrentPrice, sleep } from "./functions/functions.js"
+const sleep = async (minutes) => {
+  await setTimeout(1000 * minutes)
+}
+
+import { updateData, updateCurrentPrice } from "./functions/functions.js"
 import apiRoute from "./routes/index.js"
 
 import { initKaspaFramework } from "@kaspa/wallet"
