@@ -65,11 +65,16 @@ app.use(express.static("storage.json"))
 app.use(express.static(__dirname + "/public"))
 
 var corsOptions = {
-  origin: ["http://status.kwallet.app/", "http://localhost:3000"],
+  origin: [
+    "https://status.kwallet.app/",
+    "https://kwallet.app/",
+    "http://localhost:3000",
+  ],
   optionsSuccessStatus: 200, // For legacy browser support
 }
 
 app.use(cors(corsOptions))
+app.subdomain_app.use(cors(corsOptions))
 
 initializeDatabase()
 // initializeKaspa()
