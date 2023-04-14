@@ -63,7 +63,6 @@ app.use(cors())
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(bodyParser.json())
-app.use(express.static("storage.json"))
 app.use(express.static(__dirname + "/public"))
 
 initializeDatabase()

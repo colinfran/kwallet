@@ -83,7 +83,7 @@ const CreateWalletStep1 = ({ navigation }): JSX.Element => {
     }
   }
 
-  const { pickedColor, textColor } = useContext(DataContext)
+  const { appColor, textColor } = useContext(DataContext)
 
   useEffect(() => {
     setIsValid(
@@ -129,7 +129,7 @@ const CreateWalletStep1 = ({ navigation }): JSX.Element => {
           <View style={styles.buttonContainer}>
             <View style={{ justifyContent: "center", alignItems: "center" }}>
               <Input
-                borderColor={pickedColor}
+                borderColor={appColor}
                 borderRadius={15}
                 color={textColor}
                 mx="3"
@@ -188,7 +188,7 @@ const CreateWalletStep1 = ({ navigation }): JSX.Element => {
                 leftIcon={
                   loading ? (
                     <Spinner
-                      color={pickedColor}
+                      color={appColor}
                       size="sm"
                       style={{
                         transform: [{ scaleX: 0.85 }, { scaleY: 0.85 }],

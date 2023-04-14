@@ -29,7 +29,7 @@ export const Selection = ({
       transform: [{ translateX: offset.value * WIDTH }],
     }
   })
-  const { pickedColor, textColor, backgroundColor } = useContext(DataContext)
+  const { appColor, textColor, backgroundColor } = useContext(DataContext)
 
   const styles = StyleSheet.create({
     container: {
@@ -39,7 +39,7 @@ export const Selection = ({
       width: WIDTH,
       height: HEIGHT,
       backgroundColor: backgroundColor,
-      borderColor: pickedColor,
+      borderColor: appColor,
       borderRadius: 15,
       borderWidth: 2,
       justifyContent: "center",

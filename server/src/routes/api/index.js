@@ -2,9 +2,21 @@ import express from "express"
 import fs from "fs"
 import fetch from "node-fetch"
 import walletRoute from "./wallet/index.js"
-import { getLineGraphData, isApiKeyValid } from "../../functions/functions.js"
+import { getAppData, isApiKeyValid } from "../../functions/functions.js"
 import { fileURLToPath } from "url"
 import path from "path"
+import moment from "moment"
+import nodemailer from "nodemailer"
+
+let transporter = nodemailer.createTransport({
+  host: "smtp.zoho.com",
+  secure: true,
+  port: 465,
+  auth: {
+    user: "colin@kwallet.app",
+    pass: "QKefmeAH8x77",
+  },
+})
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -25,7 +37,7 @@ route.post("/graph-data", async (req, res) => {
   try {
     const { selectedCurrency, password, encryptedMnemonic } = req.body
     return res.json(
-      await getLineGraphData(selectedCurrency, password, encryptedMnemonic, res)
+      await getAppData(selectedCurrency, password, encryptedMnemonic, res)
     )
   } catch (error) {
     console.log(error.toString())
@@ -64,8 +76,7 @@ route.get("/logs", async (req, res) => {
     return res.status(401).send("unauthorized")
   }
   try {
-    let pathStr = path.join(__dirname, "../../default.log")
-    return res.sendFile(pathStr)
+    return res.sendFile(path.join(__dirname, "../../default.log"))
   } catch (err) {
     console.log(err)
   }
@@ -79,6 +90,7 @@ route.get("/logs", async (req, res) => {
  * @returns {Error}  500 - Unexpected error
  */
 route.post("/email-sign-up", async (req, res) => {
+  console.log("Here")
   const { email } = req.body
   const formData = new URLSearchParams({
     Email: email,
@@ -93,7 +105,23 @@ route.post("/email-sign-up", async (req, res) => {
         body: formData,
       }
     )
-    res.send(response)
+    const html = fs
+      .readFileSync(path.join(__dirname, "/email-template.html"), "utf8")
+      .toString()
+    let result = html.replace("{{{REPLACE_WITH_DAY}}}", moment().format("dddd"))
+    const mailOptions = {
+      from: "colin@kwallet.app",
+      to: email,
+      subject: "Thanks for signing up for kwallet early access!",
+      html: result,
+    }
+    await transporter.sendMail(mailOptions, (err, info) => {
+      if (err) {
+        console.log(err)
+      } else {
+        res.send(response)
+      }
+    })
   } catch (error) {
     res.status(401)
     console.log(error.toString())

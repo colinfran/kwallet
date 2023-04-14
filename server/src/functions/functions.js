@@ -7,6 +7,19 @@ import log from "log-to-file"
 import { network, port, rpc } from "../kaspa/index.js"
 import { Wallet } from "@kaspa/wallet"
 
+const validJson = (str) => {
+  try {
+    JSON.parse(str)
+  } catch (e) {
+    return true
+  }
+  return false
+}
+
+const isNotHTML = (str) => {
+  return !/(<([^>]+)>)/.test(str)
+}
+
 export const sleep = async (seconds) => {
   await new Promise((resolve) => setTimeout(resolve, seconds * 1000))
 }
@@ -38,25 +51,17 @@ export const isApiKeyValid = (key) => {
 }
 
 export const getAppStatus = async () => {
+  const url = `https://raw.githubusercontent.com/colinfran/kwallet/main/alerts.json`
+  log(`Fetching app status from ${url}`)
   try {
-    const response = await fetch(
-      `https://raw.githubusercontent.com/colinfran/kwallet/main/alerts.json`
-    )
+    const response = await fetch(url)
     const json = await response.json()
+    await db.set("appStatus", JSON.stringify(json))
     return json
   } catch (error) {
     log(error)
     console.log(error.toString())
   }
-}
-
-const validJson = (str) => {
-  try {
-    JSON.parse(str)
-  } catch (e) {
-    return true
-  }
-  return false
 }
 
 const getGraphData = async (timestamp, currency) => {
@@ -129,11 +134,7 @@ export const updateCurrentPrice = async (selectedCurrency) => {
   sleep(17)
 }
 
-const isNotHTML = (str) => {
-  return !/(<([^>]+)>)/.test(str)
-}
-
-export const getLineGraphData = async (
+export const getAppData = async (
   selectedCurrency,
   password,
   encryptedMnemonic,
@@ -148,7 +149,7 @@ export const getLineGraphData = async (
   const currentPrice = JSON.parse(
     await db.get(`${selectedCurrency} -- currentPrice`)
   )
-  const appStatus = await getAppStatus()
+  const appStatus = JSON.parse(await db.get("appStatus"))
 
   let wallet = null
   // console.log("RPC has connected.")

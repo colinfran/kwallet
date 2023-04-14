@@ -8,7 +8,7 @@ import { TouchableOpacity } from "react-native-gesture-handler"
 import { useNavigation } from "@react-navigation/native"
 
 const SelectedCurrencyScreen = (): JSX.Element => {
-  const { textColor, pickedColor, selectedCurrency, setSelectedCurrency } =
+  const { textColor, appColor, selectedCurrency, setSelectedCurrency } =
     useContext(DataContext)
 
   const navigation = useNavigation()
@@ -26,7 +26,7 @@ const SelectedCurrencyScreen = (): JSX.Element => {
   return (
     <ScrollView style={styles.container}>
       <View style={{ marginVertical: 60 }}>
-        <View style={[styles.wrapper, { borderColor: pickedColor }]}>
+        <View style={[styles.wrapper, { borderColor: appColor }]}>
           <View>
             {sortedItems.map((item, index) => {
               return (
@@ -62,7 +62,7 @@ const SelectedCurrencyScreen = (): JSX.Element => {
                     </View>
                     {item.code === selectedCurrency && (
                       <View>
-                        <CheckIcon color={pickedColor} mt="0.5" size="5" />
+                        <CheckIcon color={appColor} mt="0.5" size="5" />
                       </View>
                     )}
                   </TouchableOpacity>
@@ -70,7 +70,7 @@ const SelectedCurrencyScreen = (): JSX.Element => {
                     <View
                       style={{
                         height: 1,
-                        backgroundColor: pickedColor,
+                        backgroundColor: appColor,
                       }}
                     />
                   )}

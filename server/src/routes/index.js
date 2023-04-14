@@ -20,11 +20,11 @@ const index = ["/", "/index", "index.html"]
  */
 route.get([...privacy, ...terms, ...index], async (req, res) => {
   if (terms.includes(req.originalUrl)) {
-    res.sendFile(__dirname + "/public/terms.html")
+    res.sendFile(path.join(__dirname + "/../public/terms.html"))
   } else if (privacy.includes(req.originalUrl)) {
-    res.sendFile(__dirname + "/public/privacy.html")
+    res.sendFile(path.join(__dirname + "/../public/privacy.html"))
   } else {
-    res.sendFile(__dirname + "/public/index.html")
+    res.sendFile(path.join(__dirname + "/../public/index.html"))
   }
 })
 

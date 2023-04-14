@@ -10,13 +10,13 @@ import ColorPicker, {
 import { DataContext } from "../../../providers/DataProvider"
 
 const ColorPickerScreen = (): JSX.Element => {
-  const { pickedColor, setPickedColor } = useContext(DataContext)
+  const { appColor, setappColor } = useContext(DataContext)
   return (
     <View style={styles.container}>
       <ColorPicker
         style={{ width: "70%" }}
-        value={pickedColor}
-        onComplete={({ hex }) => setPickedColor(hex)}
+        value={appColor}
+        onComplete={({ hex }) => setappColor(hex)}
       >
         <Preview hideInitialColor={true} />
         <Panel1 />

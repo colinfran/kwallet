@@ -18,7 +18,7 @@ const ButtonOutline = ({
   onPress,
   textColor,
 }: ButtonProps): JSX.Element => {
-  const { pickedColor, textColor: fontColor } = useContext(DataContext)
+  const { appColor, textColor: fontColor } = useContext(DataContext)
   return (
     <Button
       _text={{
@@ -26,7 +26,7 @@ const ButtonOutline = ({
           color: textColor || fontColor,
         },
       }}
-      borderColor={pickedColor}
+      borderColor={appColor}
       borderRadius={15}
       isDisabled={isDisabled}
       leftIcon={leftIcon}

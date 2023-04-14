@@ -13,7 +13,7 @@ import { DataContext } from "../../../providers/DataProvider"
 import data from "./frameworks.json"
 
 const FrameworksScreen = (): JSX.Element => {
-  const { textColor, backgroundColor, pickedColor } = useContext(DataContext)
+  const { textColor, backgroundColor, appColor } = useContext(DataContext)
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View style={{ height: "100%" }}>
@@ -49,7 +49,7 @@ const FrameworksScreen = (): JSX.Element => {
                     marginBottom: 20,
                     flexDirection: "column",
                     alignItems: "center",
-                    borderColor: pickedColor,
+                    borderColor: appColor,
                     borderWidth: 2,
                     padding: 10,
                     borderRadius: 10,

@@ -23,7 +23,7 @@ const renderScene = SceneMap({
 
 const WalletsTab = (): JSX.Element => {
   const {
-    pickedColor,
+    appColor,
     setSelectedGraphIndex,
     textColor,
     backgroundColor,
@@ -90,8 +90,8 @@ const WalletsTab = (): JSX.Element => {
                   {...props}
                   indicatorStyle={{
                     height: "100%",
-                    backgroundColor: pickedColor,
-                    borderColor: pickedColor,
+                    backgroundColor: appColor,
+                    borderColor: appColor,
                     borderRadius: 12,
                   }}
                   renderLabel={({ route, focused }) => (
@@ -105,7 +105,7 @@ const WalletsTab = (): JSX.Element => {
                   )}
                   style={{
                     backgroundColor: backgroundColor,
-                    borderColor: pickedColor,
+                    borderColor: appColor,
                     borderWidth: 2,
                     width: Dimensions.get("window").width - 40,
                     borderRadius: 15,

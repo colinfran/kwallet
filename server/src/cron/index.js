@@ -4,6 +4,7 @@ import {
   updateData,
   updateCurrentPrice,
   sleep,
+  getAppStatus,
 } from "../functions/functions.js"
 
 /* 
@@ -36,6 +37,7 @@ const initializeCronJobs = () => {
   // run every 8 minutes - currentPrice
   cron.schedule("*/8 * * * *", () => {
     const run = async () => {
+      await getAppStatus()
       for (const currency of supportedCurrencies) {
         await updateCurrentPrice(currency)
         await sleep(20)

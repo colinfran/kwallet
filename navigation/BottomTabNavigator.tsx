@@ -28,7 +28,7 @@ import SelectedCurrencyScreen from "../screens/SettingsTab/Settings/SelectedCurr
 const BottomTab = createBottomTabNavigator<BottomTabParamList>()
 
 const BottomTabNavigator = (): JSX.Element => {
-  const { pickedColor, setGraphData, getGraphData, selectedCurrency } =
+  const { appColor, setGraphData, getGraphData, selectedCurrency } =
     useContext(DataContext)
 
   useEffect(() => {
@@ -47,7 +47,7 @@ const BottomTabNavigator = (): JSX.Element => {
     <BottomTab.Navigator
       initialRouteName="TabOne"
       screenOptions={{
-        tabBarActiveTintColor: pickedColor,
+        tabBarActiveTintColor: appColor,
         headerShown: false,
       }}
     >

@@ -19,16 +19,16 @@ export const { width: SIZE } = Dimensions.get("window")
 
 const defaultData = [
   {
-    timestamp: 1679246714543,
-    value: 0.014540020460445197,
+    x: 1679246714543,
+    y: 0.014540020460445197,
   },
   {
-    timestamp: 1679247047789,
-    value: 0.014571506674731024,
+    x: 1679247047789,
+    y: 0.014571506674731024,
   },
   {
-    timestamp: 1679247288167,
-    value: 0.014452072671740143,
+    x: 1679247288167,
+    y: 0.014452072671740143,
   },
 ]
 
@@ -66,7 +66,7 @@ const getCurrencySymbol = (currency): string => {
 const Chart = (): JSX.Element => {
   const {
     graphData,
-    pickedColor,
+    appColor,
     selectedGraphIndex,
     setSelectedGraphIndex,
     textColor,
@@ -166,23 +166,23 @@ const Chart = (): JSX.Element => {
               <Labels color={textColor} isCard={false} width={SIZE} />
             )}
             <ChartPath
-              backgroundGrandient={opacity(pickedColor, 0.2)}
+              backgroundGrandient={opacity(appColor, 0.2)}
               gradientEnabled={true}
               hapticsEnabled={true}
               height={
                 Dimensions.get("window").height > 800 ? SIZE / 3 : SIZE / 3.5
               }
               selectedStrokeWidth={3}
-              stroke={pickedColor}
+              stroke={appColor}
               strokeWidth={3}
               width={SIZE}
               onActiveFunction={() => setIsActive(true)}
               onEndFunction={() => setIsActive(false)}
             />
-            <ChartDot size={16} style={{ backgroundColor: pickedColor }} />
+            <ChartDot size={16} style={{ backgroundColor: appColor }} />
             <View
               style={{
-                // backgroundColor: opacity(pickedColor, 0.2),
+                // backgroundColor: opacity(appColor, 0.2),
                 marginTop: -10,
               }}
             >

@@ -25,9 +25,9 @@ type Interval = {
 export const DataContext = createContext({
   textColor: "#000",
   backgroundColor: "#fff",
-  pickedColor: "#7fdccc",
+  appColor: "#7fdccc",
 
-  setPickedColor: (hex: string) => {},
+  setappColor: (hex: string) => {},
 
   wallets: [],
   setWallets: (newWallet: object) => {},
@@ -66,7 +66,7 @@ export const DataProvider = ({ children }): JSX.Element => {
 
   const [wallets, setWallets] = useState([])
   const [selectedWalletIndex, setSelectedWalletIndex] = useState(0)
-  const [pickedColor, setPickedColor] = useState("#7fdccc")
+  const [appColor, setappColor] = useState("#7fdccc")
 
   const [isLoaded, setIsLoaded] = useState(false)
   const [graphData, setGraphData] = useState()
@@ -135,8 +135,8 @@ export const DataProvider = ({ children }): JSX.Element => {
         selectedWalletIndex,
         setSelectedWalletIndex,
 
-        pickedColor,
-        setPickedColor,
+        appColor,
+        setappColor,
 
         isLoaded,
         setIsLoaded,

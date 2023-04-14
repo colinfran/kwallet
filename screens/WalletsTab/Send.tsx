@@ -44,7 +44,7 @@ const Send = ({ route }): JSX.Element => {
   const [feeError, setFeeError] = useState(false)
 
   const {
-    pickedColor,
+    appColor,
     textColor,
     backgroundColor,
     wallets,
@@ -170,14 +170,14 @@ const Send = ({ route }): JSX.Element => {
           <TextArea
             _focus={{
               style: {
-                backgroundColor: opacity(pickedColor, 0.4),
+                backgroundColor: opacity(appColor, 0.4),
                 color: textColor,
               },
             }}
-            borderColor={pickedColor}
+            borderColor={appColor}
             borderRadius={15}
             color={textColor}
-            focusOutlineColor={pickedColor}
+            focusOutlineColor={appColor}
             h={"24"}
             InputRightElement={
               <View style={{ flexDirection: "row", height: "100%" }}>
@@ -185,11 +185,11 @@ const Send = ({ route }): JSX.Element => {
                   _icon={{
                     as: FontAwesome5,
                     name: "paste",
-                    color: useContrastText(pickedColor),
+                    color: useContrastText(appColor),
                   }}
                   _pressed={{
                     style: {
-                      backgroundColor: opacity(pickedColor, 0.8),
+                      backgroundColor: opacity(appColor, 0.8),
                     },
                     _icon: {
                       as: FontAwesome5,
@@ -200,7 +200,7 @@ const Send = ({ route }): JSX.Element => {
                   borderRadius={0}
                   key="paste"
                   style={{
-                    backgroundColor: pickedColor,
+                    backgroundColor: appColor,
                     height: "100%",
                   }}
                   w={"12"}
@@ -210,11 +210,11 @@ const Send = ({ route }): JSX.Element => {
                   _icon={{
                     as: Ionicons,
                     name: "qr-code",
-                    color: useContrastText(pickedColor),
+                    color: useContrastText(appColor),
                   }}
                   _pressed={{
                     style: {
-                      backgroundColor: opacity(pickedColor, 0.8),
+                      backgroundColor: opacity(appColor, 0.8),
                     },
                     _icon: {
                       as: Ionicons,
@@ -224,7 +224,7 @@ const Send = ({ route }): JSX.Element => {
                   }}
                   borderRadius={0}
                   key="qr-code"
-                  style={{ backgroundColor: pickedColor }}
+                  style={{ backgroundColor: appColor }}
                   w={"12"}
                   onPress={() => navigation.navigate("ScanQr")}
                 />
@@ -274,24 +274,24 @@ const Send = ({ route }): JSX.Element => {
           <Input
             _focus={{
               style: {
-                backgroundColor: opacity(pickedColor, 0.4),
+                backgroundColor: opacity(appColor, 0.4),
                 color: textColor,
               },
             }}
-            _stack={{ style: { borderColor: pickedColor } }}
-            borderColor={pickedColor}
+            _stack={{ style: { borderColor: appColor } }}
+            borderColor={appColor}
             borderRadius={15}
             color={textColor}
-            colorScheme={pickedColor}
-            focusOutlineColor={pickedColor}
+            colorScheme={appColor}
+            focusOutlineColor={appColor}
             h={"16"}
             inputMode="decimal"
             InputRightElement={
               <Button
                 _pressed={{
                   style: {
-                    backgroundColor: opacity(pickedColor, 0.8),
-                    borderLeftColor: pickedColor,
+                    backgroundColor: opacity(appColor, 0.8),
+                    borderLeftColor: appColor,
                     borderLeftWidth: 2,
                   },
                   _text: {
@@ -299,12 +299,12 @@ const Send = ({ route }): JSX.Element => {
                   },
                 }}
                 _text={{
-                  color: useContrastText(pickedColor),
+                  color: useContrastText(appColor),
                 }}
-                borderColor={pickedColor}
+                borderColor={appColor}
                 h="full"
                 rounded="none"
-                style={{ backgroundColor: pickedColor }}
+                style={{ backgroundColor: appColor }}
                 w="1/6"
               >
                 Max
@@ -314,7 +314,7 @@ const Send = ({ route }): JSX.Element => {
             placeholder="Amount"
             placeholderTextColor={textColor}
             returnKeyType="done"
-            selectionColor={pickedColor}
+            selectionColor={appColor}
             size="2xl"
             w="100%"
             onChangeText={(val) => setAmount(val)}
@@ -355,23 +355,23 @@ const Send = ({ route }): JSX.Element => {
           <Input
             _focus={{
               style: {
-                backgroundColor: opacity(pickedColor, 0.4),
+                backgroundColor: opacity(appColor, 0.4),
                 color: textColor,
               },
             }}
-            _stack={{ style: { borderColor: pickedColor } }}
-            borderColor={pickedColor}
+            _stack={{ style: { borderColor: appColor } }}
+            borderColor={appColor}
             borderRadius={15}
             color={textColor}
-            colorScheme={pickedColor}
-            focusOutlineColor={pickedColor}
+            colorScheme={appColor}
+            focusOutlineColor={appColor}
             h={"16"}
             inputMode="decimal"
             keyboardType="number-pad"
             placeholder="Transaction Fee"
             placeholderTextColor={textColor}
             returnKeyType="done"
-            selectionColor={pickedColor}
+            selectionColor={appColor}
             size="2xl"
             w="100%"
             onChangeText={(val) => setFee(val)}
@@ -399,7 +399,7 @@ const Send = ({ route }): JSX.Element => {
       </View>
       <View style={{ paddingTop: 100 }}>
         <Button
-          backgroundColor={pickedColor}
+          backgroundColor={appColor}
           isDisabled={address === "" || amount === "" || fee === ""}
           w="full"
           onPress={() => onButtonPress()}
@@ -420,7 +420,7 @@ const Send = ({ route }): JSX.Element => {
                 <View style={{ alignItems: "center", gap: 20 }}>
                   <Icon
                     as={MaterialIcons}
-                    color={pickedColor}
+                    color={appColor}
                     name="check-circle"
                     size={120}
                   />
@@ -457,7 +457,7 @@ const Send = ({ route }): JSX.Element => {
               )}
               {submissionStatus === "loading" && (
                 <View style={{ alignItems: "center", gap: 20 }}>
-                  <Bounce color={pickedColor} size={120} />
+                  <Bounce color={appColor} size={120} />
                   <Text
                     style={{
                       color: textColor,

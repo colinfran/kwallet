@@ -11,7 +11,7 @@ const DoubleButton = ({
   buttonGroupStyle,
   buttonProps,
 }): JSX.Element => {
-  const { pickedColor } = useContext(DataContext)
+  const { appColor } = useContext(DataContext)
 
   return (
     <View style={[styles.container, style]}>
@@ -31,7 +31,7 @@ const DoubleButton = ({
               <Button
                 {...buttonProps}
                 pointerEvents={pointerEvents as any}
-                style={{ borderColor: pickedColor, borderWidth: 2 }}
+                style={{ borderColor: appColor, borderWidth: 2 }}
                 w="50%"
                 onPress={left.onPress}
               >
@@ -40,7 +40,7 @@ const DoubleButton = ({
               <Button
                 {...buttonProps}
                 pointerEvents={pointerEvents as any}
-                style={{ borderColor: pickedColor, borderWidth: 2 }}
+                style={{ borderColor: appColor, borderWidth: 2 }}
                 w="50%"
                 onPress={right.onPress}
               >

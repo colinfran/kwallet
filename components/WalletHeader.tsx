@@ -40,7 +40,7 @@ const getCurrencySymbol = (currency): string => {
 const WalletAmount = (): JSX.Element => {
   const {
     graphData,
-    pickedColor,
+    appColor,
     backgroundColor,
     textColor,
     selectedCurrency,
@@ -76,14 +76,14 @@ const WalletAmount = (): JSX.Element => {
 
   const walletTotalMonetaryValue = currencyFormatter(value)
 
-  const textColorPressed = useContrastText(pickedColor)
+  const textColorPressed = useContrastText(appColor)
   return (
     <View
       style={[
         styles.container,
         {
           backgroundColor: backgroundColor,
-          borderColor: pickedColor,
+          borderColor: appColor,
           shadowColor: textColor,
         },
       ]}
@@ -112,10 +112,10 @@ const WalletAmount = (): JSX.Element => {
           buttonProps={{
             _pressed: {
               style: {
-                backgroundColor: pickedColor,
-                borderColor: pickedColor,
+                backgroundColor: appColor,
+                borderColor: appColor,
               },
-              _text: { color: textColorPressed, borderColor: pickedColor },
+              _text: { color: textColorPressed, borderColor: appColor },
             },
             _text: { color: textColor },
             backgroundColor: backgroundColor,
@@ -133,7 +133,7 @@ const WalletAmount = (): JSX.Element => {
       </View>
       <View
         style={{
-          borderColor: pickedColor,
+          borderColor: appColor,
           borderWidth: 2,
           borderBottomWidth: 0,
           width: Dimensions.get("window").width,

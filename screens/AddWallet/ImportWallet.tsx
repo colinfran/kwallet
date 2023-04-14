@@ -18,7 +18,7 @@ const ImportWallet = (): JSX.Element => {
     wallets,
     setWallets,
     setSelectedWalletIndex,
-    pickedColor,
+    appColor,
     textColor,
   } = useContext(DataContext)
 
@@ -86,7 +86,7 @@ const ImportWallet = (): JSX.Element => {
     <KeyboardAvoidingView style={styles.componentContainer}>
       <View style={styles.walletNameContainer}>
         <Input
-          borderColor={pickedColor}
+          borderColor={appColor}
           borderRadius={15}
           color={textColor}
           mx="3"
@@ -100,7 +100,7 @@ const ImportWallet = (): JSX.Element => {
       </View>
       <View style={styles.walletNameContainer}>
         <Input
-          borderColor={pickedColor}
+          borderColor={appColor}
           borderRadius={15}
           color={textColor}
           mx="3"
@@ -118,7 +118,7 @@ const ImportWallet = (): JSX.Element => {
         <TextArea
           autoCompleteType={false}
           blurOnSubmit={true}
-          borderColor={pickedColor}
+          borderColor={appColor}
           borderRadius={15}
           color={textColor}
           fontSize="lg"
@@ -139,13 +139,13 @@ const ImportWallet = (): JSX.Element => {
               color: textColor,
             },
           }}
-          borderColor={pickedColor}
+          borderColor={appColor}
           borderRadius={15}
           isDisabled={!valid}
           leftIcon={
             loading ? (
               <Spinner
-                color={pickedColor}
+                color={appColor}
                 size="sm"
                 style={{
                   transform: [{ scaleX: 0.85 }, { scaleY: 0.85 }],

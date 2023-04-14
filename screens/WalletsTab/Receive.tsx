@@ -10,7 +10,7 @@ import DoubleButton from "../../components/Button/DoubleButton"
 const Recieve = (): JSX.Element => {
   const [isOpen, setIsOpen] = useState(false)
   const {
-    pickedColor,
+    appColor,
     wallets,
     selectedWalletIndex,
     textColor,
@@ -33,14 +33,14 @@ const Recieve = (): JSX.Element => {
     })
   }
 
-  const textColorPressed = useContrastText(pickedColor)
+  const textColorPressed = useContrastText(appColor)
 
   return (
     <View style={styles.container}>
       <View style={{ backgroundColor: "white", padding: 40, borderRadius: 20 }}>
         <QRCode
           backgroundColor="transparent"
-          color={pickedColor}
+          color={appColor}
           size={Dimensions.get("window").height < 800 ? 160 : 200}
           value={walletStr}
         />
@@ -87,10 +87,10 @@ const Recieve = (): JSX.Element => {
               buttonProps={{
                 _pressed: {
                   style: {
-                    backgroundColor: pickedColor,
-                    borderColor: pickedColor,
+                    backgroundColor: appColor,
+                    borderColor: appColor,
                   },
-                  _text: { color: textColorPressed, borderColor: pickedColor },
+                  _text: { color: textColorPressed, borderColor: appColor },
                 },
                 _text: { color: textColor },
                 backgroundColor: backgroundColor,

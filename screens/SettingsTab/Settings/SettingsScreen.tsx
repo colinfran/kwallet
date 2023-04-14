@@ -61,7 +61,7 @@ const goToRating = (): void => {
 const SettingsScreen = (): JSX.Element => {
   const navigation = useNavigation()
   const {
-    pickedColor,
+    appColor,
     wallets,
     selectedWalletIndex,
     setSelectedWalletIndex,
@@ -82,7 +82,7 @@ const SettingsScreen = (): JSX.Element => {
       return (
         <View
           style={{
-            borderColor: pickedColor,
+            borderColor: appColor,
             borderWidth: 2,
             borderRadius: 100,
           }}
@@ -90,7 +90,7 @@ const SettingsScreen = (): JSX.Element => {
           <Image
             alt={selectedCurrency}
             source={{ uri: currencyIcon }}
-            style={{ width: 20, height: 20, tintColor: pickedColor }}
+            style={{ width: 20, height: 20, tintColor: appColor }}
           />
         </View>
       )
@@ -346,13 +346,13 @@ const SettingsScreen = (): JSX.Element => {
                     styles.box,
                     {
                       backgroundColor: backgroundColor,
-                      borderColor: pickedColor,
+                      borderColor: appColor,
                       borderWidth: 2,
                     },
                   ]}
                 >
                   <VStack
-                    divider={<Divider backgroundColor={pickedColor} />}
+                    divider={<Divider backgroundColor={appColor} />}
                     width="100%"
                   >
                     {section.map((sectionElement) => {
@@ -374,7 +374,7 @@ const SettingsScreen = (): JSX.Element => {
                                 boxBackgroundColor={
                                   sectionElement.boxBackgroundColor
                                 }
-                                color={pickedColor}
+                                color={appColor}
                                 name={sectionElement.iconName}
                                 size={sectionElement.size}
                                 type={sectionElement.iconType}
@@ -395,7 +395,7 @@ const SettingsScreen = (): JSX.Element => {
                                 </Text>
                               )}
                               <Icon
-                                color={pickedColor}
+                                color={appColor}
                                 name="arrow-forward"
                                 style={styles.align}
                               />
@@ -468,7 +468,7 @@ const SettingsScreen = (): JSX.Element => {
                 style={{ width: "100%" }}
               />
               <Button
-                style={{ backgroundColor: pickedColor, marginTop: 30 }}
+                style={{ backgroundColor: appColor, marginTop: 30 }}
                 w={"100%"}
                 onPress={() => {
                   setOpenWalletPicker(false)

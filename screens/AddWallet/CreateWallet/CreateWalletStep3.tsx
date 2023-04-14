@@ -25,7 +25,7 @@ const CreateWalletStep3 = ({ route }): JSX.Element => {
     wallets,
     setWallets,
     setSelectedWalletIndex,
-    pickedColor,
+    appColor,
     textColor,
   } = useContext(DataContext)
   const [loading, setLoading] = useState(false)
@@ -109,7 +109,7 @@ const CreateWalletStep3 = ({ route }): JSX.Element => {
               <View style={styles.inputContainer}>
                 <Input
                   autoCapitalize="none"
-                  borderColor={pickedColor}
+                  borderColor={appColor}
                   borderRadius={15}
                   color={textColor}
                   mx="3"
@@ -125,7 +125,7 @@ const CreateWalletStep3 = ({ route }): JSX.Element => {
               <View style={styles.inputContainer}>
                 <Input
                   autoCapitalize="none"
-                  borderColor={pickedColor}
+                  borderColor={appColor}
                   borderRadius={15}
                   color={textColor}
                   mx="3"
@@ -141,7 +141,7 @@ const CreateWalletStep3 = ({ route }): JSX.Element => {
               <View style={styles.inputContainer}>
                 <Input
                   autoCapitalize="none"
-                  borderColor={pickedColor}
+                  borderColor={appColor}
                   borderRadius={15}
                   color={textColor}
                   mx="3"
@@ -164,7 +164,7 @@ const CreateWalletStep3 = ({ route }): JSX.Element => {
               <View style={styles.walletNameInput}>
                 <Input
                   autoCapitalize="none"
-                  borderColor={pickedColor}
+                  borderColor={appColor}
                   borderRadius={15}
                   color={textColor}
                   mx="3"
@@ -185,13 +185,13 @@ const CreateWalletStep3 = ({ route }): JSX.Element => {
                     color: textColor,
                   },
                 }}
-                borderColor={pickedColor}
+                borderColor={appColor}
                 borderRadius={15}
                 isDisabled={!validInputtedSeed}
                 leftIcon={
                   loading ? (
                     <Spinner
-                      color={pickedColor}
+                      color={appColor}
                       size="sm"
                       style={{
                         transform: [{ scaleX: 0.85 }, { scaleY: 0.85 }],

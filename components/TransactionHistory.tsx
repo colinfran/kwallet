@@ -5,7 +5,7 @@ import { DataContext } from "../providers/DataProvider"
 import { Ionicons } from "@expo/vector-icons"
 
 const TransactionHistory = (): JSX.Element => {
-  const { pickedColor, textColor, backgroundColor } = useContext(DataContext)
+  const { appColor, textColor, backgroundColor } = useContext(DataContext)
 
   const temp = [
     {
@@ -27,7 +27,7 @@ const TransactionHistory = (): JSX.Element => {
           style={[
             styles.container,
             {
-              borderColor: pickedColor,
+              borderColor: appColor,
               padding: 20,
               shadowColor: textColor,
               backgroundColor: backgroundColor,
@@ -61,7 +61,7 @@ const TransactionHistory = (): JSX.Element => {
         style={[
           styles.container,
           {
-            borderColor: pickedColor,
+            borderColor: appColor,
             shadowColor: textColor,
             backgroundColor: backgroundColor,
           },
@@ -77,7 +77,7 @@ const TransactionHistory = (): JSX.Element => {
           return (
             <View
               key={`${item.date}-${item.amount}-${item.type}`}
-              style={[styles.wrapper, { borderColor: pickedColor }]}
+              style={[styles.wrapper, { borderColor: appColor }]}
             >
               <View style={styles.left}>
                 <View>

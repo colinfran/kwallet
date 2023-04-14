@@ -9,7 +9,7 @@ const UserResponsibility = ({
   checkbox3,
   onCheckboxPress,
 }): JSX.Element => {
-  const { pickedColor } = useContext(DataContext)
+  const { appColor } = useContext(DataContext)
   return (
     <View style={{ marginTop: 30 }}>
       <View>
@@ -18,8 +18,8 @@ const UserResponsibility = ({
             <Box style={{ gap: 40 }} width="100%">
               <Checkbox
                 _checked={{
-                  backgroundColor: pickedColor,
-                  borderColor: pickedColor,
+                  backgroundColor: appColor,
+                  borderColor: appColor,
                 }}
                 _text={{ width: "100%" }}
                 backgroundColor="gray.100"
@@ -35,8 +35,8 @@ const UserResponsibility = ({
               </Checkbox>
               <Checkbox
                 _checked={{
-                  backgroundColor: pickedColor,
-                  borderColor: pickedColor,
+                  backgroundColor: appColor,
+                  borderColor: appColor,
                 }}
                 _text={{ width: "100%" }}
                 backgroundColor="gray.100"
@@ -52,8 +52,8 @@ const UserResponsibility = ({
               </Checkbox>
               <Checkbox
                 _checked={{
-                  backgroundColor: pickedColor,
-                  borderColor: pickedColor,
+                  backgroundColor: appColor,
+                  borderColor: appColor,
                 }}
                 _text={{ width: "100%" }}
                 backgroundColor="gray.100"
