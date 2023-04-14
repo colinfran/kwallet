@@ -14,7 +14,7 @@ let transporter = nodemailer.createTransport({
   port: 465,
   auth: {
     user: "colin@kwallet.app",
-    pass: "QKefmeAH8x77",
+    pass: process.env.EMAIL_PASSCODE,
   },
 })
 
