@@ -84,9 +84,9 @@ route.get("/logs", async (req, res) => {
 
 /**
  * @route GET /api/email-sign-up
- * @desc add signup email and date to google sheet
+ * @desc add signup email and date to google sheet and auto send email
  * @access Public
- * @returns {object} 200 - successfully added to google sheet
+ * @returns {object} 200 - successfully added to google sheet and email sent
  * @returns {Error}  500 - Unexpected error
  */
 route.post("/email-sign-up", async (req, res) => {
