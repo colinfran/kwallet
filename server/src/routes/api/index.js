@@ -90,7 +90,6 @@ route.get("/logs", async (req, res) => {
  * @returns {Error}  500 - Unexpected error
  */
 route.post("/email-sign-up", async (req, res) => {
-  console.log("Here")
   const { email } = req.body
   const formData = new URLSearchParams({
     Email: email,
@@ -115,7 +114,8 @@ route.post("/email-sign-up", async (req, res) => {
       subject: "Thanks for signing up for kwallet early access!",
       html: result,
     }
-    await transporter.sendMail(mailOptions, (err, info) => {
+    console.log("Succesfull signup, sending welcome email to user.")
+    await transporter.sendMail(mailOptions, (err) => {
       if (err) {
         console.log(err)
         res.status(401)
