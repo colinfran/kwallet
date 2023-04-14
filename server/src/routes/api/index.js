@@ -118,6 +118,7 @@ route.post("/email-sign-up", async (req, res) => {
     await transporter.sendMail(mailOptions, (err, info) => {
       if (err) {
         console.log(err)
+        res.status(401)
       } else {
         res.send(response)
       }
