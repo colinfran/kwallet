@@ -71,19 +71,19 @@
         font-feature-settings: "kern", "liga", "clig", "calt";
       }
 
-      ._iVDm9N {
+      .main {
         display: flex;
         flex-direction: row;
         width: 100%;
       }
 
-      ._L5beHA {
+      .section1 {
         width: 50%;
         height: 100vh;
         background-image: var(--brand-gradient);
       }
 
-      ._BtfLSR {
+      .section1div {
         background: url(https://raw.githubusercontent.com/colinfran/kwallet/main/server/src/public/mock.png);
         display: flex;
         margin: auto;
@@ -97,7 +97,7 @@
         background-repeat: no-repeat;
       }
 
-      ._x0W7T7 {
+      .section2 {
         width: 50%;
         height: 100vh;
         background-color: #fff;
@@ -106,17 +106,17 @@
         flex-direction: column;
       }
 
-      ._Jexud4 {
+      .section2div {
         align-items: center;
         margin: auto;
         padding: var(--content-padding);
         margin-bottom: 0;
-        
+        /* max-width: var(--content-width); */
         display: flex;
         flex-direction: column;
       }
 
-      ._nDB7Xt {
+      .section2h1 {
         margin: 0 0 0.4rem 0;
         padding: 0;
         color: var(--brand-color);
@@ -127,7 +127,7 @@
         line-height: 1.1;
       }
 
-      ._TdkDe2 {
+      .section2h2 {
         text-align: center;
         margin: 0 0 1.45rem 0;
         padding: 0;
@@ -146,18 +146,18 @@
         overflow: hidden;
       }
 
-      ._k0RKW8 {
-        
+      .section2p {
+        /* color: rgba(0, 0, 0, 0.6); */
         text-align: center;
       }
 
-      ._Zoir5N {
+      .inProgress {
         text-align: center;
         font-weight: 900;
       }
 
       @media screen and (max-width:800px) {
-        ._iVDm9N {
+        .main {
           flex-direction: column;
         }
 
@@ -165,57 +165,60 @@
           overflow-y: scroll !important;
         }
 
-        ._L5beHA {
+        .section1 {
           width: 100%;
           max-height: 444px;
-        }}
+        }
+      }
 
       @media only screen and (max-width: 350px) {
-        footer._YFfdVD {
+        footer.footer {
           padding: 15px !important;
-        }}
+        }
+      }
 
       @media only screen and (max-width: 800px) {
-        ._iVDm9N {
+        .main {
           flex-direction: column;
         }
 
-        ._L5beHA {
+        .section1 {
           width: 100%;
           max-height: 444px;
         }
 
-        ._BtfLSR {
+        .section1div {
           width: 200px;
           height: 404px
         }
 
-        ._x0W7T7 {
+        .section2 {
           padding: 0;
           width: 100%;
-          
+          /* height: calc(100% - 444px); */
           text-align: center;
           z-index: 1;
         }
 
-        ._Jexud4 {
+        .section2div {
           margin: auto;
           padding: 0;
-          
+          /* max-width: var(--content-width); */
         }
-        footer._YFfdVD{
+        footer.footer{
           padding: 25px;
-        }}
+        }
+      }
 
-      ._YFfdVD {
+      .footer {
         position: relative;
         margin: auto;
         margin-top: 0;
         padding: var(--content-padding);
-        
+        /* max-width: var(--content-width); */
       }
 
-      ._69NY5Z {
+      .demogif {
         width: 86%;
         height: 86%;
         margin-top: 61px;
@@ -224,15 +227,16 @@
       }
 
       @media only screen and (max-width: 800px) {
-        ._69NY5Z {
+        .demogif {
           width: 86%;
           height: 86%;
           margin-top: 61px;
           display: flex;
           margin-left: 1px;
-        }}
+        }
+      }
 
-      ._f0EZKk {
+      .form {
         border-radius: 15px;
         position: relative;
         z-index: 1;
@@ -241,7 +245,7 @@
         text-align: center;
       }
 
-      ._f0EZKk input {
+      .form input {
         border: 1px #7fdccc solid !important;
         border-right-width: 0 !important;
         font-family: "Roboto", sans-serif;
@@ -258,13 +262,13 @@
         border-bottom-right-radius: 0;
       }
 
-      ._f0EZKk button {
+      .form button {
         font-family: "Roboto", sans-serif;
         text-transform: uppercase;
         outline: 0;
         background: #7fdccc;
         border: 0;
-        
+        /* color: #000; */
         font-size: 12px;
         width: 90px;
         -webkit-transition: all 0.3 ease;
@@ -274,53 +278,53 @@
         border-bottom-right-radius: 15px;
       }
 
-      ._f0EZKk button:hover,
-      ._f0EZKk button:active,
-      ._f0EZKk button:focus {
+      .form button:hover,
+      .form button:active,
+      .form button:focus {
         opacity: 0.5;
       }
 
-      ._f0EZKk ._wYrH7H {
+      .form .message {
         margin: 15px 0 0;
         color: #b3b3b3;
         font-size: 12px;
       }
 
-      ._f0EZKk ._wYrH7H a {
+      .form .message a {
         color: #4CAF50;
         text-decoration: none;
       }
 
-      ._LWcgOH {
+      .form-wrapper {
         display: flex;
         flex-direction: row;
         height: 40px;
         width: 300px;
       }
 
-      ._SYlNwU {
+      .nhi-custom {
         max-width: 37rem;
         padding: 1.5rem;
         margin: auto;
       }
 
-      ._FU2yd9 {
+      .panel {
         border-radius: 15px;
         box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.2),
           0 0 0 1px rgba(10, 10, 10, 0.04);
         font-size: 1rem;
       }
 
-      ._8XAiCh,
-      ._q5UYD7 {
+      .panel-block,
+      .panel-heading {
         border: 0;
       }
 
-      ._q5UYD7:nth-child {
+      .panel-heading:nth-child {
         border-top: 0;
       }
 
-      ._E7ZTua {
+      .card {
         border-radius: 0.5rem;
         box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1),
           0 0 0 1px rgba(10, 10, 10, 0.02);
@@ -328,75 +332,80 @@
         margin-top: 1.5rem;
       }
 
-      ._E7ZTua:hover {
+      .card:hover {
         transform: scale(1.05);
         cursor: pointer;
       }
 
-      ._i9P3hl,
-      ._QeaoVN {
+      .card-content,
+      .media {
         overflow: hidden;
       }
 
-      ._sTMqkV {
+      .modal {
         display: none;
-        
+        /* Hidden by default */
         position: fixed;
-        
+        /* Stay in place */
         z-index: 1;
-        
+        /* Sit on top */
         left: 0;
         top: 0;
         width: 100%;
-        
+        /* Full width */
         height: 100%;
-        
+        /* Full height */
         overflow: auto;
-        
+        /* Enable scroll if needed */
         background-color: rgb(0, 0, 0);
-        
+        /* Fallback color */
         background-color: rgba(0, 0, 0, 0.4);
-        
+        /* Black w/ opacity */
+        align-items: center;
+        display: none;
+        flex-direction: column;
+        justify-content: center;
       }
 
-      
-      ._AQnIQ4 {
+      /* Modal Content/Box */
+      .modal-content {
         background-color: #fefefe;
         padding: 20px;
         border: 1px solid #888;
         width: 80%;
-        
+        /* Could be more or less, depending on screen size */
       }
 
       @media screen and (max-width:800px) {
-        ._AQnIQ4 {
+        .modal-content {
           max-height: inherit;
           width: 90%;
           height: 92%;
-        }}
+        }
+      }
 
-      
-      ._DgE1C2 {
+      /* The Close Button */
+      .close {
         color: #aaa;
         float: right;
         font-size: 28px;
         font-weight: bold;
       }
 
-      ._DgE1C2:hover,
-      ._DgE1C2:focus {
+      .close:hover,
+      .close:focus {
         color: black;
         text-decoration: none;
         cursor: pointer;
       }
 
-      ._WNWQ4E {
+      .donateBtn {
         font-family: "Roboto", sans-serif;
         text-transform: uppercase;
         outline: 0;
         background: #7fdccc;
         border: 0;
-        
+        /* color: #000; */
         font-size: 12px;
         width: 90px;
         -webkit-transition: all 0.3 ease;
@@ -406,19 +415,19 @@
         height: 40px;
       }
 
-      ._WNWQ4E:hover,
-      ._WNWQ4E:active,
-      ._WNWQ4E:focus {
+      .donateBtn:hover,
+      .donateBtn:active,
+      .donateBtn:focus {
         opacity: 0.5;
       }
 
-      ._Kx7Vqq {
+      .copied {
         padding: 7px;
         width: 85px;
         -webkit-border-radius: 3px;
         -moz-border-radius: 3px;
         border-radius: 3px;
-        
+        /* background-color: #000; */
         background-color: hsla(0, 0%, 20%, 0.9);
         color: #fff;
         content: attr(data-tooltip);
@@ -429,16 +438,16 @@
         right: 20;
       }
 
-      ._m3cbHB {
+      .fadeable {
         opacity: 1;
         transition: opacity 1s;
       }
 
-      ._8YD9l3 {
+      .fade {
         opacity: 0 !important;
       }
 
-      ._2mavtc {
+      .kwalletIcon {
         background: url(https://raw.githubusercontent.com/colinfran/kwallet/main/assets/images/kwallet-icon-logo-transparent.png);
         width: 100px;
         height: 100px;
@@ -446,7 +455,7 @@
         background-size: cover;
       }
 
-      ._qxy4Il {
+      .register-form {
         height: 84px;
       }
 
@@ -460,34 +469,34 @@
         margin-top: 20px;
       }
 
-      ._gYy86b {
+      .success {
         border: 1px #7fdccc solid;
         display: block !important;
       }
 
-      ._vjEE1Q {
+      .error {
         border: 1px red solid;
         display: block !important;
       }
 
       #form-text {}
 
-      ._UfBPho {
+      .cssload-jumping {
         position: relative;
         display: block;
-        
-        
+        /* margin: 97px auto; */
+        /* width:107px; */
       }
 
-      ._UfBPho,
-      ._UfBPho * {
+      .cssload-jumping,
+      .cssload-jumping * {
         box-sizing: border-box;
       }
 
-      ._UfBPho span {
+      .cssload-jumping span {
         display: inline-block;
-        height: 5px;
-        width: 5px;
+        height: 4px;
+        width: 4px;
         background: rgb(0, 0, 0);
         border-radius: 487px;
         background-clip: padding-box;
@@ -497,7 +506,7 @@
         -moz-background-clip: padding-box;
       }
 
-      ._UfBPho span:nth-child(1) {
+      .cssload-jumping span:nth-child(1) {
         animation: scale 1.15s 0.12s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
         -o-animation: scale 1.15s 0.12s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
         -ms-animation: scale 1.15s 0.12s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
@@ -505,7 +514,7 @@
         -moz-animation: scale 1.15s 0.12s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
       }
 
-      ._UfBPho span:nth-child(2) {
+      .cssload-jumping span:nth-child(2) {
         animation: scale 1.15s 0.23s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
         -o-animation: scale 1.15s 0.23s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
         -ms-animation: scale 1.15s 0.23s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
@@ -513,7 +522,7 @@
         -moz-animation: scale 1.15s 0.23s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
       }
 
-      ._UfBPho span:nth-child(3) {
+      .cssload-jumping span:nth-child(3) {
         animation: scale 1.15s 0.35s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
         -o-animation: scale 1.15s 0.35s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
         -ms-animation: scale 1.15s 0.35s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
@@ -521,7 +530,7 @@
         -moz-animation: scale 1.15s 0.35s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
       }
 
-      ._UfBPho span:nth-child(4) {
+      .cssload-jumping span:nth-child(4) {
         animation: scale 1.15s 0.46s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
         -o-animation: scale 1.15s 0.46s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
         -ms-animation: scale 1.15s 0.46s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
@@ -529,7 +538,7 @@
         -moz-animation: scale 1.15s 0.46s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
       }
 
-      ._UfBPho span:nth-child(5) {
+      .cssload-jumping span:nth-child(5) {
         animation: scale 1.15s 0.58s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
         -o-animation: scale 1.15s 0.58s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
         -ms-animation: scale 1.15s 0.58s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
@@ -555,7 +564,8 @@
 
         100% {
           transform: scale(0);
-        }}
+        }
+      }
 
       @-o-keyframes scale {
         0% {
@@ -645,7 +655,7 @@
         visibility: hidden;
         font-size: 10;
       }
-      ._YMC9hg{
+      .showInvalidEmailMessage{
         visibility: visible !important;
       }
 
@@ -653,13 +663,13 @@
         body {
           color: #000;
         }
-        ._x0W7T7{
+        .section2{
           background-color: #fff;
         }
-        ._Jexud4{
+        .section2div{
           color: #000 !important;
         }
-        ._YFfdVD{
+        .footer{
           background-color: #f1f3f4;
         }
         a {
@@ -669,23 +679,24 @@
           text-decoration: underline;
           text-underline-offset: 3px;
         }
-        ._f0EZKk input{
+        .form input{
           color: #000;
         }
         #submit, #donateButton{
           color: #000;
-        }}
+        }
+      }
       @media (prefers-color-scheme: dark) {
         body {
           color: #fff;
         }
-        ._x0W7T7{
+        .section2{
           background-color: #202124;
         }
-        ._Jexud4{
+        .section2div{
           color: #fff !important;
         }
-        ._YFfdVD{
+        .footer{
           background-color: #303134;
         }
         a {
@@ -695,31 +706,32 @@
           text-decoration: underline;
           text-underline-offset: 3px;
         }
-        ._f0EZKk input{
+        .form input{
           color: #fff;
         }
         #submit, #donateButton{
           color: #000;
-        }}
+        }
+      }
     </style>
   </head>
   <body>
-    <main class="_iVDm9N">
-      <section class="_L5beHA">
-        <div class="_BtfLSR">
+    <main class="main">
+      <section class="section1">
+        <div class="section1div">
           <div style="display: flex;justify-content: center;"></div>
         </div>
       </section>
-      <section class="_x0W7T7">
-        <div class="_Jexud4">
-          <div class="_2mavtc"></div>
-          <h2 class="_TdkDe2">kwallet</h2>
-          <p class="_k0RKW8">A Kaspa wallet app for iOS and Android</p>
-          <p class="_k0RKW8 _Zoir5N">Project in progress</p>
-          <div id="formId" class="_f0EZKk">
-            <form class="_qxy4Il" id="form">
+      <section class="section2">
+        <div class="section2div">
+          <div class="kwalletIcon"></div>
+          <h2 class="section2h2">kwallet</h2>
+          <p class="section2p">A Kaspa wallet app for iOS and Android</p>
+          <p class="section2p inProgress">Project in progress</p>
+          <div id="formId" class="form">
+            <form class="register-form" id="form">
               <div style="margin-bottom: 10px;">Sign up for early access</div>
-              <div class="_LWcgOH">
+              <div class="form-wrapper">
                 <input style="display: none;" type="date" name="Time" id="date">
                 <input name="Email" type="text" placeholder="email address" id="email" />
                 <button id="submit">Submit</button>
@@ -732,11 +744,11 @@
           </div>
           <div>
             <div style="margin-top: 20px;display: flex;align-items: center;justify-content: center;">
-              <button class="_WNWQ4E" id="donateButton"> Donate </button>
+              <button class="donateBtn" id="donateButton"> Donate </button>
             </div>
           </div>
         </div>
-        <footer class="_YFfdVD">
+        <footer class="footer">
           <div style="display: flex;justify-content: space-between; gap: 30px;">
             <span class="bottomspan">
               <a href="/terms" target="_blank" class="bottomspan">Terms</a>
@@ -757,16 +769,16 @@
           </div>
         </footer>
       </section>
-      <div id="myModal" class="_sTMqkV">
+      <div id="myModal" class="modal">
         <!-- Modal content -->
-        <div class="_AQnIQ4">
-          <span class="_DgE1C2">&times;</span>
+        <div class="modal-content">
+          <span class="close">&times;</span>
           <div>
-            <div class="_SYlNwU">
+            <div class="nhi-custom">
               <p class="title is-5">If you appreciate the developer's work, please consider donating ❤️</p>
-              <div id="kaspa" class="_E7ZTua">
-                <div class="_i9P3hl">
-                  <div class="_QeaoVN" style="align-items: center;">
+              <div id="kaspa" class="card">
+                <div class="card-content">
+                  <div class="media" style="align-items: center;">
                     <div class="media-left">
                       <span class="icon is-medium has-text-dark">
                         <img src="https://i.imgur.com/doNWJkp.png" alt="Kaspa logo" />
@@ -776,13 +788,13 @@
                       <p class="title is-6">Kaspa</p>
                       <p class="subtitle is-7" id="kasString">kaspa:qrd97a4rl52pm0zkdn8cdsqx5cgc2pr7re495cex3hncts3wg5ap68zv44knm</p>
                     </div>
-                    <div id="kasCopied" class="_Kx7Vqq _m3cbHB _8YD9l3" style="display:none;"> Copied. </div>
+                    <div id="kasCopied" class="copied fadeable fade" style="display:none;"> Copied. </div>
                   </div>
                 </div>
               </div>
-              <div id="btc" class="_E7ZTua">
-                <div class="_i9P3hl">
-                  <div class="_QeaoVN" style="align-items: center;">
+              <div id="btc" class="card">
+                <div class="card-content">
+                  <div class="media" style="align-items: center;">
                     <div class="media-left">
                       <span class="icon is-medium has-text-dark">
                         <img src="https://github.com/colinfran/nh-dashboard/raw/main/server/public/btc1.png" alt="Kaspa logo" />
@@ -792,13 +804,13 @@
                       <p class="title is-6">Bitcoin</p>
                       <p class="subtitle is-7" id="btcString">bc1qcey6eeef7tfzfrc5c09qarr5tucfg74ct9q267</p>
                     </div>
-                    <div id="btcCopied" class="_Kx7Vqq _m3cbHB _8YD9l3" style="display:none;"> Copied. </div>
+                    <div id="btcCopied" class="copied fadeable fade" style="display:none;"> Copied. </div>
                   </div>
                 </div>
               </div>
-              <div id="eth" class="_E7ZTua">
-                <div class="_i9P3hl">
-                  <div class="_QeaoVN" style="align-items: center;">
+              <div id="eth" class="card">
+                <div class="card-content">
+                  <div class="media" style="align-items: center;">
                     <div class="media-left">
                       <span class="icon is-medium has-text-dark">
                         <img src="https://github.com/colinfran/nh-dashboard/raw/main/server/public/eth1.png" alt="Kaspa logo" />
@@ -808,14 +820,14 @@
                       <p class="title is-6">Ethereum</p>
                       <p class="subtitle is-7" id="ethString">0xdd6aE20b85eBe6FE18e6df229274Dfc71BE6721c</p>
                     </div>
-                    <div id="ethCopied" class="_Kx7Vqq _m3cbHB _8YD9l3" style="display:none;"> Copied. </div>
+                    <div id="ethCopied" class="copied fadeable fade" style="display:none;"> Copied. </div>
                   </div>
                 </div>
               </div>
-              <div class="_E7ZTua">
+              <div class="card">
                 <a href="https://www.buymeacoffee.com/colinfran">
-                  <div class="_i9P3hl">
-                    <div class="_QeaoVN" style="align-items: center;">
+                  <div class="card-content">
+                    <div class="media" style="align-items: center;">
                       <div class="media-left">
                         <span class="icon is-medium has-text-dark">
                           <img src="https://github.com/colinfran/nh-dashboard/raw/main/server/public/cofee1.png" alt="Kaspa logo" />
@@ -838,7 +850,7 @@
   <script>
     // form submission
     const url = "https://kwallet.app/api/email-sign-up"
-    const form = document.querySelector('#_f0EZKk')
+    const form = document.querySelector('#form')
     const btn = document.querySelector('#submit')
     form.addEventListener('submit', e => {
       e.preventDefault()
@@ -849,12 +861,12 @@
       }
       var mailformat = /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/
       if (!email.match(mailformat)){
-        document.querySelector('#invalidEmail').className = "_YMC9hg"
+        document.querySelector('#invalidEmail').className = "showInvalidEmailMessage"
         return;
       }
       btn.disabled = true
       btn.innerHTML = `
-        <span class="_UfBPho">
+        <span class="cssload-jumping">
           <span></span>
           <span></span>
           <span></span>
@@ -874,20 +886,20 @@
         btn.disabled = true
         btn.disabled = false
         btn.innerHTML = "Submit"
-        document.querySelector('#form-message').className = "_gYy86b"
+        document.querySelector('#form-message').className = "success"
         document.querySelector('#form-text').innerHTML = "You have successfully signed up for early access for the kwallet app. When the app is ready for testing, you will receive an email from us."
         document.querySelector('#formId').style = "display:none;"
       }).catch(error => {
         btn.disabled = false
         btn.innerHTML = "Submit"
         document.querySelector('#formId').style = "display:none;"
-        document.querySelector('#form-message').className = "_vjEE1Q"
+        document.querySelector('#form-message').className = "error"
         document.querySelector('#form-text').innerHTML = "An error occurred when trying to submit your email. Please refresh the page and try again."
       })
     })
     // modal onclicks
     var modal = document.getElementById("myModal");
-    var span = document.getElementsByClassName("_DgE1C2")[0];
+    var span = document.getElementsByClassName("close")[0];
     span.onclick = function() {
       modal.style.display = "none";
     }
@@ -900,10 +912,10 @@
     function toggleElementFade(element) {
       element.style.removeProperty('display');
       setTimeout(function() {
-        element.classList.toggle('_8YD9l3');
+        element.classList.toggle('fade');
       }, 10);
       setTimeout(function() {
-        element.classList.toggle('_8YD9l3');
+        element.classList.toggle('fade');
       }, 3000);
     }
     // Donation button onclick
