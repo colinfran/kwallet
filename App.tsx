@@ -5,16 +5,10 @@ import { SafeAreaProvider } from "react-native-safe-area-context"
 import { extendTheme, NativeBaseProvider } from "native-base"
 import { LinearGradient } from "expo-linear-gradient"
 import * as Sentry from "sentry-expo"
-
 import { DataProvider } from "./providers/DataProvider"
-
 import Navigation from "./navigation"
-import { SENTRY_DSN as sentryDsn } from "@env"
+import { sentryDsn } from "./constants"
 
-/*
-  "Native crash reporting is not available in Expo Go, it is only available in 
-  standalone builds or development builds."
- */
 Sentry.init({
   dsn: sentryDsn,
   enableInExpoDevelopment: true,
