@@ -28,6 +28,13 @@ route.get([...privacy, ...terms, ...index], async (req, res) => {
   }
 })
 
+/**
+ * @route GET url analytics
+ * @desc url for analytics
+ * @access Public
+ * @returns {object} 200 - redirects to homepage with analytics
+ * @returns {Error}  500 - Unexpected error
+ */
 route.get("/k/:id", (req, res) => {
   console.log(req.params)
   const { id } = req.params
