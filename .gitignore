@@ -16,3 +16,5 @@ server/default.log
 *.DS_Store
 **/.DS_Store
 yarn-error.log
+.yarnrc
+.npmrc
