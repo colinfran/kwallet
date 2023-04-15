@@ -888,9 +888,16 @@
         opacity: .7;
         transform: scale(0.45) rotate(35deg);
       }
+
+      .preload * {
+        -webkit-transition: none !important;
+        -moz-transition: none !important;
+        -ms-transition: none !important;
+        -o-transition: none !important;
+      }
     </style>
   </head>
-  <body>
+  <body class="preload">
     <div class="darkModeToggleContainer">
       <button class="toggle-container" aria-label="Toggle color mode" title="Toggle color mode">
         <div class="sun"></div>
@@ -1032,6 +1039,18 @@
     </main>
   </body>
   <script>
+
+    window.addEventListener(
+    'load',
+    function load()
+    {
+        window.removeEventListener('load', load, false);
+        setTimeout(() => {
+          document.body.classList.remove('preload');
+        }, 100);
+    },
+    false);
+
     // form submission
     const url = "https://kwallet.app/api/email-sign-up"
     const form = document.querySelector('#form')
