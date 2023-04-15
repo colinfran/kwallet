@@ -96,14 +96,10 @@ route.post("/email-sign-up", async (req, res) => {
     Time: new Date().toISOString(),
   })
   try {
-    const response = await fetch(
-      // eslint-disable-next-line max-len
-      "https://script.google.com/macros/s/AKfycbyv4akZsp_uvIG6hvoHibjqNEDHfaOysj9nZm9iBIlytpNn7zc8pANIFvM11EsCF_tK3A/exec",
-      {
-        method: "POST",
-        body: formData,
-      }
-    )
+    const response = await fetch(process.env.EMAIL_LIST_URL, {
+      method: "POST",
+      body: formData,
+    })
     const html = fs
       .readFileSync(path.join(__dirname, "/email-template.html"), "utf8")
       .toString()
