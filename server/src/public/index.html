@@ -1040,16 +1040,9 @@
   </body>
   <script>
 
-    window.addEventListener(
-    'load',
-    function load()
-    {
-        window.removeEventListener('load', load, false);
-        setTimeout(() => {
-          document.body.classList.remove('preload');
-        }, 1000);
-    },
-    false);
+    setTimeout(() => {
+      document.body.classList.remove('preload');
+    }, 1000);
 
     // form submission
     const url = "https://kwallet.app/api/email-sign-up"
