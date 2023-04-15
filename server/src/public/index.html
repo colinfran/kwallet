@@ -676,8 +676,6 @@
       }
 
       body.light ._fX3WqQ {
-        background: url(https://raw.githubusercontent.com/colinfran/kwallet/main/server/src/public/mock-light.png);
-        transition: background-image 1s;
         display: flex;
         margin: auto;
         position: relative;
@@ -735,8 +733,6 @@
       }
 
       body.dark ._fX3WqQ {
-        background: url(https://raw.githubusercontent.com/colinfran/kwallet/main/server/src/public/mock-dark.png);
-        transition: background-image 1s;
         display: flex;
         margin: auto;
         position: relative;
@@ -763,6 +759,7 @@
       }
 
       .toggle-container {
+        cursor: pointer !important;
         width: 46px;
         height: 46px;
         box-sizing: border-box;
@@ -895,6 +892,21 @@
         -ms-transition: none !important;
         -o-transition: none !important;
       }
+
+      #mockImageDark{
+        opacity: 0;
+        transition: opacity 1s;
+        position: absolute;
+      }
+      #mockImageLight{
+        opacity: 0;
+        transition: opacity 1s;
+        position: absolute;
+      }
+
+      .activeMock{
+        opacity: 1 !important;
+      }
     </style>
   </head>
   <body class="preload">
@@ -910,7 +922,8 @@
     <main class="_WtFtlD">
       <section class="_IBtivd">
         <div class="_fX3WqQ">
-          <div style="display: flex;justify-content: center;"></div>
+          <img id="mockImageDark" src="https://raw.githubusercontent.com/colinfran/kwallet/main/server/src/public/mock-dark.png" alt="kwallet app dark mode"/>
+          <img id="mockImageLight" src="https://raw.githubusercontent.com/colinfran/kwallet/main/server/src/public/mock-light.png" alt="kwallet app light mode"/>
         </div>
       </section>
       <section class="_P1z3jH">
@@ -1149,15 +1162,20 @@
     const sun = document.querySelector('.sun')
     const moon = document.querySelector('.moon')
     const button = document.querySelector('.toggle-container')
+    var mockImageDark = document.getElementById("mockImageDark")
+    var mockImageLight = document.getElementById("mockImageLight")
+
     const body = document.body
     if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
       moon.classList.toggle('visible')
       body.classList.toggle("dark")
       mode = -1
+      mockImageDark.classList.toggle("activeMock")
     } else {
       sun.classList.toggle('visible')
       body.classList.toggle("light")
       mode = 1
+      mockImageLight.classList.toggle("activeMock")
     }
     button.addEventListener('click', () => {
       mode = -mode
@@ -1168,6 +1186,8 @@
       }
       sun.classList.toggle('visible')
       moon.classList.toggle('visible')
+      mockImageLight.classList.toggle("activeMock")
+      mockImageDark.classList.toggle("activeMock")
     })
   </script>
   <script src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
