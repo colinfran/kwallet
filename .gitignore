@@ -12,3 +12,6 @@ components/Chart/@rainbow-me/**
 env.ts
 server/env.js
 server/default.log
+
+*.DS_Store
+**/.DS_Store
