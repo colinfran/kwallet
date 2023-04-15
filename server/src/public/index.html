@@ -1039,10 +1039,11 @@
     </main>
   </body>
   <script>
-
-    setTimeout(() => {
-      document.body.classList.remove('preload');
-    }, 1000);
+    window.addEventListener('load', function() {
+      setTimeout(() => {
+        document.body.classList.remove('preload');
+      }, 500);
+    })
 
     // form submission
     const url = "https://kwallet.app/api/email-sign-up"
@@ -1151,11 +1152,11 @@
     const body = document.body
     if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
       moon.classList.toggle('visible')
+      body.classList.toggle("dark")
       mode = -1
-      body.className = "dark"
     } else {
       sun.classList.toggle('visible')
-      body.className = "light"
+      body.classList.toggle("light")
       mode = 1
     }
     button.addEventListener('click', () => {
