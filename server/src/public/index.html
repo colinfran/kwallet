@@ -29,8 +29,10 @@
     <meta name="theme-color" content="#ffffff">
     <link href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" rel="stylesheet">
     <link rel="preload" href="https://raw.githubusercontent.com/colinfran/kwallet/main/assets/images/kwallet-icon-logo-transparent.png" as="image">
-    <link rel="preload" href="https://raw.githubusercontent.com/colinfran/kwallet/main/server/src/public/mock.png" as="image">
+    <link rel="preload" href="https://raw.githubusercontent.com/colinfran/kwallet/main/server/src/public/mock-dark.png" as="image">
+    <link rel="preload" href="https://raw.githubusercontent.com/colinfran/kwallet/main/server/src/public/mock-light.png" as="image">
     <!-- Google tag (gtag.js) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.6.6/lottie.min.js"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-T0NWKM54NF"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -83,20 +85,6 @@
         background-image: var(--brand-gradient);
       }
 
-      ._fX3WqQ {
-        background: url(https://raw.githubusercontent.com/colinfran/kwallet/main/server/src/public/mock.png);
-        display: flex;
-        margin: auto;
-        position: relative;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 340px;
-        height: 675px;
-        border-radius: 5px;
-        background-size: 100%;
-        background-repeat: no-repeat;
-      }
-
       ._P1z3jH {
         width: 50%;
         height: 100vh;
@@ -111,7 +99,6 @@
         margin: auto;
         padding: var(--content-padding);
         margin-bottom: 0;
-        
         display: flex;
         flex-direction: column;
       }
@@ -147,7 +134,6 @@
       }
 
       ._fVjWEI {
-        
         text-align: center;
       }
 
@@ -168,12 +154,14 @@
         ._IBtivd {
           width: 100%;
           max-height: 444px;
-        }}
+        }
+      }
 
       @media only screen and (max-width: 350px) {
         footer._u7Dj9S {
           padding: 15px !important;
-        }}
+        }
+      }
 
       @media only screen and (max-width: 800px) {
         ._WtFtlD {
@@ -193,7 +181,6 @@
         ._P1z3jH {
           padding: 0;
           width: 100%;
-          
           text-align: center;
           z-index: 1;
         }
@@ -201,18 +188,18 @@
         ._zfyzX5 {
           margin: auto;
           padding: 0;
-          
         }
-        footer._u7Dj9S{
+
+        footer._u7Dj9S {
           padding: 25px;
-        }}
+        }
+      }
 
       ._u7Dj9S {
         position: relative;
         margin: auto;
         margin-top: 0;
         padding: var(--content-padding);
-        
       }
 
       ._EZnX4M {
@@ -230,7 +217,8 @@
           margin-top: 61px;
           display: flex;
           margin-left: 1px;
-        }}
+        }
+      }
 
       ._IDDy8t {
         border-radius: 15px;
@@ -264,7 +252,6 @@
         outline: 0;
         background: #7fdccc;
         border: 0;
-        
         font-size: 12px;
         width: 90px;
         -webkit-transition: all 0.3 ease;
@@ -333,7 +320,7 @@
         cursor: pointer;
       }
 
-      ._CIvB5Q{
+      ._CIvB5Q {
         padding: 1.5rem;
       }
 
@@ -364,13 +351,11 @@
         justify-content: center;
       }
 
-      
       ._hYju5n {
         background-color: #fefefe;
         padding: 20px;
         border: 1px solid #888;
         width: 80%;
-        
       }
 
       @media screen and (max-width:800px) {
@@ -378,9 +363,9 @@
           max-height: inherit;
           width: 90%;
           height: 92%;
-        }}
+        }
+      }
 
-      
       ._Dx2vls {
         color: #aaa;
         float: right;
@@ -401,7 +386,6 @@
         outline: 0;
         background: #7fdccc;
         border: 0;
-        
         font-size: 12px;
         width: 90px;
         -webkit-transition: all 0.3 ease;
@@ -423,7 +407,6 @@
         -webkit-border-radius: 3px;
         -moz-border-radius: 3px;
         border-radius: 3px;
-        
         background-color: hsla(0, 0%, 20%, 0.9);
         color: #fff;
         content: attr(data-tooltip);
@@ -436,7 +419,7 @@
 
       ._29TTZq {
         opacity: 1;
-        transition: opacity 1s;
+        transition: opacity 0.5s;
       }
 
       ._H94aEz {
@@ -480,8 +463,6 @@
       ._DiwZTi {
         position: relative;
         display: block;
-        
-        
       }
 
       ._DiwZTi,
@@ -560,7 +541,8 @@
 
         100% {
           transform: scale(0);
-        }}
+        }
+      }
 
       @-o-keyframes scale {
         0% {
@@ -645,70 +627,277 @@
           -moz-transform: scale(0);
         }
       }
-      #invalidEmail{
+
+      #invalidEmail {
         color: red;
         visibility: hidden;
         font-size: 10;
       }
-      ._oqtONp{
+
+      ._oqtONp {
         visibility: visible !important;
       }
 
-      @media (prefers-color-scheme: light) {
-        body {
-          color: #000;
-        }
-        ._P1z3jH{
-          background-color: #fff;
-        }
-        ._zfyzX5{
-          color: #000 !important;
-        }
-        ._u7Dj9S{
-          background-color: #f1f3f4;
-        }
-        a {
-          color: #8ab4f8 !important;
-        }
-        a:hover, a:focus, a:active{
-          text-decoration: underline;
-          text-underline-offset: 3px;
-        }
-        ._IDDy8t input{
-          color: #000;
-        }
-        #submit, #donateButton{
-          color: #000;
-        }}
-      @media (prefers-color-scheme: dark) {
-        body {
-          color: #fff;
-        }
-        ._P1z3jH{
-          background-color: #202124;
-        }
-        ._zfyzX5{
-          color: #fff !important;
-        }
-        ._u7Dj9S{
-          background-color: #303134;
-        }
-        a {
-          color: #8ab4f8 !important;
-        }
-        a:hover, a:focus, a:active{
-          text-decoration: underline;
-          text-underline-offset: 3px;
-        }
-        ._IDDy8t input{
-          color: #fff;
-        }
-        #submit, #donateButton{
-          color: #000;
-        }}
+      body.light {
+        color: #000;
+        transition: color 0.5s;
+      }
+
+      body.light ._P1z3jH {
+        background-color: #fff;
+        transition: background-color 0.5s;
+      }
+
+      body.light ._zfyzX5 {
+        color: #000 !important;
+        transition: color 0.5s;
+      }
+
+      body.light ._u7Dj9S {
+        background-color: #f1f3f4;
+        transition: background-color 0.5s;
+      }
+
+      body.light a {
+        color: #8ab4f8 !important;
+        transition: color 0.5s;
+      }
+
+      body.light a:hover,
+      a:focus,
+      a:active {
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+
+      body.light ._IDDy8t input {
+        color: #000;
+        transition: color 0.5s;
+      }
+
+      body.light ._fX3WqQ {
+        background: url(https://raw.githubusercontent.com/colinfran/kwallet/main/server/src/public/mock-light.png);
+        display: flex;
+        margin: auto;
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 340px;
+        height: 675px;
+        border-radius: 5px;
+        background-size: 100%;
+        background-repeat: no-repeat;
+      }
+
+
+      body.light #submit,
+      #donateButton {
+        color: #000;
+        transition: color 0.5s;
+      }
+
+      body.dark {
+        color: #fff;
+        transition: color 0.5s;
+      }
+
+      body.dark ._P1z3jH {
+        background-color: #202124;
+        transition: background-color 0.5s;
+      }
+
+      body.dark ._zfyzX5 {
+        color: #fff !important;
+        transition: color 0.5s;
+      }
+
+      body.dark ._u7Dj9S {
+        background-color: #303134;
+        transition: background-color 0.5s;
+      }
+
+      body.dark a {
+        color: #8ab4f8 !important;
+        transition: color 0.5s;
+      }
+
+      body.dark a:hover,
+      a:focus,
+      a:active {
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+
+      body.dark ._IDDy8t input {
+        color: #fff;
+        transition: color 0.5s;
+      }
+
+      body.dark ._fX3WqQ {
+        background: url(https://raw.githubusercontent.com/colinfran/kwallet/main/server/src/public/mock-light.png);
+        display: flex;
+        margin: auto;
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 340px;
+        height: 675px;
+        border-radius: 5px;
+        background-size: 100%;
+        background-repeat: no-repeat;
+      }
+
+      body.dark #submit,
+      #donateButton {
+        color: #000;
+        transition: color 0.5s;
+      }
+
+      .darkModeToggleContainer {
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 20px;
+      }
+
+      .toggle-container {
+        width: 46px;
+        height: 46px;
+        box-sizing: border-box;
+        padding: 12px;
+        background: none;
+        border: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+      }
+
+      .sun {
+        width: 50%;
+        height: 50%;
+        position: absolute;
+        pointer-events: none;
+        opacity: 0;
+        transform: scale(0.6) rotate(0deg);
+        transition: transform 0.3s ease-in, opacity 0.2s ease-in 0.0.5s;
+        /*  white transparent for Safari  */
+        background: radial-gradient(circle, rgba(0, 0, 0, 0) 50%, #f0f0f0 50%);
+      }
+
+      .sun:before {
+        content: "";
+        position: absolute;
+        display: block;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle, #f0f0f0 30%, rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 0) 50%, #f0f0f0 50%);
+        transform: rotate(45deg);
+      }
+
+      .sun.visible {
+        pointer-events: auto;
+        opacity: 1;
+        transform: scale(1) rotate(180deg);
+        transition: transform 0.3s ease-in, opacity 0.2s ease-in 0.0.5s;
+      }
+
+      .moon {
+        width: 50%;
+        height: 50%;
+        pointer-events: none;
+        position: absolute;
+        left: 12.5%;
+        top: 18.75%;
+        background-color: rgba(0, 0, 0, 0);
+        border-radius: 50%;
+        box-shadow: 9px 3px 0px 0px #f0f0f0;
+        opacity: 0;
+        transform: scale(0.3) rotate(65deg);
+        transition: transform 0.3s ease-in, opacity 0.2s ease-in 0.0.5s;
+      }
+
+      .moon.visible {
+        pointer-events: auto;
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+        transition: transform 0.3s ease-in, opacity 0.2s ease-in 0.0.5s;
+      }
+
+      .star {
+        position: absolute;
+        top: 25%;
+        left: 5%;
+        display: block;
+        width: 0px;
+        height: 0px;
+        border-right: 7px solid rgba(0, 0, 0, 0);
+        border-bottom: 5px solid #f0f0f0;
+        border-left: 7px solid rgba(0, 0, 0, 0);
+        transform: scale(0.55) rotate(35deg);
+        opacity: 0;
+        transition: all 0.2s ease-in 0.4s;
+      }
+
+      .star:before {
+        border-bottom: 5px solid #f0f0f0;
+        border-left: 3px solid rgba(0, 0, 0, 0);
+        border-right: 3px solid rgba(0, 0, 0, 0);
+        position: absolute;
+        height: 0;
+        width: 0;
+        top: -3px;
+        left: -5px;
+        display: block;
+        content: '';
+        transform: rotate(-35deg);
+      }
+
+      .star:after {
+        position: absolute;
+        display: block;
+        color: red;
+        top: 0px;
+        left: -7px;
+        width: 0px;
+        height: 0px;
+        border-right: 7px solid rgba(0, 0, 0, 0);
+        border-bottom: 5px solid #f0f0f0;
+        border-left: 7px solid rgba(0, 0, 0, 0);
+        transform: rotate(-70deg);
+        content: '';
+      }
+
+      .moon.visible .star {
+        opacity: .8;
+        /*   transform: rotate(35deg); */
+      }
+
+      .star.small {
+        transform: scale(0.35) rotate(35deg);
+        position: relative;
+        top: 50%;
+        left: 37.5%;
+        opacity: 0;
+        transition: all 0.2s ease-in 0.45s;
+      }
+
+      .moon.visible .star.small {
+        opacity: .7;
+        transform: scale(0.45) rotate(35deg);
+      }
     </style>
   </head>
   <body>
+    <div class="darkModeToggleContainer">
+      <button class="toggle-container" aria-label="Toggle color mode" title="Toggle color mode">
+        <div class="sun"></div>
+        <div class="moon">
+          <div class="star"></div>
+          <div class="star small"></div>
+        </div>
+      </button>
+    </div>
     <main class="_WtFtlD">
       <section class="_IBtivd">
         <div class="_fX3WqQ">
@@ -853,18 +1042,19 @@
         return;
       }
       var mailformat = /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/
-      if (!email.match(mailformat)){
+      if (!email.match(mailformat)) {
         document.querySelector('#invalidEmail').className = "_oqtONp"
         return;
       }
       btn.disabled = true
       btn.innerHTML = `
-        <span class="_DiwZTi">
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-        </span>
+        
+																															<span class="_DiwZTi">
+																																<span></span>
+																																<span></span>
+																																<span></span>
+																																<span></span>
+																															</span>
       `
       fetch(url, {
         method: 'POST',
@@ -919,7 +1109,6 @@
     // open modal on page load if donate
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
-    console.log(queryString)
     if (urlParams.has('donate')) {
       modal.style.display = "flex";
     }
@@ -942,6 +1131,60 @@
       copyToClipboard(document.getElementById('ethString').innerHTML)
       toggleElementFade(document.getElementById("ethCopied"))
     }
+
+    function setPreferredColorScheme(mode = "dark") {
+      for (var i = document.styleSheets[0].rules.length - 1; i >= 0; i--) {
+        rule = document.styleSheets[0].rules[i].media;
+        if (rule?.mediaText?.includes("prefers-color-scheme")) {
+          console.log("includes color scheme")
+          switch (mode) {
+            case "light":
+              console.log("light")
+              rule.appendMedium("original-prefers-color-scheme");
+              if (rule.mediaText.includes("light")) rule.deleteMedium("(prefers-color-scheme: light)");
+              if (rule.mediaText.includes("dark")) rule.deleteMedium("(prefers-color-scheme: dark)");
+              break;
+            case "dark":
+              console.log("dark")
+              rule.appendMedium("(prefers-color-scheme: light)");
+              rule.appendMedium("(prefers-color-scheme: dark)");
+              if (rule.mediaText.includes("original")) rule.deleteMedium("original-prefers-color-scheme");
+              break;
+            default:
+              console.log("default")
+              rule.appendMedium("(prefers-color-scheme: dark)");
+              if (rule.mediaText.includes("light")) rule.deleteMedium("(prefers-color-scheme: light)");
+              if (rule.mediaText.includes("original")) rule.deleteMedium("original-prefers-color-scheme");
+          }
+          break;
+        }
+      }
+    }
+    let mode = 1
+    const sun = document.querySelector('.sun')
+    const moon = document.querySelector('.moon')
+    const button = document.querySelector('.toggle-container')
+    const body = document.body
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      console.log("here")
+      moon.classList.toggle('visible')
+      mode = -1
+      body.className = "dark"
+    } else {
+      sun.classList.toggle('visible')
+      body.className = "light"
+      mode = 1
+    }
+    button.addEventListener('click', () => {
+      mode = -mode
+      if (mode === 1) {
+        body.className = "light"
+      } else {
+        body.className = "dark"
+      }
+      sun.classList.toggle('visible')
+      moon.classList.toggle('visible')
+    })
   </script>
   <script src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.10/dist/clipboard.min.js"></script>

@@ -101,11 +101,19 @@ const WalletAmount = (): JSX.Element => {
           borderColor: appColor,
           borderWidth: 2,
           borderBottomWidth: 0,
-          width: Dimensions.get("window").width,
+          width: Dimensions.get("window").width - 10,
           height: 500,
           position: "absolute",
           top: -500,
           zIndex: 0,
+          shadowOffset: {
+            width: 0,
+            height: 6,
+          },
+          shadowColor: textColor,
+          shadowOpacity: 0.25,
+          shadowRadius: 3.5,
+          elevation: 5,
         }}
       ></View>
     </View>
@@ -116,6 +124,7 @@ export default WalletAmount
 
 const styles = StyleSheet.create({
   container: {
+    marginHorizontal: 5,
     borderWidth: 2,
     borderTopWidth: 0,
     alignItems: "center",
