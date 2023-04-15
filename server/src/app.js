@@ -38,19 +38,20 @@ Sentry.init({
 
 app.use(Sentry.Handlers.requestHandler())
 app.use(Sentry.Handlers.tracingHandler())
-const limiter = rateLimit({
-  windowMs: 10 * 60 * 1000, // 10 minutes
-  max: 100, // Limit each IP to 60 requests per `window` (here, per 10 minutes)
-  standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
-  legacyHeaders: false, // Disable the `X-RateLimit-*` headers
-  message: {
-    error: true,
-    error_code: 429,
-    error_message:
-      "Attention. You have exceeded the rate limit. You can only make 100 requests every 10 minutes.",
-  },
-})
-app.use(limiter)
+app.use(
+  rateLimit({
+    windowMs: 10 * 60 * 1000, // 10 minutes
+    max: 100, // Limit each IP to 60 requests per `window` (here, per 10 minutes)
+    standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
+    legacyHeaders: false, // Disable the `X-RateLimit-*` headers
+    message: {
+      error: true,
+      error_code: 429,
+      error_message:
+        "Attention. You have exceeded the rate limit. You can only make 100 requests every 10 minutes.",
+    },
+  })
+)
 app.use(
   morgan("dev", {
     skip: (req, res) => {

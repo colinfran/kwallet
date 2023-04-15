@@ -5,7 +5,7 @@ import {
   updateCurrentPrice,
   sleep,
   getAppStatus,
-} from "../functions/functions.js"
+} from "./functions/index.js"
 
 /* 
   Coingecko graciously provides a free public api in which we pull our 

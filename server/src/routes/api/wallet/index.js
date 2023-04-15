@@ -1,7 +1,7 @@
 import express from "express"
 const route = express.Router()
 import { Wallet } from "@kaspa/wallet"
-import { isApiKeyValid } from "../../../functions/functions.js"
+import { isApiKeyValid } from "../../functions/index.js"
 import { network, rpc } from "../../../kaspa/index.js"
 
 /**
