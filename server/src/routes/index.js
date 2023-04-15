@@ -28,6 +28,15 @@ route.get([...privacy, ...terms, ...index], async (req, res) => {
   }
 })
 
+route.get("/k/:id", (req, res) => {
+  console.log(req.params)
+  const { id } = req.params
+  res.redirect(
+    // eslint-disable-next-line max-len
+    `https://kwallet.app/?utm_source=${id}&utm_medium=${id}&utm_campaign=${id}`
+  )
+})
+
 route.get("/*", async (req, res) => {
   return res.status(401).send("unauthorized")
 })
