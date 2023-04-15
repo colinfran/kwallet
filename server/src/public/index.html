@@ -419,7 +419,7 @@
 
       ._29TTZq {
         opacity: 1;
-        transition: opacity 0.5s;
+        transition: opacity 1s;
       }
 
       ._H94aEz {
@@ -472,8 +472,8 @@
 
       ._DiwZTi span {
         display: inline-block;
-        height: 4px;
-        width: 4px;
+        height: 6px;
+        width: 6px;
         background: rgb(0, 0, 0);
         border-radius: 487px;
         background-clip: padding-box;
@@ -640,27 +640,27 @@
 
       body.light {
         color: #000;
-        transition: color 0.5s;
+        transition: color 1s;
       }
 
       body.light ._P1z3jH {
         background-color: #fff;
-        transition: background-color 0.5s;
+        transition: background-color 1s;
       }
 
       body.light ._zfyzX5 {
         color: #000 !important;
-        transition: color 0.5s;
+        transition: color 1s;
       }
 
       body.light ._u7Dj9S {
         background-color: #f1f3f4;
-        transition: background-color 0.5s;
+        transition: background-color 1s;
       }
 
       body.light a {
         color: #8ab4f8 !important;
-        transition: color 0.5s;
+        transition: color 1s;
       }
 
       body.light a:hover,
@@ -672,12 +672,12 @@
 
       body.light ._IDDy8t input {
         color: #000;
-        transition: color 0.5s;
+        transition: color 1s;
       }
 
       body.light ._fX3WqQ {
         background: url(https://raw.githubusercontent.com/colinfran/kwallet/main/server/src/public/mock-light.png);
-        transition: background 0.5s;
+        transition: background-image 1s;
         display: flex;
         margin: auto;
         position: relative;
@@ -694,32 +694,32 @@
       body.light #submit,
       #donateButton {
         color: #000;
-        transition: color 0.5s;
+        transition: color 1s;
       }
 
       body.dark {
         color: #fff;
-        transition: color 0.5s;
+        transition: color 1s;
       }
 
       body.dark ._P1z3jH {
         background-color: #202124;
-        transition: background-color 0.5s;
+        transition: background-color 1s;
       }
 
       body.dark ._zfyzX5 {
         color: #fff !important;
-        transition: color 0.5s;
+        transition: color 1s;
       }
 
       body.dark ._u7Dj9S {
         background-color: #303134;
-        transition: background-color 0.5s;
+        transition: background-color 1s;
       }
 
       body.dark a {
         color: #8ab4f8 !important;
-        transition: color 0.5s;
+        transition: color 1s;
       }
 
       body.dark a:hover,
@@ -731,12 +731,12 @@
 
       body.dark ._IDDy8t input {
         color: #fff;
-        transition: color 0.5s;
+        transition: color 1s;
       }
 
       body.dark ._fX3WqQ {
         background: url(https://raw.githubusercontent.com/colinfran/kwallet/main/server/src/public/mock-dark.png);
-        transition: background 0.5s;
+        transition: background-image 1s;
         display: flex;
         margin: auto;
         position: relative;
@@ -752,7 +752,7 @@
       body.dark #submit,
       #donateButton {
         color: #000;
-        transition: color 0.5s;
+        transition: color 1s;
       }
 
       .darkModeToggleContainer {
@@ -782,7 +782,7 @@
         pointer-events: none;
         opacity: 0;
         transform: scale(0.6) rotate(0deg);
-        transition: transform 0.3s ease-in, opacity 0.2s ease-in 0.0.5s;
+        transition: transform 0.3s ease-in, opacity 0.2s ease-in 0.1s;
         /*  white transparent for Safari  */
         background: radial-gradient(circle, rgba(0, 0, 0, 0) 50%, #f0f0f0 50%);
       }
@@ -801,7 +801,7 @@
         pointer-events: auto;
         opacity: 1;
         transform: scale(1) rotate(180deg);
-        transition: transform 0.3s ease-in, opacity 0.2s ease-in 0.0.5s;
+        transition: transform 0.3s ease-in, opacity 0.2s ease-in 0.1s;
       }
 
       .moon {
@@ -816,14 +816,14 @@
         box-shadow: 9px 3px 0px 0px #f0f0f0;
         opacity: 0;
         transform: scale(0.3) rotate(65deg);
-        transition: transform 0.3s ease-in, opacity 0.2s ease-in 0.0.5s;
+        transition: transform 0.3s ease-in, opacity 0.2s ease-in 0.1s;
       }
 
       .moon.visible {
         pointer-events: auto;
         opacity: 1;
         transform: scale(1) rotate(0deg);
-        transition: transform 0.3s ease-in, opacity 0.2s ease-in 0.0.5s;
+        transition: transform 0.3s ease-in, opacity 0.2s ease-in 0.1s;
       }
 
       .star {
@@ -1050,13 +1050,11 @@
       }
       btn.disabled = true
       btn.innerHTML = `
-        
-																															<span class="_DiwZTi">
-																																<span></span>
-																																<span></span>
-																																<span></span>
-																																<span></span>
-																															</span>
+        <span class="_DiwZTi">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
       `
       fetch(url, {
         method: 'POST',
@@ -1134,41 +1132,12 @@
       toggleElementFade(document.getElementById("ethCopied"))
     }
 
-    function setPreferredColorScheme(mode = "dark") {
-      for (var i = document.styleSheets[0].rules.length - 1; i >= 0; i--) {
-        rule = document.styleSheets[0].rules[i].media;
-        if (rule?.mediaText?.includes("prefers-color-scheme")) {
-          console.log("includes color scheme")
-          switch (mode) {
-            case "light":
-              console.log("light")
-              rule.appendMedium("original-prefers-color-scheme");
-              if (rule.mediaText.includes("light")) rule.deleteMedium("(prefers-color-scheme: light)");
-              if (rule.mediaText.includes("dark")) rule.deleteMedium("(prefers-color-scheme: dark)");
-              break;
-            case "dark":
-              console.log("dark")
-              rule.appendMedium("(prefers-color-scheme: light)");
-              rule.appendMedium("(prefers-color-scheme: dark)");
-              if (rule.mediaText.includes("original")) rule.deleteMedium("original-prefers-color-scheme");
-              break;
-            default:
-              console.log("default")
-              rule.appendMedium("(prefers-color-scheme: dark)");
-              if (rule.mediaText.includes("light")) rule.deleteMedium("(prefers-color-scheme: light)");
-              if (rule.mediaText.includes("original")) rule.deleteMedium("original-prefers-color-scheme");
-          }
-          break;
-        }
-      }
-    }
     let mode = 1
     const sun = document.querySelector('.sun')
     const moon = document.querySelector('.moon')
     const button = document.querySelector('.toggle-container')
     const body = document.body
     if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      console.log("here")
       moon.classList.toggle('visible')
       mode = -1
       body.className = "dark"
