@@ -35,7 +35,6 @@ const BottomTabNavigator = (): JSX.Element => {
     const getLineGraphData = async (): Promise<void> => {
       const response = await getGraphData()
       if (response && !response.error && response.currentPrice) {
-        console.log(Number(response.currentPrice).toFixed(7))
         setGraphData(response)
       }
     }

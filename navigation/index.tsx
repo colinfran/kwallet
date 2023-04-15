@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useState } from "react"
-import { ColorSchemeName, View, Image } from "react-native"
+import React, { useContext, useEffect } from "react"
+import { ColorSchemeName } from "react-native"
 import {
   NavigationContainer,
   DefaultTheme,
@@ -23,8 +23,6 @@ import {
 import { Ionicons } from "@expo/vector-icons"
 import * as Font from "expo-font"
 import * as SplashScreen from "expo-splash-screen"
-import { Bounce } from "react-native-animated-spinkit"
-import splashImage from "../assets/images/splash.png"
 
 // If you are not familiar with React Navigation, we recommend going through the
 // "Fundamentals" guide: https://reactnavigation.org/docs/getting-started

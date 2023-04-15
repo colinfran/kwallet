@@ -14,13 +14,8 @@ import { useNavigation } from "@react-navigation/native"
 import { apiKey, apiUrl } from "../../constants/index"
 
 const ImportWallet = (): JSX.Element => {
-  const {
-    wallets,
-    setWallets,
-    setSelectedWalletIndex,
-    appColor,
-    textColor,
-  } = useContext(DataContext)
+  const { wallets, setWallets, setSelectedWalletIndex, appColor, textColor } =
+    useContext(DataContext)
 
   const [loading, setLoading] = useState(false)
   const [validSeedPhrase, setValidSeedPhrase] = useState(false)

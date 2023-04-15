@@ -38,13 +38,8 @@ const getCurrencySymbol = (currency): string => {
 }
 
 const WalletAmount = (): JSX.Element => {
-  const {
-    graphData,
-    appColor,
-    backgroundColor,
-    textColor,
-    selectedCurrency,
-  } = useContext(DataContext)
+  const { graphData, appColor, backgroundColor, textColor, selectedCurrency } =
+    useContext(DataContext)
   const navigation = useNavigation()
 
   const apiVal = graphData ? graphData : { currentPrice: "0" }

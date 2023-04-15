@@ -21,13 +21,8 @@ const randomUniqueIntegers = (total, quantity): number[] => {
 }
 
 const CreateWalletStep3 = ({ route }): JSX.Element => {
-  const {
-    wallets,
-    setWallets,
-    setSelectedWalletIndex,
-    appColor,
-    textColor,
-  } = useContext(DataContext)
+  const { wallets, setWallets, setSelectedWalletIndex, appColor, textColor } =
+    useContext(DataContext)
   const [loading, setLoading] = useState(false)
 
   const [input1, setInput1] = useState("")

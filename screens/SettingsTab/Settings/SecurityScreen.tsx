@@ -1,24 +1,22 @@
 import React, { useContext, useEffect, useState } from "react"
 import { View, StyleSheet, Text, ScrollView } from "react-native"
 import { DataContext } from "../../../providers/DataProvider"
-import { currenciesList } from "../../../constants/currencies"
-import { CheckIcon, Link } from "native-base"
-import { sortBy } from "lodash"
+import { CheckIcon } from "native-base"
 import { TouchableOpacity } from "react-native-gesture-handler"
-import { useNavigation } from "@react-navigation/native"
+// import { useNavigation } from "@react-navigation/native"
 import * as LocalAuthentication from "expo-local-authentication"
 import * as SecureStore from "expo-secure-store"
 
 const SecurityScreen = (): JSX.Element => {
   const { textColor, appColor, setLockType, lockType } = useContext(DataContext)
 
-  const navigation = useNavigation()
+  // const navigation = useNavigation()
 
-  const onSelectionPress = (item): void => {
-    console.log(item)
-    // setSelectedCurrency(item.code)
-    navigation.navigate("SettingsTab")
-  }
+  // const onSelectionPress = (item): void => {
+  //   console.log(item)
+  //   // setSelectedCurrency(item.code)
+  //   navigation.navigate("SettingsTab")
+  // }
 
   const [supportedList, setSupportList] = useState<any | null>()
 

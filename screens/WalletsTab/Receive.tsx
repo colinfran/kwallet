@@ -9,13 +9,8 @@ import DoubleButton from "../../components/Button/DoubleButton"
 
 const Recieve = (): JSX.Element => {
   const [isOpen, setIsOpen] = useState(false)
-  const {
-    appColor,
-    wallets,
-    selectedWalletIndex,
-    textColor,
-    backgroundColor,
-  } = useContext(DataContext)
+  const { appColor, wallets, selectedWalletIndex, textColor, backgroundColor } =
+    useContext(DataContext)
   const walletStr = wallets[selectedWalletIndex].walletData.address
 
   const copyOnPress = async (): Promise<void> => {
