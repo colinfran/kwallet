@@ -26,7 +26,7 @@
     "resolveJsonModule": true,
     "strict": true,
   },
-  "typeRoots": ["./types"],
+  "typeRoots": ["./contants"],
   "extends": "expo/tsconfig.base",
   "ts-node": {
     "esm": true,
