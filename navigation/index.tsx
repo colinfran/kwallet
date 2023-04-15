@@ -8,8 +8,7 @@ import {
 import { createStackNavigator } from "@react-navigation/stack"
 import * as Sentry from "sentry-expo"
 
-// import Loading from "../screens/Loading"
-import { RootStackParamList } from "../types"
+import { RootStackParamList } from "./types"
 import BottomTabNavigator from "./BottomTabNavigator"
 import { DataContext } from "../providers/DataProvider"
 import AddWallet from "../screens/AddWallet"
@@ -24,9 +23,6 @@ import { Ionicons } from "@expo/vector-icons"
 import * as Font from "expo-font"
 import * as SplashScreen from "expo-splash-screen"
 
-// If you are not familiar with React Navigation, we recommend going through the
-// "Fundamentals" guide: https://reactnavigation.org/docs/getting-started
-
 SplashScreen.preventAutoHideAsync()
 
 const Navigation = ({
@@ -37,20 +33,17 @@ const Navigation = ({
   useEffect(() => {
     const loadResourcesAndDataAsync = async (): Promise<void> => {
       try {
-        // Load fonts
         await Font.loadAsync({
           ...Ionicons.font,
           "space-mono": require("../assets/fonts/SpaceMono-Regular.ttf"),
         })
       } catch (e) {
-        // add code here for error reporting service
         Sentry.Native.captureException(e)
         console.warn(e)
       } finally {
         SplashScreen.hideAsync()
       }
     }
-
     loadResourcesAndDataAsync()
   }, [])
 
@@ -69,15 +62,6 @@ const Stack = createStackNavigator<RootStackParamList>()
 
 const RootNavigator = (): JSX.Element => {
   const { wallets } = useContext(DataContext)
-
-  // useEffect(() => {
-  //   if (wallets.length > 0) {
-  //     setTimeout(() => {
-  //       SplashScreen.hideAsync()
-  //     }, 100)
-  //   }
-  // }, [wallets])
-
   return (
     <Stack.Navigator
       initialRouteName={wallets.length > 0 ? "Root" : "AddWallet"}

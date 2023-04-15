@@ -2,39 +2,9 @@ import React, { useCallback, useContext, useMemo, useState } from "react"
 import { View, Text } from "react-native"
 import { useChartData } from "@colinfran/animated-charts"
 import { DataContext } from "../../providers/DataProvider"
+import { getCurrencySymbol } from "../../constants/currencies"
 
-const getCurrencySymbol = (currency): string => {
-  let symbol = "$"
-  switch (currency) {
-    case "EUR":
-      symbol = "€"
-      break
-    case "JPY":
-      symbol = "¥"
-      break
-    case "GBP":
-      symbol = "£"
-      break
-    case "CNY":
-      symbol = "¥"
-      break
-    case "AUD":
-      symbol = "$"
-      break
-    case "CAD":
-      symbol = "$"
-      break
-    case "CHF":
-      symbol = "CHF "
-      break
-    default:
-      symbol = "$"
-      break
-  }
-  return symbol
-}
-
-function trim(val): number {
+const trim = (val: number): number => {
   return Math.min(Math.max(val, 0.05), 0.95)
 }
 

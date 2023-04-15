@@ -32,3 +32,34 @@ export const currenciesList = [
     code: "CHF",
   },
 ]
+
+export const getCurrencySymbol = (currency): string => {
+  let symbol = "$"
+  switch (currency) {
+    case "EUR":
+      symbol = "€"
+      break
+    case "JPY":
+      symbol = "¥"
+      break
+    case "GBP":
+      symbol = "£"
+      break
+    case "CNY":
+      symbol = "¥"
+      break
+    case "AUD":
+      symbol = "$"
+      break
+    case "CAD":
+      symbol = "$"
+      break
+    case "CHF":
+      symbol = "CHF "
+      break
+    default:
+      symbol = "$"
+      break
+  }
+  return symbol
+}

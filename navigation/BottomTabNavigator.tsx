@@ -5,7 +5,7 @@ import { createStackNavigator } from "@react-navigation/stack"
 import React, { useContext, useEffect } from "react"
 
 import WalletsTab from "../screens/WalletsTab"
-import { BottomTabParamList, TabOneParamList, TabTwoParamList } from "../types"
+import { BottomTabParamList, TabOneParamList, TabTwoParamList } from "./types"
 import { DataContext } from "../providers/DataProvider"
 import SettingsScreen from "../screens/SettingsTab/Settings/SettingsScreen"
 import FrameworksScreen from "../screens/SettingsTab/Settings/FrameworksScreen"

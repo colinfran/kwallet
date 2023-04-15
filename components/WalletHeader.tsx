@@ -5,37 +5,7 @@ import { DataContext } from "../providers/DataProvider"
 import DoubleButton from "./Button/DoubleButton"
 import { useNavigation } from "@react-navigation/native"
 import { getLocales } from "expo-localization"
-
-const getCurrencySymbol = (currency): string => {
-  let symbol = "$"
-  switch (currency) {
-    case "EUR":
-      symbol = "€"
-      break
-    case "JPY":
-      symbol = "¥"
-      break
-    case "GBP":
-      symbol = "£"
-      break
-    case "CNY":
-      symbol = "¥"
-      break
-    case "AUD":
-      symbol = "$"
-      break
-    case "CAD":
-      symbol = "$"
-      break
-    case "CHF":
-      symbol = "CHF "
-      break
-    default:
-      symbol = "$"
-      break
-  }
-  return symbol
-}
+import { getCurrencySymbol } from "../constants/currencies"
 
 const WalletAmount = (): JSX.Element => {
   const { graphData, appColor, backgroundColor, textColor, selectedCurrency } =
