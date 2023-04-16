@@ -60,15 +60,33 @@ form.addEventListener("submit", (e) => {
         "An error occurred when trying to submit your email. Please refresh the page and try again."
     })
 })
-// modal onclicks
+
+var html = document.querySelector("html")
 var modal = document.getElementById("L5rthN")
+var modalContent = document.getElementsByClassName("_tSeJ3q")[0]
 var span = document.getElementsByClassName("_mLhboH")[0]
+var isModalOpen = false
+const triggerModal = (val) => {
+  if (val === "on") {
+    modal.style.display = "flex"
+    html.style.overflowY = "scroll !important"
+    isModalOpen = true
+    html.classList.toggle("isOpen1")
+    modalContent.classList.toggle("isOpen2")
+  } else {
+    html.classList.toggle("isOpen1")
+    modal.style.display = "none"
+    isModalOpen = false
+    modalContent.classList.toggle("isOpen2")
+  }
+}
+
 span.onclick = function () {
-  modal.style.display = "none"
+  triggerModal("off")
 }
 window.onclick = function (event) {
   if (event.target == modal) {
-    modal.style.display = "none"
+    triggerModal("off")
   }
 }
 // fade toggle
@@ -84,13 +102,14 @@ function toggleElementFade(element) {
 // Donation button onclick
 var donateBtn = document.getElementById("xkPjsE")
 donateBtn.onclick = function (event) {
-  modal.style.display = "flex"
+  triggerModal("on")
 }
+
 // open modal on page load if donate
 const queryString = window.location.search
 const urlParams = new URLSearchParams(queryString)
 if (urlParams.has("donate")) {
-  modal.style.display = "flex"
+  triggerModal("on")
 }
 // copy to clipboard
 const copyToClipboard = async (str) => {
