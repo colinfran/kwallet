@@ -7,12 +7,12 @@ A non-custodial Kaspa wallet app for iOS and Android
 
 **currently in progress**
 <br/><br/>
-[Link To Official Website](https://kwallet.app/)
+[Link To Official Website](https://kwallet.app/?utm_source=github&utm_medium=github-readme)
 <br/><br/>
 Donations accepted!
 
 
-<a href="https://kwallet.app/?donate=1" target="_blank">
+<a href="https://kwallet.app/?utm_source=github&utm_medium=github-readme&donate=1" target="_blank">
   <img width="75px;" src="https://i.imgur.com/PoILazo.png">
 </a><br/>
 <br/>
