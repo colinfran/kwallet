@@ -27,6 +27,8 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
 dotenv.config()
+
+// sentry is used for production error and bug reporting
 Sentry.init({
   dsn: process.env.SENTRY_DSN,
   integrations: [
@@ -36,9 +38,10 @@ Sentry.init({
   ],
   tracesSampleRate: 1.0,
 })
-
 app.use(Sentry.Handlers.requestHandler())
 app.use(Sentry.Handlers.tracingHandler())
+
+// request rate limitter to prevent spam requests
 app.use(
   rateLimit({
     windowMs: 10 * 60 * 1000, // 10 minutes
@@ -56,6 +59,8 @@ app.use(
     },
   })
 )
+
+// ignore certain logs
 app.use(
   morgan("dev", {
     skip: (req, res) => {
@@ -66,11 +71,12 @@ app.use(
     },
   })
 )
+
+// only admins will have access to the swagger stats dashboard
 app.use(
   swStats.getMiddleware({
     authentication: true,
     onAuthenticate: function (req, username, password) {
-      // simple check for username and password
       return (
         username === process.env.SWAGGER_USERNAME &&
         password === process.env.SWAGGER_PASSWORD
