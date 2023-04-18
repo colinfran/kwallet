@@ -51,6 +51,9 @@ app.use(
       error_message:
         "Attention. You have exceeded the rate limit. You can only make 100 requests every 10 minutes.",
     },
+    skip: (req) => {
+      return req.url.includes("/swagger-stats/")
+    },
   })
 )
 app.use(
