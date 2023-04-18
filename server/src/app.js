@@ -13,6 +13,7 @@ import * as Sentry from "@sentry/node"
 import Tracing from "@sentry/tracing"
 import cors from "cors"
 import rateLimit from "express-rate-limit"
+import swStats from "swagger-stats"
 
 import apiRoute from "./routes/api/index.js"
 import rootRoute from "./routes/index.js"
@@ -55,10 +56,26 @@ app.use(
 app.use(
   morgan("dev", {
     skip: (req, res) => {
-      return req.url.includes("origin=betteruptime")
+      return (
+        req.url.includes("origin=betteruptime") ||
+        req.url.includes("swagger-stats")
+      )
     },
   })
 )
+app.use(
+  swStats.getMiddleware({
+    authentication: true,
+    onAuthenticate: function (req, username, password) {
+      // simple check for username and password
+      return (
+        username === process.env.SWAGGER_USERNAME &&
+        password === process.env.SWAGGER_PASSWORD
+      )
+    },
+  })
+)
+
 app.use(express.json())
 app.use(cors())
 app.use(express.urlencoded({ extended: false }))
