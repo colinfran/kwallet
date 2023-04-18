@@ -1,6 +1,7 @@
 # kwallet
-
-<img src="https://github.com/colinfran/kwallet/raw/main/assets/images/kwallet-icon-logo.png" style="height:200px" />
+<a href="https://kwallet.app/?utm_source=github&utm_medium=github-readme" target="_blank">
+  <img src="https://github.com/colinfran/kwallet/raw/main/assets/images/kwallet-icon-logo.png" style="height:200px" />
+</a>
 
 A non-custodial Kaspa wallet app for iOS and Android
 
