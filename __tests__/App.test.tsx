@@ -1,7 +1,7 @@
 import React from "react"
 import renderer from "react-test-renderer"
 import { NativeBaseProviderTest } from "./helper"
-import { render, screen, fireEvent } from "@testing-library/react-native"
+import { render, screen } from "@testing-library/react-native"
 import "@testing-library/jest-native/extend-expect"
 import App from "../App"
 
@@ -22,7 +22,6 @@ describe("<App />", () => {
   it("text", () => {
     render(<RenderApp />)
     const kwallet = screen.getByText("kwallet")
-    // const kwallet = screen.getByTestId("test-kwallet")
     expect(kwallet).toBeDefined()
   })
 })
