@@ -7,12 +7,13 @@ import { LinearGradient } from "expo-linear-gradient"
 import * as Sentry from "sentry-expo"
 import { DataProvider } from "./providers/DataProvider"
 import Navigation from "./navigation"
-import { sentryDsn } from "./constants"
+import { devEnv, sentryDsn } from "./constants"
 
 Sentry.init({
   dsn: sentryDsn,
   enableInExpoDevelopment: true,
   debug: true,
+  enabled: devEnv === "production",
 })
 
 if (__DEV__) {

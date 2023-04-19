@@ -1,9 +1,12 @@
 module.exports = function (api) {
   api.cache(true)
   return {
-    presets: ["babel-preset-expo"],
+    presets: ["babel-preset-expo", "@babel/preset-env"],
     plugins: [
       "react-native-reanimated/plugin",
+      ["@babel/plugin-proposal-private-methods", { "loose": true }],
+      ["@babel/plugin-proposal-private-property-in-object", { "loose": true }],
+      ["@babel/plugin-proposal-class-properties", { "loose": true }],
       ["module:react-native-dotenv", {
         "verbose": false,
         "envName": "DEV_ENV"
