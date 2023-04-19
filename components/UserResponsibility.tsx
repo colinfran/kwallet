@@ -24,6 +24,7 @@ const UserResponsibility = ({
                 _text={{ width: "100%" }}
                 backgroundColor="gray.100"
                 isChecked={checkbox1}
+                testID="checkbox1"
                 value="one"
                 width={"100%"}
                 onChange={() => onCheckboxPress(1)}
@@ -41,6 +42,7 @@ const UserResponsibility = ({
                 _text={{ width: "100%" }}
                 backgroundColor="gray.100"
                 isChecked={checkbox2}
+                testID="checkbox2"
                 value="two"
                 width={"100%"}
                 onChange={() => onCheckboxPress(2)}
@@ -58,6 +60,7 @@ const UserResponsibility = ({
                 _text={{ width: "100%" }}
                 backgroundColor="gray.100"
                 isChecked={checkbox3}
+                testID="checkbox3"
                 value="three"
                 width={"100%"}
                 onChange={() => onCheckboxPress(3)}
