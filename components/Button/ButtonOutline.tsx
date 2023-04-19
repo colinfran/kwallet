@@ -31,6 +31,7 @@ const ButtonOutline = ({
       isDisabled={isDisabled}
       leftIcon={leftIcon}
       size="lg"
+      testID="test-button"
       variant="outline"
       onPress={onPress}
     >

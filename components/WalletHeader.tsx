@@ -55,14 +55,16 @@ const WalletAmount = (): JSX.Element => {
     >
       <View>
         <Skeleton isLoaded={isLoaded} marginBottom={2} w={310}>
-          <Heading color={textColor} size="3xl">
+          <Heading color={textColor} size="3xl" testID="test-walletAmountUSD">
             {walletTotalMonetaryValue}
           </Heading>
         </Skeleton>
       </View>
       <View>
         <Skeleton isLoaded={isLoaded} w={230}>
-          <Text color={textColor} fontSize="xl">{`${walletTotal} KAS`}</Text>
+          <Text color={textColor} fontSize="xl" testID="test-walletAmount">
+            {`${walletTotal} KAS`}
+          </Text>
         </Skeleton>
       </View>
       <View style={{ paddingLeft: 20, paddingRight: 20, paddingTop: 30 }}>

@@ -32,6 +32,7 @@ const DoubleButton = ({
                 {...buttonProps}
                 pointerEvents={pointerEvents as any}
                 style={{ borderColor: appColor, borderWidth: 2 }}
+                testID="test-left"
                 w="50%"
                 onPress={left.onPress}
               >
@@ -41,6 +42,7 @@ const DoubleButton = ({
                 {...buttonProps}
                 pointerEvents={pointerEvents as any}
                 style={{ borderColor: appColor, borderWidth: 2 }}
+                testID="test-right"
                 w="50%"
                 onPress={right.onPress}
               >

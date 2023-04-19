@@ -1,12 +1,12 @@
-import { NativeBaseProvider } from "native-base"
 import React from "react"
 import renderer from "react-test-renderer"
 import WalletHeader from "../../components/WalletHeader"
+import { NativeBaseProviderTest } from "../helper"
+import { render, screen } from "@testing-library/react-native"
+import { DataContext } from "../../providers/DataProvider"
 
 const mockedDispatch = jest.fn()
 
-// Mocks like this need to be configured at the top level
-// of the test file, they can't be setup inside your tests.
 jest.mock("@react-navigation/native", () => {
   const actualNav = jest.requireActual("@react-navigation/native")
   return {
@@ -29,21 +29,58 @@ jest.mock("expo-localization", () => {
   }
 })
 
-const RenderComponent = (): JSX.Element => {
-  return (
-    <NativeBaseProvider>
+const RenderHeader = (): JSX.Element => (
+  <DataContext.Provider
+    value={
+      {
+        selectedCurrency: "USD",
+        graphData: {
+          day: [
+            {
+              x: 1679246714543,
+              y: 0.014540020460445197,
+            },
+            {
+              x: 1679247047789,
+              y: 0.014571506674731024,
+            },
+            {
+              x: 1679247288167,
+              y: 0.014452072671740143,
+            },
+          ],
+        },
+      } as any
+    }
+  >
+    <NativeBaseProviderTest>
       <WalletHeader />
-    </NativeBaseProvider>
-  )
-}
+    </NativeBaseProviderTest>
+  </DataContext.Provider>
+)
 
 describe("<WalletHeader />", () => {
   beforeEach(() => {
-    // Alternatively, set "clearMocks" in your Jest config to "true"
     mockedDispatch.mockClear()
   })
   it("renders correctly", () => {
-    const tree = renderer.create(<RenderComponent />).toJSON()
+    const tree = renderer.create(<RenderHeader />).toJSON()
     expect(tree).toMatchSnapshot()
+  })
+
+  it("buttons", () => {
+    render(<RenderHeader />)
+    const leftBtn = screen.getByTestId("test-left")
+    const rightBtn = screen.getByTestId("test-right")
+    expect(leftBtn).toHaveTextContent("Send")
+    expect(rightBtn).toHaveTextContent("Receive")
+  })
+
+  it("wallet amount", () => {
+    render(<RenderHeader />)
+    const amount = screen.getByTestId("test-walletAmount")
+    const amountUsd = screen.getByTestId("test-walletAmountUSD")
+    expect(amount).toHaveTextContent("0 KAS")
+    expect(amountUsd).toHaveTextContent("$0.00")
   })
 })

@@ -14,7 +14,7 @@ const AddWallet = ({ navigation }): JSX.Element => {
           <Image
             alt="Kwallet logo"
             resizeMode="contain"
-            source={image}
+            source={{ uri: image }}
             style={{ height: 300, width: 300 }}
           />
         </View>
@@ -25,7 +25,12 @@ const AddWallet = ({ navigation }): JSX.Element => {
             marginTop: 20,
           }}
         >
-          <Text style={{ fontSize: 50, color: textColor }}>kwallet</Text>
+          <Text
+            style={{ fontSize: 50, color: textColor }}
+            testID="test-kwallet"
+          >
+            kwallet
+          </Text>
         </View>
       </View>
       <View style={styles.buttonsContainer}>
