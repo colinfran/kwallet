@@ -4,7 +4,6 @@
     "lint": "DEBUG=eslint:cli-engine eslint .",
     "lint:fix": "DEBUG=eslint:cli-engine eslint . --fix",
     "server": "cd server && yarn run dev",
-    "dev:with-server": "concurrently 'cd server && npm run dev' 'node -e \"setTimeout(() => process.exit(0), 5000)\" && DEV_ENV=development npx expo start -c'",
     "dev": "DEV_ENV=development npx expo start -c",
     "prod": "DEV_ENV=production npx expo start -c",
     "test": "jest --watchAll"
