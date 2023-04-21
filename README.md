@@ -61,13 +61,13 @@ After running these commands, go into the root .env file and add your computer's
 
 ### run app with local server
 To run the Expo app with local server, you will need to have two terminal instances open. 
-```
+
 In the first terminal instance, run the server:
-
-cd server
-yarn run dev
-
+```
+yarn run server
+```
 In the second instance, run the expo app:
+```
 yarn run dev
 ```
 
