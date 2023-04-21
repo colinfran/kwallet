@@ -3,6 +3,8 @@
   "scripts": {
     "lint": "DEBUG=eslint:cli-engine eslint .",
     "lint:fix": "DEBUG=eslint:cli-engine eslint . --fix",
+    "server": "cd server && yarn run dev",
+    "dev:with-server": "concurrently 'cd server && npm run dev' 'node -e \"setTimeout(() => process.exit(0), 5000)\" && DEV_ENV=development npx expo start -c'",
     "dev": "DEV_ENV=development npx expo start -c",
     "prod": "DEV_ENV=production npx expo start -c",
     "test": "jest --watchAll"
@@ -36,6 +38,7 @@
     "@testing-library/react-native": "^12.0.1",
     "bitcore-mnemonic-react-native": "^1.2.4",
     "color-lighten-tool": "^1.0.2",
+    "concurrently": "^8.0.1",
     "currency-icons": "^1.0.14",
     "expo": "~48.0.5",
     "expo-application": "~5.1.1",

@@ -60,6 +60,15 @@ After running these commands, go into the root .env file and add your computer's
 ---
 
 ### run app with local server
+
+One command (harder to read console)
+```
+yarn run dev:with-server
+```
+
+
+Multiple Commands (easier to read console)
+
 To run the Expo app with local server, you will need to have two terminal instances open. 
 ```
 In the first terminal instance, run the server:
