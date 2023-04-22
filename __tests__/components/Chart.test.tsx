@@ -76,8 +76,8 @@ describe("<Chart />", () => {
     for (let i = 0; i < 5; i++) {
       const btn = screen.getByTestId(`test-chart-btn-${i}`)
       fireEvent.press(btn)
+      expect(mockFunction.mock.lastCall[0]).toBe(i)
     }
     expect(mockFunction.mock.calls.length).toBe(5)
   })
-
 })
