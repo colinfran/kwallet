@@ -85,6 +85,7 @@ export const Selection = ({
           return (
             <TouchableWithoutFeedback
               key={i}
+              testID={`test-chart-btn-${i}`}
               onPress={() => {
                 onButtonPress(
                   graphData[element.buttonTitle.toLowerCase()].prices,

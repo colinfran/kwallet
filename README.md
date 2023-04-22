@@ -80,11 +80,11 @@ yarn run prod
 
 ---
 
-Listed below are the 3rd party services used to help keep the app running smoothly.
+Listed below are the free 3rd party services used to help keep the app running smoothly.
 
 |               Service            |                   Product                 |
 |----------------------------------|-------------------------------------------|
 | Bug Tracking and Error Reporting | [Sentry.io](https://sentry.io/)           |
 |         Uptime Monitoring        | [BetterUptime](https://betteruptime.com/) |
-
+|        Zoho Email Services       | [Zoho](https://www.zoho.com/mail/)        |
 
