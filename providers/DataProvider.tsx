@@ -85,9 +85,13 @@ export const DataProvider = ({ children }): JSX.Element => {
   }, [graphData])
 
   const getWalletData = async () => {
-    const walletData = await SecureStore.getItemAsync("wallets")
-    if (walletData !== null) {
-      setWallets(JSON.parse(walletData))
+    try {
+      const walletData = await SecureStore.getItemAsync("wallets")
+      if (walletData !== null) {
+        setWallets(JSON.parse(walletData))
+      }
+    } catch (error) {
+      Sentry.Native.captureException(error)
     }
   }
 
