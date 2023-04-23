@@ -4,8 +4,8 @@
     "lint": "DEBUG=eslint:cli-engine eslint .",
     "lint:fix": "DEBUG=eslint:cli-engine eslint . --fix",
     "server": "cd server && npm run dev",
-    "dev": "DEV_ENV=development npx expo start -c",
-    "prod": "DEV_ENV=production npx expo start -c",
+    "app:dev": "DEV_ENV=development npx expo start -c",
+    "app:prod": "DEV_ENV=production npx expo start -c",
     "test": "DEV_ENV=test jest --watchAll --silent"
   },
   "jest": {

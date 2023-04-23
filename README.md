@@ -68,13 +68,13 @@ yarn run server
 ```
 In the second instance, run the expo app:
 ```
-yarn run dev
+yarn run app:dev
 ```
 
 ### run app with production server
 To run the Expo app with production server, in a single terminal run:
 ```
-yarn run prod
+yarn run app:prod
 ```
 ***NOTE THAT IF YOU WANT TO RUN APP WITH PRODUCTION SERVER, YOU WILL NEED TO REACH OUT TO @colinfran FOR A PRODUCTION SERVER API KEY.***
 
