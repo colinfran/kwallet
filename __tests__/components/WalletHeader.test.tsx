@@ -16,17 +16,6 @@ jest.mock("@react-navigation/native", () => {
   }
 })
 
-jest.mock("expo-localization", () => {
-  return {
-    getLocales: () => [
-      {
-        languageCode: "en",
-        measurementSystem: "US",
-      },
-    ],
-  }
-})
-
 describe("<WalletHeader />", () => {
   beforeEach(() => {
     mockedDispatch.mockClear()

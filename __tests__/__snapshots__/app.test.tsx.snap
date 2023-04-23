@@ -386,11 +386,7 @@ exports[`<App /> renders correctly 1`] = `
                                     dataSet={{}}
                                     onError={[Function]}
                                     resizeMode="contain"
-                                    source={
-                                      {
-                                        "uri": "/assets/images/kwallet-icon-logo.png",
-                                      }
-                                    }
+                                    source="/assets/images/kwallet-icon-logo.png"
                                     style={
                                       [
                                         {

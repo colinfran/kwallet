@@ -14,7 +14,7 @@ const AddWallet = ({ navigation }): JSX.Element => {
           <Image
             alt="Kwallet logo"
             resizeMode="contain"
-            source={{ uri: image }}
+            source={image}
             style={{ height: 300, width: 300 }}
           />
         </View>

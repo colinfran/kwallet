@@ -82,3 +82,48 @@ export const Providers = ({ children }): JSX.Element => {
     </DataContext.Provider>
   )
 }
+
+export const ProvidersWithOneWallet = ({ children }): JSX.Element => {
+  return (
+    <DataContext.Provider
+      value={
+        {
+          appColor: "#123456",
+          selectedGraphIndex: 0,
+          setSelectedGraphIndex: setSelectedMock,
+          textColor: "#000",
+          selectedCurrency: "USD",
+          getGraphData: async () => {
+            return {}
+          },
+          getWalletData: async () => {
+            return []
+          },
+          wallets: [
+            {
+              walletName: "Wallet1",
+            },
+          ],
+          graphData: {
+            day: data,
+            week: data,
+            month: data,
+            year: data,
+            all: data,
+          },
+        } as any
+      }
+    >
+      <NativeBaseProvider
+        config={{ dependencies: { "linear-gradient": LinearGradient } }}
+        initialWindowMetrics={{
+          frame: { x: 0, y: 0, width: 0, height: 0 },
+          insets: { top: 0, left: 0, right: 0, bottom: 0 },
+        }}
+        theme={theme}
+      >
+        {children}
+      </NativeBaseProvider>
+    </DataContext.Provider>
+  )
+}

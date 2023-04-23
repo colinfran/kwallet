@@ -21,3 +21,5 @@ yarn-error.log
 
 .expo-shared
 .expo
+ios
+android
