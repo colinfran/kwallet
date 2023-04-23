@@ -386,7 +386,11 @@ exports[`<App /> renders correctly 1`] = `
                                     dataSet={{}}
                                     onError={[Function]}
                                     resizeMode="contain"
-                                    source="/assets/images/kwallet-icon-logo.png"
+                                    source={
+                                      {
+                                        "uri": "/assets/images/kwallet-icon-logo.png",
+                                      }
+                                    }
                                     style={
                                       [
                                         {
@@ -483,6 +487,7 @@ exports[`<App /> renders correctly 1`] = `
                                         "paddingTop": 12,
                                       }
                                     }
+                                    testID="test-button"
                                   >
                                     <View
                                       dataSet={{}}
@@ -579,6 +584,7 @@ exports[`<App /> renders correctly 1`] = `
                                         "paddingTop": 12,
                                       }
                                     }
+                                    testID="test-button"
                                   >
                                     <View
                                       dataSet={{}}

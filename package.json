@@ -6,7 +6,7 @@
     "server": "cd server && npm run dev",
     "dev": "DEV_ENV=development npx expo start -c",
     "prod": "DEV_ENV=production npx expo start -c",
-    "test": "jest --watchAll"
+    "test": "DEV_ENV=test jest --watchAll --silent"
   },
   "jest": {
     "testEnvironment": "jsdom",
@@ -19,9 +19,17 @@
       "^.+\\.(css|scss|sass|less)$": "jest-preview/transforms/css",
       "^(?!.*\\.(js|jsx|mjs|cjs|ts|tsx|css|json)$)": "jest-preview/transforms/file"
     },
+    "testPathIgnorePatterns": [
+      "./__tests__/jest-setup.js",
+      "./__tests__/helper.tsx"
+    ],
+    "coveragePathIgnorePatterns" : [
+      "./__tests__/jest-setup.js",
+      "./__tests__/helper.tsx"
+    ],
     "transformIgnorePatterns": [
       "jest-runner",
-      "node_modules/(?!(jest-)?@?react-native|react-native|react-clone-referenced-element|@react-native-community|expo(nent)?|@expo(nent)?/.*|react-navigation|@react-navigation/.*|@unimodules/.*|@sentry/.*|sentry-expo|native-base|jest-runner|native-base-*|@colinfran)"
+      "node_modules/(?!(jest-)?@?react-native|react-native|react-clone-referenced-element|@react-native-community|expo(nent)?|@expo(nent)?/.*|react-navigation|@react-navigation/.*|@unimodules/.*|@sentry/.*|sentry-expo|native-base|jest-runner|native-base-*|@colinfran|expo-asset|expo-font|expo-secure-store)"
     ]
   },
   "dependencies": {

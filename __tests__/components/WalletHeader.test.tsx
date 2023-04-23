@@ -1,9 +1,7 @@
 import React from "react"
-import renderer from "react-test-renderer"
 import WalletHeader from "../../components/WalletHeader"
-import { NativeBaseProviderTest } from "../helper"
+import { Providers } from "../helper"
 import { render, screen } from "@testing-library/react-native"
-import { DataContext } from "../../providers/DataProvider"
 
 const mockedDispatch = jest.fn()
 
@@ -29,47 +27,17 @@ jest.mock("expo-localization", () => {
   }
 })
 
-const RenderHeader = (): JSX.Element => (
-  <DataContext.Provider
-    value={
-      {
-        selectedCurrency: "USD",
-        graphData: {
-          day: [
-            {
-              x: 1679246714543,
-              y: 0.014540020460445197,
-            },
-            {
-              x: 1679247047789,
-              y: 0.014571506674731024,
-            },
-            {
-              x: 1679247288167,
-              y: 0.014452072671740143,
-            },
-          ],
-        },
-      } as any
-    }
-  >
-    <NativeBaseProviderTest>
-      <WalletHeader />
-    </NativeBaseProviderTest>
-  </DataContext.Provider>
-)
-
 describe("<WalletHeader />", () => {
   beforeEach(() => {
     mockedDispatch.mockClear()
   })
   it("renders correctly", () => {
-    const tree = renderer.create(<RenderHeader />).toJSON()
+    const tree = render(<WalletHeader />, { wrapper: Providers }).toJSON()
     expect(tree).toMatchSnapshot()
   })
 
   it("buttons", () => {
-    render(<RenderHeader />)
+    render(<WalletHeader />, { wrapper: Providers })
     const leftBtn = screen.getByTestId("test-left")
     const rightBtn = screen.getByTestId("test-right")
     expect(leftBtn).toHaveTextContent("Send")
@@ -77,7 +45,7 @@ describe("<WalletHeader />", () => {
   })
 
   it("wallet amount", () => {
-    render(<RenderHeader />)
+    render(<WalletHeader />, { wrapper: Providers })
     const amount = screen.getByTestId("test-walletAmount")
     const amountUsd = screen.getByTestId("test-walletAmountUSD")
     expect(amount).toHaveTextContent("0 KAS")

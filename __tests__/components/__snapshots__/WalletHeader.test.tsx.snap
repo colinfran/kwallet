@@ -34,8 +34,8 @@ exports[`<WalletHeader /> renders correctly 1`] = `
         },
         {
           "backgroundColor": undefined,
-          "borderColor": undefined,
-          "shadowColor": undefined,
+          "borderColor": "#123456",
+          "shadowColor": "#000",
         },
       ]
     }
@@ -46,7 +46,7 @@ exports[`<WalletHeader /> renders correctly 1`] = `
         style={
           {
             "backgroundColor": undefined,
-            "color": "#fafafa",
+            "color": "#000",
             "fontFamily": undefined,
             "fontSize": 48,
             "fontStyle": "normal",
@@ -67,7 +67,7 @@ exports[`<WalletHeader /> renders correctly 1`] = `
         style={
           {
             "backgroundColor": undefined,
-            "color": "#fafafa",
+            "color": "#000",
             "fontFamily": undefined,
             "fontSize": 20,
             "fontStyle": "normal",
@@ -159,7 +159,7 @@ exports[`<WalletHeader /> renders correctly 1`] = `
                       },
                       {
                         "backgroundColor": undefined,
-                        "shadowColor": undefined,
+                        "shadowColor": "#000",
                       },
                     ],
                   ]
@@ -217,7 +217,7 @@ exports[`<WalletHeader /> renders correctly 1`] = `
                         "width": "50%",
                       },
                       {
-                        "borderColor": undefined,
+                        "borderColor": "#123456",
                         "borderWidth": 2,
                       },
                     ]
@@ -243,7 +243,7 @@ exports[`<WalletHeader /> renders correctly 1`] = `
                         style={
                           {
                             "backgroundColor": undefined,
-                            "color": "#fafafa",
+                            "color": "#000",
                             "fontFamily": undefined,
                             "fontSize": 14,
                             "fontStyle": "normal",
@@ -320,7 +320,7 @@ exports[`<WalletHeader /> renders correctly 1`] = `
                         "width": "50%",
                       },
                       {
-                        "borderColor": undefined,
+                        "borderColor": "#123456",
                         "borderWidth": 2,
                       },
                     ]
@@ -346,7 +346,7 @@ exports[`<WalletHeader /> renders correctly 1`] = `
                         style={
                           {
                             "backgroundColor": undefined,
-                            "color": "#fafafa",
+                            "color": "#000",
                             "fontFamily": undefined,
                             "fontSize": 14,
                             "fontStyle": "normal",
@@ -372,12 +372,12 @@ exports[`<WalletHeader /> renders correctly 1`] = `
       style={
         {
           "borderBottomWidth": 0,
-          "borderColor": undefined,
+          "borderColor": "#123456",
           "borderWidth": 2,
           "elevation": 5,
           "height": 500,
           "position": "absolute",
-          "shadowColor": undefined,
+          "shadowColor": "#000",
           "shadowOffset": {
             "height": 6,
             "width": 0,

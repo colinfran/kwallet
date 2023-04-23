@@ -48,7 +48,7 @@ exports[`Button <ButtonOutline /> renders correctly 1`] = `
     style={
       {
         "alignItems": "center",
-        "borderColor": "#7fdccc",
+        "borderColor": "#123456",
         "borderRadius": 15,
         "borderWidth": 1,
         "flexDirection": "row",
@@ -225,7 +225,7 @@ exports[`Button <DoubleButton /> renders correctly 1`] = `
                     "width": "50%",
                   },
                   {
-                    "borderColor": "#7fdccc",
+                    "borderColor": "#123456",
                     "borderWidth": 2,
                   },
                 ]
@@ -328,7 +328,7 @@ exports[`Button <DoubleButton /> renders correctly 1`] = `
                     "width": "50%",
                   },
                   {
-                    "borderColor": "#7fdccc",
+                    "borderColor": "#123456",
                     "borderWidth": 2,
                   },
                 ]

@@ -12,11 +12,11 @@ import { devEnv, sentryDsn } from "./constants"
 Sentry.init({
   dsn: sentryDsn,
   enableInExpoDevelopment: true,
-  debug: true,
+  debug: devEnv !== "production",
   enabled: devEnv === "production",
 })
 
-if (__DEV__) {
+if (devEnv === "development") {
   const ignoreWarns = [
     "EventEmitter.removeListener",
     "[fuego-swr-keys-from-collection-path]",
