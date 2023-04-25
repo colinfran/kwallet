@@ -23,7 +23,7 @@
       "./__tests__/jest-setup.js",
       "./__tests__/helper.tsx"
     ],
-    "coveragePathIgnorePatterns" : [
+    "coveragePathIgnorePatterns": [
       "./__tests__/jest-setup.js",
       "./__tests__/helper.tsx"
     ],
@@ -78,6 +78,7 @@
     "react-native-animated-spinkit": "^1.5.2",
     "react-native-dotenv": "^3.4.8",
     "react-native-encrypted-storage": "^4.0.3",
+    "react-native-fade-in-out": "^1.0.6",
     "react-native-gesture-handler": "^2.9.0",
     "react-native-pager-view": "6.1.2",
     "react-native-qrcode-svg": "^6.2.0",

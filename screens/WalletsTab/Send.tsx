@@ -28,6 +28,7 @@ import opacity from "hex-color-opacity"
 import * as Clipboard from "expo-clipboard"
 import { useNavigation } from "@react-navigation/native"
 import * as Sentry from "sentry-expo"
+import FadeInOut from "react-native-fade-in-out"
 
 import { apiKey, apiUrl } from "../../constants/index"
 
@@ -539,9 +540,8 @@ const Send = ({ route }): JSX.Element => {
       </View>
       <Actionsheet
         hideDragIndicator={true}
-        isOpen={isOpen}
-        pointerEvents={submissionStatus === "loading" ? "none" : "auto"}
-        onClose={() => setIsOpen(!isOpen)}
+        isOpen={submissionStatus === "loading" ? true : isOpen}
+        onClose={() => submissionStatus !== "loading" && setIsOpen(!isOpen)}
       >
         <Actionsheet.Content>
           <View
@@ -556,116 +556,135 @@ const Send = ({ route }): JSX.Element => {
                 height: "90%",
                 justifyContent: "flex-start",
                 alignItems: "center",
+                position: "relative",
               }}
             >
-              {submissionStatus === "confirm" && (
-                <PresenceTransition
-                  animate={{
-                    opacity: 1,
-                    transition: {
-                      duration: 500,
-                    },
-                  }}
-                  initial={{
-                    opacity: 0,
-                  }}
-                  visible={submissionStatus === "confirm"}
-                >
+              <View
+                style={{
+                  position: "absolute",
+                  top: submissionStatus === "confirm" ? 0 : -1000,
+                  height: "100%",
+                }}
+              >
+                <FadeInOut visible={submissionStatus === "confirm"}>
                   {askSubmnit}
-                </PresenceTransition>
-              )}
-              {submissionStatus === "success" && (
-                <View
-                  style={{
-                    width: Dimensions.get("screen").width - 40,
-                    height: "100%",
-                    position: "relative",
-                    justifyContent: "center",
-                    alignItems: "center",
-                  }}
-                >
-                  <View style={[styles.headerContainer, { right: 0 }]}>
-                    <Button
-                      size="lg"
-                      variant="link"
-                      onPress={() => setIsOpen(false)}
-                    >
-                      Done
-                    </Button>
-                  </View>
+                </FadeInOut>
+              </View>
+              <View
+                style={{
+                  position: "absolute",
+                  top: submissionStatus === "success" ? 0 : -1000,
+                  height: "100%",
+                }}
+              >
+                <FadeInOut visible={submissionStatus === "success"}>
                   <View
                     style={{
-                      width: "70%",
-                      alignItems: "center",
-                      gap: 20,
+                      width: Dimensions.get("screen").width - 40,
+                      height: "100%",
+                      position: "relative",
                       justifyContent: "center",
+                      alignItems: "center",
                     }}
                   >
-                    <Icon
-                      as={MaterialIcons}
-                      color={appColor}
-                      name="check-circle"
-                      size={120}
-                    />
-                    <Text
+                    <View style={[styles.headerContainer, { right: 0 }]}>
+                      <Button
+                        size="lg"
+                        variant="link"
+                        onPress={() => setIsOpen(false)}
+                      >
+                        Done
+                      </Button>
+                    </View>
+                    <View
                       style={{
-                        color: textColor,
-                        textAlign: "center",
-                        fontSize: 24,
+                        width: "70%",
+                        alignItems: "center",
+                        gap: 20,
+                        justifyContent: "center",
                       }}
                     >
-                      Transaction succesfully submitted.
-                    </Text>
+                      <Icon
+                        as={MaterialIcons}
+                        color={appColor}
+                        name="check-circle"
+                        size={120}
+                      />
+                      <Text
+                        style={{
+                          color: textColor,
+                          textAlign: "center",
+                          fontSize: 24,
+                        }}
+                      >
+                        Transaction succesfully submitted.
+                      </Text>
+                    </View>
                   </View>
-                </View>
-              )}
-              {submissionStatus === "error" && (
-                <View
-                  style={{
-                    alignItems: "center",
-                    gap: 20,
-                    marginTop: "50%",
-                    width: "70%",
-                  }}
-                >
-                  <Icon
-                    as={MaterialIcons}
-                    color="error.500"
-                    name="error"
-                    size={120}
-                  />
-                  <Text
+                </FadeInOut>
+              </View>
+              <View
+                style={{
+                  position: "absolute",
+                  top: submissionStatus === "error" ? 0 : -1000,
+                  height: "100%",
+                }}
+              >
+                <FadeInOut visible={submissionStatus === "error"}>
+                  <View
                     style={{
-                      color: textColor,
-                      textAlign: "center",
-                      fontSize: 24,
+                      height: "100%",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      gap: 20,
+                      position: "relative",
                     }}
                   >
-                    There was an error submitting the transaction. Please try
-                    again.
-                  </Text>
-                </View>
-              )}
-              {submissionStatus === "loading" && (
-                <PresenceTransition
-                  animate={{
-                    opacity: 1,
-                    transition: {
-                      duration: 500,
-                    },
-                  }}
-                  initial={{
-                    opacity: 0,
-                  }}
-                  visible={submissionStatus === "loading"}
-                >
+                    <View style={[styles.headerContainer, { right: -20 }]}>
+                      <Button
+                        size="lg"
+                        variant="link"
+                        onPress={() => setIsOpen(false)}
+                      >
+                        Done
+                      </Button>
+                    </View>
+                    <Icon
+                      as={MaterialIcons}
+                      color="error.500"
+                      name="error"
+                      size={120}
+                    />
+                    <View style={{ width: "90%" }}>
+                      <Text
+                        style={{
+                          color: textColor,
+                          textAlign: "center",
+                          fontSize: 24,
+                        }}
+                      >
+                        There was an error submitting the transaction. Please
+                        try again.
+                      </Text>
+                    </View>
+                  </View>
+                </FadeInOut>
+              </View>
+              <View
+                style={{
+                  position: "absolute",
+                  top: submissionStatus === "loading" ? 0 : -1000,
+                  width: "100%",
+                  height: "100%",
+                }}
+              >
+                <FadeInOut visible={submissionStatus === "loading"}>
                   <View
                     style={{
                       justifyContent: "center",
                       alignItems: "center",
                       gap: 20,
-                      marginTop: "50%",
-                      width: "70%",
+                      height: "100%",
                     }}
                   >
                     <Bounce color={appColor} size={120} />
@@ -679,22 +698,8 @@ const Send = ({ route }): JSX.Element => {
                       Submitting transaction
                     </Text>
                   </View>
-                </PresenceTransition>
-              )}
-              {/* {submissionStatus === "loading" && (
-                <View style={{ alignItems: "center", gap: 20 }}>
-                  <Bounce color={appColor} size={120} />
-                  <Text
-                    style={{
-                      color: textColor,
-                      textAlign: "center",
-                      width: "70%",
-                    }}
-                  >
-                    Submitting transaction
-                  </Text>
-                </View>
-              )} */}
+                </FadeInOut>
+              </View>
             </View>
           </View>
         </Actionsheet.Content>
