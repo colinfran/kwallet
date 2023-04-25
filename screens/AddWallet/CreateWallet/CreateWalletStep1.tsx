@@ -129,6 +129,7 @@ const CreateWalletStep1 = ({ navigation }): JSX.Element => {
           <View style={styles.buttonContainer}>
             <View style={{ justifyContent: "center", alignItems: "center" }}>
               <Input
+                autoCapitalize="none"
                 borderColor={appColor}
                 borderRadius={15}
                 color={textColor}

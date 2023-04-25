@@ -90,40 +90,47 @@ route.post("/send", async (req, res) => {
     console.log("invalid apiKey")
     return res.status(401).send("unauthorized")
   }
+  setTimeout(() => {
+    console.log(req.body)
+    res.json({
+      success: true,
+      error: false,
+    })
+  }, 2000)
 
-  const { encryptedMnemonic, password, amount, fee, address } = req.body
-  try {
-    const wallet = await Wallet.import(
-      password,
-      encryptedMnemonic,
-      {
-        network,
-        rpc,
-      },
-      { disableAddressDerivation: true, syncOnce: true }
-    )
-    // console.log(req.body)
-    let response = await wallet.submitTransaction({
-      toAddr: address, // destination address
-      amount: Number(amount), // amount in base units
-      fee: Number(fee), // user fees
-    })
-    console.log(response)
-    if (!response || !response.txid) {
-      res.status(500).send({
-        error: true,
-        errorMessage: error.toString(),
-        errorDesrciption: "Error message",
-      })
-    }
-  } catch (error) {
-    console.log(error)
-    res.status(500).send({
-      error: true,
-      errorMessage: error.toString(),
-      errorDesrciption: "Error message",
-    })
-  }
+  // const { encryptedMnemonic, password, amount, fee, address } = req.body
+  // try {
+  //   const wallet = await Wallet.import(
+  //     password,
+  //     encryptedMnemonic,
+  //     {
+  //       network,
+  //       rpc,
+  //     },
+  //     { disableAddressDerivation: true, syncOnce: true }
+  //   )
+  //   // console.log(req.body)
+  //   let response = await wallet.submitTransaction({
+  //     toAddr: address, // destination address
+  //     amount: Number(amount), // amount in base units
+  //     fee: Number(fee), // user fees
+  //   })
+  //   console.log(response)
+  //   if (!response || !response.txid) {
+  //     res.status(500).send({
+  //       error: true,
+  //       errorMessage: error.toString(),
+  //       errorDesrciption: "Error message",
+  //     })
+  //   }
+  // } catch (error) {
+  //   console.log(error)
+  //   res.status(500).send({
+  //     error: true,
+  //     errorMessage: error.toString(),
+  //     errorDesrciption: "Error message",
+  //   })
+  // }
   return
 })
 

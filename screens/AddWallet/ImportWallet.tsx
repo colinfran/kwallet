@@ -81,6 +81,7 @@ const ImportWallet = (): JSX.Element => {
     <KeyboardAvoidingView style={styles.componentContainer}>
       <View style={styles.walletNameContainer}>
         <Input
+          autoCapitalize="none"
           borderColor={appColor}
           borderRadius={15}
           color={textColor}
@@ -95,6 +96,7 @@ const ImportWallet = (): JSX.Element => {
       </View>
       <View style={styles.walletNameContainer}>
         <Input
+          autoCapitalize="none"
           borderColor={appColor}
           borderRadius={15}
           color={textColor}

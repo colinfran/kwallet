@@ -10,9 +10,10 @@ import {
   Actionsheet,
   Icon,
   WarningOutlineIcon,
+  PresenceTransition,
 } from "native-base"
-
-import React, { useContext, useEffect, useState } from "react"
+import { getLocales } from "expo-localization"
+import React, { useContext, useEffect, useState, useRef } from "react"
 import {
   View,
   StyleSheet,
@@ -31,13 +32,14 @@ import * as Sentry from "sentry-expo"
 import { apiKey, apiUrl } from "../../constants/index"
 
 import { Bounce } from "react-native-animated-spinkit"
+import { getCurrencySymbol } from "../../constants/currencies"
 
 const Send = ({ route }): JSX.Element => {
   const [address, setAddress] = useState("")
   const [amount, setAmount] = useState("")
   const [fee, setFee] = useState("")
   const [isOpen, setIsOpen] = useState(false)
-  const [submissionStatus, setSubmissionStatus] = useState("loading")
+  const [submissionStatus, setSubmissionStatus] = useState("confirm")
 
   const [addressError, setAddressError] = useState(false)
   const [amountError, setAmountError] = useState(false)
@@ -50,6 +52,7 @@ const Send = ({ route }): JSX.Element => {
     wallets,
     selectedWalletIndex,
     graphData,
+    selectedCurrency,
   } = useContext(DataContext)
   const navigation = useNavigation()
 
@@ -64,9 +67,33 @@ const Send = ({ route }): JSX.Element => {
     setAddress(value)
   }
 
+  const showAlert = (): void => {
+    Alert.alert(
+      "Submit transaction",
+      // eslint-disable-next-line max-len
+      "You are about to submit your transaction to the Kaspa blockchain. Are you sure you  want to continue?",
+      [
+        { text: "Yes", onPress: () => submitTransaction() },
+        {
+          text: "No",
+          onPress: () => console.log("No Pressed"),
+          style: "cancel",
+        },
+      ]
+    )
+  }
+
+  useEffect(() => {
+    if (!isOpen) {
+      setSubmissionStatus("confirm")
+      setAddress("")
+      setAmount("")
+      setFee("")
+    }
+  }, [isOpen])
+
   const submitTransaction = async (): Promise<void> => {
-    console.log("Yes Pressed")
-    setIsOpen(true)
+    setSubmissionStatus("loading")
     const selectedWallet = wallets[selectedWalletIndex]
     try {
       const options = {
@@ -87,35 +114,31 @@ const Send = ({ route }): JSX.Element => {
       const response = await fetch(url, options)
       const json = await response.json()
       console.log(json)
-      setTimeout(() => {
-        if (json) {
-          if (json.error) {
-            setSubmissionStatus("error")
-          }
-          if (json.sucess) {
-            setSubmissionStatus("sucess")
-            setAddress("")
-            setAmount("")
-            setFee("")
-          }
+      if (json) {
+        if (json.error) {
+          setSubmissionStatus("error")
+          setAddress("")
+          setAmount("")
+          setFee("")
         }
-      }, 2000)
+        if (json.success) {
+          setSubmissionStatus("success")
+          setAddress("")
+          setAmount("")
+          setFee("")
+        }
+      }
     } catch (error) {
       Sentry.Native.captureException(error)
       console.log(error)
     }
   }
 
-  useEffect(() => {
-    if (!isOpen) {
-      setSubmissionStatus("loading")
-    }
-  }, [isOpen])
-
   const onButtonPress = (): void => {
-    const isAddressInvalid = address.slice(0, 10) !== "kaspatest:"
+    const isAddressInvalid = address.slice(0, 6) !== "kaspa:"
     if (isAddressInvalid) {
       setAddressError(true)
+      return
     }
 
     const numAmount = Number(amount)
@@ -125,33 +148,130 @@ const Send = ({ route }): JSX.Element => {
     const isAmountInvalid = numAmount <= 0 || numAmount >= numAvailable
     if (isAmountInvalid) {
       setAmountError(true)
+      return
     }
 
     const isFeeInvalid = numFee >= numAvailable
     if (isFeeInvalid) {
       setFeeError(true)
+      return
     }
-    if (isAddressInvalid || isAmountInvalid || isFeeInvalid) return
     setAddressError(false)
     setAmountError(false)
     setFeeError(false)
-    // if (isAddressInvalid || isAmountInvalid || isFeeInvalid) return
-
-    Alert.alert(
-      "Submit transaction",
-      // eslint-disable-next-line max-len
-      "You are about to submit your transaction to the Kaspa blockchain. Are you sure you  want to continue?",
-      [
-        { text: "Yes", onPress: () => submitTransaction() },
-        {
-          text: "No",
-          onPress: () => console.log("No Pressed"),
-          style: "cancel",
-        },
-      ]
-      //clicking out side of alert will not cancel
-    )
+    setIsOpen(true)
   }
+
+  const deviceLanguage = getLocales()[0]
+  const locale = `${
+    deviceLanguage.languageCode
+  }-${deviceLanguage.measurementSystem.toUpperCase()}`
+
+  const currencyFormatter = (val: number): string => {
+    const symb = getCurrencySymbol(selectedCurrency)
+    const formatter = new Intl.NumberFormat(locale, {
+      style: "currency",
+      currency: selectedCurrency,
+      currencyDisplay: "symbol",
+    })
+    const str = formatter.format(val).toString().split(symb)[1]
+    return `${symb}${str}`
+  }
+
+  const monetaryValue = currencyFormatter(
+    Number(amount) * graphData.currentPrice
+  )
+
+  const ref_input2 = useRef()
+  const ref_input3 = useRef()
+
+  const askSubmnit = (
+    <View
+      style={{
+        width: Dimensions.get("window").width,
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        position: "relative",
+      }}
+    >
+      <View style={[styles.headerContainer, { left: 0 }]}>
+        <Button size="lg" variant="link" onPress={() => setIsOpen(false)}>
+          Back
+        </Button>
+      </View>
+      <View style={{ marginTop: 60 }}>
+        <Text style={{ color: textColor, fontSize: 26 }}>
+          Confirm Transaction
+        </Text>
+      </View>
+      <View
+        style={{ flexDirection: "column", alignItems: "center", marginTop: 30 }}
+      >
+        <Text style={{ color: textColor, fontSize: 32 }}>{amount} KAS</Text>
+        <Text style={{ color: textColor }}>{monetaryValue}</Text>
+      </View>
+      <View style={{ width: "100%", marginTop: 30, paddingHorizontal: 40 }}>
+        <View style={{ borderTopColor: "lightgrey", borderTopWidth: 2 }}>
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-between",
+              paddingVertical: 20,
+            }}
+          >
+            <Text style={{ color: textColor }}>KAS price</Text>
+            <Text style={{ color: textColor }}>
+              {currencyFormatter(graphData.currentPrice)}
+            </Text>
+          </View>
+        </View>
+        <View style={{ borderTopColor: "lightgrey", borderTopWidth: 2 }}>
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-between",
+              paddingVertical: 20,
+            }}
+          >
+            <Text style={{ color: textColor }}>Fee</Text>
+            <Text style={{ color: textColor }}>{fee}</Text>
+          </View>
+        </View>
+        <View style={{ borderTopColor: "lightgrey", borderTopWidth: 2 }}>
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-between",
+              paddingVertical: 20,
+            }}
+          >
+            <Text style={{ color: textColor }}>Addresss</Text>
+            <Text style={{ color: textColor }}>{address}</Text>
+          </View>
+        </View>
+        <View style={{}}>
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-between",
+              paddingVertical: 20,
+            }}
+          >
+            <Text style={{ color: textColor }}>Total</Text>
+            <Text style={{ color: textColor }}>
+              {Number(amount) + Number(fee)} KAS
+            </Text>
+          </View>
+        </View>
+      </View>
+      <View
+        style={{ width: "100%", paddingHorizontal: 40, marginVertical: 50 }}
+      >
+        <Button onPress={showAlert}>Confirm Transaction</Button>
+      </View>
+    </View>
+  )
 
   return (
     <KeyboardAvoidingView style={styles.container}>
@@ -167,13 +287,15 @@ const Send = ({ route }): JSX.Element => {
             },
           ]}
         >
-          <TextArea
+          <Input
             _focus={{
               style: {
                 backgroundColor: opacity(appColor, 0.4),
                 color: textColor,
               },
             }}
+            autoCapitalize="none"
+            autoFocus={true}
             borderColor={appColor}
             borderRadius={15}
             color={textColor}
@@ -232,11 +354,12 @@ const Send = ({ route }): JSX.Element => {
             }
             placeholder="Kaspa Address"
             placeholderTextColor={textColor}
-            returnKeyType="done"
+            returnKeyType="next"
             size="2xl"
             value={address}
             w="100%"
             onChangeText={(text) => setAddress(text)}
+            onSubmitEditing={() => ref_input2?.current.focus()}
           />
         </Box>
         <View style={{ justifyContent: "center", marginTop: 10 }}>
@@ -279,6 +402,7 @@ const Send = ({ route }): JSX.Element => {
               },
             }}
             _stack={{ style: { borderColor: appColor } }}
+            autoCapitalize="none"
             borderColor={appColor}
             borderRadius={15}
             color={textColor}
@@ -313,11 +437,14 @@ const Send = ({ route }): JSX.Element => {
             keyboardType="number-pad"
             placeholder="Amount"
             placeholderTextColor={textColor}
-            returnKeyType="done"
+            ref={ref_input2}
+            returnKeyType="next"
             selectionColor={appColor}
             size="2xl"
+            value={amount}
             w="100%"
             onChangeText={(val) => setAmount(val)}
+            onSubmitEditing={() => ref_input3?.current.focus()}
           />
         </Box>
         <View style={{ justifyContent: "center", marginTop: 10 }}>
@@ -360,6 +487,7 @@ const Send = ({ route }): JSX.Element => {
               },
             }}
             _stack={{ style: { borderColor: appColor } }}
+            autoCapitalize="none"
             borderColor={appColor}
             borderRadius={15}
             color={textColor}
@@ -370,9 +498,11 @@ const Send = ({ route }): JSX.Element => {
             keyboardType="number-pad"
             placeholder="Transaction Fee"
             placeholderTextColor={textColor}
+            ref={ref_input3}
             returnKeyType="done"
             selectionColor={appColor}
             size="2xl"
+            value={fee}
             w="100%"
             onChangeText={(val) => setFee(val)}
           />
@@ -407,36 +537,97 @@ const Send = ({ route }): JSX.Element => {
           Continue
         </Button>
       </View>
-      <Actionsheet isOpen={isOpen} onClose={() => setIsOpen(!isOpen)}>
+      <Actionsheet
+        hideDragIndicator={true}
+        isOpen={isOpen}
+        pointerEvents={submissionStatus === "loading" ? "none" : "auto"}
+        onClose={() => setIsOpen(!isOpen)}
+      >
         <Actionsheet.Content>
           <View
             style={{
-              height: Dimensions.get("window").height / 2,
+              height: "100%",
               justifyContent: "center",
+              alignItems: "center",
             }}
           >
-            <View>
+            <View
+              style={{
+                height: "90%",
+                justifyContent: "flex-start",
+                alignItems: "center",
+              }}
+            >
+              {submissionStatus === "confirm" && (
+                <PresenceTransition
+                  animate={{
+                    opacity: 1,
+                    transition: {
+                      duration: 500,
+                    },
+                  }}
+                  initial={{
+                    opacity: 0,
+                  }}
+                  visible={submissionStatus === "confirm"}
+                >
+                  {askSubmnit}
+                </PresenceTransition>
+              )}
               {submissionStatus === "success" && (
-                <View style={{ alignItems: "center", gap: 20 }}>
-                  <Icon
-                    as={MaterialIcons}
-                    color={appColor}
-                    name="check-circle"
-                    size={120}
-                  />
-                  <Text
+                <View
+                  style={{
+                    width: Dimensions.get("screen").width - 40,
+                    height: "100%",
+                    position: "relative",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <View style={[styles.headerContainer, { right: 0 }]}>
+                    <Button
+                      size="lg"
+                      variant="link"
+                      onPress={() => setIsOpen(false)}
+                    >
+                      Done
+                    </Button>
+                  </View>
+                  <View
                     style={{
-                      color: textColor,
-                      textAlign: "center",
                       width: "70%",
+                      alignItems: "center",
+                      gap: 20,
+                      justifyContent: "center",
                     }}
                   >
-                    Transaction succesfully submitted.
-                  </Text>
+                    <Icon
+                      as={MaterialIcons}
+                      color={appColor}
+                      name="check-circle"
+                      size={120}
+                    />
+                    <Text
+                      style={{
+                        color: textColor,
+                        textAlign: "center",
+                        fontSize: 24,
+                      }}
+                    >
+                      Transaction succesfully submitted.
+                    </Text>
+                  </View>
                 </View>
               )}
               {submissionStatus === "error" && (
-                <View style={{ alignItems: "center", gap: 20 }}>
+                <View
+                  style={{
+                    alignItems: "center",
+                    gap: 20,
+                    marginTop: "50%",
+                    width: "70%",
+                  }}
+                >
                   <Icon
                     as={MaterialIcons}
                     color="error.500"
@@ -447,7 +638,7 @@ const Send = ({ route }): JSX.Element => {
                     style={{
                       color: textColor,
                       textAlign: "center",
-                      width: "70%",
+                      fontSize: 24,
                     }}
                   >
                     There was an error submitting the transaction. Please try
@@ -456,6 +647,41 @@ const Send = ({ route }): JSX.Element => {
                 </View>
               )}
               {submissionStatus === "loading" && (
+                <PresenceTransition
+                  animate={{
+                    opacity: 1,
+                    transition: {
+                      duration: 500,
+                    },
+                  }}
+                  initial={{
+                    opacity: 0,
+                  }}
+                  visible={submissionStatus === "loading"}
+                >
+                  <View
+                    style={{
+                      justifyContent: "center",
+                      alignItems: "center",
+                      gap: 20,
+                      marginTop: "50%",
+                      width: "70%",
+                    }}
+                  >
+                    <Bounce color={appColor} size={120} />
+                    <Text
+                      style={{
+                        color: textColor,
+                        textAlign: "center",
+                        fontSize: 24,
+                      }}
+                    >
+                      Submitting transaction
+                    </Text>
+                  </View>
+                </PresenceTransition>
+              )}
+              {/* {submissionStatus === "loading" && (
                 <View style={{ alignItems: "center", gap: 20 }}>
                   <Bounce color={appColor} size={120} />
                   <Text
@@ -468,7 +694,7 @@ const Send = ({ route }): JSX.Element => {
                     Submitting transaction
                   </Text>
                 </View>
-              )}
+              )} */}
             </View>
           </View>
         </Actionsheet.Content>
@@ -491,6 +717,16 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.35,
     shadowRadius: 3.5,
     elevation: 5,
+  },
+  headerContainer: {
+    alignItems: "flex-start",
+    paddingLeft: 20,
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+    position: "absolute",
+    top: -20,
+    zIndex: 50,
+    height: "100%",
   },
 })
 
