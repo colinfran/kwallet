@@ -1,4 +1,11 @@
-import React, { useContext } from "react"
+import React, {
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react"
 import {
   StyleSheet,
   View,
@@ -6,20 +13,22 @@ import {
   RefreshControl,
   Dimensions,
   SafeAreaView,
+  TouchableOpacity,
 } from "react-native"
 import { TabView, SceneMap, TabBar } from "react-native-tab-view"
+import BottomSheet, {
+  BottomSheetBackdrop,
+  BottomSheetView,
+} from "@gorhom/bottom-sheet"
 
-import { Text, useTheme } from "native-base"
+import { Actionsheet, Text, useTheme } from "native-base"
 
 import WalletHeader from "../../components/WalletHeader"
 import { DataContext } from "../../providers/DataProvider"
 import Chart from "../../components/Chart"
 import TransactionHistory from "../../components/TransactionHistory"
-
-const renderScene = SceneMap({
-  chart: Chart,
-  transactions: TransactionHistory,
-})
+import { AntDesign, Ionicons } from "@expo/vector-icons"
+import News from "../../components/News"
 
 const WalletsTab = (): JSX.Element => {
   const {
@@ -27,8 +36,10 @@ const WalletsTab = (): JSX.Element => {
     setSelectedGraphIndex,
     textColor,
     backgroundColor,
+    modalBackgroundColor,
     getGraphData,
     setGraphData,
+    wallets,
   } = useContext(DataContext)
   const [refreshing, setRefreshing] = React.useState(false)
 
@@ -43,17 +54,94 @@ const WalletsTab = (): JSX.Element => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [setSelectedGraphIndex])
 
-  const [index, setIndex] = React.useState(0)
-  const [routes] = React.useState([
-    { key: "chart", title: "Chart" },
-    { key: "transactions", title: "Transactions" },
-  ])
+  const sheetRef = useRef(null)
 
-  const theme = useTheme()
+  console.log(wallets[0])
+
+  // variables
+  const snapPoints = useMemo(() => ["80%"], [])
+
+  const handleSnapPress = useCallback((index) => {
+    sheetRef.current?.snapToIndex(index)
+  }, [])
+  const handleClosePress = useCallback(() => {
+    sheetRef.current?.close()
+  }, [])
+
+  const [sheetContent, setSheetContent] = useState("chart")
+
+  const renderTransactions = (
+    <>
+      <TouchableOpacity
+        style={{
+          top: 0,
+          right: 10,
+          width: 40,
+          height: 40,
+          alignSelf: "flex-end",
+          alignItems: "center",
+          justifyContent: "center",
+          borderRadius: 100,
+          backgroundColor: "#a1a1aa",
+        }}
+        onPress={() => handleClosePress()}
+      >
+        <Ionicons color="black" name="close-outline" size={24} />
+      </TouchableOpacity>
+      <View
+        style={{
+          justifyContent: "center",
+          alignItems: "center",
+          marginTop: 30,
+        }}
+      >
+        <TransactionHistory />
+      </View>
+    </>
+  )
+
+  const renderChart = (
+    <>
+      <TouchableOpacity
+        style={{
+          top: 0,
+          right: 10,
+          width: 40,
+          height: 40,
+          alignSelf: "flex-end",
+          alignItems: "center",
+          justifyContent: "center",
+          borderRadius: 100,
+          backgroundColor: "#a1a1aa",
+        }}
+        onPress={() => handleClosePress()}
+      >
+        <Ionicons color="black" name="close-outline" size={24} />
+      </TouchableOpacity>
+      <Chart />
+    </>
+  )
+
+  const renderContent = () => {
+    if (sheetContent === "transactions") return renderTransactions
+    if (sheetContent === "chart") return renderChart
+  }
+
+  const smallerDevice = Dimensions.get("window").height < 800
+
   return (
     <SafeAreaView>
       <ScrollView
-        contentContainerStyle={[styles.container, { height: "100%", gap: 20 }]}
+        contentContainerStyle={[
+          styles.container,
+          {
+            height: "100%",
+            // gap: 20,
+            // borderColor: appColor,
+            // borderRightWidth: 2,
+            // borderLeftWidth: 2,
+          },
+        ]}
         disableScrollViewPanResponder={true}
         refreshControl={
           <RefreshControl
@@ -63,67 +151,112 @@ const WalletsTab = (): JSX.Element => {
             onRefresh={onRefresh}
           />
         }
+        showsVerticalScrollIndicator={false}
       >
-        <View style={{ gap: 30 }}>
-          <View style={{ alignSelf: "flex-start", width: "100%" }}>
+        <View style={{ width: "100%" }}>
+          <View
+            style={{
+              alignSelf: "center",
+              justifyContent: "center",
+              width: "100%",
+              // gap: 30,
+            }}
+          >
             <WalletHeader />
-          </View>
-        </View>
-        <TabView
-          initialLayout={{ width: Dimensions.get("window").width }}
-          navigationState={{ index, routes }}
-          renderScene={renderScene}
-          renderTabBar={(props) => {
-            return (
-              <View
+            <View
+              style={{
+                width: "100%",
+                flexDirection: "row",
+                padding: 20,
+                gap: 20,
+              }}
+            >
+              <TouchableOpacity
                 style={[
                   styles.shadow,
                   {
-                    alignItems: "center",
-                    borderRadius: 15,
-                    margin: 20,
-                    shadowColor: textColor,
-                  },
-                ]}
-              >
-                <TabBar
-                  {...props}
-                  indicatorStyle={{
-                    height: "100%",
-                    backgroundColor: appColor,
-                    borderColor: appColor,
-                    borderRadius: 12,
-                  }}
-                  renderLabel={({ route, focused }) => (
-                    <Text
-                      style={{
-                        color: focused ? "#000" : theme.colors.light["500"],
-                      }}
-                    >
-                      {route.title}
-                    </Text>
-                  )}
-                  style={{
                     backgroundColor: backgroundColor,
+                    shadowColor: textColor,
                     borderColor: appColor,
                     borderWidth: 2,
-                    width: Dimensions.get("window").width - 40,
                     borderRadius: 15,
+                    width: Dimensions.get("window").width * 0.5 - 30,
+                    height: 130,
+                    justifyContent: "center",
+                    alignItems: "center",
+                  },
+                ]}
+                onPress={() => {
+                  setSheetContent("transactions")
+                  setTimeout(() => {
+                    handleSnapPress(0)
+                  }, 100)
+                }}
+              >
+                <AntDesign color={textColor} name="bars" size={30} />
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={[
+                  styles.shadow,
+                  {
+                    backgroundColor: backgroundColor,
                     shadowColor: textColor,
-                  }}
-                />
-              </View>
-            )
-          }}
-          sceneContainerStyle={{
-            width: "100%",
-            height: "100%",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-          onIndexChange={setIndex}
-        />
+                    borderColor: appColor,
+                    borderWidth: 2,
+                    borderRadius: 15,
+                    width: Dimensions.get("window").width * 0.5 - 30,
+                    height: 130,
+                    justifyContent: "center",
+                    alignItems: "center",
+                  },
+                ]}
+                onPress={() => {
+                  setSheetContent("chart")
+                  setTimeout(() => {
+                    handleSnapPress(0)
+                  }, 100)
+                }}
+              >
+                <AntDesign color={textColor} name="linechart" size={25} />
+              </TouchableOpacity>
+            </View>
+            <View>
+              <News />
+            </View>
+          </View>
+        </View>
       </ScrollView>
+      <BottomSheet
+        backdropComponent={useCallback(
+          (props) => (
+            <BottomSheetBackdrop
+              {...props}
+              appearsOnIndex={0}
+              disappearsOnIndex={-1}
+            />
+          ),
+          []
+        )}
+        backgroundStyle={{
+          backgroundColor: modalBackgroundColor,
+          borderTopLeftRadius: 20,
+          borderTopRightRadius: 20,
+        }}
+        enableOverDrag={true}
+        enablePanDownToClose={true}
+        handleIndicatorStyle={{
+          backgroundColor: "#a1a1aa",
+          width: 40,
+          marginTop: 5,
+        }}
+        index={-1}
+        ref={sheetRef}
+        snapPoints={snapPoints}
+      >
+        <BottomSheetView style={{ position: "relative" }}>
+          {renderContent()}
+        </BottomSheetView>
+      </BottomSheet>
     </SafeAreaView>
   )
 }
@@ -134,7 +267,7 @@ const styles = StyleSheet.create({
   container: {
     // flex: 1,
     alignItems: "center",
-    justifyContent: "space-between",
+    justifyContent: "center",
     // padding: 20,
     position: "relative",
     // height: "100%",

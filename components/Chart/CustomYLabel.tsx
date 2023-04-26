@@ -6,6 +6,7 @@ const CustomYLabel = ({
   currentPrice = 0,
   currencySymbol = "$",
   color,
+  style,
 }): JSX.Element => {
   const symbol = useSharedValue(currencySymbol)
   const latestCurrentPrice = useSharedValue(currentPrice)
@@ -23,6 +24,6 @@ const CustomYLabel = ({
     return `${symbol.value}${Number(value).toFixed(7)}`
   }
 
-  return <ChartYLabel color={color} format={formatPrice} />
+  return <ChartYLabel color={color} format={formatPrice} style={style} />
 }
 export default CustomYLabel

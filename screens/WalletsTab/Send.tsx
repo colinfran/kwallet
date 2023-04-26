@@ -54,6 +54,7 @@ const Send = ({ route }): JSX.Element => {
     selectedWalletIndex,
     graphData,
     selectedCurrency,
+    modalBackgroundColor,
   } = useContext(DataContext)
   const navigation = useNavigation()
 
@@ -543,7 +544,7 @@ const Send = ({ route }): JSX.Element => {
         isOpen={submissionStatus === "loading" ? true : isOpen}
         onClose={() => submissionStatus !== "loading" && setIsOpen(!isOpen)}
       >
-        <Actionsheet.Content>
+        <Actionsheet.Content style={{ backgroundColor: modalBackgroundColor }}>
           <View
             style={{
               height: "100%",

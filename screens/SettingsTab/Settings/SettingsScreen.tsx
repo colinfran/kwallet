@@ -68,6 +68,7 @@ const SettingsScreen = (): JSX.Element => {
     setWallets,
     textColor,
     backgroundColor,
+    modalBackgroundColor,
     selectedCurrency,
   } = useContext(DataContext)
 
@@ -446,7 +447,9 @@ const SettingsScreen = (): JSX.Element => {
           isOpen={openWalletPicker}
           onClose={() => setOpenWalletPicker(false)}
         >
-          <Actionsheet.Content>
+          <Actionsheet.Content
+            style={{ backgroundColor: modalBackgroundColor }}
+          >
             <Box
               h={Dimensions.get("window").height / 2}
               justifyContent="center"

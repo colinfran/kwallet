@@ -26,6 +26,7 @@ export const DataContext = createContext({
   textColor: "#000",
   backgroundColor: "#fff",
   appColor: "#7fdccc",
+  modalBackgroundColor: "#f5f5f5",
 
   setappColor: (hex: string) => {},
 
@@ -63,6 +64,9 @@ export const DataProvider = ({ children }): JSX.Element => {
     useColorScheme() === "dark"
       ? DarkTheme.colors.background
       : DefaultTheme.colors.background
+
+  const modalBackgroundColor =
+    useColorScheme() === "dark" ? "#262626" : "#f5f5f5"
 
   const [wallets, setWallets] = useState([])
   const [selectedWalletIndex, setSelectedWalletIndex] = useState(0)
@@ -132,6 +136,7 @@ export const DataProvider = ({ children }): JSX.Element => {
       value={{
         textColor,
         backgroundColor,
+        modalBackgroundColor,
 
         wallets,
         setWallets,

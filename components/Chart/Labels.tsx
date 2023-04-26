@@ -79,7 +79,7 @@ const Labels = ({ width, isCard, color }): JSX.Element | null => {
           fontSize={isCard ? "13pt" : undefined}
           position={positionMin}
           style={{
-            bottom: isCard ? -12 : 70,
+            bottom: isCard ? -12 : "25%",
             zIndex: 6,
           }}
           width={width}

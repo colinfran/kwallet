@@ -47,9 +47,9 @@ const WalletAmount = (): JSX.Element => {
       style={[
         styles.container,
         {
-          backgroundColor: backgroundColor,
-          borderColor: appColor,
-          shadowColor: textColor,
+          // backgroundColor: backgroundColor,
+          // borderColor: appColor,
+          // shadowColor: textColor,
         },
       ]}
     >
@@ -98,12 +98,12 @@ const WalletAmount = (): JSX.Element => {
           }}
         />
       </View>
-      <View
+      {/* <View
         style={{
           borderColor: appColor,
           borderWidth: 2,
           borderBottomWidth: 0,
-          width: Dimensions.get("window").width - 10,
+          width: Dimensions.get("window").width,
           height: 500,
           position: "absolute",
           top: -500,
@@ -117,7 +117,7 @@ const WalletAmount = (): JSX.Element => {
           shadowRadius: 3.5,
           elevation: 5,
         }}
-      ></View>
+      ></View> */}
     </View>
   )
 }
@@ -126,14 +126,14 @@ export default WalletAmount
 
 const styles = StyleSheet.create({
   container: {
-    marginHorizontal: 5,
-    borderWidth: 2,
-    borderTopWidth: 0,
+    // marginHorizontal: 5,
+    // borderWidth: 2,
+    // borderTopWidth: 0,
     alignItems: "center",
     justifyContent: "center",
-    paddingVertical: Dimensions.get("window").height < 800 ? "10%" : "20%",
-    borderBottomLeftRadius: 25,
-    borderBottomRightRadius: 25,
+    // paddingVertical: Dimensions.get("window").height < 800 ? "10%" : "20%",
+    // borderBottomLeftRadius: 25,
+    // borderBottomRightRadius: 25,
     shadowOffset: {
       width: 0,
       height: 6,

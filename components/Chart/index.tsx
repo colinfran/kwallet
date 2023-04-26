@@ -55,12 +55,6 @@ const Chart = (): JSX.Element => {
     { buttonTitle: "Day" },
   ])
 
-  // const [, forceUpdate] = useReducer((x) => x + 1, 0)
-
-  // useEffect(() => {
-  //   forceUpdate()
-  // }, [selectedCurrency])
-
   useEffect(() => {
     if (graphData) {
       if (graphData?.day?.prices) {
@@ -103,9 +97,15 @@ const Chart = (): JSX.Element => {
 
   const [isActive, setIsActive] = useState(false)
 
+  useEffect(() => {
+    return () => {
+      setSelectedGraphIndex(0)
+    }
+  }, [])
+
   return (
     <Skeleton
-      h={360}
+      // h={360}
       isLoaded={isLoaded}
       w={Dimensions.get("window").width}
       // style={{justifyContent:"center", alignItems:'center'}}
@@ -139,9 +139,7 @@ const Chart = (): JSX.Element => {
               backgroundGrandient={opacity(appColor, 0.2)}
               gradientEnabled={true}
               hapticsEnabled={true}
-              height={
-                Dimensions.get("window").height > 800 ? SIZE / 3 : SIZE / 3.5
-              }
+              height={Dimensions.get("window").height / 3}
               selectedStrokeWidth={3}
               stroke={appColor}
               strokeWidth={3}
@@ -161,6 +159,7 @@ const Chart = (): JSX.Element => {
                   justifyContent: "center",
                   alignItems: "center",
                   padding: 30,
+                  marginTop: 20,
                 }}
               >
                 <ChartXLabel color={textColor} format={getX} />
@@ -168,6 +167,7 @@ const Chart = (): JSX.Element => {
                   color={textColor}
                   currencySymbol={currencySymbol}
                   currentPrice={graphData?.currentPrice || 0}
+                  style={{ fontSize: 24 }}
                 />
               </View>
             </View>
@@ -181,10 +181,10 @@ const Chart = (): JSX.Element => {
 const styles = StyleSheet.create({
   container: {
     width: "100%",
-    height: "100%",
     alignItems: "center",
-    justifyContent: "space-between",
-    gap: 10,
+    justifyContent: "center",
+    gap: 40,
+    marginTop: 10,
   },
   buttonContainer: {
     flexDirection: "row",
