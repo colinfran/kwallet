@@ -48,6 +48,8 @@ export const Providers = ({ children }): JSX.Element => {
       value={
         {
           appColor: "#123456",
+          backgroundColor: "#654321",
+          modalBackgroundColor: "#123123",
           selectedGraphIndex: 0,
           setSelectedGraphIndex: setSelectedMock,
           textColor: "#000",
@@ -89,6 +91,8 @@ export const ProvidersWithOneWallet = ({ children }): JSX.Element => {
       value={
         {
           appColor: "#123456",
+          backgroundColor: "#654321",
+          modalBackgroundColor: "#123123",
           selectedGraphIndex: 0,
           setSelectedGraphIndex: setSelectedMock,
           textColor: "#000",

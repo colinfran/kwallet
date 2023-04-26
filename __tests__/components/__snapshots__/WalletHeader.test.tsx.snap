@@ -17,14 +17,8 @@ exports[`<WalletHeader /> renders correctly 1`] = `
       [
         {
           "alignItems": "center",
-          "borderBottomLeftRadius": 25,
-          "borderBottomRightRadius": 25,
-          "borderTopWidth": 0,
-          "borderWidth": 2,
           "elevation": 5,
           "justifyContent": "center",
-          "marginHorizontal": 5,
-          "paddingVertical": "20%",
           "shadowOffset": {
             "height": 6,
             "width": 0,
@@ -32,11 +26,7 @@ exports[`<WalletHeader /> renders correctly 1`] = `
           "shadowOpacity": 0.25,
           "shadowRadius": 3.5,
         },
-        {
-          "backgroundColor": undefined,
-          "borderColor": "#123456",
-          "shadowColor": "#000",
-        },
+        {},
       ]
     }
   >
@@ -158,7 +148,7 @@ exports[`<WalletHeader /> renders correctly 1`] = `
                         "shadowRadius": 3.5,
                       },
                       {
-                        "backgroundColor": undefined,
+                        "backgroundColor": "#654321",
                         "shadowColor": "#000",
                       },
                     ],
@@ -203,6 +193,7 @@ exports[`<WalletHeader /> renders correctly 1`] = `
                     [
                       {
                         "alignItems": "center",
+                        "backgroundColor": "#654321",
                         "borderBottomLeftRadius": 15,
                         "borderColor": "#404040",
                         "borderRadius": 0,
@@ -305,6 +296,7 @@ exports[`<WalletHeader /> renders correctly 1`] = `
                     [
                       {
                         "alignItems": "center",
+                        "backgroundColor": "#654321",
                         "borderBottomRightRadius": 15,
                         "borderColor": "#404040",
                         "borderLeftWidth": 0,
@@ -368,28 +360,6 @@ exports[`<WalletHeader /> renders correctly 1`] = `
         </View>
       </View>
     </View>
-    <View
-      style={
-        {
-          "borderBottomWidth": 0,
-          "borderColor": "#123456",
-          "borderWidth": 2,
-          "elevation": 5,
-          "height": 500,
-          "position": "absolute",
-          "shadowColor": "#000",
-          "shadowOffset": {
-            "height": 6,
-            "width": 0,
-          },
-          "shadowOpacity": 0.25,
-          "shadowRadius": 3.5,
-          "top": -500,
-          "width": 740,
-          "zIndex": 0,
-        }
-      }
-    />
   </View>
 </RNCSafeAreaProvider>
 `;

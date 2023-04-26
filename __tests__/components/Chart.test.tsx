@@ -21,6 +21,10 @@ describe("<Chart />", () => {
   })
   afterEach(cleanup)
 
+  afterEach(() => {
+    jest.restoreAllMocks()
+  })
+
   it("renders correctly", () => {
     const tree = render(<Chart />, { wrapper: Providers }).toJSON()
     expect(tree).toMatchSnapshot()

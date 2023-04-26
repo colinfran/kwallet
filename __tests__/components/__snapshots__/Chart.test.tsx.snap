@@ -16,9 +16,9 @@ exports[`<Chart /> renders correctly 1`] = `
     style={
       {
         "alignItems": "center",
-        "gap": 10,
-        "height": "100%",
-        "justifyContent": "space-between",
+        "gap": 40,
+        "justifyContent": "center",
+        "marginTop": 10,
         "width": "100%",
       }
     }
@@ -62,7 +62,7 @@ exports[`<Chart /> renders correctly 1`] = `
             style={
               {
                 "alignItems": "center",
-                "backgroundColor": undefined,
+                "backgroundColor": "#654321",
                 "borderColor": "#123456",
                 "borderRadius": 15,
                 "borderWidth": 2,
@@ -329,7 +329,7 @@ exports[`<Chart /> renders correctly 1`] = `
         onLayout={[Function]}
         style={
           {
-            "bottom": 70,
+            "bottom": "25%",
             "left": 712,
             "opacity": 0,
             "position": "absolute",
@@ -387,10 +387,10 @@ exports[`<Chart /> renders correctly 1`] = `
       >
         <RNSVGSvgView
           align="xMidYMid"
-          bbHeight="270"
+          bbHeight="464.6666666666667"
           bbWidth="750"
           focusable={false}
-          height={270}
+          height={464.6666666666667}
           meetOrSlice={0}
           minX={0}
           minY={0}
@@ -402,12 +402,12 @@ exports[`<Chart /> renders correctly 1`] = `
               },
               {
                 "flex": 0,
-                "height": 270,
+                "height": 464,
                 "width": 750,
               },
             ]
           }
-          vbHeight={250}
+          vbHeight={444.6666666666667}
           vbWidth={750}
           width={750}
         >
@@ -444,6 +444,7 @@ exports[`<Chart /> renders correctly 1`] = `
             {
               "alignItems": "center",
               "justifyContent": "center",
+              "marginTop": 20,
               "padding": 30,
             }
           }
@@ -470,6 +471,11 @@ exports[`<Chart /> renders correctly 1`] = `
             color="#000"
             defaultValue="$0.0000000"
             editable={false}
+            style={
+              {
+                "fontSize": 24,
+              }
+            }
             text="$0.0000000"
           />
         </View>
