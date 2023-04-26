@@ -42,9 +42,33 @@ const WalletsTab = (): JSX.Element => {
     wallets,
   } = useContext(DataContext)
   const [refreshing, setRefreshing] = React.useState(false)
+  const [mediumData, setMediumData] = useState()
+
+  const getMediumData = async (): Promise<void> => {
+    try {
+      const res = await fetch(
+        // eslint-disable-next-line max-len
+        "https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/kaspa-currency"
+      )
+      const json = await res.json()
+      if (json.status === "ok") {
+        setTimeout(() => {
+          setMediumData(json)
+        }, 2000)
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  useEffect(() => {
+    getMediumData()
+  }, [])
 
   const onRefresh = React.useCallback(async () => {
+    setMediumData(undefined)
     setRefreshing(true)
+    getMediumData()
     const response = await getGraphData()
     if (response) {
       setGraphData(response)
@@ -55,8 +79,6 @@ const WalletsTab = (): JSX.Element => {
   }, [setSelectedGraphIndex])
 
   const sheetRef = useRef(null)
-
-  console.log(wallets[0])
 
   // variables
   const snapPoints = useMemo(() => ["80%"], [])
@@ -122,12 +144,10 @@ const WalletsTab = (): JSX.Element => {
     </>
   )
 
-  const renderContent = () => {
+  const renderContent = (): void => {
     if (sheetContent === "transactions") return renderTransactions
     if (sheetContent === "chart") return renderChart
   }
-
-  const smallerDevice = Dimensions.get("window").height < 800
 
   return (
     <SafeAreaView>
@@ -221,7 +241,7 @@ const WalletsTab = (): JSX.Element => {
               </TouchableOpacity>
             </View>
             <View>
-              <News />
+              <News mediumData={mediumData} />
             </View>
           </View>
         </View>

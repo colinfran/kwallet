@@ -23,7 +23,7 @@ import moment from "moment"
 import RenderHtml from "react-native-render-html"
 import { Ionicons } from "@expo/vector-icons"
 
-const News = (): JSX.Element => {
+const News = ({ mediumData }): JSX.Element => {
   const {
     graphData,
     appColor,
@@ -34,29 +34,8 @@ const News = (): JSX.Element => {
   } = useContext(DataContext)
   const navigation = useNavigation()
 
-  const [mediumData, setMediumData] = useState()
   const [isOpen, setIsOpen] = useState(false)
   const [selectedArticle, setSelectedArticle] = useState()
-
-  useEffect(() => {
-    const getMediumData = async (): Promise<void> => {
-      try {
-        const res = await fetch(
-          // eslint-disable-next-line max-len
-          "https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/kaspa-currency"
-        )
-        const json = await res.json()
-        if (json.status === "ok") {
-          setTimeout(() => {
-            setMediumData(json)
-          }, 2000)
-        }
-      } catch (error) {
-        console.log(error)
-      }
-    }
-    getMediumData()
-  }, [])
 
   const renderArticle = (item): JSX.Element => {
     return (
