@@ -27,6 +27,7 @@ import Chart from "../../components/Chart"
 import TransactionHistory from "../../components/TransactionHistory"
 import { AntDesign, Ionicons } from "@expo/vector-icons"
 import News from "../../components/News"
+import { Actionsheet } from "native-base"
 
 const WalletsTab = (): JSX.Element => {
   const {
@@ -41,6 +42,7 @@ const WalletsTab = (): JSX.Element => {
   } = useContext(DataContext)
   const [refreshing, setRefreshing] = React.useState(false)
   const [mediumData, setMediumData] = useState()
+  const [isOpen, setIsOpen] = useState(false)
 
   const getMediumData = async (): Promise<void> => {
     try {
@@ -76,59 +78,12 @@ const WalletsTab = (): JSX.Element => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [setSelectedGraphIndex])
 
-  const bottomSheetModalRef = useRef<BottomSheetModal>(null)
-
-  // variables
-  const snapPoints = useMemo(() => ["80%"], [])
-
-  const handlePresentModalPress = useCallback(() => {
-    bottomSheetModalRef.current?.present()
-  }, [])
-
-  const handleClosePress = useCallback(() => {
-    bottomSheetModalRef.current?.close()
-  }, [])
-
   const [sheetContent, setSheetContent] = useState("chart")
 
   const renderContent = () => {
     if (sheetContent === "transactions") return <TransactionHistory />
     if (sheetContent === "chart") return <Chart />
   }
-
-  const handle = (): JSX.Element => (
-    <View>
-      <View>
-        <View style={{ justifyContent: "center", alignItems: "center" }}>
-          <View
-            style={{
-              width: 40,
-              height: 4,
-              backgroundColor: "#a1a1aa",
-              marginTop: 10,
-              borderRadius: 100,
-            }}
-          />
-        </View>
-        <TouchableOpacity
-          style={{
-            top: 0,
-            right: 10,
-            width: 40,
-            height: 40,
-            alignSelf: "flex-end",
-            alignItems: "center",
-            justifyContent: "center",
-            borderRadius: 100,
-            backgroundColor: "#a1a1aa",
-          }}
-          onPress={() => handleClosePress()}
-        >
-          <Ionicons color="black" name="close-outline" size={24} />
-        </TouchableOpacity>
-      </View>
-    </View>
-  )
 
   return (
     <SafeAreaView>
@@ -189,9 +144,7 @@ const WalletsTab = (): JSX.Element => {
                 ]}
                 onPress={() => {
                   setSheetContent("transactions")
-                  setTimeout(() => {
-                    handlePresentModalPress()
-                  }, 100)
+                  setIsOpen(true)
                 }}
               >
                 <AntDesign color={textColor} name="bars" size={30} />
@@ -213,9 +166,7 @@ const WalletsTab = (): JSX.Element => {
                 ]}
                 onPress={() => {
                   setSheetContent("chart")
-                  setTimeout(() => {
-                    handlePresentModalPress()
-                  }, 100)
+                  setIsOpen(true)
                 }}
               >
                 <AntDesign color={textColor} name="linechart" size={25} />
@@ -227,33 +178,33 @@ const WalletsTab = (): JSX.Element => {
           </View>
         </View>
       </ScrollView>
-      <BottomSheetModal
-        backdropComponent={useCallback(
-          (props) => (
-            <BottomSheetBackdrop
-              {...props}
-              appearsOnIndex={0}
-              disappearsOnIndex={-1}
-            />
-          ),
-          []
-        )}
-        backgroundStyle={{
-          backgroundColor: modalBackgroundColor,
-          borderTopLeftRadius: 20,
-          borderTopRightRadius: 20,
-        }}
-        enableOverDrag={true}
-        enablePanDownToClose={true}
-        handleComponent={handle}
-        index={0}
-        ref={bottomSheetModalRef}
-        snapPoints={snapPoints}
-      >
-        <BottomSheetView style={{ position: "relative" }}>
+      <Actionsheet isOpen={isOpen} onClose={() => setIsOpen(!isOpen)}>
+        <Actionsheet.Content
+          _dragIndicator={{ style: { backgroundColor: "#a1a1aa" } }}
+          style={{
+            position: "relative",
+            backgroundColor: modalBackgroundColor,
+          }}
+        >
+          <TouchableOpacity
+            style={{
+              top: -10,
+              right: 0,
+              width: 40,
+              height: 40,
+              alignSelf: "flex-end",
+              alignItems: "center",
+              justifyContent: "center",
+              borderRadius: 100,
+              backgroundColor: "#a1a1aa",
+            }}
+            onPress={() => setIsOpen(!isOpen)}
+          >
+            <Ionicons color="black" name="close-outline" size={24} />
+          </TouchableOpacity>
           {renderContent()}
-        </BottomSheetView>
-      </BottomSheetModal>
+        </Actionsheet.Content>
+      </Actionsheet>
     </SafeAreaView>
   )
 }

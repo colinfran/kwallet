@@ -27,6 +27,7 @@ const TransactionHistory = (): JSX.Element => {
           justifyContent: "center",
           alignItems: "center",
           marginTop: 10,
+          // height:"80%",
         }}
       >
         <View
@@ -35,6 +36,7 @@ const TransactionHistory = (): JSX.Element => {
             {
               width: Dimensions.get("window").width - 40,
               borderColor: appColor,
+              height:"100%",
               padding: 20,
               shadowColor: textColor,
               backgroundColor: backgroundColor,
