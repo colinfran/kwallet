@@ -8,6 +8,7 @@ import * as Sentry from "sentry-expo"
 import { DataProvider } from "./providers/DataProvider"
 import Navigation from "./navigation"
 import { devEnv, sentryDsn } from "./constants"
+import { BottomSheetModalProvider } from "@gorhom/bottom-sheet"
 
 Sentry.init({
   dsn: sentryDsn,

@@ -22,11 +22,18 @@ const TransactionHistory = (): JSX.Element => {
 
   if (temp.length !== 0) {
     return (
-      <View style={{ width: Dimensions.get("window").width - 40 }}>
+      <View
+        style={{
+          justifyContent: "center",
+          alignItems: "center",
+          marginTop: 10,
+        }}
+      >
         <View
           style={[
             styles.container,
             {
+              width: Dimensions.get("window").width - 40,
               borderColor: appColor,
               padding: 20,
               shadowColor: textColor,

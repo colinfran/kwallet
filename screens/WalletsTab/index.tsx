@@ -15,13 +15,11 @@ import {
   SafeAreaView,
   TouchableOpacity,
 } from "react-native"
-import { TabView, SceneMap, TabBar } from "react-native-tab-view"
-import BottomSheet, {
+import {
   BottomSheetBackdrop,
+  BottomSheetModal,
   BottomSheetView,
 } from "@gorhom/bottom-sheet"
-
-import { Actionsheet, Text, useTheme } from "native-base"
 
 import WalletHeader from "../../components/WalletHeader"
 import { DataContext } from "../../providers/DataProvider"
@@ -78,76 +76,59 @@ const WalletsTab = (): JSX.Element => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [setSelectedGraphIndex])
 
-  const sheetRef = useRef(null)
+  const bottomSheetModalRef = useRef<BottomSheetModal>(null)
 
   // variables
   const snapPoints = useMemo(() => ["80%"], [])
 
-  const handleSnapPress = useCallback((index) => {
-    sheetRef.current?.snapToIndex(index)
+  const handlePresentModalPress = useCallback(() => {
+    bottomSheetModalRef.current?.present()
   }, [])
+
   const handleClosePress = useCallback(() => {
-    sheetRef.current?.close()
+    bottomSheetModalRef.current?.close()
   }, [])
 
   const [sheetContent, setSheetContent] = useState("chart")
 
-  const renderTransactions = (
-    <>
-      <TouchableOpacity
-        style={{
-          top: 0,
-          right: 10,
-          width: 40,
-          height: 40,
-          alignSelf: "flex-end",
-          alignItems: "center",
-          justifyContent: "center",
-          borderRadius: 100,
-          backgroundColor: "#a1a1aa",
-        }}
-        onPress={() => handleClosePress()}
-      >
-        <Ionicons color="black" name="close-outline" size={24} />
-      </TouchableOpacity>
-      <View
-        style={{
-          justifyContent: "center",
-          alignItems: "center",
-          marginTop: 30,
-        }}
-      >
-        <TransactionHistory />
-      </View>
-    </>
-  )
-
-  const renderChart = (
-    <>
-      <TouchableOpacity
-        style={{
-          top: 0,
-          right: 10,
-          width: 40,
-          height: 40,
-          alignSelf: "flex-end",
-          alignItems: "center",
-          justifyContent: "center",
-          borderRadius: 100,
-          backgroundColor: "#a1a1aa",
-        }}
-        onPress={() => handleClosePress()}
-      >
-        <Ionicons color="black" name="close-outline" size={24} />
-      </TouchableOpacity>
-      <Chart />
-    </>
-  )
-
-  const renderContent = (): void => {
-    if (sheetContent === "transactions") return renderTransactions
-    if (sheetContent === "chart") return renderChart
+  const renderContent = () => {
+    if (sheetContent === "transactions") return <TransactionHistory />
+    if (sheetContent === "chart") return <Chart />
   }
+
+  const handle = (): JSX.Element => (
+    <View>
+      <View>
+        <View style={{ justifyContent: "center", alignItems: "center" }}>
+          <View
+            style={{
+              width: 40,
+              height: 4,
+              backgroundColor: "#a1a1aa",
+              marginTop: 10,
+              borderRadius: 100,
+            }}
+          />
+        </View>
+        <TouchableOpacity
+          style={{
+            top: 0,
+            right: 10,
+            width: 40,
+            height: 40,
+            alignSelf: "flex-end",
+            alignItems: "center",
+            justifyContent: "center",
+            borderRadius: 100,
+            backgroundColor: "#a1a1aa",
+          }}
+          onPress={() => handleClosePress()}
+        >
+          <Ionicons color="black" name="close-outline" size={24} />
+        </TouchableOpacity>
+      </View>
+    </View>
+  )
 
   return (
     <SafeAreaView>
@@ -209,7 +190,7 @@ const WalletsTab = (): JSX.Element => {
                 onPress={() => {
                   setSheetContent("transactions")
                   setTimeout(() => {
-                    handleSnapPress(0)
+                    handlePresentModalPress()
                   }, 100)
                 }}
               >
@@ -233,7 +214,7 @@ const WalletsTab = (): JSX.Element => {
                 onPress={() => {
                   setSheetContent("chart")
                   setTimeout(() => {
-                    handleSnapPress(0)
+                    handlePresentModalPress()
                   }, 100)
                 }}
               >
@@ -246,7 +227,7 @@ const WalletsTab = (): JSX.Element => {
           </View>
         </View>
       </ScrollView>
-      <BottomSheet
+      <BottomSheetModal
         backdropComponent={useCallback(
           (props) => (
             <BottomSheetBackdrop
@@ -264,19 +245,15 @@ const WalletsTab = (): JSX.Element => {
         }}
         enableOverDrag={true}
         enablePanDownToClose={true}
-        handleIndicatorStyle={{
-          backgroundColor: "#a1a1aa",
-          width: 40,
-          marginTop: 5,
-        }}
-        index={-1}
-        ref={sheetRef}
+        handleComponent={handle}
+        index={0}
+        ref={bottomSheetModalRef}
         snapPoints={snapPoints}
       >
         <BottomSheetView style={{ position: "relative" }}>
           {renderContent()}
         </BottomSheetView>
-      </BottomSheet>
+      </BottomSheetModal>
     </SafeAreaView>
   )
 }

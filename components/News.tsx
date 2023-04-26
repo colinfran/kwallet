@@ -110,6 +110,7 @@ const News = ({ mediumData }): JSX.Element => {
       </View>
       <Actionsheet isOpen={isOpen} onClose={() => setIsOpen(!isOpen)}>
         <Actionsheet.Content
+          _dragIndicator={{style: { backgroundColor: "#a1a1aa"}}}
           style={{
             position: "relative",
             backgroundColor: modalBackgroundColor,
@@ -117,8 +118,8 @@ const News = ({ mediumData }): JSX.Element => {
         >
           <TouchableOpacity
             style={{
-              top: 0,
-              right: 10,
+              top: -10,
+              right: 0,
               width: 40,
               height: 40,
               alignSelf: "flex-end",

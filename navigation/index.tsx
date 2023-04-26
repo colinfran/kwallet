@@ -22,6 +22,7 @@ import {
 import { Ionicons } from "@expo/vector-icons"
 import * as Font from "expo-font"
 import * as SplashScreen from "expo-splash-screen"
+import { BottomSheetModalProvider } from "@gorhom/bottom-sheet"
 
 SplashScreen.preventAutoHideAsync()
 
@@ -51,7 +52,9 @@ const Navigation = ({
     <NavigationContainer
       theme={colorScheme === "dark" ? DarkTheme : DefaultTheme}
     >
-      <RootNavigator />
+      <BottomSheetModalProvider>
+        <RootNavigator />
+      </BottomSheetModalProvider>
     </NavigationContainer>
   )
 }
