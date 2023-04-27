@@ -100,13 +100,15 @@ const News = ({ mediumData }): JSX.Element => {
                 <View style={{ flexDirection: "row", gap: 20 }}>
                   <View style={{ flexDirection: "column" }}>
                     <Skeleton h="100" w="200" />
-                    <Skeleton h="5" marginTop={2} w="200" />
-                    <Skeleton h="5" marginTop={2} w="200" />
+                    <Skeleton h="3" marginTop={2} w="200" />
+                    <Skeleton h="3" marginTop={2} w="200" />
+                    <Skeleton h="3" marginTop={2} w="200" />
                   </View>
                   <View style={{ flexDirection: "column" }}>
                     <Skeleton h="100" w="200" />
-                    <Skeleton h="5" marginTop={2} w="200" />
-                    <Skeleton h="5" marginTop={2} w="200" />
+                    <Skeleton h="3" marginTop={2} w="200" />
+                    <Skeleton h="3" marginTop={2} w="200" />
+                    <Skeleton h="3" marginTop={2} w="200" />
                   </View>
                 </View>
               </View>
@@ -114,7 +116,7 @@ const News = ({ mediumData }): JSX.Element => {
           )}
         </View>
       </View>
-      <Actionsheet isOpen={isOpen} onClose={() => setIsOpen(!isOpen)}>
+      <Actionsheet isOpen={isOpen} onClose={() => setIsOpen(false)} hideDragIndicator>
         <Actionsheet.Content
           _dragIndicator={{ style: { backgroundColor: "#a1a1aa" } }}
           style={{
@@ -124,7 +126,7 @@ const News = ({ mediumData }): JSX.Element => {
         >
           <TouchableOpacity
             style={{
-              top: -10,
+              top: 0,
               right: 0,
               width: 40,
               height: 40,

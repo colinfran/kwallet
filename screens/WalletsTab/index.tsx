@@ -178,7 +178,11 @@ const WalletsTab = (): JSX.Element => {
           </View>
         </View>
       </ScrollView>
-      <Actionsheet isOpen={isOpen} onClose={() => setIsOpen(!isOpen)}>
+      <Actionsheet
+        isOpen={isOpen}
+        hideDragIndicator
+        onClose={() => setIsOpen(false)}
+      >
         <Actionsheet.Content
           _dragIndicator={{ style: { backgroundColor: "#a1a1aa" } }}
           style={{
@@ -188,7 +192,7 @@ const WalletsTab = (): JSX.Element => {
         >
           <TouchableOpacity
             style={{
-              top: -10,
+              top: 0,
               right: 0,
               width: 40,
               height: 40,
