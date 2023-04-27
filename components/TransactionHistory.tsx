@@ -35,11 +35,10 @@ const TransactionHistory = (): JSX.Element => {
             styles.container,
             {
               width: Dimensions.get("window").width - 40,
-              borderColor: appColor,
-              height:"100%",
+              height: "100%",
               padding: 20,
               shadowColor: textColor,
-              backgroundColor: backgroundColor,
+              // backgroundColor: backgroundColor,
             },
             styles.shadow,
           ]}
@@ -49,6 +48,10 @@ const TransactionHistory = (): JSX.Element => {
               justifyContent: "center",
               alignItems: "center",
               padding: 20,
+              height: 150,
+              borderColor: appColor,
+              borderWidth: 2,
+              borderRadius: 16,
             }}
           >
             <View>
@@ -72,7 +75,7 @@ const TransactionHistory = (): JSX.Element => {
           {
             borderColor: appColor,
             shadowColor: textColor,
-            backgroundColor: backgroundColor,
+            // backgroundColor: backgroundColor,
           },
           styles.shadow,
         ]}
@@ -120,10 +123,8 @@ const TransactionHistory = (): JSX.Element => {
 const styles = StyleSheet.create({
   container: {
     width: "100%",
-    borderWidth: 2,
     padding: 20,
     paddingTop: 0,
-    borderRadius: 16,
     gap: 10,
     height: 210,
   },
