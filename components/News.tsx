@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react"
+import React, { useContext, useRef, useState } from "react"
 import {
   StyleSheet,
   View,
@@ -36,6 +36,7 @@ const News = ({ mediumData }): JSX.Element => {
 
   const [isOpen, setIsOpen] = useState(false)
   const [selectedArticle, setSelectedArticle] = useState()
+  const scrollRef = useRef()
 
   const renderArticle = (item): JSX.Element => {
     return (
@@ -43,6 +44,11 @@ const News = ({ mediumData }): JSX.Element => {
         key={item.title}
         style={{ width: 200, padding: 20 }}
         onPress={() => {
+          scrollRef.current.scrollTo({
+            y: 0,
+            x: 0,
+            animated: false,
+          })
           setIsOpen(true)
           setSelectedArticle(item)
         }}
@@ -110,7 +116,7 @@ const News = ({ mediumData }): JSX.Element => {
       </View>
       <Actionsheet isOpen={isOpen} onClose={() => setIsOpen(!isOpen)}>
         <Actionsheet.Content
-          _dragIndicator={{style: { backgroundColor: "#a1a1aa"}}}
+          _dragIndicator={{ style: { backgroundColor: "#a1a1aa" } }}
           style={{
             position: "relative",
             backgroundColor: modalBackgroundColor,
@@ -132,7 +138,7 @@ const News = ({ mediumData }): JSX.Element => {
           >
             <Ionicons color="black" name="close-outline" size={24} />
           </TouchableOpacity>
-          <ScrollView>
+          <ScrollView ref={scrollRef}>
             <View style={{ height: "90%" }}>
               <View style={{ padding: 20 }}>
                 <Text style={{ fontSize: 20 }}>{selectedArticle?.title}</Text>
