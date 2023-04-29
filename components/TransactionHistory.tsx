@@ -37,22 +37,24 @@ const TransactionHistory = (): JSX.Element => {
               width: Dimensions.get("window").width - 40,
               height: "100%",
               padding: 20,
-              shadowColor: textColor,
-              // backgroundColor: backgroundColor,
             },
-            styles.shadow,
           ]}
         >
           <View
-            style={{
-              justifyContent: "center",
-              alignItems: "center",
-              padding: 20,
-              height: 150,
-              borderColor: appColor,
-              borderWidth: 2,
-              borderRadius: 16,
-            }}
+            style={[
+              styles.shadow,
+              {
+                justifyContent: "center",
+                alignItems: "center",
+                padding: 20,
+                height: 150,
+                borderColor: appColor,
+                borderWidth: 2,
+                borderRadius: 16,
+                shadowColor: textColor,
+                backgroundColor: backgroundColor,
+              },
+            ]}
           >
             <View>
               <Text style={{ color: textColor }}>No transactions</Text>

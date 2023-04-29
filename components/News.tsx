@@ -5,6 +5,7 @@ import {
   Dimensions,
   ScrollView,
   TouchableOpacity,
+  Linking,
 } from "react-native"
 import {
   Skeleton,
@@ -92,6 +93,37 @@ const News = ({ mediumData }): JSX.Element => {
                 {mediumData.items.map((item) => {
                   return renderArticle(item)
                 })}
+                <TouchableOpacity
+                  style={{
+                    flexDirection: "column",
+                    alignItems: "center",
+                    justifyContent: "flex-start",
+                    height: "100%",
+                    width: 210,
+                    borderColor: appColor,
+                    padding: 20,
+                  }}
+                  onPress={() =>
+                    Linking.openURL("https://medium.com/kaspa-currency")
+                  }
+                >
+                  <View
+                    style={{
+                      flexDirection: "column",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      height: "90%",
+                      padding: 20,
+                      borderColor: appColor,
+                      borderWidth: 2,
+                      borderRadius: 15,
+                    }}
+                  >
+                    <Text style={{ color: textColor, textAlign: "center" }}>
+                      Read more articles on Medium
+                    </Text>
+                  </View>
+                </TouchableOpacity>
               </ScrollView>
             </View>
           ) : (
@@ -116,7 +148,11 @@ const News = ({ mediumData }): JSX.Element => {
           )}
         </View>
       </View>
-      <Actionsheet isOpen={isOpen} onClose={() => setIsOpen(false)} hideDragIndicator>
+      <Actionsheet
+        isOpen={isOpen}
+        hideDragIndicator
+        onClose={() => setIsOpen(false)}
+      >
         <Actionsheet.Content
           _dragIndicator={{ style: { backgroundColor: "#a1a1aa" } }}
           style={{

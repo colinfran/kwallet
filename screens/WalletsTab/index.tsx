@@ -43,7 +43,7 @@ const WalletsTab = (): JSX.Element => {
   const [refreshing, setRefreshing] = React.useState(false)
   const [mediumData, setMediumData] = useState()
   const [isOpen, setIsOpen] = useState(false)
-
+  console.log(wallets[0])
   const getMediumData = async (): Promise<void> => {
     try {
       const res = await fetch(
@@ -86,7 +86,7 @@ const WalletsTab = (): JSX.Element => {
   }
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{ backgroundColor: backgroundColor }}>
       <ScrollView
         contentContainerStyle={[
           styles.container,

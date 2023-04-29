@@ -47,7 +47,7 @@ const WalletAmount = (): JSX.Element => {
       style={[
         styles.container,
         {
-          // backgroundColor: backgroundColor,
+          backgroundColor: backgroundColor,
           // borderColor: appColor,
           // shadowColor: textColor,
         },
@@ -67,7 +67,14 @@ const WalletAmount = (): JSX.Element => {
           </Text>
         </Skeleton>
       </View>
-      <View style={{ paddingLeft: 20, paddingRight: 20, paddingTop: 30 }}>
+      <View
+        style={{
+          paddingLeft: 20,
+          paddingRight: 20,
+          paddingTop: 30,
+          backgroundColor: backgroundColor,
+        }}
+      >
         <DoubleButton
           buttonGroupStyle={[
             styles.shadow,
@@ -98,26 +105,6 @@ const WalletAmount = (): JSX.Element => {
           }}
         />
       </View>
-      {/* <View
-        style={{
-          borderColor: appColor,
-          borderWidth: 2,
-          borderBottomWidth: 0,
-          width: Dimensions.get("window").width,
-          height: 500,
-          position: "absolute",
-          top: -500,
-          zIndex: 0,
-          shadowOffset: {
-            width: 0,
-            height: 6,
-          },
-          shadowColor: textColor,
-          shadowOpacity: 0.25,
-          shadowRadius: 3.5,
-          elevation: 5,
-        }}
-      ></View> */}
     </View>
   )
 }
@@ -126,20 +113,8 @@ export default WalletAmount
 
 const styles = StyleSheet.create({
   container: {
-    // marginHorizontal: 5,
-    // borderWidth: 2,
-    // borderTopWidth: 0,
     alignItems: "center",
     justifyContent: "center",
-    // paddingVertical: Dimensions.get("window").height < 800 ? "10%" : "20%",
-    // borderBottomLeftRadius: 25,
-    // borderBottomRightRadius: 25,
-    shadowOffset: {
-      width: 0,
-      height: 6,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.5,
     elevation: 5,
   },
   shadow: {
