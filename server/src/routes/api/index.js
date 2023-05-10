@@ -9,6 +9,7 @@ import { fileURLToPath } from "url"
 import path from "path"
 import moment from "moment"
 import nodemailer from "nodemailer"
+import PublicGoogleSheetsParser from "public-google-sheets-parser"
 
 let transporter = nodemailer.createTransport({
   host: "smtp.zoho.com",
@@ -97,6 +98,12 @@ route.post("/email-sign-up", async (req, res) => {
     Email: email,
     Time: new Date().toISOString(),
   })
+  const parser = new PublicGoogleSheetsParser(process.env.LIST_ID)
+  const dataArray = await parser.parse()
+  if (dataArray.some(e => e.Email === email)){
+    return res.send({error: true, message: "User already signed up"})
+  }
+  
   try {
     const response = await fetch(process.env.EMAIL_LIST_URL, {
       method: "POST",
