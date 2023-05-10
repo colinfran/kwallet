@@ -3726,6 +3726,11 @@ proxy-from-env@^1.1.0:
   resolved "https://registry.yarnpkg.com/proxy-from-env/-/proxy-from-env-1.1.0.tgz#e102f16ca355424865755d2c9e8ea4f24d58c3e2"
   integrity sha512-D+zkORCbA9f1tdWRK0RaCR3GPv50cMxcrz4X8k5LTSUD1Dkw47mKJEZQNunItRTkWwgtaUSo1RVFRIG9ZXiFYg==
 
+public-google-sheets-parser@^1.3.2:
+  version "1.3.2"
+  resolved "https://registry.yarnpkg.com/public-google-sheets-parser/-/public-google-sheets-parser-1.3.2.tgz#bbd851cb7af45e0449a0bb1177b53ab1965c39f2"
+  integrity sha512-60mFehWdmuYgnocz4LWveRYLsdUExV20d2gYbWEBHv4igOrozbKGJOucnO2eUU7MkJWAlxcTA+KxWimRl2uYAQ==
+
 punycode@1.3.2:
   version "1.3.2"
   resolved "https://registry.yarnpkg.com/punycode/-/punycode-1.3.2.tgz#9653a036fb7c1ee42342f2325cceefea3926c48d"
