@@ -8,6 +8,7 @@ window.addEventListener("load", function () {
 })
 
 // form submission
+// const url = "http://localhost:3000/api/email-sign-up"
 const url = "https://kwallet.app/api/email-sign-up"
 const form = document.querySelector("#form")
 const btn = document.querySelector("#submit")
@@ -42,7 +43,19 @@ form.addEventListener("submit", (e) => {
       "Content-Type": "application/json",
     },
   })
-    .then((response) => {
+    .then(function(response) { return response.json(); })
+    .then(function(json) {
+      console.log(json)
+      if (json.message === "User already signed up"){
+        console.log("error")
+        btn.disabled = true
+        btn.innerHTML = "Submit"
+        document.querySelector("#UMIFNf").style = "display:none;"
+        document.querySelector("#YH7cBX").className = "_l79chJ"
+        document.querySelector("#QwgFJH").innerHTML =
+        "You have already signed up for early access."
+        return
+      }
       btn.disabled = true
       btn.disabled = false
       btn.innerHTML = "Submit"
