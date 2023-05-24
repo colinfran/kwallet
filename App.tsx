@@ -27,6 +27,7 @@ if (devEnv === "development") {
     "exported from 'deprecated-react-native-prop-types'.",
     "Non-serializable values were found in the navigation state.",
     "VirtualizedLists should never be nested inside plain ScrollViews",
+    "Sending `onAnimatedValueUpdate` with no listeners registered",
   ]
 
   const warn = console.warn

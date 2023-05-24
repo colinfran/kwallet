@@ -3,11 +3,12 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 /* eslint-disable @typescript-eslint/no-empty-function */
 import React, { useState, createContext, useEffect } from "react"
-import * as SecureStore from "expo-secure-store"
 import * as Sentry from "sentry-expo"
 import { useColorScheme } from "react-native"
 import { apiKey, apiUrl } from "../constants/index"
 import { DarkTheme, DefaultTheme } from "@react-navigation/native"
+import createSecureStore from "@neverdull-agency/expo-unlimited-secure-store"
+const secureStore = createSecureStore()
 
 type DataPoint = {
   timestamp: number
@@ -32,6 +33,8 @@ export const DataContext = createContext({
 
   wallets: [],
   setWallets: (newWallet: object) => {},
+
+  setWalletData: (newWallet: object) => {},
 
   isLoaded: false,
   setIsLoaded: (loaded: boolean) => {},
@@ -88,9 +91,18 @@ export const DataProvider = ({ children }): JSX.Element => {
     }
   }, [graphData])
 
+  const setWalletData = async (value) => {
+    try {
+      await secureStore.setItem("wallets", JSON.stringify(value))
+      setWallets(value)
+    } catch (error) {
+      Sentry.Native.captureException(error)
+    }
+  }
+
   const getWalletData = async () => {
     try {
-      const walletData = await SecureStore.getItemAsync("wallets")
+      const walletData = await secureStore.getItem("wallets")
       if (walletData !== null) {
         setWallets(JSON.parse(walletData))
       }
@@ -140,6 +152,8 @@ export const DataProvider = ({ children }): JSX.Element => {
 
         wallets,
         setWallets,
+
+        setWalletData,
 
         selectedWalletIndex,
         setSelectedWalletIndex,

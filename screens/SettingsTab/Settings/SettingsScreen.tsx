@@ -23,7 +23,6 @@ import {
 } from "native-base"
 import Svg, { Circle, Path } from "react-native-svg"
 import { SwipeListView } from "react-native-swipe-list-view"
-import * as SecureStore from "expo-secure-store"
 import icons from "currency-icons"
 
 import Constants from "expo-constants"
@@ -70,6 +69,7 @@ const SettingsScreen = (): JSX.Element => {
     backgroundColor,
     modalBackgroundColor,
     selectedCurrency,
+    setWalletData,
   } = useContext(DataContext)
 
   const [openWalletPicker, setOpenWalletPicker] = useState(false)
@@ -312,17 +312,19 @@ const SettingsScreen = (): JSX.Element => {
                 onPress: () => {
                   if (wallets.length === 1) {
                     setOpenWalletPicker(false)
-                    setWallets([])
-                    SecureStore.setItemAsync("wallets", JSON.stringify([]))
+                    setWalletData([])
+                    // setWallets([])
+                    // SecureStore.setItemAsync("wallets", JSON.stringify([]))
                   } else {
                     const newWallets = wallets.filter(
                       (wallet) => wallet !== wallets[data.index]
                     )
-                    setWallets(newWallets)
-                    SecureStore.setItemAsync(
-                      "wallets",
-                      JSON.stringify(newWallets)
-                    )
+                    setWalletData(newWallets)
+                    // setWallets(newWallets)
+                    // SecureStore.setItemAsync(
+                    //   "wallets",
+                    //   JSON.stringify(newWallets)
+                    // )
                   }
                 },
               },

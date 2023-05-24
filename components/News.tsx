@@ -45,7 +45,7 @@ const News = ({ mediumData }): JSX.Element => {
         key={item.title}
         style={{ width: 200, padding: 20 }}
         onPress={() => {
-          scrollRef.current.scrollTo({
+          scrollRef?.current?.scrollTo({
             y: 0,
             x: 0,
             animated: false,
@@ -79,10 +79,11 @@ const News = ({ mediumData }): JSX.Element => {
             marginHorizontal: 20,
             borderRadius: 15,
             height: 200,
+            // overflow: mediumData !== undefined ? "scroll" : "hidden",
           },
         ]}
       >
-        <View>
+        <View style={{overflow: mediumData !== undefined ? "scroll" : "hidden",}}>
           {mediumData !== undefined ? (
             <View>
               <ScrollView
@@ -127,8 +128,8 @@ const News = ({ mediumData }): JSX.Element => {
               </ScrollView>
             </View>
           ) : (
-            <View>
-              <View style={{ padding: 20, overflow: "hidden" }}>
+            <View style={{padding: 20, width: Dimensions.get("window").width - 44,}}>
+              <View>
                 <View style={{ flexDirection: "row", gap: 20 }}>
                   <View style={{ flexDirection: "column" }}>
                     <Skeleton h="100" w="200" />
@@ -182,7 +183,7 @@ const News = ({ mediumData }): JSX.Element => {
                 <Text style={{ fontSize: 20 }}>{selectedArticle?.title}</Text>
                 <Text style={{ fontSize: 12 }}>
                   {moment(selectedArticle?.pubDate).format(
-                    "MMMM Do YYYY, h:mm:ss a"
+                    "MMMM Do YYYY, h:mm A"
                   )}
                 </Text>
               </View>

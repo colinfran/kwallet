@@ -53,9 +53,9 @@ const WalletAmount = (): JSX.Element => {
         },
       ]}
     >
-      <View>
+      <View style={{ height: 60 }}>
         <Skeleton isLoaded={isLoaded} marginBottom={2} w={310}>
-          <Heading color={textColor} size="3xl" testID="test-walletAmountUSD">
+          <Heading color={textColor} textAlign={"center"} size="3xl" width={Dimensions.get("window").width} testID="test-walletAmountUSD">
             {walletTotalMonetaryValue}
           </Heading>
         </Skeleton>
@@ -67,44 +67,6 @@ const WalletAmount = (): JSX.Element => {
           </Text>
         </Skeleton>
       </View>
-      <View
-        style={{
-          paddingLeft: 20,
-          paddingRight: 20,
-          paddingTop: 30,
-          backgroundColor: backgroundColor,
-        }}
-      >
-        <DoubleButton
-          buttonGroupStyle={[
-            styles.shadow,
-            {
-              shadowColor: textColor,
-              backgroundColor: backgroundColor,
-            },
-          ]}
-          buttonProps={{
-            _pressed: {
-              style: {
-                backgroundColor: appColor,
-                borderColor: appColor,
-              },
-              _text: { color: textColorPressed, borderColor: appColor },
-            },
-            _text: { color: textColor },
-            backgroundColor: backgroundColor,
-          }}
-          left={{
-            text: "Send",
-            onPress: () => navigation.navigate("Send"),
-          }}
-          // pointerEvents="box-none"
-          right={{
-            text: "Receive",
-            onPress: () => navigation.navigate("Receive"),
-          }}
-        />
-      </View>
     </View>
   )
 }
@@ -115,7 +77,6 @@ const styles = StyleSheet.create({
   container: {
     alignItems: "center",
     justifyContent: "center",
-    elevation: 5,
   },
   shadow: {
     shadowOffset: {

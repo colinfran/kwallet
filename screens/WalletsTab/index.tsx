@@ -14,6 +14,7 @@ import {
   Dimensions,
   SafeAreaView,
   TouchableOpacity,
+  Text,
 } from "react-native"
 import {
   BottomSheetBackdrop,
@@ -28,6 +29,9 @@ import TransactionHistory from "../../components/TransactionHistory"
 import { AntDesign, Ionicons } from "@expo/vector-icons"
 import News from "../../components/News"
 import { Actionsheet } from "native-base"
+import { useNavigation } from "@react-navigation/native"
+import Recieve from "./Receive"
+import Send from "./Send"
 
 const WalletsTab = (): JSX.Element => {
   const {
@@ -60,6 +64,7 @@ const WalletsTab = (): JSX.Element => {
       console.log(error)
     }
   }
+  const navigation = useNavigation()
 
   useEffect(() => {
     getMediumData()
@@ -80,13 +85,15 @@ const WalletsTab = (): JSX.Element => {
 
   const [sheetContent, setSheetContent] = useState("chart")
 
-  const renderContent = () => {
+  const renderContent = (): JSX.Element | undefined => {
     if (sheetContent === "transactions") return <TransactionHistory />
     if (sheetContent === "chart") return <Chart />
+    if (sheetContent === "receive") return <Recieve />
+    return
   }
 
   return (
-    <SafeAreaView style={{ backgroundColor: backgroundColor }}>
+    <SafeAreaView style={{ backgroundColor: backgroundColor, justifyContent:"center", alignItems:"center" }}>
       <ScrollView
         contentContainerStyle={[
           styles.container,
@@ -101,7 +108,7 @@ const WalletsTab = (): JSX.Element => {
         disableScrollViewPanResponder={true}
         refreshControl={
           <RefreshControl
-            colors={[]}
+            colors={[appColor]}
             refreshing={refreshing}
             style={{ zIndex: 200 }}
             onRefresh={onRefresh}
@@ -115,7 +122,7 @@ const WalletsTab = (): JSX.Element => {
               alignSelf: "center",
               justifyContent: "center",
               width: "100%",
-              // gap: 30,
+              gap: 20,
             }}
           >
             <WalletHeader />
@@ -123,7 +130,7 @@ const WalletsTab = (): JSX.Element => {
               style={{
                 width: "100%",
                 flexDirection: "row",
-                padding: 20,
+                paddingHorizontal: 20,
                 gap: 20,
               }}
             >
@@ -137,17 +144,19 @@ const WalletsTab = (): JSX.Element => {
                     borderWidth: 2,
                     borderRadius: 15,
                     width: Dimensions.get("window").width * 0.5 - 30,
-                    height: 130,
+                    height: Dimensions.get("window").height < 800 ? 100 : 130,
                     justifyContent: "center",
                     alignItems: "center",
+                    gap: 10,
                   },
                 ]}
                 onPress={() => {
-                  setSheetContent("transactions")
+                  setSheetContent("receive")
                   setIsOpen(true)
                 }}
               >
-                <AntDesign color={textColor} name="bars" size={30} />
+                <AntDesign color={textColor} name="down-square-o" size={30} />
+                <Text style={{ color: textColor }}>Receive</Text>
               </TouchableOpacity>
               <TouchableOpacity
                 style={[
@@ -159,9 +168,66 @@ const WalletsTab = (): JSX.Element => {
                     borderWidth: 2,
                     borderRadius: 15,
                     width: Dimensions.get("window").width * 0.5 - 30,
-                    height: 130,
+                    height: Dimensions.get("window").height < 800 ? 100 : 130,
                     justifyContent: "center",
                     alignItems: "center",
+                    gap: 10,
+                  },
+                ]}
+                onPress={() => {
+                  navigation.navigate("Send")
+                }}
+              >
+                <AntDesign color={textColor} name="up-square-o" size={30} />
+                <Text style={{ color: textColor }}>Send</Text>
+              </TouchableOpacity>
+            </View>
+            <View
+              style={{
+                width: "100%",
+                flexDirection: "row",
+                paddingHorizontal: 20,
+                gap: 20,
+              }}
+            >
+              <TouchableOpacity
+                style={[
+                  styles.shadow,
+                  {
+                    backgroundColor: backgroundColor,
+                    shadowColor: textColor,
+                    borderColor: appColor,
+                    borderWidth: 2,
+                    borderRadius: 15,
+                    width: Dimensions.get("window").width * 0.5 - 30,
+                    height: Dimensions.get("window").height < 800 ? 100 : 130,
+                    justifyContent: "center",
+                    alignItems: "center",
+                    gap: 10,
+                  },
+                ]}
+                onPress={() => {
+                  setSheetContent("transactions")
+                  setIsOpen(true)
+                }}
+              >
+                <AntDesign color={textColor} name="profile" size={30} />
+                <Text style={{ color: textColor }}>Transactions</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={[
+                  styles.shadow,
+                  {
+                    backgroundColor: backgroundColor,
+                    shadowColor: textColor,
+                    borderColor: appColor,
+                    borderWidth: 2,
+                    borderRadius: 15,
+                    width: Dimensions.get("window").width * 0.5 - 30,
+                    height: Dimensions.get("window").height < 800 ? 100 : 130,
+                    justifyContent: "center",
+                    alignItems: "center",
+                    gap: 10,
                   },
                 ]}
                 onPress={() => {
@@ -169,7 +235,8 @@ const WalletsTab = (): JSX.Element => {
                   setIsOpen(true)
                 }}
               >
-                <AntDesign color={textColor} name="linechart" size={25} />
+                <AntDesign color={textColor} name="linechart" size={30} />
+                <Text style={{ color: textColor }}>Charts</Text>
               </TouchableOpacity>
             </View>
             <View>

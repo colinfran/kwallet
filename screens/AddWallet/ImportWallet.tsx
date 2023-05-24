@@ -5,7 +5,6 @@ import {
   Dimensions,
   KeyboardAvoidingView,
 } from "react-native"
-import * as SecureStore from "expo-secure-store"
 import { Button, TextArea, Input, Icon, Spinner } from "native-base"
 import * as Sentry from "sentry-expo"
 import { DataContext } from "../../providers/DataProvider"
@@ -14,8 +13,14 @@ import { useNavigation } from "@react-navigation/native"
 import { apiKey, apiUrl } from "../../constants/index"
 
 const ImportWallet = (): JSX.Element => {
-  const { wallets, setWallets, setSelectedWalletIndex, appColor, textColor } =
-    useContext(DataContext)
+  const {
+    wallets,
+    setWallets,
+    setSelectedWalletIndex,
+    appColor,
+    textColor,
+    setWalletData,
+  } = useContext(DataContext)
 
   const [loading, setLoading] = useState(false)
   const [validSeedPhrase, setValidSeedPhrase] = useState(false)
@@ -55,19 +60,22 @@ const ImportWallet = (): JSX.Element => {
       }
       console.log(newWalletObject)
       let newWalletArray = []
+      console.log("wallets.length", wallets.length)
       if (wallets.length > 0) {
         newWalletArray = [...wallets, newWalletObject]
-        setWallets(newWalletArray)
-        SecureStore.setItemAsync("wallets", JSON.stringify(newWalletArray))
+        // setWallets(newWalletArray)
+        // SecureStore.setItemAsync("wallets", JSON.stringify(newWalletArray))
+        setWalletData(newWalletArray)
         setSelectedWalletIndex(newWalletArray.length - 1)
         setLoading(false)
-        navigation.navigate("SettingsTab")
+        // navigation.navigate("SettingsTab")
       } else {
         newWalletArray.push(newWalletObject)
-        setWallets(newWalletArray)
+        setWalletData(newWalletArray)
+        // setWallets(newWalletArray)
         setSelectedWalletIndex(0)
         setLoading(false)
-        SecureStore.setItemAsync("wallets", JSON.stringify(newWalletArray))
+        // SecureStore.setItemAsync("wallets", JSON.stringify(newWalletArray))
       }
     } catch (error) {
       Sentry.Native.captureException(error)
