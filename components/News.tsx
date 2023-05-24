@@ -42,7 +42,7 @@ const News = ({ mediumData }): JSX.Element => {
   const renderArticle = (item): JSX.Element => {
     return (
       <TouchableOpacity
-        key={item.title}
+        key={`${item.title}-${item.pubDate}`}
         style={{ width: 200, padding: 20 }}
         onPress={() => {
           scrollRef?.current?.scrollTo({

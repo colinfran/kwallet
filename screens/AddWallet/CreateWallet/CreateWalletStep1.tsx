@@ -13,6 +13,7 @@ import {
   Actionsheet,
   Icon,
   Spinner,
+  Pressable,
 } from "native-base"
 import * as Haptics from "expo-haptics"
 import * as Sentry from "sentry-expo"
@@ -20,7 +21,7 @@ import * as Sentry from "sentry-expo"
 import UserResponsibility from "../../../components/UserResponsibility"
 import { DataContext } from "../../../providers/DataProvider"
 import image from "../../../assets/images/vault.png"
-import { Ionicons } from "@expo/vector-icons"
+import { Ionicons, MaterialIcons } from "@expo/vector-icons"
 import ButtonOutline from "../../../components/Button/ButtonOutline"
 import { apiKey, apiUrl } from "../../../constants/index"
 
@@ -31,6 +32,7 @@ const CreateWalletStep1 = ({ navigation }): JSX.Element => {
   const [checkbox3, setCheckbox3] = useState(false)
   const [walletPassword, setWalletPassword] = useState("")
   const [isValid, setIsValid] = useState(false)
+  const [show, setShow] = useState(false)
 
   const [bottomSheetOpen, setBottomSheetOpen] = useState(false)
   const [loading, setLoading] = useState(false)
@@ -133,12 +135,26 @@ const CreateWalletStep1 = ({ navigation }): JSX.Element => {
                 borderColor={appColor}
                 borderRadius={15}
                 color={textColor}
+                InputRightElement={
+                  <Pressable onPress={() => setShow(!show)}>
+                    <Icon
+                      as={
+                        <MaterialIcons
+                          name={show ? "visibility" : "visibility-off"}
+                        />
+                      }
+                      color="muted.400"
+                      mr="2"
+                      size={5}
+                    />
+                  </Pressable>
+                }
                 mx="3"
                 placeholder="Wallet Password"
                 returnKeyType="done"
                 style={{ height: 60 }}
                 textContentType="oneTimeCode"
-                type="password"
+                type={show ? "text" : "password"}
                 w="100%"
                 onChangeText={(e) => setWalletPassword(e)}
               />
