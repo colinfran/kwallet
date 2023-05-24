@@ -26,7 +26,7 @@ route.post("/create", async (req, res) => {
       { disableAddressDerivation: true, syncOnce: true }
     )
     const encryptedMnemonic = await wallet.export(password)
-    await wallet.sync(true)
+    wallet.sync(true)
     res.json({
       address: wallet.addressManager.getAddresses()[0].address,
       mnemonic: wallet.mnemonic,
