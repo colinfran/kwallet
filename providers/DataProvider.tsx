@@ -127,7 +127,7 @@ export const DataProvider = ({ children }): JSX.Element => {
           encryptedMnemonic: selectedWallet.walletData.encryptedMnemonic,
         }),
       }
-      const url = `${apiUrl}/api/graph-data`
+      const url = `${apiUrl}/v1/graph-data`
       const response = await fetch(url, options)
       const json = await response.json()
       if (json && !json.error) {

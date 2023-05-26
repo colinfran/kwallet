@@ -112,7 +112,7 @@ const Send = ({ route }): JSX.Element => {
           encryptedMnemonic: selectedWallet.walletData.encryptedMnemonic,
         }),
       }
-      const url = `${apiUrl}/api/wallet/send`
+      const url = `${apiUrl}/v1/wallet/send`
       const response = await fetch(url, options)
       const json = await response.json()
       console.log(json)

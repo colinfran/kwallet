@@ -44,7 +44,7 @@ const ImportWallet = (): JSX.Element => {
           mnemonic: walletMnemonic,
         }),
       }
-      const url = `${apiUrl}/api/wallet/import`
+      const url = `${apiUrl}/v1/wallet/import`
       const response = await fetch(url, options)
       const json = await response.json()
       console.log(json)

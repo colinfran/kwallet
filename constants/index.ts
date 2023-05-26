@@ -1,6 +1,6 @@
 import { API_KEY, DEV_ENV, NETWORK_IP, SENTRY_DSN } from "@env"
 
-let apiUrl = "https://kwallet.app"
+let apiUrl = "https://api.kwallet.app"
 if (DEV_ENV === "development") {
   apiUrl = `http://${NETWORK_IP}:3000`
 }

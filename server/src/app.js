@@ -15,7 +15,7 @@ import cors from "cors"
 import rateLimit from "express-rate-limit"
 import swStats from "swagger-stats"
 
-import apiRoute from "./routes/api/index.js"
+import v1Route from "./routes/v1/index.js"
 import rootRoute from "./routes/index.js"
 
 import { initKaspaFramework } from "@kaspa/wallet"
@@ -99,7 +99,7 @@ initializeCronJobs()
   Api endpoints
   Returns: graph data and wallet data
 */
-app.use("/api", apiRoute)
+app.use("/v1", v1Route)
 
 /*
   Webpage endpoints
