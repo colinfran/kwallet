@@ -1,0 +1,16 @@
+{
+  "name": "uptime-badge",
+  "description": "Simple JSON endpoint to display shields.io badge based on uptime status from betteruptime.com",
+  "repository": "https://github.com/sooluh/uptime-badge",
+  "logo": "https://raw.githubusercontent.com/twitter/twemoji/master/assets/svg/26a1.svg",
+  "keywords": [
+    "shields.io",
+    "badges",
+    "uptime",
+    "status",
+    "betteruptime",
+    "uptimerobot",
+    "shields",
+    "github-badge"
+  ]
+}
