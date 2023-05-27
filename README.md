@@ -100,3 +100,6 @@ To deploy website to github pages, run:
 ```
 yarn run deploy-website
 ```
+
+Under the hood, the kwallet website files are bundled and pushed up to a specific branch: "gh-pages". This branch is what is used to host the website.
+
