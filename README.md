@@ -91,4 +91,11 @@ Listed below are the free 3rd party services used to help keep the app running s
 
 ---
 
-The Kwallet is hosted on GitHub Pages. The website code can be found [here](https://github.com/colinfran/kwallet-website/).
+The Kwallet is hosted on GitHub Pages. The website code can be found [here](https://github.com/colinfran/kwallet/tree/main/custom-apps/kwallet-website/).
+
+To deploy the website you need admin privledges to the repo.
+
+To deploy, run:
+```
+yarn run deploy-website
+```
