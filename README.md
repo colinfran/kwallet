@@ -1,3 +1,4 @@
+
 # kwallet
 <a href="https://kwallet.app/?utm_source=github&utm_medium=github-readme" target="_blank">
   <img src="https://github.com/colinfran/kwallet/raw/main/assets/images/kwallet-icon-logo.png" style="height:150px" />
@@ -37,8 +38,18 @@ Sever Statuses
 
 ---
 
+ - [local app development](https://github.com/colinfran/kwallet#local-development)
+	 - [set up](https://github.com/colinfran/kwallet#set-up)
+	 - [run app with local server](https://github.com/colinfran/kwallet#run-app-with-local-server)
+	 - [run app with production server](https://github.com/colinfran/kwallet#run-app-with-production-server)
+ -  [3rd party services](https://github.com/colinfran/kwallet#3rd-party-services)
+ - [kwallet website](https://github.com/colinfran/kwallet#kwallet-website)
+
+---
+
 ## local development
-set up:
+
+### set up:
 ```
 git clone https://github.com/colinfran/kwallet.git
 cd kwallet
@@ -80,6 +91,8 @@ yarn run app:prod
 
 ---
 
+## 3rd party services
+
 Listed below are the free 3rd party services used to help keep the app running smoothly.
 
 |               Service            |                   Product                 |
@@ -90,6 +103,8 @@ Listed below are the free 3rd party services used to help keep the app running s
 
 
 ---
+
+## kwallet website
 
 The Kwallet website is hosted on GitHub Pages. The website code can be found [here](https://github.com/colinfran/kwallet/tree/main/custom-apps/kwallet-website/).
 
