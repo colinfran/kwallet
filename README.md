@@ -118,3 +118,5 @@ yarn run deploy-website
 
 Under the hood, the kwallet website files are bundled and pushed up to a specific branch: "gh-pages". This branch is what is used to host the website.
 
+The root domain (kwallet.app) is hosted via GitHub Pages. The api subdomain (api.kwallet.app) is hosted via DigitalOcean.
+All this was set up through the DNS records. Must have admin access to be able to make changes to DNS records.
