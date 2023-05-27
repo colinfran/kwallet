@@ -93,7 +93,7 @@ Listed below are the free 3rd party services used to help keep the app running s
 
 The Kwallet website is hosted on GitHub Pages. The website code can be found [here](https://github.com/colinfran/kwallet/tree/main/custom-apps/kwallet-website/).
 
-To maximize bandwidth for the API server, the Kwallet webpage is hosted by GitHub Pages.
+To maximize bandwidth for the API server, all static files, web pages, images, etc are hosted by GitHub Pages.
 
 To deploy the website you need admin privledges to the repo.
 To deploy website to github pages, run:
