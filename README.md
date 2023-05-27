@@ -88,3 +88,7 @@ Listed below are the free 3rd party services used to help keep the app running s
 |         Uptime Monitoring        | [BetterUptime](https://betteruptime.com/) |
 |        Zoho Email Services       | [Zoho](https://www.zoho.com/mail/)        |
 
+
+---
+
+The Kwallet is hosted on GitHub Pages. The website code can be found [here](https://github.com/colinfran/kwallet-website/).
