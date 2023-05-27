@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" class="next-head">
+    <title class="next-head">Privacy Policy</title>
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta name="title" content="Kwallet - A Kaspa wallet app for iOS and Android">
+    <meta name="description" content="Kwallet - A Kaspa wallet app for iOS and Android">
+    <meta name="keywords" content="Kwallet - A Kaspa wallet app for iOS and Android, kwallet, kaspa, wallet, colin, franceschini, colin franceschini, ios, android, app">
+    <meta name="robots" content="index, follow">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="language" content="English">
+    <meta name="author" content="Colin Franceschini">
+    <link rel="apple-touch-icon" sizes="57x57" href="/icons/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/icons/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/icons/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/icons/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/icons/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/icons/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/icons/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/icons/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/icons/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/icons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+    <link rel="manifest" href="/icons/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/icons/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    <style>
+      :root {
+        --bg-primary: #151C29;
+        --bg-secondary: #222B3D;
+        --bg-quaternary: #343E52;
+        --bg-tertiary: #2B3447;
+        --fg-primary: #000;
+        --fg-secondary: #C5CBD6;
+        --ac-primary: #45AEF5
+      }
+
+      * {
+        -webkit-tap-highlight-color: transparent
+      }
+
+      body {
+        padding: 0;
+        margin: 0
+      }
+
+      a,
+      body {
+        font-family: Montserrat, sans-serif;
+        color: var(--fg-primary)
+      }
+
+      .wrap {
+        width: 1440px;
+        padding: 0 94px;
+        box-sizing: border-box;
+        margin: 0 auto
+      }
+
+      .head {
+        width: 100%;
+        user-select: none;
+        padding-bottom: 48px
+      }
+
+      .head_links {
+        display: flex;
+        margin-right: -16px
+      }
+
+      .head_links a {
+        display: block;
+        padding: 16px;
+        text-decoration: none;
+        font-size: 18px;
+        line-height: 170%;
+        transition: opacity 150ms ease-in-out
+      }
+
+      .head_links a:hover {
+        opacity: .48
+      }
+
+      .terms_wrap {
+        width: 810px
+      }
+
+      .big_title {
+        font-weight: 600;
+        font-size: 64px;
+        line-height: 130%
+      }
+
+      .terms_title {
+        font-weight: 600;
+        font-size: 24px;
+        line-height: 140%;
+        margin-top: 48px
+      }
+
+      .text {
+        font-size: 18px;
+        line-height: 170%;
+        margin-top: 16px
+      }
+
+      .text p {
+        margin: 32px 0 0;
+        padding: 0
+      }
+
+      .text p:first-child {
+        margin-top: 0
+      }
+
+      @media (max-width:1440px) {
+        .wrap {
+          width: 100%;
+          padding: 0 72px
+        }
+
+        .head {
+          padding-bottom: 24px
+        }
+
+        .head_links {
+          margin-right: -12px
+        }
+
+        .head_links a {
+          font-size: 16px;
+          padding: 14px 12px
+        }
+
+        .terms_wrap {
+          width: 100%
+        }
+
+        .big_title {
+          font-size: 48px
+        }
+
+        .terms_title {
+          font-size: 24px
+        }
+
+        .text {
+          font-size: 16px
+        }
+      }
+
+      @media (max-width:700px) {
+        .wrap {
+          padding: 0 24px
+        }
+
+        .big_title {
+          font-size: 32px
+        }
+
+        .terms_title {
+          font-size: 20px
+        }
+      }
+
+      @media (max-width:600px) {
+        .head_links_wrap {
+          position: absolute;
+          z-index: 100;
+          opacity: 0;
+          pointer-events: none;
+          top: 0;
+          right: 0;
+          transition: opacity 150ms ease-in-out
+        }
+
+        .head_links_wrap:after {
+          content: '';
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: #10151f;
+          opacity: .32;
+          z-index: 1
+        }
+
+        .head_links {
+          margin: 0;
+          position: fixed;
+          z-index: 2;
+          top: 12px;
+          right: 12px;
+          flex-direction: column;
+          background: var(--bg-secondary);
+          width: 200px;
+          box-shadow: 0 4px 16px rgba(0, 0, 0, .08), 0 8px 48px rgba(0, 0, 0, .16);
+          border-radius: 12px;
+          overflow: hidden
+        }
+
+        .head_links a {
+          height: 56px;
+          padding: 0 24px;
+          font-size: 16px;
+          align-items: center;
+          display: flex;
+          position: relative;
+          text-decoration: none !important;
+          opacity: 1 !important
+        }
+
+        .head_links a:before {
+          content: '';
+          display: block;
+          top: 0;
+          left: 24px;
+          right: 0;
+          position: absolute;
+          height: 1px;
+          background: rgba(255, 255, 255, .04)
+        }
+
+        .head_links a:first-child:before {
+          display: none
+        }
+
+        .head_links a:hover {
+          background: var(--bg-tertiary)
+        }
+
+        .head_links a:hover:before {
+          display: none
+        }
+
+        .head_links a:hover+a:before {
+          display: none
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap" style="padding-bottom: 40px;padding-top: 40px;">
+      <div class="terms_wrap">
+        <div class="big_title">Privacy policy</div>
+        <div class="text">
+          <p> Effective as of May 1, 2023. <br /> Last updated May 1, 2023. </p>
+          <p> This Privacy Policy describes the policies and procedures on how the developers of this app collects and processes your information in our AppStore or Google Play application (the “Application”) we offer. </p>
+          <p> Privacy and information protection are core principles on which we have our Application. This Privacy Policy sets out our current policies and commitment to information protection and privacy. According to this, we aim to collect and process only information strictly necessary for our relationship with customers, partners, users of our Application, in order to provide our services. </p>
+          <p> We make our Privacy Policy available in our Application in its most recent version. Please review it carefully. By accessing and / or using the Application, you acknowledge and confirm that you have read, understood, and agree to this Privacy Policy. </p>
+        </div>
+        <div class="terms_title">INFORMATION WE COLLECT</div>
+        <div class="text">
+          <p> As the Application is a non-custodial crypto asset software wallet, we do not have customer accounts. We do not require you to provide your personal data to us to use the Application. We will never ask you to share your private keys or wallet seed. Never trust anyone or any site that asks you to enter your private keys or wallet seed. It is important to note that your blockchain transactions may be relayed through servers or nodes and will be publicly visible due to the public nature of distributed ledger systems. </p>
+          <p> We may collect limited information about you from your devices or from various sources, as described below. </p>
+          <p>
+            <b>Information You Give Us.</b> We may collect some personal information from you when you communicate with us, including your contact information, such as your name, email address or phone number (depending on how you contact us).
+          </p>
+          <p>
+            <b>Information Automatically Collected.</b> We may automatically collect information about you and your devices when you use the Application, including: (i) information you create through the Application, such as public wallet addresses; (ii) the IP address of the device you use to access the Application; (iii) the type of browser software you are using; (iv) the operating system you are using; (v) the date and time you access or use the Application; and (vi) other non-personally identifiable information.
+          </p>
+          <p> We are especially sensitive about children’s information. We are not targeted towards children, and we don’t knowingly collect information from children under the age of 13. If you believe that we might have any information from a child under 13, please contact us. </p>
+        </div>
+        <div class="terms_title">HOW WE USE THE INFORMATION</div>
+        <div class="text">
+          <p> We use the information we collect for the following purposes: </p>
+          <ul>
+            <li> To enable you to access and use the Application, and to process and complete transactions, and send you related information, including confirmations, technical notices, updates, security alerts, and support and administrative messages. </li>
+            <li> To understand and analyze how you use our Application and develop new products, services, features, and functionality. </li>
+            <li> To communicate with you about promotions, upcoming events, and other news about products and services offered by us. </li>
+            <li> For marketing purposes, such as developing and providing promotional and advertising materials that may be useful, relevant, valuable, or otherwise of interest to you. </li>
+            <li> To personalize your experience of the Application such as identifying you as a repeat visitor. </li>
+            <li> To facilitate the connection of third-party services or applications. </li>
+            <li> In order to optimize your user experience, we may use your information to operate, maintain, and improve our Application. </li>
+            <li> To protect, investigate, and deter against fraudulent, unauthorized, or illegal activity. </li>
+            <li> For compliance purposes, including enforcing our terms of use or other legal rights, or as may be required by applicable laws and regulations or requested by any judicial process or governmental agency. </li>
+            <li> To contract with third-party API providers, including providing customer service, providing advertising or marketing services, providing analytic services. </li>
+          </ul>
+          <p></p>
+        </div>
+        <div class="terms_title">LEGAL BASIS FOR PROCESSING YOUR PERSONAL INFORMATION</div>
+        <div class="text"> If you are located in the European Economic Area, we only process your personal data when we have a valid “legal basis”, including when: <ul>
+            <li> Performance of a contract: This is when processing of personal data is needed in order to perform our obligations under a contract (to provide services) concluded with you. </li>
+            <li> Legal obligation or for public interest: This is when we are required to process your personal data to comply with a legal obligation. </li>
+            <li> Legitimate interests: Where necessary, we may process personal data where there is a legitimate interest for us in pursuing commercial and business interests (for example, for product development and internal analytics purposes), except where such interests are overridden by your interests, fundamental rights and freedoms. </li>
+          </ul>
+        </div>
+        <div class="terms_title">SHARING OF THE INFORMATION</div>
+        <div class="text"> We do not share the information that you provide us with other organizations without your express consent, except as described in this Privacy Policy. We disclose information to third parties under the following circumstances:&nbsp; <ul>
+            <li>
+              <b>Affiliates.</b>&nbsp;We may disclose your information to our subsidiaries and corporate affiliates (i.e. our family of companies that are related by common ownership or control) for purposes consistent with this Privacy Policy.
+            </li>
+            <li>
+              <b>Business Transfers.</b>&nbsp;We may share the information when we do a business deal, or negotiate a business deal, involving the sale or transfer of all or a part of our business or assets. These deals can include any merger, financing, acquisition, or bankruptcy transaction or proceeding.
+            </li>
+            <li>
+              <b>Analytics Partners.</b> We use analytics services such as Google Analytics to collect and process certain analytics data. These services also may collect information about your use of other websites and online resources.
+            </li>
+            <li>
+              <b>Compliance with Laws.</b>&nbsp;We may share the information for legal, protection, and safety purposes. We may access, preserve, and disclose your information if we believe doing so is required or appropriate to: (i) comply with applicable laws; (ii) respond to law enforcement requests and legal process, such as a court order or subpoena; or (iii) protect our rights, property, and safety, our employees, agents, customers, and others, including to enforce our agreements, policies, and terms of use.
+            </li>
+            <li>
+              <b>Service Providers.</b>&nbsp;We may share information with those who need it to do work for us. These recipients may include third party companies and individuals to administer and provide the service on our behalf, as well as lawyers, bankers and auditors.
+            </li>
+            <li>
+              <b>Consent.</b>&nbsp;You may permit us to share your information with other companies or entities of your choosing. Those uses will be subject to the privacy policies of the recipient entity or entities.&nbsp;
+            </li>
+          </ul>
+        </div>
+        <div class="terms_title">CROSS-BORDER INFORMATION TRANSFER</div>
+        <div class="text">
+          <p> Please be aware that your information will be transferred to, processed, and stored out of the EEA. You consent to the transfer of your information, including personal information, out of the EEA as set forth in this Privacy Policy by using the Application. </p>
+          <p> Whenever we transfer your personal information out of the EEA to the countries not deemed by the European Commission to provide an adequate level of personal information protection, the transfer will be based on a data transfer mechanism recognized by the European Commission as providing adequate protection for personal information. </p>
+          <p> Please contact us if you want further information on the specific mechanism used by us when transferring your personal information out of the EEA. </p>
+        </div>
+        <div class="terms_title">YOUR RIGHTS</div>
+        <div class="text"> You have certain rights regarding your personal information. You may ask us to take the following actions in relation to your personal information that we hold: <ul>
+            <li>
+              <b>Opt-out.</b> You may contact us anytime to opt-out of: (i) any consent you previously provided to us regarding the processing of your information; or (ii) the transfer of your information outside the EEA. We will apply your preferences going forward and this will not affect the lawfulness of the processing before you withdrew your consent. Please note that your use of parts of our Application may be ineffective upon opt-out. You may unsubscribe from our promotional emails via the link provided in the emails. Even if you opt out of receiving marketing and promotional messages from us, you will continue to receive administrative messages from us.
+            </li>
+            <li>
+              <b>Access.</b> Provide you with information about our processing of your information and give you access to your information.
+            </li>
+            <li>
+              <b>Amend.</b> You may update or correct any inaccuracies in your information by contacting us.
+            </li>
+            <li>
+              <b>Restrict.</b> Restrict the processing of your information.
+            </li>
+            <li>
+              <b>Object.</b> Object to our reliance on our legitimate interests as the basis of our processing of your information that impacts your rights.
+            </li>
+            <li>
+              <b>Delete.</b> In certain situations, for example when the information we hold about you is no longer relevant or is incorrect, you may request that we erase your data. <br> You can submit these requests by email to us. We may request specific information from you to help us process your request. Applicable law may require or permit us to decline your request. If we decline your request, we will tell you why, subject to legal restrictions. If you would like to submit a complaint about our use of your personal information or response to your requests regarding your information, you may contact us or submit a complaint to the data protection regulator in your jurisdiction.
+            </li>
+          </ul>
+        </div>
+        <div class="terms_title">RETENTION PERIOD</div>
+        <div class="text"> We will only retain your information as long as reasonably required for us to provide the requested customer support and inquiry services. If you delete uninstall the Application from your device or request that your information be deleted, we still may retain some information that you have provided to us to maintain our Application or to comply with relevant laws. </div>
+        <div class="terms_title">SECURITY</div>
+        <div class="text"> We use reasonable organizational, technical, and administrative measures to protect your information. Even with all these precautions, we cannot fully guarantee against the access, disclosure, alteration, or deletion of data through events, including but not limited to hardware or software failure or unauthorized use. Any information that you provide to us is done so entirely at your own risk. If you have reason to believe that your interaction with us is no longer secure, please immediately notify us of the problem. </div>
+        <div class="terms_title">THIRD PARTY SERVICES</div>
+        <div class="text"> Our Application may contain links or API connections to other websites, products, or services that we do not own or operate. We are not responsible for the privacy and confidentiality practices of these third parties. Please be aware that this Privacy Policy does not apply to your activities on these third-party API providers or any information you disclose to these third parties. We recommend you to read their privacy policies before providing any information to them. </div>
+        <div class="terms_title">CHANGES AND UPDATES TO PRIVACY POLICY</div>
+        <div class="text"> We reserve the right to update and revise this Privacy Policy at any time. We occasionally review this Privacy Policy to make sure it complies with applicable laws and conforms to changes in our business. We may need to update this Privacy Policy, and we reserve the right to do so at any time. If we do revise this Privacy Policy, we will update the effective date at the top of this page so that you can tell if it has changed since your last visit and will do our best to notify you. Please review this Privacy Policy regularly to ensure that you are aware of its terms. Any use of the Application after an amendment to our Privacy Policy constitutes your acceptance to the revised or amended agreement. </div>
+      </div>
+    </div>
+  </body>
+</html>
