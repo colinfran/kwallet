@@ -1,0 +1,16 @@
+{
+  "name": "kwallet-website",
+  "version": "0.1.0",
+  "private": true,
+  "homepage": "https://kwallet.app",
+  "scripts": {
+    "predeploy": "./script/deploy.sh",
+    "deploy": "npx gh-pages -d build"
+  },
+  "devDependencies": {
+    "gh-pages": "^5.0.0"
+  },
+  "dependencies": {
+    "http-server": "^14.1.1"
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "expo": {
+    "name": "kwallet",
+    "slug": "kwallet",
+    "version": "0.9.1",
+    "orientation": "portrait",
+    "icon": "./assets/images/kwallet-icon-logo.png",
+    "scheme": "kwallet",
+    "userInterfaceStyle": "automatic",
+    "splash": {
+      "image": "./assets/images/splash.png",
+      "resizeMode": "contain"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "bundleIdentifier": "com.colinfran.kwallet",
+      "supportsTablet": true,
+      "config": {
+        "usesNonExemptEncryption": false
+      },
+      "infoPlist": {
+        "NSCameraUsageDescription": "Allow $(PRODUCT_NAME) to access camera.",
+        "NSMicrophoneUsageDescription": "Allow $(PRODUCT_NAME) to access your microphone"
+      }
+    },
+    "android": {
+      "package": "com.colinfran.kwallet",
+      "permissions": [
+        "android.permission.CAMERA"
+      ]
+    },
+    "plugins": [
+      [
+        "expo-barcode-scanner",
+        {
+          "cameraPermission": "Allow $(PRODUCT_NAME) to access camera."
+        }
+      ],
+      [
+        "expo-local-authentication",
+        {
+          "faceIDPermission": "Allow $(PRODUCT_NAME) to use Face ID."
+        }
+      ],
+      "sentry-expo"
+    ],
+    "hooks": {
+      "postPublish": [
+        {
+          "file": "sentry-expo/upload-sourcemaps",
+          "config": {
+            "organization": "colinfran",
+            "project": "kwallet-mobile-app"
+          }
+        }
+      ]
+    },
+    "extra": {
+      "eas": {
+        "projectId": "c1c3eb9e-af4e-46ab-9340-2b6ae4bf5b09"
+      }
+    }
+  }
+}

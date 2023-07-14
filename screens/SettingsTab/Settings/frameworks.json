@@ -1,0 +1,37 @@
+[
+  {
+    "key":"CoinGecko API",
+    "description":"Kaspa crypto data provided by CoinGecko.",
+    "src":"https://www.coingecko.com/en/api/"
+  },
+  {
+    "key":"React Native",
+    "description":"React Native is an open-source JavaScript framework, designed for building apps on multiple platforms like iOS, Android, and also web applications, utilizing the very same code base. It is based on React, and it brings all its glory to mobile app development.",
+    "src":"https://github.com/facebook/react-native"
+  },
+  {
+    "key":"React",
+    "description":"React is a library for building composable user interfaces. It encourages the creation of reusable UI components, which present data that changes over time.",
+    "src":"https://github.com/facebook/react"
+  },
+  {
+    "key":"Expo",
+    "description": "Expo is an open-source framework for apps that run natively on Android, iOS, and the web. Expo brings together the best of mobile and the web and enables many important features for building and scaling an app.",
+    "src":"https://github.com/expo/expo"
+  },
+  {
+    "key":"Native Base",
+    "description": "NativeBase is an accessible, utility-first component library that helps you build consistent UI across Android, iOS and Web.",
+    "src":"https://github.com/GeekyAnts/NativeBase"
+  },
+  {
+    "key":"react-native-animated-charts",
+    "description": "A set of components and helpers for building complex and beautifully animated charts.",
+    "src":"https://github.com/rainbow-me/react-native-animated-charts"
+  },
+  {
+    "key": "React Native QRCode SVG",
+    "description": "A QR Code generator for React Native based on react-native-svg and javascript-qrcode.",
+    "src": "https://github.com/awesomejerry/react-native-qrcode-svg"
+  }
+]

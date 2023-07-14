@@ -1,0 +1,486 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Chart /> renders correctly 1`] = `
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
+  style={
+    [
+      {
+        "flex": 1,
+      },
+      undefined,
+    ]
+  }
+>
+  <View
+    style={
+      {
+        "alignItems": "center",
+        "gap": 40,
+        "justifyContent": "center",
+        "marginTop": 10,
+        "width": "100%",
+      }
+    }
+  >
+    <View
+      style={
+        {
+          "flexDirection": "row",
+          "justifyContent": "space-evenly",
+          "paddingTop": 0,
+        }
+      }
+    >
+      <View
+        style={
+          {
+            "justifyContent": "space-evenly",
+          }
+        }
+      >
+        <View
+          style={
+            {
+              "width": "100%",
+            }
+          }
+        >
+          <View
+            animatedStyle={
+              {
+                "value": {
+                  "transform": [
+                    {
+                      "translateX": 0,
+                    },
+                  ],
+                },
+              }
+            }
+            collapsable={false}
+            style={
+              {
+                "alignItems": "center",
+                "backgroundColor": "#654321",
+                "borderColor": "#123456",
+                "borderRadius": 15,
+                "borderWidth": 2,
+                "elevation": 5,
+                "height": 40,
+                "justifyContent": "center",
+                "left": 0,
+                "margin": "auto",
+                "position": "absolute",
+                "right": 0,
+                "shadowColor": "#000",
+                "shadowOffset": {
+                  "height": 5,
+                  "width": 0,
+                },
+                "shadowOpacity": 0.35,
+                "shadowRadius": 3.5,
+                "transform": [
+                  {
+                    "translateX": 0,
+                  },
+                ],
+                "width": 142,
+                "zIndex": 0,
+              }
+            }
+          />
+          <View
+            style={
+              {
+                "flexDirection": "row",
+                "width": "100%",
+              }
+            }
+          >
+            <View
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": undefined,
+                  "disabled": undefined,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              accessible={true}
+              focusable={true}
+              onClick={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                {
+                  "alignItems": "center",
+                  "height": 40,
+                  "justifyContent": "center",
+                  "width": 142,
+                }
+              }
+              testID="test-chart-btn-0"
+            >
+              <Text
+                style={
+                  [
+                    {
+                      "color": "#5A5A5A",
+                      "fontSize": 16,
+                      "zIndex": 5,
+                    },
+                    {
+                      "color": "#000",
+                    },
+                  ]
+                }
+              >
+                Day
+              </Text>
+            </View>
+            <View
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": undefined,
+                  "disabled": undefined,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              accessible={true}
+              focusable={true}
+              onClick={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                {
+                  "alignItems": "center",
+                  "height": 40,
+                  "justifyContent": "center",
+                  "width": 142,
+                }
+              }
+              testID="test-chart-btn-1"
+            >
+              <Text
+                style={
+                  [
+                    {
+                      "color": "#5A5A5A",
+                      "fontSize": 16,
+                      "zIndex": 5,
+                    },
+                    false,
+                  ]
+                }
+              >
+                Week
+              </Text>
+            </View>
+            <View
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": undefined,
+                  "disabled": undefined,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              accessible={true}
+              focusable={true}
+              onClick={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                {
+                  "alignItems": "center",
+                  "height": 40,
+                  "justifyContent": "center",
+                  "width": 142,
+                }
+              }
+              testID="test-chart-btn-2"
+            >
+              <Text
+                style={
+                  [
+                    {
+                      "color": "#5A5A5A",
+                      "fontSize": 16,
+                      "zIndex": 5,
+                    },
+                    false,
+                  ]
+                }
+              >
+                Month
+              </Text>
+            </View>
+            <View
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": undefined,
+                  "disabled": undefined,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              accessible={true}
+              focusable={true}
+              onClick={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                {
+                  "alignItems": "center",
+                  "height": 40,
+                  "justifyContent": "center",
+                  "width": 142,
+                }
+              }
+              testID="test-chart-btn-3"
+            >
+              <Text
+                style={
+                  [
+                    {
+                      "color": "#5A5A5A",
+                      "fontSize": 16,
+                      "zIndex": 5,
+                    },
+                    false,
+                  ]
+                }
+              >
+                Year
+              </Text>
+            </View>
+            <View
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": undefined,
+                  "disabled": undefined,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              accessible={true}
+              focusable={true}
+              onClick={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                {
+                  "alignItems": "center",
+                  "height": 40,
+                  "justifyContent": "center",
+                  "width": 142,
+                }
+              }
+              testID="test-chart-btn-4"
+            >
+              <Text
+                style={
+                  [
+                    {
+                      "color": "#5A5A5A",
+                      "fontSize": 16,
+                      "zIndex": 5,
+                    },
+                    false,
+                  ]
+                }
+              >
+                All
+              </Text>
+            </View>
+          </View>
+        </View>
+      </View>
+    </View>
+    <View>
+      <View
+        onLayout={[Function]}
+        style={
+          {
+            "bottom": "25%",
+            "left": 712,
+            "opacity": 0,
+            "position": "absolute",
+            "zIndex": 6,
+          }
+        }
+      >
+        <Text
+          style={
+            {
+              "color": "#000",
+              "fontSize": 12,
+            }
+          }
+          weight="bold"
+        >
+          $0.0144521
+        </Text>
+      </View>
+      <View
+        onLayout={[Function]}
+        style={
+          {
+            "left": 435,
+            "opacity": 0,
+            "position": "absolute",
+            "top": -10,
+            "zIndex": 6,
+          }
+        }
+      >
+        <Text
+          style={
+            {
+              "color": "#000",
+              "fontSize": 12,
+            }
+          }
+          weight="bold"
+        >
+          $0.0145715
+        </Text>
+      </View>
+      <View
+        animatedStyle={
+          {
+            "value": {},
+          }
+        }
+        collapsable={false}
+        forwardedRef={[Function]}
+        handlerTag={1}
+        handlerType="LongPressGestureHandler"
+        onGestureHandlerEvent={[Function]}
+      >
+        <RNSVGSvgView
+          align="xMidYMid"
+          bbHeight="464.6666666666667"
+          bbWidth="750"
+          focusable={false}
+          height={464.6666666666667}
+          meetOrSlice={0}
+          minX={0}
+          minY={0}
+          style={
+            [
+              {
+                "backgroundColor": "transparent",
+                "borderWidth": 0,
+              },
+              {
+                "flex": 0,
+                "height": 464,
+                "width": 750,
+              },
+            ]
+          }
+          vbHeight={444.6666666666667}
+          vbWidth={750}
+          width={750}
+        >
+          <RNSVGGroup>
+            <RNSVGPath
+              d=""
+              opacity={1}
+              propList={
+                [
+                  "stroke",
+                  "strokeWidth",
+                ]
+              }
+              stroke={
+                {
+                  "payload": 4279383126,
+                  "type": 0,
+                }
+              }
+              strokeWidth="3"
+            />
+          </RNSVGGroup>
+        </RNSVGSvgView>
+      </View>
+      <View
+        style={
+          {
+            "marginTop": -10,
+          }
+        }
+      >
+        <View
+          style={
+            {
+              "alignItems": "center",
+              "justifyContent": "center",
+              "marginTop": 20,
+              "padding": 30,
+            }
+          }
+        >
+          <TextInput
+            animatedStyle={
+              {
+                "value": {},
+              }
+            }
+            collapsable={false}
+            color="#000"
+            defaultValue="4/20/23, 12:00 AM"
+            editable={false}
+            text="4/20/23, 12:00 AM"
+          />
+          <TextInput
+            animatedStyle={
+              {
+                "value": {},
+              }
+            }
+            collapsable={false}
+            color="#000"
+            defaultValue="$0.0000000"
+            editable={false}
+            style={
+              {
+                "fontSize": 24,
+              }
+            }
+            text="$0.0000000"
+          />
+        </View>
+      </View>
+    </View>
+  </View>
+</RNCSafeAreaProvider>
+`;

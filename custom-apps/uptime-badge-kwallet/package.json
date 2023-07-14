@@ -1,0 +1,57 @@
+{
+  "name": "@sooluh/uptime-badge",
+  "version": "0.0.1",
+  "description": "Simple JSON endpoint to display shields.io badge based on uptime status from betteruptime.com",
+  "main": "src/app.js",
+  "scripts": {
+    "prebuild": "del-cli \"./src/*.js\"",
+    "build": "tsc",
+    "postinstall": "yarn build",
+    "start": "node ./src/app.js",
+    "ts-node": "ts-node ./src/app.ts",
+    "dev": "nodemon"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sooluh/uptime-badge.git"
+  },
+  "keywords": [
+    "json",
+    "endpoint",
+    "shields.io",
+    "badges",
+    "uptime",
+    "status",
+    "betteruptime",
+    "uptimerobot",
+    "shields",
+    "github-badge"
+  ],
+  "author": {
+    "name": "Suluh Sulistiawan",
+    "email": "suluh.webdevelopers@hotmail.com",
+    "url": "https://suluh.my.id"
+  },
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/sooluh/uptime-badge/issues"
+  },
+  "homepage": "https://github.com/sooluh/uptime-badge#readme",
+  "devDependencies": {
+    "@types/node": "^17.0.33",
+    "@types/qs": "^6.9.7",
+    "del-cli": "^4.0.1",
+    "minify-all-js": "github:sProDev/minify-all-js",
+    "nodemon": "^2.0.16",
+    "ts-node": "^10.7.0",
+    "typescript": "^4.6.4"
+  },
+  "dependencies": {
+    "@fastify/compress": "^5.0.0",
+    "@fastify/cors": "^7.0.0",
+    "axios": "^0.27.2",
+    "fastify": "^3.29.0",
+    "fastify-prettier": "^1.1.9",
+    "qs": "^6.10.3"
+  }
+}

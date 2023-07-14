@@ -1,0 +1,474 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<UserResponsibility /> renders correctly 1`] = `
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
+  style={
+    [
+      {
+        "flex": 1,
+      },
+      undefined,
+    ]
+  }
+>
+  <View
+    style={
+      {
+        "marginTop": 30,
+      }
+    }
+  >
+    <View>
+      <View
+        dataSet={{}}
+        style={
+          [
+            {
+              "backgroundColor": "#f4f4f5",
+              "borderRadius": 12,
+            },
+            {
+              "width": "100%",
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            {
+              "alignItems": "flex-start",
+              "gap": 30,
+              "justifyContent": "flex-start",
+              "padding": 20,
+            }
+          }
+        >
+          <View
+            dataSet={{}}
+            style={
+              [
+                {
+                  "width": "100%",
+                },
+                {
+                  "gap": 40,
+                },
+              ]
+            }
+          >
+            <View
+              accessibilityRole="checkbox"
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": false,
+                  "disabled": undefined,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              accessibilityValue={
+                {
+                  "max": undefined,
+                  "min": undefined,
+                  "now": undefined,
+                  "text": undefined,
+                }
+              }
+              accessible={true}
+              collapsable={false}
+              dataSet={{}}
+              focusable={true}
+              onBlur={[Function]}
+              onClick={[Function]}
+              onFocus={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={{}}
+            >
+              <View
+                dataSet={{}}
+                style={
+                  {
+                    "alignItems": "center",
+                    "flexDirection": "row",
+                    "justifyContent": "flex-start",
+                    "width": "100%",
+                  }
+                }
+              >
+                <View
+                  dataSet={{}}
+                  style={
+                    {
+                      "alignItems": "center",
+                      "display": "flex",
+                      "justifyContent": "center",
+                    }
+                  }
+                >
+                  <View
+                    dataSet={{}}
+                    style={{}}
+                  />
+                  <View
+                    checked={false}
+                    colorScheme="primary"
+                    dataSet={{}}
+                    defaultIsChecked={false}
+                    disabled={false}
+                    isChecked={false}
+                    onChange={[Function]}
+                    style={
+                      {
+                        "alignItems": "center",
+                        "backgroundColor": "#f4f4f5",
+                        "borderColor": "#737373",
+                        "borderRadius": 4,
+                        "borderWidth": 2,
+                        "display": "flex",
+                        "justifyContent": "center",
+                        "opacity": 1,
+                        "paddingBottom": 2,
+                        "paddingLeft": 2,
+                        "paddingRight": 2,
+                        "paddingTop": 2,
+                      }
+                    }
+                    testID="checkbox1"
+                    value="one"
+                  >
+                    <View
+                      dataSet={{}}
+                      style={
+                        {
+                          "color": "#171717",
+                          "height": 12,
+                          "width": 12,
+                        }
+                      }
+                    />
+                  </View>
+                </View>
+                <View
+                  dataSet={{}}
+                  style={
+                    {
+                      "width": 8,
+                    }
+                  }
+                />
+                <Text
+                  dataSet={{}}
+                  style={
+                    [
+                      {
+                        "backgroundColor": undefined,
+                        "color": "#fafafa",
+                        "fontFamily": undefined,
+                        "fontSize": 14,
+                        "fontStyle": "normal",
+                        "fontWeight": "400",
+                        "letterSpacing": 0,
+                        "lineHeight": 21,
+                        "textDecorationLine": undefined,
+                      },
+                      {
+                        "color": "#000",
+                        "flexGrow": 1,
+                        "flexShrink": 1,
+                        "flexWrap": "wrap",
+                        "paddingLeft": 20,
+                        "paddingRight": 20,
+                      },
+                    ]
+                  }
+                >
+                  If I lose my secret phrase, I will not be able to recover this wallet
+                </Text>
+              </View>
+            </View>
+            <View
+              accessibilityRole="checkbox"
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": false,
+                  "disabled": undefined,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              accessibilityValue={
+                {
+                  "max": undefined,
+                  "min": undefined,
+                  "now": undefined,
+                  "text": undefined,
+                }
+              }
+              accessible={true}
+              collapsable={false}
+              dataSet={{}}
+              focusable={true}
+              onBlur={[Function]}
+              onClick={[Function]}
+              onFocus={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={{}}
+            >
+              <View
+                dataSet={{}}
+                style={
+                  {
+                    "alignItems": "center",
+                    "flexDirection": "row",
+                    "justifyContent": "flex-start",
+                    "width": "100%",
+                  }
+                }
+              >
+                <View
+                  dataSet={{}}
+                  style={
+                    {
+                      "alignItems": "center",
+                      "display": "flex",
+                      "justifyContent": "center",
+                    }
+                  }
+                >
+                  <View
+                    dataSet={{}}
+                    style={{}}
+                  />
+                  <View
+                    checked={false}
+                    colorScheme="primary"
+                    dataSet={{}}
+                    defaultIsChecked={false}
+                    disabled={false}
+                    isChecked={false}
+                    onChange={[Function]}
+                    style={
+                      {
+                        "alignItems": "center",
+                        "backgroundColor": "#f4f4f5",
+                        "borderColor": "#737373",
+                        "borderRadius": 4,
+                        "borderWidth": 2,
+                        "display": "flex",
+                        "justifyContent": "center",
+                        "opacity": 1,
+                        "paddingBottom": 2,
+                        "paddingLeft": 2,
+                        "paddingRight": 2,
+                        "paddingTop": 2,
+                      }
+                    }
+                    testID="checkbox2"
+                    value="two"
+                  >
+                    <View
+                      dataSet={{}}
+                      style={
+                        {
+                          "color": "#171717",
+                          "height": 12,
+                          "width": 12,
+                        }
+                      }
+                    />
+                  </View>
+                </View>
+                <View
+                  dataSet={{}}
+                  style={
+                    {
+                      "width": 8,
+                    }
+                  }
+                />
+                <Text
+                  dataSet={{}}
+                  style={
+                    [
+                      {
+                        "backgroundColor": undefined,
+                        "color": "#fafafa",
+                        "fontFamily": undefined,
+                        "fontSize": 14,
+                        "fontStyle": "normal",
+                        "fontWeight": "400",
+                        "letterSpacing": 0,
+                        "lineHeight": 21,
+                        "textDecorationLine": undefined,
+                      },
+                      {
+                        "color": "#000",
+                        "flexGrow": 1,
+                        "flexShrink": 1,
+                        "flexWrap": "wrap",
+                        "paddingLeft": 20,
+                        "paddingRight": 20,
+                      },
+                    ]
+                  }
+                >
+                  I am responsible for any issue that happens when using this wallet.
+                </Text>
+              </View>
+            </View>
+            <View
+              accessibilityRole="checkbox"
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": false,
+                  "disabled": undefined,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              accessibilityValue={
+                {
+                  "max": undefined,
+                  "min": undefined,
+                  "now": undefined,
+                  "text": undefined,
+                }
+              }
+              accessible={true}
+              collapsable={false}
+              dataSet={{}}
+              focusable={true}
+              onBlur={[Function]}
+              onClick={[Function]}
+              onFocus={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={{}}
+            >
+              <View
+                dataSet={{}}
+                style={
+                  {
+                    "alignItems": "center",
+                    "flexDirection": "row",
+                    "justifyContent": "flex-start",
+                    "width": "100%",
+                  }
+                }
+              >
+                <View
+                  dataSet={{}}
+                  style={
+                    {
+                      "alignItems": "center",
+                      "display": "flex",
+                      "justifyContent": "center",
+                    }
+                  }
+                >
+                  <View
+                    dataSet={{}}
+                    style={{}}
+                  />
+                  <View
+                    checked={false}
+                    colorScheme="primary"
+                    dataSet={{}}
+                    defaultIsChecked={false}
+                    disabled={false}
+                    isChecked={false}
+                    onChange={[Function]}
+                    style={
+                      {
+                        "alignItems": "center",
+                        "backgroundColor": "#f4f4f5",
+                        "borderColor": "#737373",
+                        "borderRadius": 4,
+                        "borderWidth": 2,
+                        "display": "flex",
+                        "justifyContent": "center",
+                        "opacity": 1,
+                        "paddingBottom": 2,
+                        "paddingLeft": 2,
+                        "paddingRight": 2,
+                        "paddingTop": 2,
+                      }
+                    }
+                    testID="checkbox3"
+                    value="three"
+                  >
+                    <View
+                      dataSet={{}}
+                      style={
+                        {
+                          "color": "#171717",
+                          "height": 12,
+                          "width": 12,
+                        }
+                      }
+                    />
+                  </View>
+                </View>
+                <View
+                  dataSet={{}}
+                  style={
+                    {
+                      "width": 8,
+                    }
+                  }
+                />
+                <Text
+                  dataSet={{}}
+                  style={
+                    [
+                      {
+                        "backgroundColor": undefined,
+                        "color": "#fafafa",
+                        "fontFamily": undefined,
+                        "fontSize": 14,
+                        "fontStyle": "normal",
+                        "fontWeight": "400",
+                        "letterSpacing": 0,
+                        "lineHeight": 21,
+                        "textDecorationLine": undefined,
+                      },
+                      {
+                        "color": "#000",
+                        "flexGrow": 1,
+                        "flexShrink": 1,
+                        "flexWrap": "wrap",
+                        "paddingLeft": 20,
+                        "paddingRight": 20,
+                      },
+                    ]
+                  }
+                >
+                  I am ready to create my new wallet.
+                </Text>
+              </View>
+            </View>
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>
+</RNCSafeAreaProvider>
+`;
