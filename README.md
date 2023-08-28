@@ -6,6 +6,8 @@
 
 A non-custodial Kaspa wallet app for iOS and Android
 
+****** UPDATE FROM DEVELOPER: https://www.reddit.com/user/colinfran/comments/14xued6/kwallet_personal_update/ 
+
 
 **currently in progress**
 <br/><br/>
