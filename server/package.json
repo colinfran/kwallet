@@ -5,9 +5,8 @@
   "private": true,
   "scripts": {
     "dev": "NODE_ENV=dev babel-node ./src/api/index.js",
-    "clean": "rm -rf dist",
     "start": "node ./dist/api/index.js",
-    "build": "yarn run clean && babel ./src --out-dir dist --copy-files",
+    "build": "babel ./src --out-dir dist --copy-files",
     "prod": "node ./dist/api/index.js",
     "lint": "eslint \"src/**/*.js\"",
     "format": "prettier --write \"src/**/*.js\""
