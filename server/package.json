@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "NODE_ENV=dev babel-node ./src/app.js",
     "clean": "rm -rf dist",
+    "start": "node ./dist/app.js",
     "build": "yarn run clean && babel ./src --out-dir dist --copy-files",
     "prod": "node ./dist/app.js",
     "lint": "eslint \"src/**/*.js\"",
