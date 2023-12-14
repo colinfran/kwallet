@@ -7,7 +7,7 @@ import cookieParser from "cookie-parser"
 import bodyParser from "body-parser"
 import morgan from "morgan"
 import { fileURLToPath } from "url"
-import { initializeDatabase } from "./database/index.js"
+import { initializeDatabase } from "../database/index.js"
 import * as dotenv from "dotenv"
 import * as Sentry from "@sentry/node"
 import Tracing from "@sentry/tracing"
@@ -15,11 +15,11 @@ import cors from "cors"
 import rateLimit from "express-rate-limit"
 import swStats from "swagger-stats"
 
-import v1Route from "./routes/v1/index.js"
-import rootRoute from "./routes/index.js"
+import v1Route from "../routes/v1/index.js"
+import rootRoute from "../routes/index.js"
 
 import { initKaspaFramework } from "@kaspa/wallet"
-import { initializeCronJobs } from "./cron/index.js"
+import { initializeCronJobs } from "../cron/index.js"
 
 const app = express()
 const server = http.createServer(app)
