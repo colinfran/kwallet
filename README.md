@@ -11,8 +11,6 @@ A non-custodial Kaspa wallet app for iOS and Android
 **As of now, development on kwallet has been paused. The project is open for anyone interested in continuing its development. Feel free to contribute and take it forward.**
 
 <br/><br/>
-[Link To Official Website](https://kwallet.app/?utm_source=github&utm_medium=github-readme)
-<br/><br/>
 Donations accepted!
 
 
