@@ -2,7 +2,7 @@
   "name": "kwallet-website",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://kwallet.app",
+  "homepage": "https://colinfran.github.io/kwallet/",
   "scripts": {
     "predeploy": "./script/deploy.sh",
     "deploy": "npx gh-pages -d build"
