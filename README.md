@@ -1,6 +1,6 @@
 
 # kwallet
-<a href="https://kwallet.app/?utm_source=github&utm_medium=github-readme" target="_blank">
+<a href="https://colinfran.github.io/kwallet/" target="_blank">
   <img src="https://github.com/colinfran/kwallet/raw/main/assets/images/kwallet-icon-logo.png" style="height:150px" />
 </a>
 
@@ -14,7 +14,7 @@ A non-custodial Kaspa wallet app for iOS and Android
 Donations accepted!
 
 
-<a href="https://kwallet.app/?utm_source=github&utm_medium=github-readme&donate=1" target="_blank">
+<a href="https://colinfran.github.io/kwallet/?donate=1" target="_blank">
   <img width="75px;" src="https://i.imgur.com/PoILazo.png">
 </a><br/>
 <br/>
